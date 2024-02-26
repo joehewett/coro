@@ -55,7 +55,8 @@ export default function Example() {
           body: JSON.stringify({
             data: [dataInput],
             keys: splitKeys(keys),
-            instructions: instructions
+            instructions: instructions,
+            openai_api_key: apiKey
           }),
         })
           .then((resp) => resp.json())
