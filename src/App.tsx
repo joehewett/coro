@@ -1,6 +1,5 @@
 import "./index.css";
 import React from "react";
-import RefillForm from "./pages/refill";
 // import "@radix-ui/themes/styles.css";
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
         Refill
       </h1>
       <div className="flex-grow flex-shrink overflow-hidden p-4 md:px-16 md:py-6 lg:px-32">
-        <RefillForm />
       </div>
     </div>
   );
