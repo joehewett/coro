@@ -7,10 +7,36 @@ const App: React.FC = () => {
   const reelRef = useRef<HTMLDivElement>(null);
   const photosRef = useRef<HTMLDivElement>(null);
 
+  const [language, setLanguage] = useState<'en' | 'es'>('en');
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'en' ? 'es' : 'en');
+  };
+
+
+  const content = {
+    en: {
+      name: "Coro Benavent",
+      nav: ["About", "Reel", "Photos"],
+      title: "Actress /// Singer Performer. Creative",
+      description: "Coro Benavent is a versatile actress with a passion for bringing characters to life on stage and screen. With years of experience in theater, film, and television, Coro has captivated audiences with her powerful performances and dedication to her craft.",
+      reel: "Reel",
+      photos: "Photos"
+    },
+    es: {
+      name: "Coro Benavent",
+      nav: ["Sobre mí", "Reel", "Fotos"],
+      title: "Actriz /// Cantante Intérprete. Creativa",
+      description: "Coro Benavent es una actriz versátil con pasión por dar vida a personajes en el escenario y la pantalla. Con años de experiencia en teatro, cine y televisión, Coro ha cautivado al público con sus poderosas interpretaciones y su dedicación a su oficio.",
+      reel: "Reel",
+      photos: "Fotos"
+    }
   };
 
   useEffect(() => {
@@ -45,10 +71,29 @@ const App: React.FC = () => {
           backgroundImage: `url('coro-bw.jpg')`,
         }}
       >
+        <div className="w-full flex justify-end p-4" >
+          <div className="flex items-center">
+            <div className="mr-4 flex items-center rounded-full p-1">
+              <span className={`mr-2 font-semibold ${language === 'en' ? 'text-blue-600' : 'text-gray-600'}`}>EN</span>
+              <button
+                onClick={toggleLanguage}
+                className="w-7 h-4 relative rounded-full bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              >
+                <span className="sr-only">Toggle Language</span>
+                <span
+                  className={`absolute inset-y-0 left-0 w-4 h-4 rounded-full bg-white shadow transform transition-transform duration-300 ease-in-out ${language === 'es' ? 'translate-x-3' : ''
+                    }`}
+                />
+              </button>
+              <span className={`ml-2 font-semibold ${language === 'es' ? 'text-red-600' : 'text-gray-600'}`}>ES</span>
+            </div>
+          </div>
+        </div>
         <div className="px-32 py-32 w-full font-serif flex justify-between items-center">
           <div className="text-white text-2xl md:text-4xl lg:text-6xl">
             Coro Benavent
           </div>
+
           <div className="md:hidden px-4">
             <button onClick={toggleMenu} className="text-white text-2xl">
               {isMenuOpen ? <p>X</p> : <p>///</p>}
@@ -57,10 +102,10 @@ const App: React.FC = () => {
           </div>
           <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block`}>
             <ul className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8">
-              {['about', 'reel', 'photos'].map((section) => (
+              {content[language].nav.map((section) => (
                 <li key={section}>
                   <button
-                    className={`px-4 py-2 text-white text-xl lg:text-2xl font-semibold transition-colors duration-300 ${activeSection === section
+                    className={`px-4 py-2 text-white text-xl lg:text-2xl transition-colors duration-300 ${activeSection === section
                       ? 'border-b-2 border-white'
                       : 'hover:text-gray-300'
                       }`}
@@ -79,28 +124,31 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <div ref={aboutRef} className="py-16 px-4 md:px-8 lg:px-16">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-          Taxing Laughter: The Joke Tax Chronicles
-        </h1>
-        <h2 className="text-3xl font-bold mb-4">About</h2>
-        <p className="text-lg">
-          Coro Benavent is a versatile actress with a passion for bringing characters to life on stage and screen.
-          With years of experience in theater, film, and television, Coro has captivated audiences with her powerful
-          performances and dedication to her craft.
-        </p>
+      <div ref={aboutRef} className="p-16 md:p-48 lg:p-96 space-y-8">
+        <div className="relative">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-2">
+            {content[language].title}
+          </h1>
+          <p className="text-lg lg:text-xl text-gray-600">{content[language].description}</p>
+        </div>
+
+
       </div>
 
-      <div ref={reelRef} className="bg-gray-200 py-16 px-4 md:px-8 lg:px-16">
-        <h2 className="text-3xl font-bold mb-4">Reel</h2>
-        <div className="aspect-w-16 aspect-h-9">
-          <iframe
-            src="https://www.youtube.com/watch?v=DJiASArAgN4"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full"
-          ></iframe>
+      <div className="bg-gray-200 py-48 px-4 md:px-8 lg:px-16">
+        <h2 ref={reelRef} className="text-3xl font-bold mb-8 text-center">Reel</h2>
+        <div className="max-w-4xl py-16 mx-auto">
+          <div className="relative pt-[56.25%]">
+            <iframe
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/3lYq80w47Mg?si=OSlI7bmty0YDHo23"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
       </div>
 
