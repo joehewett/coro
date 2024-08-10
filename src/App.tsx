@@ -6,12 +6,22 @@ const App: React.FC = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
   const reelRef = useRef<HTMLDivElement>(null);
   const photosRef = useRef<HTMLDivElement>(null);
+  const cvRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
 
   const [language, setLanguage] = useState<'en' | 'es'>('en');
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+  const scrollToSection = (refStr: string) => {
+    // This is appaling and I'm sorry if you're reading this.
+    let ref = reelRef;
+    if (refStr === 'Bio' || refStr === 'Bibliografía') ref = aboutRef;
+    if (refStr === 'Reel') ref = reelRef;
+    if (refStr === 'Photos' || refStr === 'Fotos') ref = photosRef;
+    if (refStr === 'CV') ref = cvRef;
+    if (refStr === 'Contact' || refStr === 'Contacto') ref = contactRef;
+
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -19,11 +29,48 @@ const App: React.FC = () => {
     setLanguage(prev => prev === 'en' ? 'es' : 'en');
   };
 
+  const photos = [
+    'coro8.jpg',
+    'coro9.jpg',
+    'coro11.jpg',
+    'coro12.jpg',
+    'coro13.jpg',
+    'coro14.jpg',
+    'coro15.jpg',
+    'coro16.jpg',
+    'coro17.jpg',
+    'coro18.jpg',
+    'coro19.jpg',
+    'coro20.jpg',
+    'coro-beach.jpg',
+    'coro-headshot.jpg',
+    'coro1.jpg',
+    'coro2.jpg',
+    'coro3.jpg',
+    'coro4.jpg',
+    'coro5.jpg',
+    'coro6.jpg',
+    'coro7.jpg',
+    // 'coro21.jpg',
+    // 'coro22.jpg',
+    // 'coro23.jpg',
+    // 'coro24.jpg',
+    // 'coro25.jpg',
+    // 'coro26.jpg',
+    // 'coro27.jpg',
+    // 'coro28.jpg',
+    // 'coro29.jpg',
+    // 'coro30.jpg',
+    // 'coro31.jpg',
+    // 'coro32.jpg'
+
+  ];
+
 
   const content = {
     en: {
       name: "Coro Benavent",
-      nav: ["About", "Reel", "Photos"],
+      nav: ["Bio", "Reel", "Photos", "CV", "Contact"],
       title: "Actress /// Singer Performer. Creative",
       description: "Coro Benavent is a versatile actress with a passion for bringing characters to life on stage and screen. With years of experience in theater, film, and television, Coro has captivated audiences with her powerful performances and dedication to her craft.",
       reel: "Reel",
@@ -31,7 +78,7 @@ const App: React.FC = () => {
     },
     es: {
       name: "Coro Benavent",
-      nav: ["Sobre mí", "Reel", "Fotos"],
+      nav: ["Bibliografía", "Reel", "Fotos", "CV", "Contacto"],
       title: "Actriz /// Cantante Intérprete. Creativa",
       description: "Coro Benavent es una actriz versátil con pasión por dar vida a personajes en el escenario y la pantalla. Con años de experiencia en teatro, cine y televisión, Coro ha cautivado al público con sus poderosas interpretaciones y su dedicación a su oficio.",
       reel: "Reel",
@@ -52,6 +99,10 @@ const App: React.FC = () => {
         setActiveSection('reel');
       } else if (photosRef.current && scrollPosition >= photosRef.current.offsetTop - windowHeight / 2) {
         setActiveSection('photos');
+      } else if (cvRef.current && scrollPosition >= cvRef.current.offsetTop - windowHeight / 2) {
+        setActiveSection('cv');
+      } else if (contactRef.current && scrollPosition >= contactRef.current.offsetTop - windowHeight / 2) {
+        setActiveSection('contact');
       }
     };
 
@@ -74,10 +125,10 @@ const App: React.FC = () => {
         <div className="w-full flex justify-end p-4" >
           <div className="flex items-center">
             <div className="mr-4 flex items-center rounded-full p-1">
-              <span className={`mr-2 font-semibold ${language === 'en' ? 'text-blue-600' : 'text-gray-600'}`}>EN</span>
+              <span className="mr-2 font-semibold">🇬🇧</span>
               <button
                 onClick={toggleLanguage}
-                className="w-7 h-4 relative rounded-full bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                className="w-7 h-4 relative rounded-full bg-gray-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-offset-gray-300 focus:ring-white"
               >
                 <span className="sr-only">Toggle Language</span>
                 <span
@@ -85,32 +136,34 @@ const App: React.FC = () => {
                     }`}
                 />
               </button>
-              <span className={`ml-2 font-semibold ${language === 'es' ? 'text-red-600' : 'text-gray-600'}`}>ES</span>
+              <span className="ml-2 font-semibold">🇪🇸</span>
             </div>
           </div>
         </div>
-        <div className="px-32 py-32 w-full font-serif flex justify-between items-center">
-          <div className="text-white text-2xl md:text-4xl lg:text-6xl">
+        {/* py-16 md:py-24 lg:py-32  */}
+        <div className="px-8 md:px-16 lg:px-32 w-full h-full font-serif flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div className="text-white text-2xl tracking-wide md:text-4xl lg:text-6xl mb-8 md:mb-0">
             Coro Benavent
           </div>
 
-          <div className="md:hidden px-4">
+          <div className="md:hidden mb-4">
             <button onClick={toggleMenu} className="text-white text-2xl">
               {isMenuOpen ? <p>X</p> : <p>///</p>}
-              {/* {isMenuOpen ? <FaTimes /> : <FaBars />} */}
             </button>
           </div>
           <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block`}>
-            <ul className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8">
+            <ul className="flex flex-col space-y-4 ">
               {content[language].nav.map((section) => (
-                <li key={section}>
+                <li key={section} className="flex justify-end">
                   <button
                     className={`px-4 py-2 text-white text-xl lg:text-2xl transition-colors duration-300 ${activeSection === section
-                      ? 'border-b-2 border-white'
+                      ? 'border-l-2 border-white pl-3'
                       : 'hover:text-gray-300'
                       }`}
                     onClick={() => {
-                      scrollToSection(section === 'about' ? aboutRef : section === 'reel' ? reelRef : photosRef);
+                      scrollToSection(
+                        section
+                      );
                       setIsMenuOpen(false);
                     }}
                   >
@@ -120,23 +173,20 @@ const App: React.FC = () => {
               ))}
             </ul>
           </nav>
-
         </div>
       </div>
 
       <div ref={aboutRef} className="p-16 md:p-48 lg:p-96 space-y-8">
-        <div className="relative">
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-2">
+        <div className="relative space-y-16">
+          <h1 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2">
             {content[language].title}
           </h1>
           <p className="text-lg lg:text-xl text-gray-600">{content[language].description}</p>
         </div>
-
-
       </div>
 
-      <div className="bg-gray-200 py-48 px-4 md:px-8 lg:px-16">
-        <h2 ref={reelRef} className="text-3xl font-bold mb-8 text-center">Reel</h2>
+      <div ref={reelRef} className="bg-gray-200 py-48 px-4 md:px-8 lg:px-16">
+        <h2 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center">Reel</h2>
         <div className="max-w-4xl py-16 mx-auto">
           <div className="relative pt-[56.25%]">
             <iframe
@@ -152,13 +202,13 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <div ref={photosRef} className="py-16 px-4 md:px-8 lg:px-16">
-        <h2 className="text-3xl font-bold mb-4">Photos</h2>
+      <div ref={photosRef} className="py-48 px-4 md:px-8 lg:px-16">
+        <h2 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center"></h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[1, 2, 3, 4, 5, 6].map((index) => (
+          {photos.map((url, index) => (
             <div key={index} className="aspect-w-3 aspect-h-4 bg-gray-300">
               <img
-                src={`https://picsum.photos/seed/${index}/300/400`}
+                src={url}
                 alt={`Photo ${index}`}
                 className="object-cover w-full h-full"
               />
@@ -166,7 +216,28 @@ const App: React.FC = () => {
           ))}
         </div>
       </div>
+
+      <div ref={cvRef} className="p-16 md:p-48 lg:p-96 space-y-8">
+        <div className="relative space-y-8">
+          <h1 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2">
+            CV & Contact
+          </h1>
+          <p className="text-lg lg:text-xl text-gray-600">Please reach out at <code>coro@gmail.com</code> if you'd like to work with me.</p>
+          {/* Download button for CV at /cv.pdf */}
+          <div>
+
+            <a href="/cv.pdf" download>
+              <button className="bg-black text-white px-4 py-2 rounded-lg">
+                Download CV
+              </button>
+            </a>
+          </div>
+
+
+        </div>
+      </div>
     </div>
+
   );
 };
 
