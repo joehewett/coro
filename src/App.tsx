@@ -72,7 +72,13 @@ const App: React.FC = () => {
       name: "Coro Benavent",
       nav: ["Bio", "Reel", "Photos", "CV", "Contact"],
       title: "Actress /// Singer Performer. Creative",
-      description: "Coro Benavent is a versatile actress with a passion for bringing characters to life on stage and screen. With years of experience in theater, film, and television, Coro has captivated audiences with her powerful performances and dedication to her craft.",
+      description: `Coro Benavent, bilingual actress in English and Spanish. Born in Madrid. She recently trained in the 10-week Bristol Old Vic Theatre School Course in theatre and film acting. In the 2023-2024 academic year, she completed her 2nd year of the Diploma in Film and TV Acting at Central de Cine and her third year at the Corazza studio.
+
+She participated in the short film 'Ophelia' for CEU University in Madrid. She starred in the short film "INERTE" by Lourdes Cosentino.
+
+She performed in Lucy Prebble's play "The Effect" directed by Natalie Simone at Bristol Old Vic in 2024, playing the lead role of Connie. She took part in theatre showcases during her 3 years of training at Corazza, working on plays such as: 'The Blue Room' by David Hare, 'Fear and Misery of the Third Reich' by Bertolt Brecht, and 'Much Ado About Nothing' by William Shakespeare.
+
+Additionally, she performs with her band ALAMAYO in venues such as Café la Palma, El Pez Gato, La Nota Rock, El Chiringuito de Los Locos, El Castillo de Los Locos, etc. She released her first single 'Champagne Moon' with a music video created and directed by herself, and released 3 new songs in 2024 created with her brother Diego Benavent: 'Muke', 'Todo huele a ti' and 'El primer helado'.`,
       reel: "Reel",
       photos: "Photos"
     },
@@ -80,7 +86,12 @@ const App: React.FC = () => {
       name: "Coro Benavent",
       nav: ["Bibliografía", "Reel", "Fotos", "CV", "Contacto"],
       title: "Actriz /// Cantante Intérprete. Creativa",
-      description: "Coro Benavent es una actriz versátil con pasión por dar vida a personajes en el escenario y la pantalla. Con años de experiencia en teatro, cine y televisión, Coro ha cautivado al público con sus poderosas interpretaciones y su dedicación a su oficio.",
+      description: `Coro Benavent, actriz bilingüe en inglés y español. Nació en Madrid. Se entrenó recientemente en el Curso de Bristol Old Vic Theatre School de 10 semanas en interpretación para teatro y cine. En el curso 2023-2024 cursó 2º de Diplomatura de Interpretación para Cine y TV en Central de Cine y su tercer año en el estudio Corazza.
+Participó en el corto 'Ophelia' para la Universidad CEU de Madrid. Protagonizó el corto "INERTE" de Lourdes Cosentino.
+
+Participó en la obra "The Effect" de Lucy Prebble dirigida por Natalie Simone en Bristol Old Vic en 2024, interpretando el papel protagonista de Connie. Realizó muestras de teatro durante sus 3 años de formación en Corazza, trabajando con obras como: 'La habitación azul' de David Hare, 'Terror y miseria en el Tercer Reich' de Bertolt Brecht, y 'Mucho ruido y pocas nueces' de William Shakespeare.
+
+Además, toca junto a su banda ALAMAYO en salas como Café la Palma, El Pez Gato, La Nota Rock, El Chiringuito de Los Locos, El Castillo de Los Locos, etc. Lanzó su primer single 'Champagne Moon' con videoclip creado y dirigido por ella, y sacó 3 nuevas canciones en 2024 creadas junto a su hermano Diego Benavent: 'Muke', 'Todo huele a ti' y 'El primer helado'.`,
       reel: "Reel",
       photos: "Fotos"
     }
@@ -222,7 +233,7 @@ const App: React.FC = () => {
           <h1 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2">
             CV & Contact
           </h1>
-          <p className="text-lg lg:text-xl text-gray-600">Please reach out at <code>coro@gmail.com</code> if you'd like to work with me.</p>
+          <p className="text-lg lg:text-xl text-gray-600">Please reach out at <code></code> if you'd like to work with me.</p>
           {/* Download button for CV at /cv.pdf */}
           <div>
 
