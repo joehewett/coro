@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 // import { FaBars, FaTimes } from 'react-icons/fa';
 
 const App: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>('');
   const aboutRef = useRef<HTMLDivElement>(null);
   const reelRef = useRef<HTMLDivElement>(null);
   const photosRef = useRef<HTMLDivElement>(null);
@@ -10,7 +9,7 @@ const App: React.FC = () => {
   const contactRef = useRef<HTMLDivElement>(null);
 
   const [language, setLanguage] = useState<'en' | 'es'>('en');
-
+  const [activeSection, setActiveSection] = useState<string>('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (refStr: string) => {
@@ -31,14 +30,9 @@ const App: React.FC = () => {
 
   const photos = [
     'coro8.jpg',
-    'coro9.jpg',
-    'coro11.jpg',
     'coro12.jpg',
     'coro13.jpg',
-    'coro14.jpg',
-    'coro15.jpg',
     'coro16.jpg',
-    'coro17.jpg',
     'coro18.jpg',
     'coro19.jpg',
     'coro20.jpg',
@@ -49,23 +43,14 @@ const App: React.FC = () => {
     'coro3.jpg',
     'coro4.jpg',
     'coro5.jpg',
-    'coro6.jpg',
-    'coro7.jpg',
-    // 'coro21.jpg',
-    // 'coro22.jpg',
-    // 'coro23.jpg',
-    // 'coro24.jpg',
-    // 'coro25.jpg',
-    // 'coro26.jpg',
-    // 'coro27.jpg',
-    // 'coro28.jpg',
-    // 'coro29.jpg',
-    // 'coro30.jpg',
-    // 'coro31.jpg',
-    // 'coro32.jpg'
-
+    'coro6.webp',
+    'coro7.webp',
+    'coro9.webp',
+    'coro11.webp',
+    'coro14.webp',
+    'coro15.webp',
+    'coro17.webp',
   ];
-
 
   const content = {
     en: {
@@ -151,39 +136,45 @@ Además, toca junto a su banda ALAMAYO en salas como Café la Palma, El Pez Gato
             </div>
           </div>
         </div>
-        {/* py-16 md:py-24 lg:py-32  */}
+
         <div className="px-8 md:px-16 lg:px-32 w-full h-full font-serif flex flex-col md:flex-row justify-between items-start md:items-center">
-          <div className="text-white text-2xl tracking-wide md:text-4xl lg:text-6xl mb-8 md:mb-0">
-            Coro Benavent
+
+          <div className="flex flex-row justify-between items-center w-full">
+            <div className="text-white text-2xl tracking-wide md:text-4xl lg:text-6xl">
+              Coro Benavent
+            </div>
+
+            <div className="md:hidden">
+              <button onClick={toggleMenu} className="text-white text-2xl">
+                {isMenuOpen ? <p className="font-sans">X</p> : <p>☰</p>}
+              </button>
+            </div>
           </div>
 
-          <div className="md:hidden mb-4">
-            <button onClick={toggleMenu} className="text-white text-2xl">
-              {isMenuOpen ? <p>X</p> : <p>///</p>}
-            </button>
+          <div id="navbar" className="fixed right-4 my-12 md:right-24 lg:right-48">
+            <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block`}>
+              <ul className="flex flex-col space-y-4 ">
+                {content[language].nav.map((section) => (
+                  <li key={section} className="flex justify-end">
+                    <button
+                      className={`px-4 py-2 text-gray-200 text-xl lg:text-2xl transition-colors duration-300 ${activeSection === section
+                        ? 'border-l-2 border-white pl-3'
+                        : 'hover:text-gray-300'
+                        }`}
+                      onClick={() => {
+                        scrollToSection(
+                          section
+                        );
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      {section.charAt(0).toUpperCase() + section.slice(1)}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
-          <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block`}>
-            <ul className="flex flex-col space-y-4 ">
-              {content[language].nav.map((section) => (
-                <li key={section} className="flex justify-end">
-                  <button
-                    className={`px-4 py-2 text-white text-xl lg:text-2xl transition-colors duration-300 ${activeSection === section
-                      ? 'border-l-2 border-white pl-3'
-                      : 'hover:text-gray-300'
-                      }`}
-                    onClick={() => {
-                      scrollToSection(
-                        section
-                      );
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
         </div>
       </div>
 
@@ -222,6 +213,7 @@ Además, toca junto a su banda ALAMAYO en salas como Café la Palma, El Pez Gato
                 src={url}
                 alt={`Photo ${index}`}
                 className="object-cover w-full h-full"
+                loading="lazy"
               />
             </div>
           ))}
@@ -247,7 +239,7 @@ Además, toca junto a su banda ALAMAYO en salas como Café la Palma, El Pez Gato
 
         </div>
       </div>
-    </div>
+    </div >
 
   );
 };
