@@ -37,12 +37,8 @@ const App: React.FC = () => {
     'coro5.webp',
     'coro6.webp',
     'coro7.webp',
-    'coro8.wevp',
     'coro9.webp',
-    'coro10.webp',
     'coro11.webp',
-    'coro12.webp',
-    'coro13.webp',
     'coro14.webp',
     'coro15.webp',
     'coro16.webp',
@@ -54,8 +50,6 @@ const App: React.FC = () => {
     'coro22.webp',
     'coro23.webp',
     'coro24.jpg',
-    'coro25.jpg',
-    'coro26.jpg',
   ];
 
   const content = {
@@ -249,12 +243,23 @@ const App: React.FC = () => {
 
       <div ref={musicRef} className="bg-gray-200 py-48 px-4 md:px-8 lg:px-16">
         <h2 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center">{content[language].music}</h2>
-        <div className="max-w-4xl py-16 mx-auto">
+        <div className="max-w-4xl py-16 mx-auto space-y-6">
           <div className="relative pt-[56.25%]">
             <iframe
               className="absolute top-0 left-0 w-full h-full"
-              width="560" height="315" src="https://www.youtube.com/embed/DJiASArAgN4?si=QFFHvowjkyZSu3Jh" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+              width="560" height="315" src="https://www.youtube.com/embed/DJiASArAgN4?si=QFFHvowjkyZSu3Jh" title="YouTube video player"
+              frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
+            </iframe>
           </div>
+          {/* <div className="relative pt-[56.25%]">
+            <iframe width="560" height="315"
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/sCgcDh2AVu4?si=AipQj9LPKv6TieMw" title="YouTube video player"
+              frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen>
+            </iframe>
+
+          </div> */}
         </div>
         {/* spotify link */}
         <p className="text-center text-xl mt-8">Listen to more on <a href="https://open.spotify.com/artist/77zoboLJ6YVACYA4aagcgT" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Spotify</a></p>
