@@ -19,7 +19,7 @@ const App: React.FC = () => {
     if (refStr === 'Photos' || refStr === 'Fotos') ref = photosRef;
     if (refStr === 'Music' || refStr === 'Música') ref = musicRef;
     if (refStr === 'CV') ref = cvRef;
-    if (refStr === 'Contact' || refStr === 'Contacto') ref = contactRef;
+    if (refStr === 'Contact' || refStr === 'Contacto') ref = cvRef;
 
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -29,12 +29,6 @@ const App: React.FC = () => {
   };
 
   const photos = [
-    'coro0.webp',
-    'coro1.webp',
-    'coro2.webp',
-    'coro3.webp',
-    'coro4.webp',
-    'coro5.webp',
     'coro6.webp',
     'coro7.webp',
     'coro9.webp',
@@ -50,6 +44,11 @@ const App: React.FC = () => {
     'coro22.webp',
     'coro23.webp',
     'coro24.jpg',
+    'coro0.webp',
+    'coro1.webp',
+    'coro2.webp',
+    'coro3.webp',
+    'coro4.webp',
   ];
 
   const content = {
