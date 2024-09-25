@@ -29,9 +29,6 @@ const App: React.FC = () => {
   };
 
   const photos = [
-    'coro-beach.jpg',
-    'coro-bw.jpg',
-    'coro-headshot.jpg',
     'coro0.webp',
     'coro1.webp',
     'coro2.webp',
@@ -40,22 +37,25 @@ const App: React.FC = () => {
     'coro5.webp',
     'coro6.webp',
     'coro7.webp',
-    'coro8.jpg',
+    'coro8.wevp',
     'coro9.webp',
-    'coro10.jpg',
+    'coro10.webp',
     'coro11.webp',
-    'coro12.jpg',
-    'coro13.jpg',
+    'coro12.webp',
+    'coro13.webp',
     'coro14.webp',
     'coro15.webp',
-    'coro16.jpg',
+    'coro16.webp',
     'coro17.webp',
-    'coro18.jpg',
-    'coro19.jpg',
-    'coro20.jpg',
-    'coro21.jpg',
-    'coro22.jpg',
-    'coro23.jpg'
+    'coro18.webp',
+    'coro19.webp',
+    'coro20.webp',
+    'coro21.webp',
+    'coro22.webp',
+    'coro23.webp',
+    'coro24.jpg',
+    'coro25.jpg',
+    'coro26.jpg',
   ];
 
   const content = {
