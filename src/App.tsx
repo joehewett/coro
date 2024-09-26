@@ -5,7 +5,6 @@ const App: React.FC = () => {
   const reelRef = useRef<HTMLDivElement>(null);
   const photosRef = useRef<HTMLDivElement>(null);
   const musicRef = useRef<HTMLDivElement>(null);
-  const cvRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
   const [language, setLanguage] = useState<'en' | 'es'>('en');
@@ -18,8 +17,7 @@ const App: React.FC = () => {
     if (refStr === 'Reel') ref = reelRef;
     if (refStr === 'Photos' || refStr === 'Fotos') ref = photosRef;
     if (refStr === 'Music' || refStr === 'Música') ref = musicRef;
-    if (refStr === 'CV') ref = cvRef;
-    if (refStr === 'Contact' || refStr === 'Contacto') ref = cvRef;
+    if (refStr === 'Contact' || refStr === 'Contacto') ref = contactRef;
 
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -112,8 +110,6 @@ const App: React.FC = () => {
         setActiveSection('photos');
       } else if (musicRef.current && scrollPosition >= musicRef.current.offsetTop - windowHeight / 2) {
         setActiveSection('music');
-      } else if (cvRef.current && scrollPosition >= cvRef.current.offsetTop - windowHeight / 2) {
-        setActiveSection('cv');
       } else if (contactRef.current && scrollPosition >= contactRef.current.offsetTop - windowHeight / 2) {
         setActiveSection('contact');
       }
@@ -209,7 +205,7 @@ const App: React.FC = () => {
       <div ref={reelRef} className="bg-gray-200 py-48 px-4 md:px-8 lg:px-16">
         <h2 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center">Reel</h2>
         <p className="text-center text-xl mb-8">{content[language].reelDescription}</p>
-        <div className="max-w-4xl py-16 mx-auto">
+        <div className="max-w-4xl py-16 mx-auto space-y-6">
           <div className="relative pt-[56.25%]">
             <iframe
               className="absolute top-0 left-0 w-full h-full"
@@ -220,6 +216,13 @@ const App: React.FC = () => {
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe>
+          </div>
+          <div className="relative pt-[56.25%]">
+            <iframe width="560" height="315"
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/p_XBSMKQYT0?si=zSdPoenXEOCYb9_M"
+              title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+
           </div>
         </div>
       </div>
@@ -250,21 +253,12 @@ const App: React.FC = () => {
               frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
             </iframe>
           </div>
-          {/* <div className="relative pt-[56.25%]">
-            <iframe width="560" height="315"
-              className="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/sCgcDh2AVu4?si=AipQj9LPKv6TieMw" title="YouTube video player"
-              frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen>
-            </iframe>
-
-          </div> */}
         </div>
         {/* spotify link */}
         <p className="text-center text-xl mt-8">Listen to more on <a href="https://open.spotify.com/artist/77zoboLJ6YVACYA4aagcgT" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Spotify</a></p>
       </div>
 
-      <div ref={cvRef} className="p-16 md:p-48 lg:p-96 space-y-8">
+      <div ref={contactRef} className="p-16 md:p-48 lg:px-96 lg:py-48 space-y-8">
         <div className="relative space-y-8">
           <h1 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2">
             CV & {content[language].contact}
