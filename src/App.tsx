@@ -195,7 +195,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <div ref={aboutRef} className="p-16 md:p-48 lg:p-96 space-y-8">
+      <div ref={aboutRef} className="p-16 md:p-48 lg:px-96 space-y-8">
         <div className="relative space-y-16">
           <h1 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2">
             {content[language].title}
@@ -224,7 +224,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <div ref={photosRef} className="py-48 px-4 md:px-8 lg:px-16">
+      <div ref={photosRef} className="py-16 px-4 md:px-8 lg:px-16">
         <h2 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center">{content[language].photos}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {photos.map((url, index) => (
@@ -278,7 +278,7 @@ const App: React.FC = () => {
             </a>
           </div>
           <div>
-            <p>Email: <a href="" className="text-blue-600 hover:underline">coro benavent @ gmail . com</a></p>
+            <p>Email: <a href="" className="text-blue-600 hover:underline">coro benavent 2014 @ gmail . com</a></p>
             <p>Instagram: <a href="https://www.instagram.com/corobenavent" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">@corobenavent</a></p>
           </div>
         </div>
