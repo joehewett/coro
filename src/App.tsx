@@ -55,19 +55,11 @@ const App: React.FC = () => {
       nav: ["Bio", "Reel", "Photos", "Music", "CV", "Contact"],
       title: "Actress /// Singer Performer. Creative",
       description: [
-        "Coro Benavent is a vibrant, bilingual actress fluent in both English and Spanish. Born and raised in Madrid, she's been passionately pursuing her craft across borders. Recently, Coro honed her skills in the intensive 10-week theatre and film acting course at the prestigious Bristol Old Vic Theatre School. Her dedication to the art is evident in her ongoing education; she's currently wrapping up her second year in the Film and TV Acting Diploma program at Central de Cine, while simultaneously completing her third year at the renowned Corazza studio.",
-
-
-        "Coro's on-screen experience includes notable roles in short films. She brought depth to her character in 'Ophelia', produced by CEU University in Madrid, and took center stage in Lourdes Cosentino's compelling short, 'INERTE'.",
-
-
-        "Her stage presence is equally impressive. In 2024, Coro tackled the lead role of Connie in Lucy Prebble's thought-provoking play 'The Effect', directed by Natalie Simone at Bristol Old Vic. Her theatrical repertoire expanded significantly during her three-year training at Corazza, where she showcased her versatility in productions ranging from David Hare's 'The Blue Room' to Bertolt Brecht's 'Fear and Misery of the Third Reich', and even Shakespeare's timeless 'Much Ado About Nothing'.",
-
-
-        "But Coro's talents don't stop at acting. She's also making waves in the music scene with her band, ALAMAYO. They've graced the stages of popular venues like Café la Palma, El Pez Gato, and La Nota Rock, to name a few. Coro's creative spirit shines through in her music career as well. She not only released her debut single 'Champagne Moon' but also took the reins in creating and directing its music video. 2024 saw her collaborative side bloom as she teamed up with her brother Diego Benavent to release three new tracks: the catchy 'Muke', the emotive 'Todo huele a ti', and the whimsical 'El primer helado'.",
-
-
-        "With her multifaceted talents and boundless enthusiasm, Coro Benavent is definitely an artist to watch in both the acting and music worlds.",
+        "Coro Benavent is a versatile, bilingual actress fluent in English and Spanish, with training in the British accent. Born in Madrid, she has pursued acting across borders, recently completing an intensive 10-week course at the prestigious Bristol Old Vic Theatre School. Coro continues to refine her craft at MADS as a creative actor, building on her three years at the renowned Corazza studio and one year at Central de Cine.",
+        "Her on-screen experience includes roles in short films such as 'Ophelia' (CEU University) and 'INERTE' (dir. Lourdes Cosentino). On stage, Coro recently led as Connie in Lucy Prebble's 'The Effect' at Bristol Old Vic. Her theatrical repertoire spans work by David Hare, Bertolt Brecht, and Shakespeare, showcased during her Corazza training. Known for her collaborative spirit, Coro excels in ensemble work and brings a positive energy to every production.",
+        "Beyond acting, Coro is making waves in music, releasing her first EP with her brother Diego Benavent, by the name 'ALAMAYO', available on all music platforms. The duo has since performed their EP at various stages across Madrid, Cantabria, and Bristol, expanding their musical reach. Prior to this, Coro launched her solo career with the single 'Champagne Moon', for which she also created and directed the music video.",
+        "Coro's dynamic lifestyle complements her artistic pursuits. She maintains a high level of proficiency in various sports, including surfing, basketball, football, tennis, padel, athletics, and yoga, demonstrating her dedication and versatility both on and off stage.",
+        "With her diverse talents and continued commitment to growth, Coro Benavent is an emerging artist to watch in both acting and music.",
       ],
       reel: "Reel",
       reelDescription: "Some of her scenes",
@@ -81,10 +73,11 @@ const App: React.FC = () => {
       nav: ["Bibliografía", "Reel", "Fotos", "Música", "CV", "Contacto"],
       title: "Actriz /// Cantante Intérprete. Creativa",
       description: [
-        "Coro Benavent, actriz bilingüe en inglés y español. Nació en Madrid. Se entrenó recientemente en el Curso de Bristol Old Vic Theatre School de 10 semanas en interpretación para teatro y cine. En el curso 2023-2024 cursó 2º de Diplomatura de Interpretación para Cine y TV en Central de Cine y su tercer año en el estudio Corazza.",
-        "Participó en el corto 'Ophelia' para la Universidad CEU de Madrid. Protagonizó el corto 'INERTE' de Lourdes Cosentino.",
-        "Participó en la obra 'The Effect' de Lucy Prebble dirigida por Natalie Simone en Bristol Old Vic en 2024, interpretando el papel protagonista de Connie. Realizó muestras de teatro durante sus 3 años de formación en Corazza, trabajando con obras como: 'La habitación azul' de David Hare, 'Terror y miseria en el Tercer Reich' de Bertolt Brecht, y 'Mucho ruido y pocas nueces' de William Shakespeare.",
-        "Además, toca junto a su banda ALAMAYO en salas como Café la Palma, El Pez Gato, La Nota Rock, El Chiringuito de Los Locos, El Castillo de Los Locos, etc. Lanzó su primer single 'Champagne Moon' con videoclip creado y dirigido por ella, y sacó 3 nuevas canciones en 2024 creadas junto a su hermano Diego Benavent: 'Muke', 'Todo huele a ti' y 'El primer helado'."
+        "Coro Benavent es una actriz versátil y bilingüe, con fluidez en inglés y español, y entrenada en el acento británico. Nacida en Madrid, ha perseguido su carrera actoral más allá de las fronteras, completando recientemente un curso intensivo de 10 semanas en la prestigiosa Bristol Old Vic Theatre School. Coro continúa perfeccionando su arte en MADS como actriz creativa, tras sus tres años en el estudio Corazza y segundo de diplomatura en Central de Cine.",
+        "Su experiencia en pantalla incluye papeles en cortometrajes como 'Ophelia' (Universidad CEU) e 'INERTE' (dir. Lourdes Cosentino). En el escenario, Coro protagonizó recientemente como Connie en 'The Effect' de Lucy Prebble en el Bristol Old Vic. Su repertorio teatral abarca obras de David Hare, Bertolt Brecht y Shakespeare, mostradas durante su formación en Corazza. Conocida por su espíritu colaborativo, Coro destaca en el trabajo en equipo y aporta una energía positiva a cada producción.",
+        "Más allá de la actuación, Coro está haciendo olas en la música. Lanzando su primer EP junto a su hermano Diego Benavent con el título 'ALAMAYO', disponible en todas las plataformas musicales. El dúo ha presentado su EP en varios escenarios de Madrid, Cantabria y Bristol. Antes de esto, Coro lanzó su carrera en solitario con el single 'Champagne Moon', para el cual también creó y dirigió el videoclip.",
+        "El estilo de vida dinámico de Coro complementa sus actividades artísticas. Mantiene un alto nivel de competencia en varios deportes, incluyendo surf, baloncesto, fútbol, tenis, pádel, atletismo y yoga, demostrando su dedicación y versatilidad tanto dentro como fuera del escenario.",
+        "Con sus diversos talentos y su continuo compromiso con el crecimiento, Coro Benavent es una artista emergente a seguir tanto en la actuación como en la música.",
       ],
       reel: "Reel",
       reelDescription: "Algunas de sus escenas",
