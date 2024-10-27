@@ -217,6 +217,12 @@ const App: React.FC = () => {
               title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
           </div>
+          <div className="relative pt-[56.25%]">
+            <iframe width="560" height="315"
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/U0h0afKJd_U?si=UiZVGOGoMMfKHNjb"
+              title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+          </div>
         </div>
       </div>
 
