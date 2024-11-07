@@ -52,7 +52,7 @@ const App: React.FC = () => {
   const content = {
     en: {
       name: "Coro Benavent",
-      nav: ["Bio", "Reel", "Photos", "Music", "CV", "Contact"],
+      nav: ["Bio", "Reel", "Photos", "Music", "Contact"],
       title: "Actress /// Singer Performer. Creative",
       description: [
         "Coro Benavent is a versatile, bilingual actress fluent in English and Spanish, with training in the British accent. Born in Madrid, she has pursued acting across borders, recently completing an intensive 10-week course at the prestigious Bristol Old Vic Theatre School. Coro continues to refine her craft at MADS as a creative actor, building on her three years at the renowned Corazza studio and one year at Central de Cine.",
