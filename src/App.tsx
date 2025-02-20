@@ -1,25 +1,41 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 const App: React.FC = () => {
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const reelRef = useRef<HTMLDivElement>(null);
-  const photosRef = useRef<HTMLDivElement>(null);
-  const musicRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
+  const bioTitleRef = useRef<HTMLHeadingElement>(null);
+  const reelTitleRef = useRef<HTMLHeadingElement>(null);
+  const photosTitleRef = useRef<HTMLHeadingElement>(null);
+  const musicTitleRef = useRef<HTMLHeadingElement>(null);
+  const contactTitleRef = useRef<HTMLHeadingElement>(null);
 
   const [language, setLanguage] = useState<'en' | 'es'>('en');
   const [activeSection, setActiveSection] = useState<string>('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (refStr: string) => {
-    let ref = reelRef;
-    if (refStr === 'Bio' || refStr === 'Bibliografía') ref = aboutRef;
-    if (refStr === 'Reel') ref = reelRef;
-    if (refStr === 'Photos' || refStr === 'Fotos') ref = photosRef;
-    if (refStr === 'Music' || refStr === 'Música') ref = musicRef;
-    if (refStr === 'Contact' || refStr === 'Contacto') ref = contactRef;
+    const refMap = {
+      'Bio': bioTitleRef,
+      'Bibliografía': bioTitleRef,
+      'Reel': reelTitleRef,
+      'Photos': photosTitleRef,
+      'Fotos': photosTitleRef,
+      'Music': musicTitleRef,
+      'Música': musicTitleRef,
+      'CV & Contact': contactTitleRef,
+      'CV & Contacto': contactTitleRef
+    };
 
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
+    const targetRef = refMap[refStr as keyof typeof refMap];
+
+    if (!targetRef?.current) return;
+
+    const offset = 40;
+    const elementTop = targetRef.current.getBoundingClientRect().top;
+    const absoluteElementTop = elementTop + window.scrollY;
+
+    window.scrollTo({
+      top: absoluteElementTop - offset,
+      behavior: 'smooth'
+    });
   };
 
   const toggleLanguage = () => {
@@ -52,7 +68,7 @@ const App: React.FC = () => {
   const content = {
     en: {
       name: "Coro Benavent",
-      nav: ["Bio", "Reel", "Photos", "Music", "Contact"],
+      nav: ["Bio", "Reel", "Photos", "Music", "CV & Contact"],
       title: "Actress /// Singer Performer. Creative",
       description: [
         "Coro Benavent is a versatile, bilingual actress fluent in English and Spanish, with training in the British accent. Born in Madrid, she has pursued acting across borders, recently completing an intensive 10-week course at the prestigious Bristol Old Vic Theatre School. Coro continues to refine her craft at MADS as a creative actor, building on her three years at the renowned Corazza studio and one year at Central de Cine.",
@@ -65,12 +81,12 @@ const App: React.FC = () => {
       reelDescription: "Some of her scenes",
       photos: "Photos",
       music: "Music",
-      contact: "Contact",
+      contact: "CV & Contact",
       contactDescription: "I'm looking for new opportunities. If you'd like to work with me, please reach out.",
     },
     es: {
       name: "Coro Benavent",
-      nav: ["Bibliografía", "Reel", "Fotos", "Música", "CV", "Contacto"],
+      nav: ["Bibliografía", "Reel", "Fotos", "Música", "CV & Contacto"],
       title: "Actriz /// Cantante Intérprete. Creativa",
       description: [
         "Coro Benavent es una actriz versátil y bilingüe, con fluidez en inglés y español, y entrenada en el acento británico. Nacida en Madrid, ha perseguido su carrera actoral más allá de las fronteras, completando recientemente un curso intensivo de 10 semanas en la prestigiosa Bristol Old Vic Theatre School. Coro continúa perfeccionando su arte en MADS como actriz creativa, tras sus tres años en el estudio Corazza y segundo de diplomatura en Central de Cine.",
@@ -83,32 +99,33 @@ const App: React.FC = () => {
       reelDescription: "Algunas de sus escenas",
       photos: "Fotos",
       music: "Música",
-      contact: "Contacto",
+      contact: "CV & Contacto",
       contactDescription: "Estoy buscando nuevas oportunidades. Si te gustaría trabajar conmigo, por favor contáctame.",
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
+      const scrollPosition = window.scrollY + 100;
 
-      if (scrollPosition < windowHeight / 2) {
-        setActiveSection('');
-      } else if (aboutRef.current && scrollPosition >= aboutRef.current.offsetTop - windowHeight / 2) {
-        setActiveSection('about');
-      } else if (reelRef.current && scrollPosition >= reelRef.current.offsetTop - windowHeight / 2) {
-        setActiveSection('reel');
-      } else if (photosRef.current && scrollPosition >= photosRef.current.offsetTop - windowHeight / 2) {
-        setActiveSection('photos');
-      } else if (musicRef.current && scrollPosition >= musicRef.current.offsetTop - windowHeight / 2) {
-        setActiveSection('music');
-      } else if (contactRef.current && scrollPosition >= contactRef.current.offsetTop - windowHeight / 2) {
-        setActiveSection('contact');
-      }
+      const sections = [
+        { id: 'about', ref: bioTitleRef },
+        { id: 'reel', ref: reelTitleRef },
+        { id: 'photos', ref: photosTitleRef },
+        { id: 'music', ref: musicTitleRef },
+        { id: 'contact', ref: contactTitleRef }
+      ];
+
+      const currentSection = sections.reverse().find(section =>
+        section.ref.current && scrollPosition >= section.ref.current.offsetTop
+      );
+
+      setActiveSection(currentSection ? currentSection.id : '');
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -184,9 +201,9 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <div ref={aboutRef} className="p-16 md:p-48 lg:px-96 space-y-8">
+      <div className="p-16 md:p-48 lg:px-96 space-y-8">
         <div className="relative space-y-16">
-          <h1 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2">
+          <h1 ref={bioTitleRef} className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2">
             {content[language].title}
           </h1>
           {content[language].description.map((paragraph, index) => (
@@ -195,10 +212,25 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <div ref={reelRef} className="bg-gray-200 py-48 px-4 md:px-8 lg:px-16">
-        <h2 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center">Reel</h2>
+      <div className="bg-gray-200 py-48 px-4 md:px-8 lg:px-16">
+        <h2 ref={reelTitleRef} className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center">
+          Reel
+        </h2>
         <p className="text-center text-xl mb-8">{content[language].reelDescription}</p>
         <div className="max-w-4xl py-16 mx-auto space-y-6">
+          <div className="relative pt-[56.25%]">
+            <iframe width="560" height="315"
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/nkcvXqGM-BM?si=KXZCyGza3FlIsOBj"
+              title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+
+          </div>
+          <div className="relative pt-[56.25%]">
+            <iframe width="560" height="315"
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/p_XBSMKQYT0?si=zSdPoenXEOCYb9_M"
+              title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+          </div>
           <div className="relative pt-[56.25%]">
             <iframe
               className="absolute top-0 left-0 w-full h-full"
@@ -210,24 +242,13 @@ const App: React.FC = () => {
               allowFullScreen
             ></iframe>
           </div>
-          <div className="relative pt-[56.25%]">
-            <iframe width="560" height="315"
-              className="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/p_XBSMKQYT0?si=zSdPoenXEOCYb9_M"
-              title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-
-          </div>
-          <div className="relative pt-[56.25%]">
-            <iframe width="560" height="315"
-              className="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/IUKrueF2Acw?si=1VUmwuVj7-gi_vw7"
-              title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-          </div>
         </div>
       </div>
 
-      <div ref={photosRef} className="py-16 px-4 md:px-8 lg:px-16">
-        <h2 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center">{content[language].photos}</h2>
+      <div className="py-16 px-4 md:px-8 lg:px-16">
+        <h2 ref={photosTitleRef} className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center">
+          {content[language].photos}
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {photos.map((url, index) => (
             <div key={index} className="aspect-w-3 aspect-h-4 bg-gray-300">
@@ -242,8 +263,10 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <div ref={musicRef} className="bg-gray-200 py-48 px-4 md:px-8 lg:px-16">
-        <h2 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center">{content[language].music}</h2>
+      <div className="bg-gray-200 py-48 px-4 md:px-8 lg:px-16">
+        <h2 ref={musicTitleRef} className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2 text-center">
+          {content[language].music}
+        </h2>
         <div className="max-w-4xl py-16 mx-auto space-y-6">
           <div className="relative pt-[56.25%]">
             <iframe
@@ -253,14 +276,13 @@ const App: React.FC = () => {
             </iframe>
           </div>
         </div>
-        {/* spotify link */}
         <p className="text-center text-xl mt-8">Listen to more on <a href="https://open.spotify.com/artist/77zoboLJ6YVACYA4aagcgT" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Spotify</a></p>
       </div>
 
-      <div ref={contactRef} className="p-16 md:p-48 lg:px-96 lg:py-48 space-y-8">
+      <div className="p-16 md:p-48 lg:px-96 lg:py-48 space-y-8">
         <div className="relative space-y-8">
-          <h1 className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2">
-            CV & {content[language].contact}
+          <h1 ref={contactTitleRef} className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2">
+            {content[language].contact}
           </h1>
           <p className="text-lg lg:text-xl text-gray-600">{content[language].contactDescription}</p>
           <div>
@@ -271,8 +293,8 @@ const App: React.FC = () => {
             </a>
           </div>
           <div>
-            <p>Email: <a href="" className="text-blue-600 hover:underline">coro benavent 2014 @ gmail . com</a></p>
-            <p>Instagram: <a href="https://www.instagram.com/corobenavent" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">@corobenavent</a></p>
+            <p className="text-gray-600">Email: <a href="" className="text-blue-600 hover:underline">coro benavent 2014 @ gmail . com</a></p>
+            <p className="text-gray-600">Instagram: <a href="https://www.instagram.com/corobenavent" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">@corobenavent</a></p>
           </div>
         </div>
       </div>
