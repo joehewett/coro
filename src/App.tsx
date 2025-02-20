@@ -228,13 +228,13 @@ const App: React.FC = () => {
           <div className="relative pt-[56.25%]">
             <iframe width="560" height="315"
               className="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/p_XBSMKQYT0?si=zSdPoenXEOCYb9_M"
+              src="https://www.youtube.com/embed/3lYq80w47Mg?si=OSlI7bmty0YDHo23"
               title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
           </div>
           <div className="relative pt-[56.25%]">
             <iframe
               className="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/3lYq80w47Mg?si=OSlI7bmty0YDHo23"
+              src="https://www.youtube.com/embed/p_XBSMKQYT0?si=zSdPoenXEOCYb9_M"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
