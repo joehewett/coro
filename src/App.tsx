@@ -10,6 +10,7 @@ const App: React.FC = () => {
   const [language, setLanguage] = useState<'en' | 'es'>('en');
   const [activeSection, setActiveSection] = useState<string>('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   const scrollToSection = (refStr: string) => {
     const refMap = {
@@ -106,8 +107,10 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
+      const position = window.scrollY;
+      setScrollPosition(position);
 
+      const scrollPositionWithOffset = position + 100;
       const sections = [
         { id: 'about', ref: bioTitleRef },
         { id: 'reel', ref: reelTitleRef },
@@ -117,7 +120,7 @@ const App: React.FC = () => {
       ];
 
       const currentSection = sections.reverse().find(section =>
-        section.ref.current && scrollPosition >= section.ref.current.offsetTop
+        section.ref.current && scrollPositionWithOffset >= section.ref.current.offsetTop
       );
 
       setActiveSection(currentSection ? currentSection.id : '');
@@ -125,7 +128,6 @@ const App: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -138,10 +140,10 @@ const App: React.FC = () => {
       <div
         className="h-screen bg-cover bg-center relative"
         style={{
-          backgroundImage: `url('coro-bw.jpg')`,
+          backgroundImage: `url('coro25.JPG')`,
         }}
       >
-        <div className="w-full flex justify-end p-4" >
+        <div className="w-full flex justify-end p-4">
           <div className="flex items-center">
             <div className="mr-4 flex items-center rounded-full p-1">
               <span className="mr-2 font-semibold">🇬🇧</span>
@@ -151,8 +153,7 @@ const App: React.FC = () => {
               >
                 <span className="sr-only">Toggle Language</span>
                 <span
-                  className={`absolute inset-y-0 left-0 w-4 h-4 rounded-full bg-white shadow transform transition-transform duration-300 ease-in-out ${language === 'es' ? 'translate-x-3' : ''
-                    }`}
+                  className={`absolute inset-y-0 left-0 w-4 h-4 rounded-full bg-white shadow transform transition-transform duration-300 ease-in-out ${language === 'es' ? 'translate-x-3' : ''}`}
                 />
               </button>
               <span className="ml-2 font-semibold">🇪🇸</span>
@@ -160,10 +161,50 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        <div className="px-8 md:px-16 lg:px-32 w-full h-full font-serif flex flex-col md:flex-row justify-between items-start md:items-center">
+        {/* Thought bubble overlay */}
+        <div className="absolute top-[3%] left-[52%] -translate-x-1/2 w-64 h-64 group transition-all duration-300 drop-shadow-[0_8px_16px_rgba(0,0,0,0.2)] hover:scale-105 hover:drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)]">
+          <img
+            src="thought.png"
+            alt="Thought bubble"
+            className="w-full h-full object-contain brightness-0 invert transition-transform duration-300"
+          />
+          <div className="absolute inset-0 flex items-center justify-center -translate-y-2.5">
+            <span className="text-white font-serif text-2xl font-light tracking-wider italic">Actress</span>
+          </div>
+        </div>
 
+        {/* Bird overlay */}
+        <div className="absolute top-[22%] left-[35%] -translate-x-1/2 w-48 h-48 group transition-all duration-300 drop-shadow-[0_8px_16px_rgba(0,0,0,0.2)] hover:scale-105 hover:drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)]">
+          <img
+            src="bird.png"
+            alt="Bird"
+            className="w-full h-full object-contain brightness-0 invert -scale-x-100 group-hover:scale-x-100 transition-transform duration-300"
+          />
+          <div className="absolute inset-0 flex items-start justify-center mt-2">
+            <span className="text-white font-serif text-2xl font-light tracking-wider italic">Singer</span>
+          </div>
+        </div>
+
+        {/* Clap overlay */}
+        <div className="absolute top-[30%] left-[68%] -translate-x-1/2 w-80 h-80 group transition-all duration-300 drop-shadow-[0_8px_16px_rgba(0,0,0,0.2)] hover:scale-105 hover:drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)]">
+          <img
+            src="clap.png"
+            alt="Clap"
+            className="w-full h-full object-contain brightness-0 invert transition-transform duration-300 group-hover:rotate-45"
+          />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="text-white font-serif text-2xl font-light tracking-wider italic select-none transition-transform duration-300 group-hover:rotate-45 ml-16">Filmmaker</span>
+          </div>
+        </div>
+
+        <div className="px-8 md:px-16 lg:px-32 w-full h-full font-serif flex flex-col md:flex-row justify-between items-start md:items-center">
           <div className="flex flex-row justify-between items-center w-full">
-            <div className="text-white text-2xl tracking-wide md:text-4xl lg:text-6xl">
+            <div
+              className="text-white text-2xl tracking-wide md:text-4xl lg:text-6xl transition-transform duration-100 font-kablammo"
+              style={{
+                transform: `translateY(${Math.min(scrollPosition * 0.5, window.innerHeight * 0.7)}px)`
+              }}
+            >
               Coro Benavent
             </div>
 
