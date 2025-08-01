@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import RetroButton from './components/RetroButton';
 
 const App: React.FC = () => {
   const bioTitleRef = useRef<HTMLHeadingElement>(null);
@@ -9,7 +10,6 @@ const App: React.FC = () => {
 
   const [language, setLanguage] = useState<'en' | 'es'>('en');
   const [activeSection, setActiveSection] = useState<string>('');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const scrollToSection = (refStr: string) => {
@@ -131,18 +131,33 @@ const App: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+
 
   return (
     <div className="min-h-screen bg-gray-100">
       <div
         className="h-screen bg-cover bg-center relative"
         style={{
-          backgroundImage: `url('coro25.JPG')`,
+          backgroundImage: `url('night.jpg')`,
         }}
       >
+        {/* Navigation Buttons */}
+        <div className="absolute inset-0 flex items-center">
+          <div className="flex flex-col space-y-4 ml-[25%]">
+            {content[language].nav.map((section) => (
+              <RetroButton
+                key={section}
+                size="md"
+                onClick={() => {
+                  scrollToSection(section);
+                }}
+              >
+                {section}
+              </RetroButton>
+            ))}
+          </div>
+        </div>
+        
         <div className="w-full flex justify-end p-4">
           <div className="flex items-center">
             <div className="mr-4 flex items-center rounded-full p-1">
@@ -163,46 +178,11 @@ const App: React.FC = () => {
 
         <div className="px-8 md:px-16 lg:px-32 w-full h-full font-serif flex flex-col md:flex-row justify-between items-start md:items-center">
           <div className="flex flex-row justify-between items-center w-full">
-            <div
-              className="text-white text-2xl tracking-wide md:text-4xl lg:text-6xl transition-transform duration-100 font-kablammo"
-              style={{
-                transform: `translateY(${Math.min(scrollPosition * 0.5, window.innerHeight * 0.7)}px)`
-              }}
-            >
-              Coro Benavent
-            </div>
 
-            <div className="md:hidden">
-              <button onClick={toggleMenu} className="text-white text-2xl">
-                {isMenuOpen ? <p className="font-sans">X</p> : <p>☰</p>}
-              </button>
-            </div>
+
           </div>
 
-          <div id="navbar" className="fixed right-4 my-12 md:right-24 lg:right-48">
-            <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block`}>
-              <ul className="flex flex-col space-y-4 ">
-                {content[language].nav.map((section) => (
-                  <li key={section} className="flex justify-end">
-                    <button
-                      className={`px-4 py-2 text-gray-700 text-xl lg:text-2xl transition-colors duration-300 ${activeSection === section
-                        ? 'border-l-2 border-white pl-3'
-                        : 'hover:text-gray-500'
-                        }`}
-                      onClick={() => {
-                        scrollToSection(
-                          section
-                        );
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      {section.charAt(0).toUpperCase() + section.slice(1)}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+
         </div>
       </div>
 
