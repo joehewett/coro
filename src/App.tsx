@@ -6,7 +6,7 @@ const App: React.FC = () => {
   const reelTitleRef = useRef<HTMLHeadingElement>(null);
   const photosTitleRef = useRef<HTMLHeadingElement>(null);
   const musicTitleRef = useRef<HTMLHeadingElement>(null);
-  const contactTitleRef = useRef<HTMLHeadingElement>(null);
+
 
   const [language, setLanguage] = useState<'en' | 'es'>('en');
   const [activeSection, setActiveSection] = useState<string>('');
@@ -21,8 +21,7 @@ const App: React.FC = () => {
       'Fotos': photosTitleRef,
       'Music': musicTitleRef,
       'Música': musicTitleRef,
-      'CV & Contact': contactTitleRef,
-      'CV & Contacto': contactTitleRef
+
     };
 
     const targetRef = refMap[refStr as keyof typeof refMap];
@@ -69,7 +68,7 @@ const App: React.FC = () => {
   const content = {
     en: {
       name: "Coro Benavent",
-      nav: ["Bio", "Reel", "Photos", "Music", "CV & Contact"],
+      nav: ["Bio", "Reel", "Photos", "Music", "CV"],
       title: "Actress /// Singer Performer. Creative",
       description: [
         "Coro Benavent is a versatile, bilingual actress fluent in English and Spanish, with training in the British accent. Born in Madrid, she has pursued acting across borders, recently completing an intensive 10-week course at the prestigious Bristol Old Vic Theatre School. Coro continues to refine her craft at MADS as a creative actor, building on her three years at the renowned Corazza studio and one year at Central de Cine.",
@@ -82,12 +81,11 @@ const App: React.FC = () => {
       reelDescription: "Some of her scenes",
       photos: "Photos",
       music: "Music",
-      contact: "CV & Contact",
-      contactDescription: "I'm looking for new opportunities. If you'd like to work with me, please reach out.",
+
     },
     es: {
       name: "Coro Benavent",
-      nav: ["Bibliografía", "Reel", "Fotos", "Música", "CV & Contacto"],
+      nav: ["Bibliografía", "Reel", "Fotos", "Música", "CV"],
       title: "Actriz /// Cantante Intérprete. Creativa",
       description: [
         "Coro Benavent es una actriz versátil y bilingüe, con fluidez en inglés y español, y entrenada en el acento británico. Nacida en Madrid, ha perseguido su carrera actoral más allá de las fronteras, completando recientemente un curso intensivo de 10 semanas en la prestigiosa Bristol Old Vic Theatre School. Coro continúa perfeccionando su arte en MADS como actriz creativa, tras sus tres años en el estudio Corazza y segundo de diplomatura en Central de Cine.",
@@ -100,8 +98,7 @@ const App: React.FC = () => {
       reelDescription: "Algunas de sus escenas",
       photos: "Fotos",
       music: "Música",
-      contact: "CV & Contacto",
-      contactDescription: "Estoy buscando nuevas oportunidades. Si te gustaría trabajar conmigo, por favor contáctame.",
+
     }
   };
 
@@ -115,8 +112,7 @@ const App: React.FC = () => {
         { id: 'about', ref: bioTitleRef },
         { id: 'reel', ref: reelTitleRef },
         { id: 'photos', ref: photosTitleRef },
-        { id: 'music', ref: musicTitleRef },
-        { id: 'contact', ref: contactTitleRef }
+        { id: 'music', ref: musicTitleRef }
       ];
 
       const currentSection = sections.reverse().find(section =>
@@ -141,19 +137,40 @@ const App: React.FC = () => {
           backgroundImage: `url('night.jpg')`,
         }}
       >
+        {/* Coro Text Overlay */}
+        <div className="absolute inset-0 flex items-start justify-center pointer-events-none pt-12">
+          <img 
+            src="coro_text.png" 
+            alt="Coro" 
+            className="max-w-[50%] max-h-[30%] object-contain"
+            style={{
+              filter: 'brightness(0) invert(1)',
+            }}
+          />
+        </div>
+        
         {/* Navigation Buttons */}
-        <div className="absolute inset-0 flex items-center">
-          <div className="flex flex-col space-y-4 ml-[25%]">
+        <div className="absolute top-8 left-0 right-0 flex justify-center">
+          <div className="flex flex-row space-x-4">
             {content[language].nav.map((section) => (
-              <RetroButton
-                key={section}
-                size="md"
-                onClick={() => {
-                  scrollToSection(section);
-                }}
-              >
-                {section}
-              </RetroButton>
+              section === "CV" ? (
+                <a key={section} href="/cv2.pdf" download className="block w-32">
+                  <RetroButton size="md" className="w-full">
+                    {section}
+                  </RetroButton>
+                </a>
+              ) : (
+                <RetroButton
+                  key={section}
+                  size="md"
+                  className="w-32"
+                  onClick={() => {
+                    scrollToSection(section);
+                  }}
+                >
+                  {section}
+                </RetroButton>
+              )
             ))}
           </div>
         </div>
@@ -203,13 +220,6 @@ const App: React.FC = () => {
         </h2>
         <p className="text-center text-xl mb-8">{content[language].reelDescription}</p>
         <div className="max-w-4xl py-16 mx-auto space-y-6">
-          <div className="relative pt-[56.25%]">
-            <iframe width="560" height="315"
-              className="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/nkcvXqGM-BM?si=KXZCyGza3FlIsOBj"
-              title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-
-          </div>
           <div className="relative pt-[56.25%]">
             <iframe width="560" height="315"
               className="absolute top-0 left-0 w-full h-full"
@@ -264,25 +274,7 @@ const App: React.FC = () => {
         <p className="text-center text-xl mt-8">Listen to more on <a href="https://open.spotify.com/artist/77zoboLJ6YVACYA4aagcgT" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Spotify</a></p>
       </div>
 
-      <div className="p-16 md:p-48 lg:px-96 lg:py-48 space-y-8">
-        <div className="relative space-y-8">
-          <h1 ref={contactTitleRef} className="scroll-m-20 text-4xl font-serif tracking-tight lg:text-5xl mb-2">
-            {content[language].contact}
-          </h1>
-          <p className="text-lg lg:text-xl text-gray-600">{content[language].contactDescription}</p>
-          <div>
-            <a href="/cv.pdf" download>
-              <button className="bg-black text-white px-4 py-2 rounded-lg">
-                Download CV
-              </button>
-            </a>
-          </div>
-          <div>
-            <p className="text-gray-600">Email: <a href="" className="text-blue-600 hover:underline">coro benavent 2014 @ gmail . com</a></p>
-            <p className="text-gray-600">Instagram: <a href="https://www.instagram.com/corobenavent" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">@corobenavent</a></p>
-          </div>
-        </div>
-      </div>
+
     </div>
   );
 };
