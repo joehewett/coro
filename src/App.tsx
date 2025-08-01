@@ -161,42 +161,6 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Thought bubble overlay */}
-        <div className="absolute top-[3%] left-[52%] -translate-x-1/2 w-64 h-64 group transition-all duration-300 drop-shadow-[0_8px_16px_rgba(0,0,0,0.2)] hover:scale-105 hover:drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)]">
-          <img
-            src="thought.png"
-            alt="Thought bubble"
-            className="w-full h-full object-contain brightness-0 invert transition-transform duration-300"
-          />
-          <div className="absolute inset-0 flex items-center justify-center -translate-y-2.5">
-            <span className="text-white font-serif text-2xl font-light tracking-wider italic">Actress</span>
-          </div>
-        </div>
-
-        {/* Bird overlay */}
-        <div className="absolute top-[22%] left-[35%] -translate-x-1/2 w-48 h-48 group transition-all duration-300 drop-shadow-[0_8px_16px_rgba(0,0,0,0.2)] hover:scale-105 hover:drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)]">
-          <img
-            src="bird.png"
-            alt="Bird"
-            className="w-full h-full object-contain brightness-0 invert -scale-x-100 group-hover:scale-x-100 transition-transform duration-300"
-          />
-          <div className="absolute inset-0 flex items-start justify-center mt-2">
-            <span className="text-white font-serif text-2xl font-light tracking-wider italic">Singer</span>
-          </div>
-        </div>
-
-        {/* Clap overlay */}
-        <div className="absolute top-[30%] left-[68%] -translate-x-1/2 w-80 h-80 group transition-all duration-300 drop-shadow-[0_8px_16px_rgba(0,0,0,0.2)] hover:scale-105 hover:drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)]">
-          <img
-            src="clap.png"
-            alt="Clap"
-            className="w-full h-full object-contain brightness-0 invert transition-transform duration-300 group-hover:rotate-45"
-          />
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <span className="text-white font-serif text-2xl font-light tracking-wider italic select-none transition-transform duration-300 group-hover:rotate-45 ml-16">Filmmaker</span>
-          </div>
-        </div>
-
         <div className="px-8 md:px-16 lg:px-32 w-full h-full font-serif flex flex-col md:flex-row justify-between items-start md:items-center">
           <div className="flex flex-row justify-between items-center w-full">
             <div
