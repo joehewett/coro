@@ -78,7 +78,7 @@ const App: React.FC = () => {
         "In May 2025, I created and produced a music video for \"Palomitas sin maíz\", a song I wrote to my grandmother the day that she passed away. The narrative explored my relationship to her and the other female role models in my life. It was shot on 16mm and starred Dinah Stabb, Gully (a musician), a horse and myself. The 2-day shoot was featured by Kodak, reviewed by Promonews and has been pre-nominated for the Shiny Awards.",
         "In February 2025, I co-created a concept photoshoot called 'Sisters, sisters' with Gabrielle Torreborre about two sisters reconnecting after a big dispute.",
         "In December, I organised and performed at one of our many concerts of my band ALAMAYO, where we presented many new songs that are coming out slowly but surely.",
-        "Finally, my happy place is being in the water surfing and have a strong passion for all sorts of sports.",
+        "Finally, my happy place is being in the water surfing and have a strong passion for all sorts of sports",
       ],
       reel: "Reel",
       reelDescription: "Some of my scenes",
