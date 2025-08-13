@@ -6,7 +6,15 @@ import DirectorPage from './components/DirectorPage';
 import MusicianPage from './components/MusicianPage';
 import MePage from './components/MePage';
 import PalomitasSinMaiz from './components/projects/PalomitasSinMaiz';
+import SummerDreams from './components/projects/SummerDreams';
+import UrbanTales from './components/projects/UrbanTales';
+import TheLastDance from './components/projects/TheLastDance';
 import MidnightEchoes from './components/projects/MidnightEchoes';
+import CityLights from './components/projects/CityLights';
+import EchoesOfTomorrow from './components/projects/EchoesOfTomorrow';
+import LiveAtSunset from './components/projects/LiveAtSunset';
+import PersonalJourney from './components/projects/PersonalJourney';
+import BehindTheScenes from './components/projects/BehindTheScenes';
 
 const App: React.FC = () => {
   return (
@@ -20,9 +28,23 @@ const App: React.FC = () => {
       <Route path="/musician" element={<MusicianPage />} />
       <Route path="/me" element={<MePage />} />
       
-      {/* Project pages - will add these as we create them */}
+      {/* Actress project pages */}
       <Route path="/actress/palomitas-sin-maiz" element={<PalomitasSinMaiz />} />
+      <Route path="/actress/summer-dreams" element={<SummerDreams />} />
+      <Route path="/actress/urban-tales" element={<UrbanTales />} />
+      <Route path="/actress/the-last-dance" element={<TheLastDance />} />
+      
+      {/* Director project pages */}
       <Route path="/director/midnight-echoes" element={<MidnightEchoes />} />
+      <Route path="/director/city-lights" element={<CityLights />} />
+      
+      {/* Musician project pages */}
+      <Route path="/musician/echoes-of-tomorrow" element={<EchoesOfTomorrow />} />
+      <Route path="/musician/live-at-sunset" element={<LiveAtSunset />} />
+      
+      {/* Personal project pages */}
+      <Route path="/me/personal-journey" element={<PersonalJourney />} />
+      <Route path="/me/behind-the-scenes" element={<BehindTheScenes />} />
     </Routes>
   );
 };
