@@ -1,26 +1,33 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Homepage: React.FC = () => {
+  const navigate = useNavigate();
+  
   const quadrants = [
     { 
       bg: '/landing/topleft.jpg', 
       text: '/landing/toplefttext.PNG',
-      alt: 'Top Left' 
+      alt: 'Top Left',
+      route: '/actress'
     },
     { 
       bg: '/landing/topright.JPG', 
       text: '/landing/toprighttext.PNG',
-      alt: 'Top Right' 
+      alt: 'Top Right',
+      route: '/director'
     },
     { 
       bg: '/landing/bottomleft.jpeg', 
       text: '/landing/bottomlefttext.PNG',
-      alt: 'Bottom Left' 
+      alt: 'Bottom Left',
+      route: '/musician'
     },
     { 
       bg: '/landing/bottomright.jpeg', 
       text: '/landing/bottomrighttext.PNG',
-      alt: 'Bottom Right' 
+      alt: 'Bottom Right',
+      route: '/me'
     }
   ];
 
@@ -33,7 +40,7 @@ const Homepage: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}>
+    <div className="homepage-no-scroll" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}>
       {/* 2x2 Grid of images */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', width: '100%', height: '100%' }}>
         {quadrants.map((quadrant, index) => (
@@ -53,6 +60,7 @@ const Homepage: React.FC = () => {
               if (overlay) overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
               if (textImg) textImg.style.opacity = '0';
             }}
+            onClick={() => navigate(quadrant.route)}
           >
             {/* Background Image */}
             <img 
