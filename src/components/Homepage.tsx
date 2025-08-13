@@ -4,6 +4,11 @@ import { useNavigate } from 'react-router-dom';
 const Homepage: React.FC = () => {
   const navigate = useNavigate();
   
+  // Check if device is mobile/touch-enabled
+  const isMobile = () => {
+    return window.innerWidth < 768 || 'ontouchstart' in window;
+  };
+  
   const quadrants = [
     { 
       bg: '/landing/topleft.jpg', 
@@ -37,6 +42,14 @@ const Homepage: React.FC = () => {
     img.onload = () => console.log('Coro text loaded successfully');
     img.onerror = () => console.error('Failed to load coro_text.png');
     img.src = '/coro_text.png';
+    
+    // Debug: Check if quadrant background images are loading
+    quadrants.forEach((quadrant, index) => {
+      const bgImg = new window.Image();
+      bgImg.onload = () => console.log(`Quadrant ${index} background image loaded: ${quadrant.bg}`);
+      bgImg.onerror = () => console.error(`Failed to load quadrant ${index} background image: ${quadrant.bg}`);
+      bgImg.src = quadrant.bg;
+    });
   }, []);
 
   return (
@@ -48,6 +61,7 @@ const Homepage: React.FC = () => {
             key={index}
             className="relative overflow-hidden"
             onMouseEnter={(e) => {
+              if (isMobile()) return; // Skip hover effects on mobile
               console.log(`Hovering quadrant ${index}`);
               const overlay = e.currentTarget.querySelector('.overlay') as HTMLElement;
               const textImg = e.currentTarget.querySelector('.text-img') as HTMLElement;
@@ -55,6 +69,7 @@ const Homepage: React.FC = () => {
               if (textImg) textImg.style.opacity = '1';
             }}
             onMouseLeave={(e) => {
+              if (isMobile()) return; // Skip hover effects on mobile
               const overlay = e.currentTarget.querySelector('.overlay') as HTMLElement;
               const textImg = e.currentTarget.querySelector('.text-img') as HTMLElement;
               if (overlay) overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
@@ -66,16 +81,23 @@ const Homepage: React.FC = () => {
             <img 
               src={quadrant.bg} 
               alt={quadrant.alt}
-              className="quadrant-bg w-full h-full object-cover"
+              className="quadrant-bg w-full h-full object-cover absolute inset-0 z-0"
+              onLoad={() => console.log(`Background image ${index} loaded successfully`)}
+              onError={(e) => {
+                console.error(`Failed to load background image ${index}:`, quadrant.bg);
+                // Fallback: set a background color if image fails to load
+                const target = e.target as HTMLImageElement;
+                target.style.backgroundColor = '#333';
+              }}
             />
             
             {/* Hover overlay */}
             <div 
-              className="overlay absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 transition-colors duration-300 ease-in-out cursor-pointer"
+              className="overlay absolute inset-0 flex items-center justify-center bg-transparent md:bg-black md:bg-opacity-0 transition-colors duration-300 ease-in-out cursor-pointer z-10"
             >
               {/* Text overlay image */}
               <img 
-                className="text-img max-w-[80%] max-h-[80%] object-contain opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+                className="text-img max-w-[80%] max-h-[80%] object-contain opacity-100 md:opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
                 src={quadrant.text}
                 alt={`${quadrant.alt} Text`}
               />
