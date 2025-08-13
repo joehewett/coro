@@ -11,8 +11,8 @@ body {
 
 /* Mobile responsiveness - now handled by Tailwind classes */
 
-/* Ensure images don't overflow on mobile */
-img {
+/* Ensure images don't overflow on mobile - exclude navigation images */
+img:not(nav img) {
   max-width: 100%;
   height: auto;
 }
