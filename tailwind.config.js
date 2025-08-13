@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        kablammo: ['Kablammo', 'cursive', ...fontFamily.serif],
+        handwritten: ['Caveat', 'cursive', ...fontFamily.serif],
       },
     },
   },

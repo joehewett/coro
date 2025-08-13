@@ -34,7 +34,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, ro
           isHovered ? 'translate-y-0' : 'translate-y-full'
         }`}
       >
-        <h3 className="m-0 mb-2.5 text-2xl font-bold text-orange-500">
+        <h3 className="m-0 mb-2.5 text-2xl font-bold text-gray-300 font-handwritten">
           {title}
         </h3>
         <p className="m-0 text-base leading-relaxed">
