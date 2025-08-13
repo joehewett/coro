@@ -48,7 +48,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
             </h2>
             <ul className="mb-15 list-none p-0">
               {credits.map((credit, index) => (
-                <li key={index} className="flex justify-between items-center py-8 border-b border-gray-700 last:border-b-0">
+                <li key={index} className="flex justify-between items-center py-3 border-b border-gray-700 last:border-b-0">
                   <span className={credit.isHighlighted ? 'text-orange-500 font-bold' : 'text-white'}>
                     {credit.name}
                   </span>

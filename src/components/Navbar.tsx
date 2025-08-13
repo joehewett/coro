@@ -17,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ categoryImage, categoryRoute, categoryA
         src="/coro_text.png" 
         alt="Coro"
         onClick={() => navigate('/')}
-        className="h-12 cursor-pointer object-contain"
+        className="!h-12 !w-auto cursor-pointer object-contain"
       />
       
       {/* Category text image if provided */}
