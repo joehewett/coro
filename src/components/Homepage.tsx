@@ -1,16 +1,32 @@
 import React, { useEffect } from 'react';
 
 const Homepage: React.FC = () => {
-  const images = [
-    { src: '/coro4.webp', alt: 'Image 1' },
-    { src: '/coro5.webp', alt: 'Image 2' },
-    { src: '/coro6.webp', alt: 'Image 3' },
-    { src: '/coro7.webp', alt: 'Image 4' }
+  const quadrants = [
+    { 
+      bg: '/landing/topleft.jpg', 
+      text: '/landing/toplefttext.PNG',
+      alt: 'Top Left' 
+    },
+    { 
+      bg: '/landing/topright.JPG', 
+      text: '/landing/toprighttext.PNG',
+      alt: 'Top Right' 
+    },
+    { 
+      bg: '/landing/bottomleft.jpeg', 
+      text: '/landing/bottomlefttext.PNG',
+      alt: 'Bottom Left' 
+    },
+    { 
+      bg: '/landing/bottomright.jpeg', 
+      text: '/landing/bottomrighttext.PNG',
+      alt: 'Bottom Right' 
+    }
   ];
 
   useEffect(() => {
     // Debug: Check if images are loading
-    const img = new Image();
+    const img = new window.Image();
     img.onload = () => console.log('Coro text loaded successfully');
     img.onerror = () => console.error('Failed to load coro_text.png');
     img.src = '/coro_text.png';
@@ -20,28 +36,28 @@ const Homepage: React.FC = () => {
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}>
       {/* 2x2 Grid of images */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', width: '100%', height: '100%' }}>
-        {images.map((image, index) => (
+        {quadrants.map((quadrant, index) => (
           <div 
             key={index}
             style={{ position: 'relative', overflow: 'hidden' }}
             onMouseEnter={(e) => {
-              console.log(`Hovering image ${index}`);
+              console.log(`Hovering quadrant ${index}`);
               const overlay = e.currentTarget.querySelector('.overlay') as HTMLElement;
-              const text = e.currentTarget.querySelector('.text') as HTMLElement;
+              const textImg = e.currentTarget.querySelector('.text-img') as HTMLElement;
               if (overlay) overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-              if (text) text.style.opacity = '1';
+              if (textImg) textImg.style.opacity = '1';
             }}
             onMouseLeave={(e) => {
               const overlay = e.currentTarget.querySelector('.overlay') as HTMLElement;
-              const text = e.currentTarget.querySelector('.text') as HTMLElement;
+              const textImg = e.currentTarget.querySelector('.text-img') as HTMLElement;
               if (overlay) overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-              if (text) text.style.opacity = '0';
+              if (textImg) textImg.style.opacity = '0';
             }}
           >
-            {/* Image */}
+            {/* Background Image */}
             <img 
-              src={image.src} 
-              alt={image.alt}
+              src={quadrant.bg} 
+              alt={quadrant.alt}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
             
@@ -62,19 +78,20 @@ const Homepage: React.FC = () => {
                 cursor: 'pointer'
               }}
             >
-              <span 
-                className="text"
+              {/* Text overlay image */}
+              <img 
+                className="text-img"
+                src={quadrant.text}
+                alt={`${quadrant.alt} Text`}
                 style={{
-                  color: 'white',
-                  fontSize: '24px',
-                  fontWeight: 'bold',
+                  maxWidth: '80%',
+                  maxHeight: '80%',
+                  objectFit: 'contain',
                   opacity: 0,
                   transition: 'opacity 0.3s ease',
                   pointerEvents: 'none'
                 }}
-              >
-                placeholder
-              </span>
+              />
             </div>
           </div>
         ))}
