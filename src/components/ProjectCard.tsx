@@ -17,56 +17,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, ro
       onClick={() => navigate(route)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{
-        position: 'relative',
-        width: '100%',
-        aspectRatio: '1',
-        cursor: 'pointer',
-        overflow: 'hidden',
-        backgroundColor: '#000'
-      }}
+      className="relative w-full aspect-square cursor-pointer overflow-hidden bg-black"
     >
       {/* Project image */}
       <img 
         src={image}
         alt={title}
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          transition: 'transform 0.3s ease, filter 0.3s ease',
-          transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-          filter: isHovered ? 'brightness(0.7)' : 'brightness(1)'
-        }}
+        className={`w-full h-full object-cover transition-all duration-300 ease-in-out ${
+          isHovered ? 'scale-105 brightness-75' : 'scale-100 brightness-100'
+        }`}
       />
       
       {/* Hover overlay with title and description */}
       <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          padding: '20px',
-          background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%)',
-          transform: isHovered ? 'translateY(0)' : 'translateY(100%)',
-          transition: 'transform 0.3s ease',
-          color: '#fff'
-        }}
+        className={`absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black from-90% to-transparent transition-transform duration-300 ease-in-out text-white ${
+          isHovered ? 'translate-y-0' : 'translate-y-full'
+        }`}
       >
-        <h3 style={{
-          margin: '0 0 10px 0',
-          fontSize: '24px',
-          fontWeight: 'bold',
-          color: '#ff6b35' // Orange highlight color
-        }}>
+        <h3 className="m-0 mb-2.5 text-2xl font-bold text-orange-500">
           {title}
         </h3>
-        <p style={{
-          margin: 0,
-          fontSize: '16px',
-          lineHeight: '1.5'
-        }}>
+        <p className="m-0 text-base leading-relaxed">
           {description}
         </p>
       </div>

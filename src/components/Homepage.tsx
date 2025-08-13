@@ -40,13 +40,13 @@ const Homepage: React.FC = () => {
   }, []);
 
   return (
-    <div className="homepage-no-scroll" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}>
+    <div className="homepage-no-scroll fixed top-0 left-0 w-screen h-screen">
       {/* 2x2 Grid of images */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', width: '100%', height: '100%' }}>
+      <div className="grid grid-cols-2 grid-rows-2 w-full h-full">
         {quadrants.map((quadrant, index) => (
           <div 
             key={index}
-            style={{ position: 'relative', overflow: 'hidden' }}
+            className="relative overflow-hidden"
             onMouseEnter={(e) => {
               console.log(`Hovering quadrant ${index}`);
               const overlay = e.currentTarget.querySelector('.overlay') as HTMLElement;
@@ -66,39 +66,18 @@ const Homepage: React.FC = () => {
             <img 
               src={quadrant.bg} 
               alt={quadrant.alt}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              className="w-full h-full object-cover"
             />
             
             {/* Hover overlay */}
             <div 
-              className="overlay"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'background-color 0.3s ease',
-                cursor: 'pointer'
-              }}
+              className="overlay absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 transition-colors duration-300 ease-in-out cursor-pointer"
             >
               {/* Text overlay image */}
               <img 
-                className="text-img"
+                className="text-img max-w-[80%] max-h-[80%] object-contain opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
                 src={quadrant.text}
                 alt={`${quadrant.alt} Text`}
-                style={{
-                  maxWidth: '80%',
-                  maxHeight: '80%',
-                  objectFit: 'contain',
-                  opacity: 0,
-                  transition: 'opacity 0.3s ease',
-                  pointerEvents: 'none'
-                }}
               />
             </div>
           </div>
@@ -106,28 +85,11 @@ const Homepage: React.FC = () => {
       </div>
       
       {/* Centered coro_text.png */}
-      <div 
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          pointerEvents: 'none',
-          zIndex: 9999
-        }}
-      >
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-50">
         <img 
           src="/coro_text.png" 
           alt="Coro Text"
-          style={{
-            maxWidth: '50%',
-            maxHeight: '50%',
-            objectFit: 'contain'
-          }}
+          className="max-w-[50%] max-h-[50%] object-contain"
           onError={() => console.error('Failed to load coro_text.png in img tag')}
           onLoad={() => console.log('Coro text img tag loaded')}
         />

@@ -11,30 +11,13 @@ const Navbar: React.FC<NavbarProps> = ({ categoryImage, categoryRoute, categoryA
   const navigate = useNavigate();
 
   return (
-    <nav style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      height: '80px',
-      backgroundColor: 'rgba(0, 0, 0, 0.7)',
-      backdropFilter: 'blur(10px)',
-      display: 'flex',
-      alignItems: 'center',
-      padding: '0 40px',
-      zIndex: 1000,
-      gap: '20px'
-    }}>
+    <nav className="fixed top-0 left-0 right-0 h-20 bg-black bg-opacity-70 backdrop-blur-md flex items-center px-10 z-50 gap-5">
       {/* Coro logo - always goes to homepage */}
       <img 
         src="/coro_text.png" 
         alt="Coro"
         onClick={() => navigate('/')}
-        style={{
-          height: '50px',
-          cursor: 'pointer',
-          objectFit: 'contain'
-        }}
+        className="h-12 cursor-pointer object-contain"
       />
       
       {/* Category text image if provided */}
@@ -43,11 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ categoryImage, categoryRoute, categoryA
           src={categoryImage}
           alt={categoryAlt || 'Category'}
           onClick={() => categoryRoute && navigate(categoryRoute)}
-          style={{
-            height: '40px',
-            cursor: categoryRoute ? 'pointer' : 'default',
-            objectFit: 'contain'
-          }}
+          className={`h-10 object-contain ${categoryRoute ? 'cursor-pointer' : 'cursor-default'}`}
         />
       )}
     </nav>
