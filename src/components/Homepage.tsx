@@ -66,7 +66,7 @@ const Homepage: React.FC = () => {
             <img 
               src={quadrant.bg} 
               alt={quadrant.alt}
-              className="w-full h-full object-cover"
+              className="quadrant-bg w-full h-full object-cover"
             />
             
             {/* Hover overlay */}

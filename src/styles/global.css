@@ -11,8 +11,8 @@ body {
 
 /* Mobile responsiveness - now handled by Tailwind classes */
 
-/* Ensure images don't overflow on mobile - exclude navigation images */
-img:not(nav img) {
+/* Ensure images don't overflow on mobile - exclude navigation and quadrant background images */
+img:not(nav img):not(.quadrant-bg) {
   max-width: 100%;
   height: auto;
 }
