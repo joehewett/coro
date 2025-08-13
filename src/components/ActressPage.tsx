@@ -36,23 +36,15 @@ const ActressPage: React.FC = () => {
   ];
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      backgroundColor: '#000',
-      paddingTop: '80px' // Account for fixed navbar
-    }}>
+    <div className="min-h-screen bg-black pt-20">
       <Navbar 
         categoryImage="/landing/toplefttext.PNG"
         categoryRoute="/actress"
         categoryAlt="Actress"
       />
       
-      <div className="page-container" style={{
-        padding: '40px',
-        maxWidth: '1400px',
-        margin: '0 auto'
-      }}>
-        <div className="project-grid">
+      <div className="px-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {projects.map(project => (
             <ProjectCard
               key={project.id}

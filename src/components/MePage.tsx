@@ -21,27 +21,15 @@ const MePage: React.FC = () => {
   ];
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      backgroundColor: '#000',
-      paddingTop: '80px'
-    }}>
+    <div className="min-h-screen bg-black pt-20">
       <Navbar 
         categoryImage="/landing/bottomrighttext.PNG"
         categoryRoute="/me"
         categoryAlt="Me"
       />
       
-      <div style={{
-        padding: '40px',
-        maxWidth: '1400px',
-        margin: '0 auto'
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-          gap: '40px'
-        }}>
+      <div className="px-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {projects.map(project => (
             <ProjectCard
               key={project.id}

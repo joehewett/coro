@@ -1,3 +1,5 @@
+import { fontFamily } from 'tailwindcss/defaultTheme'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,9 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        kablammo: ['Kablammo', 'cursive'],
+        kablammo: ['Kablammo', 'cursive', ...fontFamily.serif],
       },
     },
   },
-  plugins: [],
 }
