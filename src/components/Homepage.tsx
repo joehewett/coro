@@ -26,13 +26,13 @@ const Homepage: React.FC = () => {
       bg: '/landing/bottomleft.jpeg', 
       text: '/landing/bottomlefttext.PNG',
       alt: 'Bottom Left',
-      route: '/musician'
+      route: '/me'
     },
     { 
       bg: '/landing/bottomright.jpeg', 
       text: '/landing/bottomrighttext.PNG',
       alt: 'Bottom Right',
-      route: '/me'
+      route: '/musician'
     }
   ];
 

@@ -3,23 +3,34 @@ import ProjectPage from '../ProjectPage';
 
 const PalomitasSinMaiz: React.FC = () => {
   const credits = [
-    { name: 'Maria Rodriguez', role: 'Director' },
-    { name: 'Carlos Mendez', role: 'Producer' },
-    { name: 'Coro', role: 'Lead Actress', isHighlighted: true },
-    { name: 'Juan Pablo Silva', role: 'Cinematographer' },
-    { name: 'Ana Lucia Torres', role: 'Supporting Actress' },
-    { name: 'Roberto Fernandez', role: 'Editor' },
-    { name: 'Sofia Martinez', role: 'Production Designer' },
-    { name: 'Diego Ramirez', role: 'Sound Design' }
+    { name: 'Gabrielle Torreborre', role: 'Director & Editor' },
+    { name: 'Coro Benavent', role: 'Producer & Starring', isHighlighted: true },
+    { name: 'Gully', role: 'Starring' },
+    { name: 'Dinah Stabb', role: 'Starring' },
+    { name: 'James Lahaise', role: 'DOP' },
+    { name: 'Lucia Larah', role: '1st AD' },
+    { name: 'Kate Klvrnv', role: 'AC' },
+    { name: 'Lewis Taylor', role: 'Camera Trainee' },
+    { name: 'Gina Jatkinson', role: 'Art Director' },
+    { name: 'Megha Maruca', role: 'Costume Designer' },
+    { name: 'Aanandita Dhar', role: 'Hair Stylist' },
+    { name: 'Mash A', role: 'MUA' },
+    { name: 'Jane Giubbilei', role: 'MUA' },
+    { name: 'Teppnox', role: 'BTS Photography' },
+    { name: 'Santino Colour', role: 'Colourist' }
   ];
 
-  const description = `Palomitas Sin Maiz is an experimental short film that challenges conventional narrative structures while exploring themes of memory, identity, and the surreal nature of everyday life. Set in a small coastal town, the film follows a young woman who discovers that her dreams are bleeding into reality, creating a tapestry of interconnected moments that blur the line between what is real and what is imagined.
+  const description = `Palomitas sin maíz is an deeply personal music video born from grief and love - a song I wrote to my grandmother on the day she passed away in May 2025. This project explores my relationship with her and the other powerful female role models in my life, creating a visual narrative that honors their influence on who I am as an artist and person.
 
-  The project was filmed over three weeks in various locations along the coast, utilizing natural light and minimal equipment to capture the raw, dreamlike quality that defines the visual language of the film. Our approach was to create a sense of unease and wonder, allowing the audience to experience the protagonist's journey through a lens of magical realism.
+  Working as both producer and performer alongside Gabrielle Torreborre as director, we created something that feels both intimate and cinematic. The cast includes Dinah Stabb, Gully (a fellow musician), a horse, and myself - each element carefully chosen to represent different aspects of the story I needed to tell about loss, memory, and the women who shaped me.
 
-  This film marks a significant milestone in my acting career, as it required me to embody multiple versions of the same character across different temporal and emotional planes. The challenge was to maintain a cohesive performance while allowing each iteration to have its own distinct personality and motivations.`;
+  Shot on 16mm film with cinematography by James Lahaise, we embraced the tactile, emotional quality that only analog film can provide. The grain and warmth of the medium felt essential to capturing the nostalgic, bittersweet nature of the narrative. This project challenged me to be vulnerable both in front of and behind the camera, balancing the raw emotion of the subject matter with the technical demands of producing a professional music video.`;
 
-  const additionalInfo = `The film premiered at the Cannes Film Festival Short Film Corner and has since been selected for numerous international festivals. The unique visual style and non-linear narrative structure have sparked conversations about the future of experimental cinema and the role of dreams in storytelling. Working on this project taught me the importance of trusting the creative process and embracing ambiguity as a powerful narrative tool.`;
+  const additionalInfo = `The 2-day shoot was a labor of love that gained recognition from the film community - featured by Kodak for our use of their 16mm stock, reviewed by Promonews, and pre-nominated for the Shiny Awards. This recognition felt particularly meaningful given the personal nature of the project and our commitment to shooting on film.
+
+  Art Director Gina Jatkinson and Costume Designer Megha Maruca created a visual world that honored both the intimate family story and the broader themes of female strength and legacy. The hair and makeup team, led by Aanandita Dhar, Mash A, and Jane Giubbilei, understood the emotional weight of the project and helped create looks that felt authentic to the story we were telling.
+
+  The Kodak film stock, developed by Digital Orchard, gave us the organic, timeless quality we needed to tell this multigenerational story. Gabrielle&rsquo;s editing and the color grading by Santino Colour at Company 3 preserved the film&rsquo;s emotional authenticity while creating a polished final piece. This project deepened my creative partnership with Gabrielle, setting the foundation for our upcoming production company launch in August 2025.`;
 
   return (
     <ProjectPage
