@@ -32,12 +32,57 @@ const PixelAdventure: React.FC = () => {
   const npcMoveTimerRef = useRef(0);
   const npcFrameCounterRef = useRef(0);
   const [showGreeting, setShowGreeting] = useState(false);
+  
+  // Refs to track current positions for proximity detection
+  const currentPlayerPosRef = useRef({ 
+    x: villageX + villageWidth / 2 - hedgehogSize / 2, 
+    y: villageY + villageHeight / 2 - hedgehogSize / 2 
+  });
+  const currentNpcPosRef = useRef({
+    x: villageX + villageWidth * 0.3,
+    y: villageY + villageHeight * 0.3
+  });
+  
+  // Location and interaction state
+  const [currentLocation, setCurrentLocation] = useState(1); // 1 = village, 2 = library
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
         event.preventDefault();
         keysPressed.current.add(event.key);
+      }
+      
+      console.log('showGreeting', showGreeting);
+      console.log('isLoading', isLoading);
+      console.log('event.key', event.key);
+      // Handle interaction with NPC
+      if (event.key.toLowerCase() === 'x' && currentLocation === 1 && !isLoading) {
+        // Check proximity directly in the key handler
+        const distance = Math.sqrt(
+          Math.pow(currentPlayerPosRef.current.x - currentNpcPosRef.current.x, 2) + 
+          Math.pow(currentPlayerPosRef.current.y - currentNpcPosRef.current.y, 2)
+        );
+        
+        console.log('Key pressed - Distance:', distance, 'Close enough:', distance < 80);
+        
+        if (distance < 80) {
+          console.log('Interaction with NPC');
+          event.preventDefault();
+          setIsLoading(true);
+          
+          // Show loading screen for 2 seconds, then transition to library
+          setTimeout(() => {
+            setCurrentLocation(2);
+            setIsLoading(false);
+            // Reset player position for new location
+            setPosition({ 
+              x: villageX + villageWidth / 2 - hedgehogSize / 2, 
+              y: villageY + villageHeight / 2 - hedgehogSize / 2 
+            });
+          }, 2000);
+        }
       }
     };
 
@@ -82,16 +127,13 @@ const PixelAdventure: React.FC = () => {
           }
         }
 
+        // Update position ref
+        currentPlayerPosRef.current = { x: newX, y: newY };
         return { x: newX, y: newY };
       });
 
       // Update NPC position and behavior
-      let currentPlayerPosition = { x: 0, y: 0 };
-      
-      setPosition(playerPos => {
-        currentPlayerPosition = playerPos;
-        return playerPos;
-      });
+      let currentPlayerPosition = currentPlayerPosRef.current;
 
       setNpcPosition(prev => {
         let newX = prev.x;
@@ -140,20 +182,24 @@ const PixelAdventure: React.FC = () => {
           }
         }
 
+        // Update NPC position ref
+        currentNpcPosRef.current = { x: newX, y: newY };
         return { x: newX, y: newY };
       });
 
-      // Check proximity for greeting
-      setPosition(playerPos => {
-        setNpcPosition(npcPos => {
-          const distance = Math.sqrt(
-            Math.pow(playerPos.x - npcPos.x, 2) + Math.pow(playerPos.y - npcPos.y, 2)
-          );
-          setShowGreeting(distance < 80); // Show greeting when within 80 pixels
-          return npcPos;
-        });
-        return playerPos;
-      });
+      // Check proximity for greeting - only in village
+      if (currentLocation === 1) {
+        const distance = Math.sqrt(
+          Math.pow(currentPlayerPosRef.current.x - currentNpcPosRef.current.x, 2) + 
+          Math.pow(currentPlayerPosRef.current.y - currentNpcPosRef.current.y, 2)
+        );
+        
+        const shouldShowGreeting = distance < 80;
+        console.log('Distance:', distance, 'Should show greeting:', shouldShowGreeting, 'Player:', currentPlayerPosRef.current, 'NPC:', currentNpcPosRef.current);
+        setShowGreeting(shouldShowGreeting);
+      } else {
+        setShowGreeting(false);
+      }
 
       animationRef.current = requestAnimationFrame(updatePosition);
     };
@@ -186,10 +232,10 @@ const PixelAdventure: React.FC = () => {
       }}
       tabIndex={0}
     >
-      {/* Village background map */}
+      {/* Background map */}
       <img
-        src="/game/village.webp"
-        alt="Village Map"
+        src={currentLocation === 1 ? "/game/village.webp" : "/game/library.webp"}
+        alt={currentLocation === 1 ? "Village Map" : "Library Map"}
         style={{
           position: 'absolute',
           left: `${villageX}px`,
@@ -217,31 +263,33 @@ const PixelAdventure: React.FC = () => {
         }}
       />
 
-      {/* NPC hedgehog character */}
-      <img
-        src={`/game/hedgehog${npcFrame === 0 ? '' : '2'}.png`}
-        alt="NPC Hedgehog"
-        style={{
-          position: 'absolute',
-          left: `${npcPosition.x}px`,
-          top: `${npcPosition.y}px`,
-          width: '48px',
-          height: '48px',
-          imageRendering: 'pixelated',
-          transition: 'none',
-          zIndex: 2,
-          filter: 'hue-rotate(120deg)' // Make NPC hedgehog a different color
-        }}
-      />
+      {/* NPC hedgehog character - only show in village */}
+      {currentLocation === 1 && (
+        <img
+          src={`/game/hedgehog${npcFrame === 0 ? '' : '2'}.png`}
+          alt="NPC Hedgehog"
+          style={{
+            position: 'absolute',
+            left: `${npcPosition.x}px`,
+            top: `${npcPosition.y}px`,
+            width: '48px',
+            height: '48px',
+            imageRendering: 'pixelated',
+            transition: 'none',
+            zIndex: 2,
+            filter: 'hue-rotate(120deg)' // Make NPC hedgehog a different color
+          }}
+        />
+      )}
 
-      {/* Greeting speech bubble */}
-      {showGreeting && (
+      {/* Interaction prompt - only show in village */}
+      {showGreeting && currentLocation === 1 && (
         <div
           style={{
             position: 'absolute',
-            left: `${npcPosition.x + hedgehogSize / 2 - 25}px`,
+            left: `${npcPosition.x + hedgehogSize / 2 - 15}px`,
             top: `${npcPosition.y - 40}px`,
-            width: '50px',
+            width: '30px',
             height: '25px',
             backgroundColor: '#000',
             color: '#fff',
@@ -250,13 +298,14 @@ const PixelAdventure: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '12px',
+            fontSize: '14px',
             fontFamily: 'monospace',
+            fontWeight: 'bold',
             zIndex: 3,
             boxShadow: '2px 2px 0px #666'
           }}
         >
-          hello
+          X
           {/* Speech bubble tail */}
           <div
             style={{
@@ -271,6 +320,63 @@ const PixelAdventure: React.FC = () => {
               borderTop: '8px solid #000'
             }}
           />
+        </div>
+      )}
+
+      {/* Loading screen */}
+      {isLoading && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: '#000',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 10
+          }}
+        >
+          <div
+            style={{
+              color: '#fff',
+              fontSize: '24px',
+              fontFamily: 'monospace',
+              marginBottom: '20px'
+            }}
+          >
+            Loading...
+          </div>
+          <div
+            style={{
+              width: '200px',
+              height: '20px',
+              border: '2px solid #fff',
+              borderRadius: '10px',
+              overflow: 'hidden',
+              backgroundColor: '#333'
+            }}
+          >
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                backgroundColor: '#0f0',
+                animation: 'loading 2s ease-in-out'
+              }}
+            />
+          </div>
+          <style>
+            {`
+              @keyframes loading {
+                0% { width: 0%; }
+                100% { width: 100%; }
+              }
+            `}
+          </style>
         </div>
       )}
     </div>
