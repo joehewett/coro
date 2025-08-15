@@ -18,7 +18,7 @@ const PixelAdventure: React.FC = () => {
   const [currentFrame, setCurrentFrame] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
   const keysPressed = useRef<Set<string>>(new Set());
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
   const frameCounterRef = useRef(0);
 
   // NPC hedgehog state

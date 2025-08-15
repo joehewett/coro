@@ -9,8 +9,8 @@ import PalomitasSinMaiz from './components/projects/PalomitasSinMaiz';
 import SummerDreams from './components/projects/SummerDreams';
 import UrbanTales from './components/projects/UrbanTales';
 import TheLastDance from './components/projects/TheLastDance';
-import MidnightEchoes from './components/projects/MidnightEchoes';
-import CityLights from './components/projects/CityLights';
+import Superglue from './components/projects/Superglue';
+import PadreHijoPastor from './components/projects/PadreHijoPastor';
 import EchoesOfTomorrow from './components/projects/EchoesOfTomorrow';
 import LiveAtSunset from './components/projects/LiveAtSunset';
 import PersonalJourney from './components/projects/PersonalJourney';
@@ -36,8 +36,9 @@ const App: React.FC = () => {
       <Route path="/actress/the-last-dance" element={<TheLastDance />} />
       
       {/* Director project pages */}
-      <Route path="/director/midnight-echoes" element={<MidnightEchoes />} />
-      <Route path="/director/city-lights" element={<CityLights />} />
+      <Route path="/director/superglue" element={<Superglue />} />
+      <Route path="/director/palomitas-sin-maiz" element={<PalomitasSinMaiz />} />
+      <Route path="/director/padre-hijo-pastor" element={<PadreHijoPastor />} />
       
       {/* Musician project pages */}
       <Route path="/musician/echoes-of-tomorrow" element={<EchoesOfTomorrow />} />

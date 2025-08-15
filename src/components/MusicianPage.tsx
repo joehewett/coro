@@ -23,7 +23,7 @@ const MusicianPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-black pt-20">
       <Navbar 
-        categoryImage="/landing/bottomlefttext.PNG"
+        categoryImage="/landing/bottomrighttext.PNG"
         categoryRoute="/musician"
         categoryAlt="Musician"
       />

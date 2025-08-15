@@ -6,17 +6,24 @@ const DirectorPage: React.FC = () => {
   const projects = [
     {
       id: 1,
-      image: '/coro2.webp',
-      title: 'Midnight Echoes',
-      description: 'Experimental short film exploring themes of memory and time',
-      route: '/director/midnight-echoes'
+      image: '/coro11.webp',
+      title: 'SUPERGLUE',
+      description: 'Music video starring Paula Lindblom & Harry Mason. Directed by Coro Benavent, produced by Chiara Carrubba, with choreography by Mariia Litvin & Stepan Kozhaev.',
+      route: '/director/superglue'
     },
     {
       id: 2,
       image: '/coro6.webp',
-      title: 'City Lights',
-      description: 'Documentary about urban life and its hidden stories',
-      route: '/director/city-lights'
+      title: 'Palomitas sin maíz',
+      description: 'Creative collaboration with Gabrielle Torreborre. Starring Coro Benavent, Gully, and Dinah Stabb. Directed by Gabrielle Torreborre, produced by Coro Benavent.',
+      route: '/director/palomitas-sin-maiz'
+    },
+    {
+      id: 3,
+      image: '/coro3.webp',
+      title: 'Padre. Hijo. Pastor',
+      description: 'Feature documentary directed by Mori. Served as Director\'s Assistant alongside creative producer Lottie Maher and DoP Dani Benejam.',
+      route: '/director/padre-hijo-pastor'
     }
   ];
 
