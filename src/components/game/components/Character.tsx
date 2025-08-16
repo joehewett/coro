@@ -23,8 +23,8 @@ export const Character: React.FC<CharacterProps> = ({
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
-        width: '48px',
-        height: '48px',
+        width: '64px',
+        height: '64px',
         imageRendering: 'pixelated',
         transition: 'none',
         zIndex: 2,

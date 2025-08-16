@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { GameLocation } from './types';
-import { GameMap, Character, InteractionPrompt, LoadingScreen } from './components';
+import { GameMap, Character, InteractionPrompt, LoadingScreen, InteractionZones, BuildingInteractionPrompt } from './components';
 import { 
   useMapLayout, 
   usePlayerMovement, 
   useNPCBehavior, 
   useGameState, 
-  useGameLoop 
+  useGameLoop,
+  useBuildingInteractions,
+  useImageBounds
 } from './hooks';
 
 const PixelAdventure: React.FC = () => {
   const [currentLocation, setCurrentLocation] = useState<GameLocation>(GameLocation.VILLAGE);
+  const gameContainerRef = useRef<HTMLDivElement>(null);
   
   // Custom hooks
   const mapRect = useMapLayout(currentLocation);
+  const imageBounds = useImageBounds(currentLocation);
   const playerMovement = usePlayerMovement(mapRect);
   const npcBehavior = useNPCBehavior(mapRect, playerMovement.currentPositionRef.current);
   const gameState = useGameState({
@@ -21,6 +25,18 @@ const PixelAdventure: React.FC = () => {
     npcPosition: npcBehavior.currentNpcPositionRef.current,
     currentLocation
   });
+  const buildingInteractions = useBuildingInteractions({
+    playerPosition: playerMovement.currentPositionRef.current,
+    currentLocation,
+    imageBounds: imageBounds.imageBounds
+  });
+
+  // Auto-focus the game container to ensure keyboard events are captured
+  useEffect(() => {
+    if (gameContainerRef.current) {
+      gameContainerRef.current.focus();
+    }
+  }, []);
 
   // Game loop
   useGameLoop({
@@ -28,18 +44,29 @@ const PixelAdventure: React.FC = () => {
     updateNPCPosition: npcBehavior.updateNPCPosition,
     handlePlayerKeyDown: playerMovement.handleKeyDown,
     handlePlayerKeyUp: playerMovement.handleKeyUp,
-    handleInteraction: gameState.handleInteraction,
+    handleInteraction: (onLocationChange) => {
+      // Try building interaction first, then NPC interaction
+      if (buildingInteractions.currentInteractionZone) {
+        buildingInteractions.handleBuildingInteraction(onLocationChange);
+      } else {
+        gameState.handleInteraction(onLocationChange);
+      }
+    },
     onLocationChange: setCurrentLocation,
     mapRect
   });
 
   return (
     <div 
-      className="w-screen h-screen relative overflow-hidden flex items-center justify-center"
+      ref={gameContainerRef}
+      className="w-screen h-screen relative overflow-hidden flex items-center justify-center outline-none"
       style={{ backgroundColor: '#041704' }}
       tabIndex={0}
     >
-      <GameMap currentLocation={currentLocation} mapRect={mapRect} />
+      <GameMap ref={imageBounds.imageRef} currentLocation={currentLocation} />
+      
+      {/* Debug: Show interaction zones (remove in production) */}
+      <InteractionZones zones={buildingInteractions.interactionZones} showDebug={true} />
       
       <Character 
         position={playerMovement.position}
@@ -63,7 +90,13 @@ const PixelAdventure: React.FC = () => {
         </>
       )}
 
-      <LoadingScreen isLoading={gameState.isLoading} />
+      {/* Building interaction prompt */}
+      <BuildingInteractionPrompt 
+        zone={buildingInteractions.currentInteractionZone}
+        show={buildingInteractions.showInteractionPrompt}
+      />
+
+      <LoadingScreen isLoading={gameState.isLoading || buildingInteractions.isLoading} />
     </div>
   );
 };
