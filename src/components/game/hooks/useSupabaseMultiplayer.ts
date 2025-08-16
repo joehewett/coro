@@ -9,6 +9,8 @@ interface UseSupabaseMultiplayerProps {
   currentFrame: number;
   isMoving: boolean;
   playerName?: string;
+  fixedPlayerId?: 'coro' | 'joe';
+  spriteVariant?: number;
 }
 
 export const useSupabaseMultiplayer = ({
@@ -16,8 +18,12 @@ export const useSupabaseMultiplayer = ({
   playerPosition,
   currentFrame,
   isMoving,
-  playerName = 'Anonymous'
+  playerName = 'Anonymous',
+  fixedPlayerId,
+  spriteVariant = 0
 }: UseSupabaseMultiplayerProps) => {
+  const PLAYER_ID_STORAGE_KEY = 'pixel_player_id';
+  const ONLINE_WINDOW_MS = 10000; // Consider players online if updated within last 10s
   const [multiplayerState, setMultiplayerState] = useState<MultiplayerState>({
     isConnected: false,
     isConnecting: true,
@@ -31,13 +37,79 @@ export const useSupabaseMultiplayer = ({
   const currentPlayerIdRef = useRef<string | null>(null);
   const updateThrottleMs = 100; // Update every 100ms max
 
-  // Generate unique player ID
+  // Define here so it exists before any effects/handlers reference it
+  const updatePlayerPosition = useCallback(async (force = false) => {
+    if (!currentPlayerIdRef.current || !multiplayerState.isConnected) return;
+
+    const now = Date.now();
+    if (!force && now - lastUpdateRef.current < updateThrottleMs) return;
+
+    lastUpdateRef.current = now;
+
+    try {
+      const { error } = await supabase
+        .from('player_positions')
+        .upsert(
+          {
+            player_id: currentPlayerIdRef.current,
+            player_name: playerName,
+            x: playerPosition.x,
+            y: playerPosition.y,
+            current_frame: currentFrame,
+            current_location: currentLocation,
+            is_moving: isMoving,
+            sprite_variant: 0,
+            last_update: new Date().toISOString()
+          },
+          {
+            onConflict: 'player_id',
+            ignoreDuplicates: false
+          }
+        );
+
+      if (error) {
+        console.error('Error upserting player position:', error);
+      }
+    } catch (error) {
+      console.error('Error upserting player position:', error);
+    }
+  }, [
+    currentLocation,
+    playerPosition.x,
+    playerPosition.y,
+    currentFrame,
+    isMoving,
+    playerName,
+    multiplayerState.isConnected
+  ]);
+
+  
+
+  // Generate or load persistent player ID (stable across refreshes) or use fixed
   useEffect(() => {
     if (!currentPlayerIdRef.current) {
-      currentPlayerIdRef.current = `player_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      if (fixedPlayerId) {
+        currentPlayerIdRef.current = fixedPlayerId;
+      } else {
+        try {
+          const existingId = typeof window !== 'undefined' ? localStorage.getItem(PLAYER_ID_STORAGE_KEY) : null;
+          if (existingId) {
+            currentPlayerIdRef.current = existingId;
+          } else {
+            const newId = `player_${Math.random().toString(36).slice(2)}_${Date.now()}`;
+            currentPlayerIdRef.current = newId;
+            if (typeof window !== 'undefined') {
+              localStorage.setItem(PLAYER_ID_STORAGE_KEY, newId);
+            }
+          }
+        } catch {
+          // Fallback if localStorage not available
+          currentPlayerIdRef.current = `player_${Math.random().toString(36).slice(2)}_${Date.now()}`;
+        }
+      }
       setMultiplayerState(prev => ({ ...prev, currentPlayerId: currentPlayerIdRef.current }));
     }
-  }, []);
+  }, [fixedPlayerId]);
 
   // Initialize Supabase connection
   useEffect(() => {
@@ -116,6 +188,30 @@ export const useSupabaseMultiplayer = ({
     };
   }, [currentPlayerIdRef.current]);
 
+  // Heartbeat to keep player marked as online even when idle
+  useEffect(() => {
+    if (!multiplayerState.isConnected) return;
+    const interval = setInterval(() => {
+      // Guard against calling before hook initialization is stable
+      Promise.resolve().then(() => updatePlayerPosition(true));
+    }, Math.max(3000, updateThrottleMs));
+    return () => clearInterval(interval);
+  }, [multiplayerState.isConnected, updatePlayerPosition]);
+
+  // Periodically prune stale players from local state
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMultiplayerState(prev => ({
+        ...prev,
+        otherPlayers: prev.otherPlayers.filter(p => {
+          const t = new Date(p.lastUpdate).getTime();
+          return Date.now() - t <= ONLINE_WINDOW_MS && p.currentLocation === currentLocation;
+        })
+      }));
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [currentLocation]);
+
   // Load existing players in current location
   const loadExistingPlayers = async () => {
     try {
@@ -123,7 +219,8 @@ export const useSupabaseMultiplayer = ({
         .from('player_positions')
         .select('*')
         .eq('current_location', currentLocation)
-        .neq('player_id', currentPlayerIdRef.current);
+        .neq('player_id', currentPlayerIdRef.current)
+        .gte('last_update', new Date(Date.now() - ONLINE_WINDOW_MS).toISOString());
 
       if (error) {
         console.error('Error loading existing players:', error);
@@ -143,7 +240,12 @@ export const useSupabaseMultiplayer = ({
           lastUpdate: row.last_update
         }));
 
-        setMultiplayerState(prev => ({ ...prev, otherPlayers: players }));
+        const recentPlayers = players.filter(p => {
+          const t = new Date(p.lastUpdate).getTime();
+          return Date.now() - t <= ONLINE_WINDOW_MS;
+        });
+
+        setMultiplayerState(prev => ({ ...prev, otherPlayers: recentPlayers }));
       }
     } catch (error) {
       console.error('Error loading existing players:', error);
@@ -179,11 +281,17 @@ export const useSupabaseMultiplayer = ({
               lastUpdate: newRecord.last_update
             };
 
-            const existingIndex = updatedPlayers.findIndex(p => p.playerId === player.playerId);
-            if (existingIndex >= 0) {
-              updatedPlayers[existingIndex] = player;
+            // Only keep recent players
+            const isRecent = Date.now() - new Date(player.lastUpdate).getTime() <= ONLINE_WINDOW_MS;
+            if (isRecent) {
+              const existingIndex = updatedPlayers.findIndex(p => p.playerId === player.playerId);
+              if (existingIndex >= 0) {
+                updatedPlayers[existingIndex] = player;
+              } else {
+                updatedPlayers.push(player);
+              }
             } else {
-              updatedPlayers.push(player);
+              updatedPlayers = updatedPlayers.filter(p => p.playerId !== player.playerId);
             }
           } else {
             // Player moved to different location, remove them
@@ -198,49 +306,14 @@ export const useSupabaseMultiplayer = ({
           break;
       }
 
-      return { ...prev, otherPlayers: updatedPlayers };
+      // Prune stale players
+      const pruned = updatedPlayers.filter(p => {
+        const t = new Date(p.lastUpdate).getTime();
+        return Date.now() - t <= ONLINE_WINDOW_MS;
+      });
+      return { ...prev, otherPlayers: pruned };
     });
   };
-
-  // Update player position in database (throttled)
-  const updatePlayerPosition = useCallback(async (force = false) => {
-    if (!currentPlayerIdRef.current || !multiplayerState.isConnected) return;
-
-    const now = Date.now();
-    if (!force && now - lastUpdateRef.current < updateThrottleMs) return;
-
-    lastUpdateRef.current = now;
-
-    try {
-      const { error } = await supabase
-        .from('player_positions')
-        .upsert({
-          player_id: currentPlayerIdRef.current,
-          player_name: playerName,
-          x: playerPosition.x,
-          y: playerPosition.y,
-          current_frame: currentFrame,
-          current_location: currentLocation,
-          is_moving: isMoving,
-          sprite_variant: 0, // Default variant for now
-          last_update: new Date().toISOString()
-        });
-
-      if (error) {
-        console.error('Error updating player position:', error);
-      }
-    } catch (error) {
-      console.error('Error updating player position:', error);
-    }
-  }, [
-    currentLocation,
-    playerPosition.x,
-    playerPosition.y,
-    currentFrame,
-    isMoving,
-    playerName,
-    multiplayerState.isConnected
-  ]);
 
   // Update position when player moves
   useEffect(() => {

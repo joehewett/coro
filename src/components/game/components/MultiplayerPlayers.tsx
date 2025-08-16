@@ -14,7 +14,7 @@ export const MultiplayerPlayers: React.FC<MultiplayerPlayersProps> = ({
   return (
     <>
       {players.map((player) => (
-        <div key={player.playerId} className="relative">
+        <React.Fragment key={player.playerId}>
           <Character
             position={player.position}
             currentFrame={player.currentFrame}
@@ -22,13 +22,13 @@ export const MultiplayerPlayers: React.FC<MultiplayerPlayersProps> = ({
             isNPC={false}
             spriteVariant={player.spriteVariant}
           />
-          
+
           {showPlayerNames && player.playerName && (
             <div
               className="absolute text-xs text-white bg-black bg-opacity-70 px-2 py-1 rounded pointer-events-none whitespace-nowrap"
               style={{
-                left: `${player.position.x + 32}px`, // Center above sprite (sprite is 64px wide)
-                top: `${player.position.y - 25}px`, // Above the sprite
+                left: `${player.position.x + 32}px`,
+                top: `${player.position.y - 25}px`,
                 transform: 'translateX(-50%)',
                 zIndex: 10,
                 fontSize: '10px',
@@ -38,7 +38,7 @@ export const MultiplayerPlayers: React.FC<MultiplayerPlayersProps> = ({
               {player.playerName}
             </div>
           )}
-        </div>
+        </React.Fragment>
       ))}
     </>
   );

@@ -20,7 +20,7 @@ Run this SQL in your Supabase SQL editor:
 -- Create player_positions table
 CREATE TABLE player_positions (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  player_id TEXT NOT NULL,
+  player_id TEXT NOT NULL UNIQUE, -- Make player_id unique to prevent duplicates
   player_name TEXT,
   x FLOAT NOT NULL,
   y FLOAT NOT NULL,
@@ -46,5 +46,29 @@ CREATE POLICY "Allow all operations on player_positions" ON player_positions
 FOR ALL USING (true);
 ```
 
-## 4. Test Connection
+## 4. Clean Up Existing Duplicates (if needed)
+If you already have duplicate records, run this to clean them up:
+
+```sql
+-- Delete all existing player records (clean slate)
+DELETE FROM player_positions;
+
+-- Or if you want to keep the most recent record for each player_id:
+DELETE FROM player_positions 
+WHERE id NOT IN (
+  SELECT DISTINCT ON (player_id) id 
+  FROM player_positions 
+  ORDER BY player_id, last_update DESC
+);
+```
+
+## 5. Add Unique Constraint (if table already exists)
+If you already created the table without the unique constraint:
+
+```sql
+-- Add unique constraint to existing table
+ALTER TABLE player_positions ADD CONSTRAINT unique_player_id UNIQUE (player_id);
+```
+
+## 6. Test Connection
 The game will automatically connect when you start it with proper environment variables.
