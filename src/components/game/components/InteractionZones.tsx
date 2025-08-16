@@ -14,7 +14,7 @@ export const InteractionZones: React.FC<InteractionZonesProps> = ({ zones, showD
       {zones.map((zone) => (
         <div
           key={zone.id}
-          className="absolute border-2 border-yellow-400 bg-yellow-200 bg-opacity-30 pointer-events-none"
+          className="absolute border border-yellow-400 bg-transparent pointer-events-none"
           style={{
             left: `${zone.x}px`,
             top: `${zone.y}px`,

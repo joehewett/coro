@@ -96,6 +96,38 @@ export const isPositionInZone = (position: Position, zone: InteractionZone): boo
   );
 };
 
+export const isPositionNearZone = (
+  position: Position,
+  zone: InteractionZone,
+  margin: number = 20,
+  charSize: number = 0
+): boolean => {
+  const x = zone.x ?? 0;
+  const y = zone.y ?? 0;
+  const width = zone.width ?? 0;
+  const height = zone.height ?? 0;
+
+  // Treat character as a point or small square
+  const px = position.x + charSize / 2;
+  const py = position.y + charSize / 2;
+
+  return (
+    px >= x - margin &&
+    px <= x + width + margin &&
+    py >= y - margin &&
+    py <= y + height + margin
+  );
+};
+
+export const findNearbyInteractionZone = (
+  position: Position,
+  zones: InteractionZone[],
+  margin: number = 20,
+  charSize: number = 0
+): InteractionZone | null => {
+  return zones.find(z => isPositionNearZone(position, z, margin, charSize)) || null;
+};
+
 export const findInteractionZone = (position: Position, zones: InteractionZone[]): InteractionZone | null => {
   return zones.find(zone => isPositionInZone(position, zone)) || null;
 };
