@@ -11,50 +11,50 @@ export const buildings: Building[] = [
       {
         id: 'library-entrance',
         name: 'Library',
-        relativeX: 0.35, // Top-left house with book symbol
-        relativeY: 0.25,
-        relativeWidth: 0.12,
-        relativeHeight: 0.15,
+        relativeX: 0.10, // refined: better fit of entrance
+        relativeY: 0.20,
+        relativeWidth: 0.20,
+        relativeHeight: 0.20,
         targetLocation: GameLocation.LIBRARY,
         description: 'Enter the Library'
       },
       {
         id: 'house1-entrance',
         name: 'House 1',
-        relativeX: 0.65, // Top-right house
-        relativeY: 0.25,
-        relativeWidth: 0.12,
-        relativeHeight: 0.15,
+        relativeX: 0.60, // refined for doorway alignment
+        relativeY: 0.10,
+        relativeWidth: 0.20,
+        relativeHeight: 0.20,
         targetLocation: GameLocation.HOUSE_1,
         description: 'Enter House 1'
       },
       {
         id: 'house2-entrance',
         name: 'House 2',
-        relativeX: 0.75, // Bottom-right house with blue roof
-        relativeY: 0.65,
-        relativeWidth: 0.12,
-        relativeHeight: 0.15,
+        relativeX: 0.75, // refined
+        relativeY: 0.45,
+        relativeWidth: 0.15,
+        relativeHeight: 0.30,
         targetLocation: GameLocation.HOUSE_2,
         description: 'Enter House 2'
       },
       {
         id: 'shop-entrance',
         name: 'Shop',
-        relativeX: 0.45, // Middle building with striped awning
-        relativeY: 0.55,
-        relativeWidth: 0.15,
-        relativeHeight: 0.12,
+        relativeX: 0.55, // refined alignment
+        relativeY: 0.53,
+        relativeWidth: 0.17,
+        relativeHeight: 0.18,
         targetLocation: GameLocation.SHOP,
         description: 'Enter the Shop'
       },
       {
         id: 'blacksmith-entrance',
         name: 'Blacksmith',
-        relativeX: 0.05, // Bottom-left building with forge
-        relativeY: 0.65,
-        relativeWidth: 0.12,
-        relativeHeight: 0.15,
+        relativeX: 0.05, // refined alignment
+        relativeY: 0.60,
+        relativeWidth: 0.20,
+        relativeHeight: 0.20,
         targetLocation: GameLocation.LIBRARY, // Temporary - goes to library
         description: 'Enter the Blacksmith'
       }

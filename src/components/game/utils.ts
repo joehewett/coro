@@ -129,3 +129,64 @@ export const getInteractionZonesForLocation = (location: GameLocation): Interact
   const building = getBuildingByLocation(location);
   return building?.interactionZones || [];
 };
+
+export const checkCollisionWithZones = (
+  newPosition: Position, 
+  characterSize: number, 
+  zones: InteractionZone[]
+): boolean => {
+  const characterBounds = {
+    x: newPosition.x,
+    y: newPosition.y,
+    width: characterSize,
+    height: characterSize
+  };
+
+  return zones.some(zone => {
+    const zoneX = zone.x ?? 0;
+    const zoneY = zone.y ?? 0;
+    const zoneWidth = zone.width ?? 0;
+    const zoneHeight = zone.height ?? 0;
+
+    // Check if character rectangle overlaps with zone rectangle
+    return !(
+      characterBounds.x + characterBounds.width <= zoneX ||
+      characterBounds.x >= zoneX + zoneWidth ||
+      characterBounds.y + characterBounds.height <= zoneY ||
+      characterBounds.y >= zoneY + zoneHeight
+    );
+  });
+};
+
+export const getValidPosition = (
+  newPosition: Position,
+  currentPosition: Position,
+  characterSize: number,
+  mapRect: MapRect,
+  collisionZones: InteractionZone[]
+): Position => {
+  // First constrain to map boundaries
+  const mapConstrainedPosition = constrainPosition(newPosition, mapRect, characterSize);
+  
+  // Check for collisions with building zones
+  if (checkCollisionWithZones(mapConstrainedPosition, characterSize, collisionZones)) {
+    // If there's a collision, try moving only horizontally or vertically
+    const horizontalOnly = { x: mapConstrainedPosition.x, y: currentPosition.y };
+    const verticalOnly = { x: currentPosition.x, y: mapConstrainedPosition.y };
+    
+    // Try horizontal movement first
+    if (!checkCollisionWithZones(horizontalOnly, characterSize, collisionZones)) {
+      return horizontalOnly;
+    }
+    
+    // Try vertical movement
+    if (!checkCollisionWithZones(verticalOnly, characterSize, collisionZones)) {
+      return verticalOnly;
+    }
+    
+    // If both fail, stay in current position
+    return currentPosition;
+  }
+  
+  return mapConstrainedPosition;
+};

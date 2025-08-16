@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Position, MapRect } from '../types';
-import { gameConfig, getDefaultNPCPosition, constrainPosition, getRandomDirection, shouldNPCStop, isWithinProximity } from '../utils';
+import { Position, MapRect, InteractionZone } from '../types';
+import { gameConfig, getDefaultNPCPosition, getValidPosition, getRandomDirection, shouldNPCStop, isWithinProximity } from '../utils';
 
-export const useNPCBehavior = (mapRect: MapRect, playerPosition: Position) => {
+export const useNPCBehavior = (mapRect: MapRect, playerPosition: Position, collisionZones: InteractionZone[] = []) => {
   const [npcPosition, setNpcPosition] = useState<Position>({ x: 0, y: 0 });
   const [npcFrame, setNpcFrame] = useState(0);
   const [npcIsMoving, setNpcIsMoving] = useState(false);
@@ -52,8 +52,14 @@ export const useNPCBehavior = (mapRect: MapRect, playerPosition: Position) => {
         hasNpcMovement = true;
       }
 
-      // Constrain to map boundaries
-      const constrainedPosition = constrainPosition({ x: newX, y: newY }, mapRect, gameConfig.hedgehogSize);
+      // Get valid position (constrained to map and avoiding collisions)
+      const validPosition = getValidPosition(
+        { x: newX, y: newY }, 
+        prev, 
+        gameConfig.hedgehogSize, 
+        mapRect, 
+        collisionZones
+      );
 
       // Update NPC animation
       setNpcIsMoving(hasNpcMovement);
@@ -66,8 +72,8 @@ export const useNPCBehavior = (mapRect: MapRect, playerPosition: Position) => {
       }
 
       // Update NPC position ref
-      currentNpcPositionRef.current = constrainedPosition;
-      return constrainedPosition;
+      currentNpcPositionRef.current = validPosition;
+      return validPosition;
     });
   };
 
