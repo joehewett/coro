@@ -18,14 +18,24 @@ const PixelAdventure: React.FC = () => {
   // Custom hooks
   const mapRect = useMapLayout(currentLocation);
   const imageBounds = useImageBounds(currentLocation);
-  const playerMovement = usePlayerMovement(mapRect);
-  const npcBehavior = useNPCBehavior(mapRect, playerMovement.currentPositionRef.current);
+  const buildingInteractions = useBuildingInteractions({
+    playerPosition: { x: 0, y: 0 }, // Will be updated by the movement hooks
+    currentLocation,
+    imageBounds: imageBounds.imageBounds
+  });
+  
+  // Pass collision zones to movement hooks
+  const playerMovement = usePlayerMovement(mapRect, buildingInteractions.interactionZones);
+  const npcBehavior = useNPCBehavior(mapRect, playerMovement.currentPositionRef.current, buildingInteractions.interactionZones);
+  
   const gameState = useGameState({
     playerPosition: playerMovement.currentPositionRef.current,
     npcPosition: npcBehavior.currentNpcPositionRef.current,
     currentLocation
   });
-  const buildingInteractions = useBuildingInteractions({
+
+  // Update building interactions with actual player position
+  const updatedBuildingInteractions = useBuildingInteractions({
     playerPosition: playerMovement.currentPositionRef.current,
     currentLocation,
     imageBounds: imageBounds.imageBounds
@@ -46,8 +56,8 @@ const PixelAdventure: React.FC = () => {
     handlePlayerKeyUp: playerMovement.handleKeyUp,
     handleInteraction: (onLocationChange) => {
       // Try building interaction first, then NPC interaction
-      if (buildingInteractions.currentInteractionZone) {
-        buildingInteractions.handleBuildingInteraction(onLocationChange);
+      if (updatedBuildingInteractions.currentInteractionZone) {
+        updatedBuildingInteractions.handleBuildingInteraction(onLocationChange);
       } else {
         gameState.handleInteraction(onLocationChange);
       }
@@ -66,7 +76,7 @@ const PixelAdventure: React.FC = () => {
       <GameMap ref={imageBounds.imageRef} currentLocation={currentLocation} />
       
       {/* Debug: Show interaction zones (remove in production) */}
-      <InteractionZones zones={buildingInteractions.interactionZones} showDebug={true} />
+      <InteractionZones zones={updatedBuildingInteractions.interactionZones} showDebug={true} />
       
       <Character 
         position={playerMovement.position}
@@ -92,11 +102,11 @@ const PixelAdventure: React.FC = () => {
 
       {/* Building interaction prompt */}
       <BuildingInteractionPrompt 
-        zone={buildingInteractions.currentInteractionZone}
-        show={buildingInteractions.showInteractionPrompt}
+        zone={updatedBuildingInteractions.currentInteractionZone}
+        show={updatedBuildingInteractions.showInteractionPrompt}
       />
 
-      <LoadingScreen isLoading={gameState.isLoading || buildingInteractions.isLoading} />
+      <LoadingScreen isLoading={gameState.isLoading || updatedBuildingInteractions.isLoading} />
     </div>
   );
 };

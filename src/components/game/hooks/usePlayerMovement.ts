@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Position, MapRect } from '../types';
-import { gameConfig, getCenteredPosition, constrainPosition } from '../utils';
+import { Position, MapRect, InteractionZone } from '../types';
+import { gameConfig, getCenteredPosition, getValidPosition } from '../utils';
 
-export const usePlayerMovement = (mapRect: MapRect) => {
+export const usePlayerMovement = (mapRect: MapRect, collisionZones: InteractionZone[] = []) => {
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
   const [currentFrame, setCurrentFrame] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
@@ -47,8 +47,14 @@ export const usePlayerMovement = (mapRect: MapRect) => {
         hasMovement = true;
       }
 
-      // Constrain to map boundaries
-      const constrainedPosition = constrainPosition({ x: newX, y: newY }, mapRect, gameConfig.hedgehogSize);
+      // Get valid position (constrained to map and avoiding collisions)
+      const validPosition = getValidPosition(
+        { x: newX, y: newY }, 
+        prev, 
+        gameConfig.hedgehogSize, 
+        mapRect, 
+        collisionZones
+      );
 
       // Update movement state and animation frame
       setIsMoving(hasMovement);
@@ -61,8 +67,8 @@ export const usePlayerMovement = (mapRect: MapRect) => {
       }
 
       // Update position ref
-      currentPositionRef.current = constrainedPosition;
-      return constrainedPosition;
+      currentPositionRef.current = validPosition;
+      return validPosition;
     });
   };
 
