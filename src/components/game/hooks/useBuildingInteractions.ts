@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { GameLocation, InteractionZone } from '../types';
-import { getInteractionZonesForLocation, findInteractionZone, getLocationImageSrc, convertRelativeZonesToAbsolute } from '../utils';
+import { getInteractionZonesForLocation, findNearbyInteractionZone, getLocationImageSrc, convertRelativeZonesToAbsolute } from '../utils';
 import { gameConfig } from '../utils';
 
 interface UseBuildingInteractionsProps {
@@ -21,7 +21,7 @@ export const useBuildingInteractions = ({ playerPosition, currentLocation, image
   // Check if player is in any interaction zone
   useEffect(() => {
     if (imageBounds.width > 0 && imageBounds.height > 0) {
-      const zone = findInteractionZone(playerPosition, interactionZones);
+      const zone = findNearbyInteractionZone(playerPosition, interactionZones, 32, gameConfig.hedgehogSize);
       setCurrentInteractionZone(zone);
       setShowInteractionPrompt(!!zone);
     }

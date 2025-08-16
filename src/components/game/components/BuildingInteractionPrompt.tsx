@@ -18,8 +18,11 @@ export const BuildingInteractionPrompt: React.FC<BuildingInteractionPromptProps>
       style={{
         left: `${center.x - 40}px`,
         top: `${center.y - 60}px`,
-        width: '80px',
+        width: 'fit-content',
         height: '40px',
+        transform: 'translateX(-50%)',
+        padding: '4px 12px',
+        whiteSpace: 'nowrap',
         backgroundColor: '#000',
         fontSize: '12px',
         zIndex: 15,
