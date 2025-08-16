@@ -79,3 +79,32 @@ export interface GameWorld {
   currentLocation: GameLocation;
   previousLocation?: GameLocation;
 }
+
+// Multiplayer types
+export interface MultiplayerPlayer {
+  id: string;
+  playerId: string;
+  playerName: string | null;
+  position: Position;
+  currentFrame: number;
+  currentLocation: GameLocation;
+  isMoving: boolean;
+  spriteVariant: number;
+  lastUpdate: string;
+}
+
+export interface MultiplayerState {
+  isConnected: boolean;
+  isConnecting: boolean;
+  otherPlayers: MultiplayerPlayer[];
+  currentPlayerId: string | null;
+  error: string | null;
+}
+
+export interface PlayerUpdate {
+  playerId: string;
+  position: Position;
+  currentFrame: number;
+  currentLocation: GameLocation;
+  isMoving: boolean;
+}

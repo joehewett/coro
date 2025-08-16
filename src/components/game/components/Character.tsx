@@ -7,13 +7,15 @@ interface CharacterProps {
   currentFrame: number;
   alt: string;
   isNPC?: boolean;
+  spriteVariant?: number;
 }
 
 export const Character: React.FC<CharacterProps> = ({ 
   position, 
   currentFrame, 
   alt, 
-  isNPC = false 
+  isNPC = false,
+  spriteVariant = 0
 }) => {
   return (
     <img
@@ -28,7 +30,7 @@ export const Character: React.FC<CharacterProps> = ({
         imageRendering: 'pixelated',
         transition: 'none',
         zIndex: 2,
-        filter: isNPC ? 'hue-rotate(120deg)' : 'none'
+        filter: isNPC ? 'hue-rotate(120deg)' : spriteVariant > 0 ? `hue-rotate(${spriteVariant * 60}deg)` : 'none'
       }}
     />
   );

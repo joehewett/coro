@@ -4,3 +4,5 @@ export { InteractionPrompt } from './InteractionPrompt';
 export { LoadingScreen } from './LoadingScreen';
 export { InteractionZones } from './InteractionZones';
 export { BuildingInteractionPrompt } from './BuildingInteractionPrompt';
+export { MultiplayerPlayers } from './MultiplayerPlayers';
+export { ConnectionStatus } from './ConnectionStatus';
