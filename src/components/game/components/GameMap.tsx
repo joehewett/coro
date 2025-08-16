@@ -1,26 +1,26 @@
-import React from 'react';
-import { MapRect, GameLocation } from '../types';
+import React, { forwardRef } from 'react';
+import { GameLocation } from '../types';
 import { getLocationImageSrc, getLocationAltText } from '../utils';
 
 interface GameMapProps {
   currentLocation: GameLocation;
-  mapRect: MapRect;
 }
 
-export const GameMap: React.FC<GameMapProps> = ({ currentLocation, mapRect }) => {
-  return (
-    <img
-      src={getLocationImageSrc(currentLocation)}
-      alt={getLocationAltText(currentLocation)}
-      className="absolute"
-      style={{
-        left: `${mapRect.x}px`,
-        top: `${mapRect.y}px`,
-        width: `${mapRect.width}px`,
-        height: `${mapRect.height}px`,
-        imageRendering: 'pixelated',
-        zIndex: 1
-      }}
-    />
-  );
-};
+export const GameMap = forwardRef<HTMLImageElement, GameMapProps>(
+  ({ currentLocation }, ref) => {
+    return (
+      <img
+        ref={ref}
+        src={getLocationImageSrc(currentLocation)}
+        alt={getLocationAltText(currentLocation)}
+        className="transition-opacity duration-300"
+        style={{
+          imageRendering: 'pixelated',
+          zIndex: 1
+        }}
+      />
+    );
+  }
+);
+
+GameMap.displayName = 'GameMap';

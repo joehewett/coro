@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { GameLocation } from '../types';
-import { gameConfig, isWithinProximity } from '../utils';
+import { gameConfig, isWithinProximity, getLocationImageSrc } from '../utils';
 
 interface UseGameStateProps {
   playerPosition: { x: number; y: number };
@@ -29,11 +29,29 @@ export const useGameState = ({ playerPosition, npcPosition, currentLocation }: U
       if (isCloseEnough) {
         setIsLoading(true);
         
-        // Show loading screen for duration, then transition to library
-        setTimeout(() => {
-          onLocationChange(GameLocation.LIBRARY);
+        // Preload the library image
+        const newLocation = GameLocation.LIBRARY;
+        const img = new Image();
+        img.src = getLocationImageSrc(newLocation);
+        
+        // Wait for both the loading duration and image to load
+        const loadingTimer = new Promise(resolve => 
+          setTimeout(resolve, gameConfig.loadingDuration)
+        );
+        
+        const imageLoader = new Promise(resolve => {
+          if (img.complete) {
+            resolve(true);
+          } else {
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(true); // Continue even if image fails to load
+          }
+        });
+        
+        Promise.all([loadingTimer, imageLoader]).then(() => {
+          onLocationChange(newLocation);
           setIsLoading(false);
-        }, gameConfig.loadingDuration);
+        });
       }
     }
   };

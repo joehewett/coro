@@ -1,4 +1,5 @@
-import { Position, MapRect, GameLocation } from './types';
+import { Position, MapRect, GameLocation, InteractionZone } from './types';
+import { getBuildingByLocation } from './data/buildings';
 
 export const gameConfig = {
   hedgehogSize: 48,
@@ -68,13 +69,63 @@ export const shouldNPCStop = (): boolean => {
 };
 
 export const getLocationImageSrc = (location: GameLocation): string => {
-  return location === GameLocation.VILLAGE ? "/game/village.webp" : "/game/library.webp";
+  const building = getBuildingByLocation(location);
+  return building?.imageSrc || "/game/village.webp";
 };
 
 export const getLocationAltText = (location: GameLocation): string => {
-  return location === GameLocation.VILLAGE ? "Village Map" : "Library Map";
+  const building = getBuildingByLocation(location);
+  return building?.altText || "Game Map";
 };
 
 export const getCharacterImageSrc = (frame: number): string => {
   return `/game/hedgehog${frame === 0 ? '' : '2'}.png`;
+};
+
+export const isPositionInZone = (position: Position, zone: InteractionZone): boolean => {
+  const x = zone.x ?? 0;
+  const y = zone.y ?? 0;
+  const width = zone.width ?? 0;
+  const height = zone.height ?? 0;
+  
+  return (
+    position.x >= x &&
+    position.x <= x + width &&
+    position.y >= y &&
+    position.y <= y + height
+  );
+};
+
+export const findInteractionZone = (position: Position, zones: InteractionZone[]): InteractionZone | null => {
+  return zones.find(zone => isPositionInZone(position, zone)) || null;
+};
+
+export const getInteractionZoneCenter = (zone: InteractionZone): Position => {
+  const x = zone.x ?? 0;
+  const y = zone.y ?? 0;
+  const width = zone.width ?? 0;
+  const height = zone.height ?? 0;
+  
+  return {
+    x: x + width / 2,
+    y: y + height / 2
+  };
+};
+
+export const convertRelativeZonesToAbsolute = (
+  zones: InteractionZone[], 
+  imageBounds: { x: number; y: number; width: number; height: number }
+): InteractionZone[] => {
+  return zones.map(zone => ({
+    ...zone,
+    x: imageBounds.x + (zone.relativeX * imageBounds.width),
+    y: imageBounds.y + (zone.relativeY * imageBounds.height),
+    width: zone.relativeWidth * imageBounds.width,
+    height: zone.relativeHeight * imageBounds.height
+  }));
+};
+
+export const getInteractionZonesForLocation = (location: GameLocation): InteractionZone[] => {
+  const building = getBuildingByLocation(location);
+  return building?.interactionZones || [];
 };

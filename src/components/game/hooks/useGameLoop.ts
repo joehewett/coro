@@ -29,6 +29,7 @@ export const useGameLoop = ({
       // Handle interaction with NPC
       if (event.key.toLowerCase() === 'x') {
         event.preventDefault();
+        event.stopPropagation();
         handleInteraction(onLocationChange);
       }
     };

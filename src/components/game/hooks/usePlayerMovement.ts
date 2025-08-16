@@ -69,6 +69,7 @@ export const usePlayerMovement = (mapRect: MapRect) => {
   const handleKeyDown = (event: KeyboardEvent) => {
     if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
       event.preventDefault();
+      event.stopPropagation();
       keysPressed.current.add(event.key);
     }
   };
