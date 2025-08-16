@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GameLocation } from './types';
-import { GameMap, Character, InteractionPrompt, LoadingScreen, InteractionZones, BuildingInteractionPrompt } from './components';
+import { GameMap, Character, InteractionPrompt, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus } from './components';
 import { 
   useMapLayout, 
   usePlayerMovement, 
@@ -8,7 +8,8 @@ import {
   useGameState, 
   useGameLoop,
   useBuildingInteractions,
-  useImageBounds
+  useImageBounds,
+  useSupabaseMultiplayer
 } from './hooks';
 
 const PixelAdventure: React.FC = () => {
@@ -39,6 +40,15 @@ const PixelAdventure: React.FC = () => {
     playerPosition: playerMovement.currentPositionRef.current,
     currentLocation,
     imageBounds: imageBounds.imageBounds
+  });
+
+  // Multiplayer functionality
+  const multiplayer = useSupabaseMultiplayer({
+    currentLocation,
+    playerPosition: playerMovement.currentPositionRef.current,
+    currentFrame: playerMovement.currentFrame,
+    isMoving: playerMovement.isMoving,
+    playerName: 'Player' // You can make this customizable later
   });
 
   // Auto-focus the game container to ensure keyboard events are captured
@@ -78,10 +88,17 @@ const PixelAdventure: React.FC = () => {
       {/* Debug: Show interaction zones (remove in production) */}
       <InteractionZones zones={updatedBuildingInteractions.interactionZones} showDebug={true} />
       
+      {/* Current player */}
       <Character 
         position={playerMovement.position}
         currentFrame={playerMovement.currentFrame}
         alt="Player Hedgehog"
+      />
+
+      {/* Other multiplayer players */}
+      <MultiplayerPlayers 
+        players={multiplayer.otherPlayers}
+        showPlayerNames={true}
       />
 
       {currentLocation === GameLocation.VILLAGE && (
@@ -107,6 +124,14 @@ const PixelAdventure: React.FC = () => {
       />
 
       <LoadingScreen isLoading={gameState.isLoading || updatedBuildingInteractions.isLoading} />
+      
+      {/* Connection status indicator */}
+      <ConnectionStatus 
+        isConnected={multiplayer.isConnected}
+        isConnecting={multiplayer.isConnecting}
+        error={multiplayer.error}
+        playerCount={multiplayer.otherPlayers.length + 1} // +1 for current player
+      />
     </div>
   );
 };
