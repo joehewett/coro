@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GameLocation } from './types';
-import { GameMap, Character, InteractionPrompt, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus } from './components';
+import { GameMap, Character, InteractionPrompt, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect } from './components';
 import { 
   useMapLayout, 
   usePlayerMovement, 
@@ -14,6 +14,7 @@ import {
 
 const PixelAdventure: React.FC = () => {
   const [currentLocation, setCurrentLocation] = useState<GameLocation>(GameLocation.VILLAGE);
+  const [selectedCharacter, setSelectedCharacter] = useState<'coro' | 'joe' | null>(null);
   const gameContainerRef = useRef<HTMLDivElement>(null);
   
   // Custom hooks
@@ -48,7 +49,9 @@ const PixelAdventure: React.FC = () => {
     playerPosition: playerMovement.currentPositionRef.current,
     currentFrame: playerMovement.currentFrame,
     isMoving: playerMovement.isMoving,
-    playerName: 'Player' // You can make this customizable later
+    playerName: selectedCharacter ?? 'Player',
+    fixedPlayerId: selectedCharacter ?? undefined,
+    spriteVariant: selectedCharacter === 'joe' ? 1 : 0
   });
 
   // Auto-focus the game container to ensure keyboard events are captured
@@ -83,6 +86,9 @@ const PixelAdventure: React.FC = () => {
       style={{ backgroundColor: '#041704' }}
       tabIndex={0}
     >
+      {!selectedCharacter && (
+        <CharacterSelect onSelect={(c) => setSelectedCharacter(c)} />
+      )}
       <GameMap ref={imageBounds.imageRef} currentLocation={currentLocation} />
       
       {/* Debug: Show interaction zones (remove in production) */}
@@ -101,7 +107,7 @@ const PixelAdventure: React.FC = () => {
         showPlayerNames={true}
       />
 
-      {currentLocation === GameLocation.VILLAGE && (
+      {/* {currentLocation === GameLocation.VILLAGE && (
         <>
           <Character 
             position={npcBehavior.npcPosition}
@@ -115,7 +121,7 @@ const PixelAdventure: React.FC = () => {
             show={gameState.showGreeting}
           />
         </>
-      )}
+      )} */}
 
       {/* Building interaction prompt */}
       <BuildingInteractionPrompt 

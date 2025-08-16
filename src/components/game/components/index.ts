@@ -6,3 +6,4 @@ export { InteractionZones } from './InteractionZones';
 export { BuildingInteractionPrompt } from './BuildingInteractionPrompt';
 export { MultiplayerPlayers } from './MultiplayerPlayers';
 export { ConnectionStatus } from './ConnectionStatus';
+export { CharacterSelect } from './CharacterSelect';
