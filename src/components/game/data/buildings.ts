@@ -14,7 +14,7 @@ export const buildings: Building[] = [
         relativeX: 0.10, // refined: better fit of entrance
         relativeY: 0.20,
         relativeWidth: 0.20,
-        relativeHeight: 0.20,
+        relativeHeight: 0.15,
         targetLocation: GameLocation.LIBRARY,
         description: 'Enter the Library'
       },
@@ -41,10 +41,10 @@ export const buildings: Building[] = [
       {
         id: 'shop-entrance',
         name: 'Shop',
-        relativeX: 0.55, // refined alignment
+        relativeX: 0.58, // refined alignment
         relativeY: 0.53,
-        relativeWidth: 0.17,
-        relativeHeight: 0.18,
+        relativeWidth: 0.12,
+        relativeHeight: 0.15,
         targetLocation: GameLocation.SHOP,
         description: 'Enter the Shop'
       },
@@ -53,10 +53,29 @@ export const buildings: Building[] = [
         name: 'Blacksmith',
         relativeX: 0.05, // refined alignment
         relativeY: 0.60,
-        relativeWidth: 0.20,
-        relativeHeight: 0.20,
-        targetLocation: GameLocation.LIBRARY, // Temporary - goes to library
+        relativeWidth: 0.17,
+        relativeHeight: 0.15,
+        targetLocation: GameLocation.BLACKSMITH, // Temporary - goes to library
         description: 'Enter the Blacksmith'
+      }
+    ]
+  },
+  {
+    id: 'blacksmith',
+    name: 'Blacksmith',
+    location: GameLocation.BLACKSMITH,
+    imageSrc: '/game/blacksmith.webp',
+    altText: 'Blacksmith Interior',
+    interactionZones: [
+      {
+        id: 'library-exit',
+        name: 'Exit',
+        relativeX: 0.1, // Near the door/entrance
+        relativeY: 0.8,
+        relativeWidth: 0.15,
+        relativeHeight: 0.15,
+        targetLocation: GameLocation.VILLAGE,
+        description: 'Exit to Village'
       }
     ]
   },
@@ -83,7 +102,7 @@ export const buildings: Building[] = [
     id: 'house1',
     name: 'House 1',
     location: GameLocation.HOUSE_1,
-    imageSrc: '/game/house1.webp', // You'll need to add these images
+    imageSrc: '/game/witchhouse.webp', // You'll need to add these images
     altText: 'House 1 Interior',
     interactionZones: [
       {
@@ -116,12 +135,12 @@ export const buildings: Building[] = [
         description: 'Exit to Village'
       }
     ]
-  },
+  }, 
   {
     id: 'shop',
     name: 'Shop',
     location: GameLocation.SHOP,
-    imageSrc: '/game/shop.webp',
+    imageSrc: '/game/greengrocers.webp',
     altText: 'Shop Interior',
     interactionZones: [
       {

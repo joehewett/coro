@@ -35,7 +35,7 @@ export enum GameLocation {
   HOUSE_1 = 3,
   HOUSE_2 = 4,
   SHOP = 5,
-  TAVERN = 6
+  BLACKSMITH = 6,
 }
 
 export interface GameConfig {
