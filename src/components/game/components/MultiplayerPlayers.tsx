@@ -105,6 +105,7 @@ export const MultiplayerPlayers: React.FC<MultiplayerPlayersProps> = ({
               alt={`Player ${player.playerName || player.playerId}`}
               isNPC={false}
               spriteVariant={player.spriteVariant}
+              facingDirection={player.facingDirection}
             />
 
             {showPlayerNames && player.playerName && (

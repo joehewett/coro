@@ -8,6 +8,7 @@ interface CharacterProps {
   alt: string;
   isNPC?: boolean;
   spriteVariant?: number;
+  facingDirection?: 'left' | 'right';
 }
 
 export const Character: React.FC<CharacterProps> = ({ 
@@ -15,13 +16,14 @@ export const Character: React.FC<CharacterProps> = ({
   currentFrame, 
   alt, 
   isNPC = false,
-  spriteVariant = 0
+  spriteVariant = 0,
+  facingDirection = 'right'
 }) => {
   return (
     <img
       src={getCharacterImageSrc(currentFrame)}
       alt={alt}
-      className="absolute"
+      className={`absolute ${facingDirection === 'left' ? 'scale-x-[-1]' : ''}`}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,

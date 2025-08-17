@@ -11,6 +11,7 @@ interface UseSupabaseMultiplayerProps {
   playerName?: string;
   fixedPlayerId?: 'coro' | 'joe';
   spriteVariant?: number;
+  facingDirection?: 'left' | 'right';
 }
 
 export const useSupabaseMultiplayer = ({
@@ -20,7 +21,8 @@ export const useSupabaseMultiplayer = ({
   isMoving,
   playerName = 'Anonymous',
   fixedPlayerId,
-  spriteVariant = 0
+  spriteVariant = 0,
+  facingDirection = 'right'
 }: UseSupabaseMultiplayerProps) => {
   const PLAYER_ID_STORAGE_KEY = 'pixel_player_id';
   const ONLINE_WINDOW_MS = 10000; // Consider players online if updated within last 10s
@@ -59,6 +61,7 @@ export const useSupabaseMultiplayer = ({
             current_location: currentLocation,
             is_moving: isMoving,
             sprite_variant: 0,
+            facing_direction: facingDirection,
             last_update: new Date().toISOString()
           },
           {
@@ -237,6 +240,7 @@ export const useSupabaseMultiplayer = ({
           currentLocation: row.current_location as GameLocation,
           isMoving: row.is_moving,
           spriteVariant: row.sprite_variant,
+          facingDirection: row.facing_direction || 'right',
           lastUpdate: row.last_update
         }));
 
@@ -278,6 +282,7 @@ export const useSupabaseMultiplayer = ({
               currentLocation: newRecord.current_location,
               isMoving: newRecord.is_moving,
               spriteVariant: newRecord.sprite_variant,
+              facingDirection: newRecord.facing_direction || 'right',
               lastUpdate: newRecord.last_update
             };
 
