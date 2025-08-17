@@ -34,3 +34,11 @@ html {
 .font-handwritten {
   font-family: 'Reenie Beanie', cursive !important;
 }
+
+/* Pixel/Arcade font */
+.font-pixel,
+span.font-pixel,
+.font-pixel * {
+  font-family: 'Press Start 2P', monospace !important;
+  font-weight: normal !important;
+}

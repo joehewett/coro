@@ -10,6 +10,7 @@ export default {
     extend: {
       fontFamily: {
         handwritten: ['Caveat', 'cursive', ...fontFamily.serif],
+        pixel: ['Press Start 2P', 'monospace'],
       },
     },
   },

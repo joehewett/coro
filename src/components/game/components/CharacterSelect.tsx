@@ -7,35 +7,35 @@ interface CharacterSelectProps {
 
 export const CharacterSelect: React.FC<CharacterSelectProps> = ({ onSelect }) => {
 	return (
-		<div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70">
-			<div className="bg-white rounded-xl shadow-xl p-6 w-[320px]">
-				<h2 className="text-xl font-semibold text-center mb-4">Choose your character</h2>
-				<div className="grid grid-cols-2 gap-4">
-					<button
-						onClick={() => onSelect('coro')}
-						className="group flex flex-col items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition"
-					>
-						<img
-							src={getCharacterImageSrc(0)}
-							alt="Coro"
-							className="w-16 h-16 image-render-pixelated"
-						/>
-						<span className="text-sm font-medium">coro</span>
-					</button>
+		<div className="absolute inset-0 z-50 flex items-center justify-center bg-[#f7ecd1]">
+			<div className="flex gap-12 md:gap-24">
+				<button
+					onClick={() => onSelect('coro')}
+					className="group flex flex-col items-center cursor-pointer focus:outline-none"
+				>
+					<img
+						src={getCharacterImageSrc(0)}
+						alt="Coro"
+						className="w-16 h-16 md:w-24 md:h-24 image-render-pixelated transition-transform group-hover:scale-105 drop-shadow-[0_0_4px_rgba(0,0,0,0.4)]"
+					/>
+					<span className="mt-2 text-base md:text-xl font-pixel tracking-widest text-[#5b3a29] drop-shadow-[0_2px_2px_rgba(0,0,0,0.25)] group-hover:text-[#7c4a33]">
+						Coro
+					</span>
+				</button>
 
-					<button
-						onClick={() => onSelect('joe')}
-						className="group flex flex-col items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition"
-					>
-						<img
-							src={getCharacterImageSrc(0)}
-							alt="Joe"
-							className="w-16 h-16 image-render-pixelated filter hue-rotate-[60deg]"
-						/>
-						<span className="text-sm font-medium">joe</span>
-					</button>
-				</div>
-				<p className="text-[11px] text-gray-500 text-center mt-4">Tip: open two tabs and pick different characters</p>
+				<button
+					onClick={() => onSelect('joe')}
+					className="group flex flex-col items-center cursor-pointer focus:outline-none"
+				>
+					<img
+						src={getCharacterImageSrc(0)}
+						alt="Joe"
+						className="w-16 h-16 md:w-24 md:h-24 image-render-pixelated filter hue-rotate-[60deg] transition-transform group-hover:scale-105 drop-shadow-[0_0_4px_rgba(0,0,0,0.4)]"
+					/>
+					<span className="mt-2 text-base md:text-xl font-pixel tracking-widest text-[#5b3a29] drop-shadow-[0_2px_2px_rgba(0,0,0,0.25)] group-hover:text-[#7c4a33]">
+						Joe
+					</span>
+				</button>
 			</div>
 		</div>
 	);
