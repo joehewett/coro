@@ -54,13 +54,23 @@ export const MultiplayerPlayers: React.FC<MultiplayerPlayersProps> = ({
 
   // Animation / interpolation loop
   useEffect(() => {
+    let isActive = true;
+    
     const animate = () => {
+      if (!isActive) return;
+      
       setRenderMap(prev => {
-        const updated: Record<string, RenderState> = { ...prev };
-        Object.keys(updated).forEach(id => {
+        const updated: Record<string, RenderState> = {};
+        let hasChanges = false;
+        
+        Object.keys(prev).forEach(id => {
           const target = targetsRef.current[id];
           if (!target) return;
-          const state = updated[id];
+          
+          const state = { ...prev[id] };
+          const oldX = state.x;
+          const oldY = state.y;
+          const oldFrame = state.frame;
 
           // Position smoothing (lerp)
           const alpha = 0.2; // smoothing factor
@@ -78,15 +88,31 @@ export const MultiplayerPlayers: React.FC<MultiplayerPlayersProps> = ({
             state.frame = 0;
           }
 
-          updated[id] = { ...state };
+          // Only update if there are meaningful changes
+          if (Math.abs(state.x - oldX) > 0.1 || Math.abs(state.y - oldY) > 0.1 || state.frame !== oldFrame) {
+            hasChanges = true;
+          }
+          
+          updated[id] = state;
         });
-        return updated;
+        
+        // Only return new state if there are changes
+        return hasChanges ? updated : prev;
       });
-      rafRef.current = requestAnimationFrame(animate);
+      
+      if (isActive) {
+        rafRef.current = requestAnimationFrame(animate);
+      }
     };
+    
     rafRef.current = requestAnimationFrame(animate);
+    
     return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      isActive = false;
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
     };
   }, []);
 
