@@ -4,7 +4,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:party": "partykit dev",
+    "dev:all": "concurrently \"pnpm dev\" \"pnpm dev:party\"",
     "build": "vite build",
+    "build:party": "partykit build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -19,6 +22,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "heroicons": "^2.2.0",
+    "partykit": "^0.0.115",
+    "partysocket": "^1.1.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.7.1",
@@ -34,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
     "eslint": "^9.32.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",

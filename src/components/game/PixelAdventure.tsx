@@ -9,7 +9,7 @@ import {
   useGameLoop,
   useBuildingInteractions,
   useImageBounds,
-  useSupabaseMultiplayer
+  usePartyKitMultiplayer
 } from './hooks';
 
 const PixelAdventure: React.FC = () => {
@@ -44,7 +44,7 @@ const PixelAdventure: React.FC = () => {
   });
 
   // Multiplayer functionality
-  const multiplayer = useSupabaseMultiplayer({
+  const multiplayer = usePartyKitMultiplayer({
     currentLocation,
     playerPosition: playerMovement.currentPositionRef.current,
     currentFrame: playerMovement.currentFrame,
