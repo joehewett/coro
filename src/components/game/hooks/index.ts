@@ -1,4 +1,6 @@
 export { useMapLayout } from './useMapLayout';
+export { useFixedCanvasLayout } from './useFixedCanvasLayout';
+export { useCenteredFixedCanvasLayout } from './useCenteredFixedCanvasLayout';
 export { usePlayerMovement } from './usePlayerMovement';
 export { useNPCBehavior } from './useNPCBehavior';
 export { useGameState } from './useGameState';

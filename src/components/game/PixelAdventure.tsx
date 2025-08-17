@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GameLocation } from './types';
-import { GameMap, Character, InteractionPrompt, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect } from './components';
+import { GameMap, Character, InteractionPrompt, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect, PlayerDebugInfo } from './components';
 import { 
-  useMapLayout, 
+  useFixedCanvasLayout,
   usePlayerMovement, 
   useNPCBehavior, 
   useGameState, 
   useGameLoop,
   useBuildingInteractions,
   useImageBounds,
-  usePartyKitMultiplayer
+  usePartyKitMultiplayer,
+  useCenteredFixedCanvasLayout
 } from './hooks';
 
 const PixelAdventure: React.FC = () => {
@@ -17,8 +18,8 @@ const PixelAdventure: React.FC = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<'coro' | 'joe' | null>(null);
   const gameContainerRef = useRef<HTMLDivElement>(null);
   
-  // Custom hooks
-  const mapRect = useMapLayout(currentLocation);
+  // Custom hooks - use fixed canvas layout
+  const mapRect = useCenteredFixedCanvasLayout();
   const imageBounds = useImageBounds(currentLocation);
   const buildingInteractions = useBuildingInteractions({
     playerPosition: { x: 0, y: 0 }, // Will be updated by the movement hooks
@@ -43,16 +44,17 @@ const PixelAdventure: React.FC = () => {
     imageBounds: imageBounds.imageBounds
   });
 
-  // Multiplayer functionality
+  // Multiplayer functionality - use canvas coordinates
   const multiplayer = usePartyKitMultiplayer({
     currentLocation,
-    playerPosition: playerMovement.currentPositionRef.current,
+    canvasPosition: playerMovement.currentPositionRef.current, // Canvas coordinates
     currentFrame: playerMovement.currentFrame,
     isMoving: playerMovement.isMoving,
     playerName: selectedCharacter ?? 'Player',
     fixedPlayerId: selectedCharacter ?? undefined,
     spriteVariant: selectedCharacter === 'joe' ? 1 : 0,
-    facingDirection: playerMovement.facingDirection
+    facingDirection: playerMovement.facingDirection,
+    mapRect: mapRect
   });
 
   // Auto-focus the game container to ensure keyboard events are captured
@@ -90,7 +92,7 @@ const PixelAdventure: React.FC = () => {
       {!selectedCharacter && (
         <CharacterSelect onSelect={(c) => setSelectedCharacter(c)} />
       )}
-      <GameMap ref={imageBounds.imageRef} currentLocation={currentLocation} />
+      <GameMap ref={imageBounds.imageRef} currentLocation={currentLocation} mapRect={mapRect} />
       
       {/* Debug: Show interaction zones (remove in production) */}
       <InteractionZones zones={updatedBuildingInteractions.interactionZones} showDebug={true} />
@@ -139,6 +141,14 @@ const PixelAdventure: React.FC = () => {
         isConnecting={multiplayer.isConnecting}
         error={multiplayer.error}
         playerCount={multiplayer.otherPlayers.length + 1} // +1 for current player
+      />
+
+      {/* Debug info for player coordinates */}
+      <PlayerDebugInfo 
+        currentPlayerPosition={playerMovement.currentPositionRef.current}
+        currentPlayerId={multiplayer.currentPlayerId}
+        otherPlayers={multiplayer.otherPlayers}
+        playerName={selectedCharacter ?? 'Player'}
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { GameLocation, InteractionZone } from '../types';
 import { getInteractionZonesForLocation, findNearbyInteractionZone, getLocationImageSrc, convertRelativeZonesToAbsolute } from '../utils';
 import { gameConfig } from '../utils';
@@ -15,8 +15,10 @@ export const useBuildingInteractions = ({ playerPosition, currentLocation, image
   const [showInteractionPrompt, setShowInteractionPrompt] = useState(false);
 
   // Get interaction zones for current location and convert to absolute coordinates
-  const relativeZones = getInteractionZonesForLocation(currentLocation);
-  const interactionZones = convertRelativeZonesToAbsolute(relativeZones, imageBounds);
+  const interactionZones = useMemo(() => {
+    const relativeZones = getInteractionZonesForLocation(currentLocation);
+    return convertRelativeZonesToAbsolute(relativeZones, imageBounds);
+  }, [currentLocation, imageBounds.x, imageBounds.y, imageBounds.width, imageBounds.height]);
 
   // Check if player is in any interaction zone
   useEffect(() => {
@@ -25,7 +27,7 @@ export const useBuildingInteractions = ({ playerPosition, currentLocation, image
       setCurrentInteractionZone(zone);
       setShowInteractionPrompt(!!zone);
     }
-  }, [playerPosition, interactionZones, imageBounds]);
+  }, [playerPosition.x, playerPosition.y, interactionZones, imageBounds.width, imageBounds.height]);
 
   const handleBuildingInteraction = (onLocationChange: (location: GameLocation) => void) => {
     if (currentInteractionZone && !isLoading) {

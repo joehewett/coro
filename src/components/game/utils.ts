@@ -10,6 +10,9 @@ export const gameConfig = {
   npcFrameUpdateInterval: 15,
   npcDirectionChangeInterval: 120,
   loadingDuration: 2000,
+  // Fixed canvas size for consistent coordinates across all devices
+  FIXED_CANVAS_WIDTH: 1600,
+  FIXED_CANVAS_HEIGHT: 900,
 };
 
 export const calculateDistance = (pos1: Position, pos2: Position): number => {
@@ -35,10 +38,49 @@ export const computeMapLayout = (naturalWidth: number, naturalHeight: number): M
   return { width, height, x, y };
 };
 
+export const computeFixedCanvasLayout = (): MapRect => {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const width = gameConfig.FIXED_CANVAS_WIDTH;
+  const height = gameConfig.FIXED_CANVAS_HEIGHT;
+  const x = Math.floor((vw - width) / 2);
+  const y = Math.floor((vh - height) / 2);
+  return { width, height, x, y };
+};
+
 export const getCenteredPosition = (mapRect: MapRect, characterSize: number): Position => {
   return {
     x: mapRect.x + mapRect.width / 2 - characterSize / 2,
     y: mapRect.y + mapRect.height / 2 - characterSize / 2
+  };
+};
+
+export const getFixedCanvasCenteredPosition = (characterSize: number): Position => {
+  return {
+    x: gameConfig.FIXED_CANVAS_WIDTH / 2 - characterSize / 2,
+    y: gameConfig.FIXED_CANVAS_HEIGHT / 2 - characterSize / 2
+  };
+};
+
+// Convert screen coordinates to fixed canvas coordinates
+export const screenToCanvasPosition = (screenPos: Position, mapRect: MapRect): Position => {
+  const scaleX = gameConfig.FIXED_CANVAS_WIDTH / mapRect.width;
+  const scaleY = gameConfig.FIXED_CANVAS_HEIGHT / mapRect.height;
+  
+  return {
+    x: (screenPos.x - mapRect.x) * scaleX,
+    y: (screenPos.y - mapRect.y) * scaleY
+  };
+};
+
+// Convert fixed canvas coordinates to screen coordinates
+export const canvasToScreenPosition = (canvasPos: Position, mapRect: MapRect): Position => {
+  const scaleX = mapRect.width / gameConfig.FIXED_CANVAS_WIDTH;
+  const scaleY = mapRect.height / gameConfig.FIXED_CANVAS_HEIGHT;
+  
+  return {
+    x: mapRect.x + (canvasPos.x * scaleX),
+    y: mapRect.y + (canvasPos.y * scaleY)
   };
 };
 

@@ -1,63 +1,54 @@
 import { useState, useEffect, useRef } from 'react';
 import { Position, MapRect, InteractionZone } from '../types';
-import { gameConfig, getCenteredPosition, getValidPosition } from '../utils';
+import { gameConfig, getFixedCanvasCenteredPosition, canvasToScreenPosition } from '../utils';
 
 export const usePlayerMovement = (mapRect: MapRect, collisionZones: InteractionZone[] = []) => {
-  const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
+  // Store position in canvas coordinates (0,0 to FIXED_CANVAS_WIDTH,FIXED_CANVAS_HEIGHT)
+  const [canvasPosition, setCanvasPosition] = useState<Position>({ x: 0, y: 0 });
   const [currentFrame, setCurrentFrame] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
   const [facingDirection, setFacingDirection] = useState<'left' | 'right'>('right');
   
   const keysPressed = useRef<Set<string>>(new Set());
   const frameCounterRef = useRef(0);
-  const currentPositionRef = useRef<Position>({ x: 0, y: 0 });
+  const currentCanvasPositionRef = useRef<Position>({ x: 0, y: 0 });
 
-  // Center player when map rectangle is known
+  // Initialize player at center of canvas
   useEffect(() => {
-    if (mapRect.width > 0 && mapRect.height > 0) {
-      const centeredPosition = getCenteredPosition(mapRect, gameConfig.hedgehogSize);
-      setPosition(centeredPosition);
-      currentPositionRef.current = centeredPosition;
-    }
-  }, [mapRect]);
+    const centeredCanvasPosition = getFixedCanvasCenteredPosition(gameConfig.hedgehogSize);
+    setCanvasPosition(centeredCanvasPosition);
+    currentCanvasPositionRef.current = centeredCanvasPosition;
+  }, []);
+
+  // Convert canvas position to screen position for rendering
+  const screenPosition = mapRect.width > 0 ? canvasToScreenPosition(canvasPosition, mapRect) : { x: 0, y: 0 };
 
   const updatePosition = () => {
-    if (mapRect.width === 0 || mapRect.height === 0) {
-      return;
-    }
-
-    setPosition(prev => {
+    setCanvasPosition(prev => {
       let newX = prev.x;
       let newY = prev.y;
       let hasMovement = false;
 
       if (keysPressed.current.has('ArrowUp')) {
-        newY = prev.y - gameConfig.moveSpeed;
+        newY = Math.max(0, prev.y - gameConfig.moveSpeed);
         hasMovement = true;
       }
       if (keysPressed.current.has('ArrowDown')) {
-        newY = prev.y + gameConfig.moveSpeed;
+        newY = Math.min(gameConfig.FIXED_CANVAS_HEIGHT - gameConfig.hedgehogSize, prev.y + gameConfig.moveSpeed);
         hasMovement = true;
       }
       if (keysPressed.current.has('ArrowLeft')) {
-        newX = prev.x - gameConfig.moveSpeed;
+        newX = Math.max(0, prev.x - gameConfig.moveSpeed);
         hasMovement = true;
         setFacingDirection('left');
       }
       if (keysPressed.current.has('ArrowRight')) {
-        newX = prev.x + gameConfig.moveSpeed;
+        newX = Math.min(gameConfig.FIXED_CANVAS_WIDTH - gameConfig.hedgehogSize, prev.x + gameConfig.moveSpeed);
         hasMovement = true;
         setFacingDirection('right');
       }
 
-      // Get valid position (constrained to map and avoiding collisions)
-      const validPosition = getValidPosition(
-        { x: newX, y: newY }, 
-        prev, 
-        gameConfig.hedgehogSize, 
-        mapRect, 
-        collisionZones
-      );
+      const newCanvasPosition = { x: newX, y: newY };
 
       // Update movement state and animation frame
       setIsMoving(hasMovement);
@@ -69,9 +60,9 @@ export const usePlayerMovement = (mapRect: MapRect, collisionZones: InteractionZ
         }
       }
 
-      // Update position ref
-      currentPositionRef.current = validPosition;
-      return validPosition;
+      // Update position ref with canvas coordinates
+      currentCanvasPositionRef.current = newCanvasPosition;
+      return newCanvasPosition;
     });
   };
 
@@ -88,11 +79,12 @@ export const usePlayerMovement = (mapRect: MapRect, collisionZones: InteractionZ
   };
 
   return {
-    position,
+    position: screenPosition, // Screen position for rendering
+    canvasPosition, // Canvas position for multiplayer
     currentFrame,
     isMoving,
     facingDirection,
-    currentPositionRef,
+    currentPositionRef: currentCanvasPositionRef, // Canvas coordinates for multiplayer
     updatePosition,
     handleKeyDown,
     handleKeyUp
