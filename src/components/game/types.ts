@@ -90,6 +90,7 @@ export interface MultiplayerPlayer {
   currentLocation: GameLocation;
   isMoving: boolean;
   spriteVariant: number;
+  facingDirection: 'left' | 'right';
   lastUpdate: string;
 }
 

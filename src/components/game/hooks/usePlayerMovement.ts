@@ -6,6 +6,7 @@ export const usePlayerMovement = (mapRect: MapRect, collisionZones: InteractionZ
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
   const [currentFrame, setCurrentFrame] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
+  const [facingDirection, setFacingDirection] = useState<'left' | 'right'>('right');
   
   const keysPressed = useRef<Set<string>>(new Set());
   const frameCounterRef = useRef(0);
@@ -41,10 +42,12 @@ export const usePlayerMovement = (mapRect: MapRect, collisionZones: InteractionZ
       if (keysPressed.current.has('ArrowLeft')) {
         newX = prev.x - gameConfig.moveSpeed;
         hasMovement = true;
+        setFacingDirection('left');
       }
       if (keysPressed.current.has('ArrowRight')) {
         newX = prev.x + gameConfig.moveSpeed;
         hasMovement = true;
+        setFacingDirection('right');
       }
 
       // Get valid position (constrained to map and avoiding collisions)
@@ -88,6 +91,7 @@ export const usePlayerMovement = (mapRect: MapRect, collisionZones: InteractionZ
     position,
     currentFrame,
     isMoving,
+    facingDirection,
     currentPositionRef,
     updatePosition,
     handleKeyDown,

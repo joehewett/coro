@@ -51,7 +51,8 @@ const PixelAdventure: React.FC = () => {
     isMoving: playerMovement.isMoving,
     playerName: selectedCharacter ?? 'Player',
     fixedPlayerId: selectedCharacter ?? undefined,
-    spriteVariant: selectedCharacter === 'joe' ? 1 : 0
+    spriteVariant: selectedCharacter === 'joe' ? 1 : 0,
+    facingDirection: playerMovement.facingDirection
   });
 
   // Auto-focus the game container to ensure keyboard events are captured
@@ -99,6 +100,7 @@ const PixelAdventure: React.FC = () => {
         position={playerMovement.position}
         currentFrame={playerMovement.currentFrame}
         alt="Player Hedgehog"
+        facingDirection={playerMovement.facingDirection}
       />
 
       {/* Other multiplayer players */}
