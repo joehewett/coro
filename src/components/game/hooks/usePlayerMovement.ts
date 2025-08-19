@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Position, MapRect, InteractionZone } from '../types';
-import { gameConfig, getFixedCanvasCenteredPosition, canvasToScreenPosition } from '../utils';
+import { gameConfig, getFixedCanvasCenteredPosition, canvasToScreenPosition, getValidPosition } from '../utils';
 
 export const usePlayerMovement = (mapRect: MapRect, collisionZones: InteractionZone[] = []) => {
   // Store position in canvas coordinates (0,0 to FIXED_CANVAS_WIDTH,FIXED_CANVAS_HEIGHT)
@@ -30,25 +30,43 @@ export const usePlayerMovement = (mapRect: MapRect, collisionZones: InteractionZ
       let hasMovement = false;
 
       if (keysPressed.current.has('ArrowUp')) {
-        newY = Math.max(0, prev.y - gameConfig.moveSpeed);
+        newY = prev.y - gameConfig.moveSpeed;
         hasMovement = true;
       }
       if (keysPressed.current.has('ArrowDown')) {
-        newY = Math.min(gameConfig.FIXED_CANVAS_HEIGHT - gameConfig.hedgehogSize, prev.y + gameConfig.moveSpeed);
+        newY = prev.y + gameConfig.moveSpeed;
         hasMovement = true;
       }
       if (keysPressed.current.has('ArrowLeft')) {
-        newX = Math.max(0, prev.x - gameConfig.moveSpeed);
+        newX = prev.x - gameConfig.moveSpeed;
         hasMovement = true;
         setFacingDirection('left');
       }
       if (keysPressed.current.has('ArrowRight')) {
-        newX = Math.min(gameConfig.FIXED_CANVAS_WIDTH - gameConfig.hedgehogSize, prev.x + gameConfig.moveSpeed);
+        newX = prev.x + gameConfig.moveSpeed;
         hasMovement = true;
         setFacingDirection('right');
       }
 
-      const newCanvasPosition = { x: newX, y: newY };
+      // Calculate intended new position
+      const intendedPosition = { x: newX, y: newY };
+      
+      // Create a fake mapRect for canvas coordinates (since we're working in canvas space)
+      const canvasMapRect = {
+        x: 0,
+        y: 0,
+        width: gameConfig.FIXED_CANVAS_WIDTH,
+        height: gameConfig.FIXED_CANVAS_HEIGHT
+      };
+
+      // Use getValidPosition to handle both map boundaries and collision detection
+      const validPosition = getValidPosition(
+        intendedPosition,
+        prev,
+        gameConfig.hedgehogSize,
+        canvasMapRect,
+        collisionZones
+      );
 
       // Update movement state and animation frame
       setIsMoving(hasMovement);
@@ -61,8 +79,8 @@ export const usePlayerMovement = (mapRect: MapRect, collisionZones: InteractionZ
       }
 
       // Update position ref with canvas coordinates
-      currentCanvasPositionRef.current = newCanvasPosition;
-      return newCanvasPosition;
+      currentCanvasPositionRef.current = validPosition;
+      return validPosition;
     });
   };
 

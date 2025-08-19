@@ -70,6 +70,7 @@ export interface Building {
   name: string;
   location: GameLocation;
   interactionZones: InteractionZone[];
+  collisionZones?: InteractionZone[]; // Zones that block movement
   imageSrc: string;
   altText: string;
 }

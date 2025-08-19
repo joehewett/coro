@@ -199,6 +199,18 @@ export const convertRelativeZonesToAbsolute = (
   }));
 };
 
+export const convertRelativeZonesToCanvas = (
+  zones: InteractionZone[]
+): InteractionZone[] => {
+  return zones.map(zone => ({
+    ...zone,
+    x: zone.relativeX * gameConfig.FIXED_CANVAS_WIDTH,
+    y: zone.relativeY * gameConfig.FIXED_CANVAS_HEIGHT,
+    width: zone.relativeWidth * gameConfig.FIXED_CANVAS_WIDTH,
+    height: zone.relativeHeight * gameConfig.FIXED_CANVAS_HEIGHT
+  }));
+};
+
 export const getInteractionZonesForLocation = (location: GameLocation): InteractionZone[] => {
   const building = getBuildingByLocation(location);
   return building?.interactionZones || [];

@@ -8,3 +8,5 @@ export { MultiplayerPlayers } from './MultiplayerPlayers';
 export { ConnectionStatus } from './ConnectionStatus';
 export { CharacterSelect } from './CharacterSelect';
 export { PlayerDebugInfo } from './PlayerDebugInfo';
+export { DebugPanel } from './DebugPanel';
+export { ProximityVisualization } from './ProximityVisualization';
