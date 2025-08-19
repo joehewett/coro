@@ -1,27 +1,37 @@
 import React from 'react';
 import { InteractionZone } from '../types';
+import { MapRect } from '../types';
 
 interface InteractionZonesProps {
-  zones: InteractionZone[];
+  zones: InteractionZone[]; // Canvas coordinates (0-1600,0-900)
+  mapRect: MapRect;
   showDebug?: boolean;
-  playerPosition?: { x: number; y: number };
+  playerPosition?: { x: number; y: number }; // Screen coordinates for highlighting
   proximityRadius?: number;
 }
 
 export const InteractionZones: React.FC<InteractionZonesProps> = ({ 
   zones, 
+  mapRect,
   showDebug = false, 
   playerPosition,
   proximityRadius = 32
 }) => {
   if (!showDebug) return null;
 
+  const scaleX = mapRect.width / 1600;
+  const scaleY = mapRect.height / 900;
+
+  const zoneToScreen = (z: InteractionZone) => ({
+    screenX: mapRect.x + (z.x ?? 0) * scaleX,
+    screenY: mapRect.y + (z.y ?? 0) * scaleY,
+    screenW: (z.width ?? 0) * scaleX,
+    screenH: (z.height ?? 0) * scaleY
+  });
+
   const isPlayerNearZone = (zone: InteractionZone) => {
     if (!playerPosition) return false;
-    const zoneX = zone.x ?? 0;
-    const zoneY = zone.y ?? 0;
-    const zoneWidth = zone.width ?? 0;
-    const zoneHeight = zone.height ?? 0;
+    const { screenX: zoneX, screenY: zoneY, screenW: zoneWidth, screenH: zoneHeight } = zoneToScreen(zone);
     
     const px = playerPosition.x + 32; // Character center
     const py = playerPosition.y + 32; // Character center
@@ -37,6 +47,7 @@ export const InteractionZones: React.FC<InteractionZonesProps> = ({
   return (
     <>
       {zones.map((zone) => {
+        const { screenX, screenY, screenW, screenH } = zoneToScreen(zone);
         const isNear = isPlayerNearZone(zone);
         return (
           <div key={zone.id}>
@@ -48,10 +59,10 @@ export const InteractionZones: React.FC<InteractionZonesProps> = ({
                   : 'border-yellow-400 bg-yellow-400 bg-opacity-10'
               }`}
               style={{
-                left: `${zone.x}px`,
-                top: `${zone.y}px`,
-                width: `${zone.width}px`,
-                height: `${zone.height}px`,
+                left: `${screenX}px`,
+                top: `${screenY}px`,
+                width: `${screenW}px`,
+                height: `${screenH}px`,
                 zIndex: 10
               }}
             >
@@ -66,10 +77,10 @@ export const InteractionZones: React.FC<InteractionZonesProps> = ({
             <div
               className="absolute border border-dashed border-blue-300 bg-transparent pointer-events-none"
               style={{
-                left: `${(zone.x ?? 0) - proximityRadius}px`,
-                top: `${(zone.y ?? 0) - proximityRadius}px`,
-                width: `${(zone.width ?? 0) + 2 * proximityRadius}px`,
-                height: `${(zone.height ?? 0) + 2 * proximityRadius}px`,
+                left: `${screenX - proximityRadius}px`,
+                top: `${screenY - proximityRadius}px`,
+                width: `${screenW + 2 * proximityRadius}px`,
+                height: `${screenH + 2 * proximityRadius}px`,
                 zIndex: 9
               }}
             />
@@ -78,8 +89,8 @@ export const InteractionZones: React.FC<InteractionZonesProps> = ({
             <div
               className="absolute bg-purple-500 pointer-events-none"
               style={{
-                left: `${(zone.x ?? 0) + (zone.width ?? 0) / 2 - 2}px`,
-                top: `${(zone.y ?? 0) + (zone.height ?? 0) / 2 - 2}px`,
+                left: `${screenX + screenW / 2 - 2}px`,
+                top: `${screenY + screenH / 2 - 2}px`,
                 width: '4px',
                 height: '4px',
                 borderRadius: '50%',
@@ -91,8 +102,8 @@ export const InteractionZones: React.FC<InteractionZonesProps> = ({
             <div
               className="absolute text-xs font-mono text-purple-600 bg-white bg-opacity-80 px-1 pointer-events-none"
               style={{
-                left: `${zone.x}px`,
-                top: `${(zone.y ?? 0) + (zone.height ?? 0) + 5}px`,
+                left: `${screenX}px`,
+                top: `${screenY + screenH + 5}px`,
                 zIndex: 12
               }}
             >
@@ -103,8 +114,8 @@ export const InteractionZones: React.FC<InteractionZonesProps> = ({
             <div
               className="absolute text-xs font-mono text-blue-600 bg-white bg-opacity-80 px-1 pointer-events-none"
               style={{
-                left: `${zone.x}px`,
-                top: `${(zone.y ?? 0) + (zone.height ?? 0) + 20}px`,
+                left: `${screenX}px`,
+                top: `${screenY + screenH + 20}px`,
                 zIndex: 12
               }}
             >

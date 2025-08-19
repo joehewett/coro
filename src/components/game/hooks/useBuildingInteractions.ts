@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { GameLocation, InteractionZone } from '../types';
-import { getInteractionZonesForLocation, findNearbyInteractionZone, getLocationImageSrc, convertRelativeZonesToAbsolute } from '../utils';
+import { getInteractionZonesForLocation, findNearbyInteractionZone, getLocationImageSrc, convertRelativeZonesToCanvas } from '../utils';
 import { gameConfig } from '../utils';
 
 interface UseBuildingInteractionsProps {
@@ -17,7 +17,7 @@ export const useBuildingInteractions = ({ playerPosition, currentLocation, image
   // Get interaction zones for current location and convert to absolute coordinates
   const interactionZones = useMemo(() => {
     const relativeZones = getInteractionZonesForLocation(currentLocation);
-    return convertRelativeZonesToAbsolute(relativeZones, imageBounds);
+    return convertRelativeZonesToCanvas(relativeZones);
   }, [currentLocation, imageBounds.x, imageBounds.y, imageBounds.width, imageBounds.height]);
 
   // Check if player is in any interaction zone

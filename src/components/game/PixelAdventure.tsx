@@ -45,7 +45,7 @@ const PixelAdventure: React.FC = () => {
 
   // Update building interactions with actual player position (use screen coordinates)
   const updatedBuildingInteractions = useBuildingInteractions({
-    playerPosition: playerMovement.position, // Use screen position, not canvas position
+    playerPosition: playerMovement.canvasPosition, // Canvas position for accurate detection
     currentLocation,
     imageBounds: imageBounds.imageBounds
   });
@@ -103,6 +103,7 @@ const PixelAdventure: React.FC = () => {
       {/* Debug: Show interaction zones */}
       <InteractionZones 
         zones={updatedBuildingInteractions.interactionZones} 
+        mapRect={mapRect}
         showDebug={showDebug}
         playerPosition={playerMovement.position}
         proximityRadius={32}
@@ -151,6 +152,7 @@ const PixelAdventure: React.FC = () => {
       <BuildingInteractionPrompt 
         zone={updatedBuildingInteractions.currentInteractionZone}
         show={updatedBuildingInteractions.showInteractionPrompt}
+        mapRect={mapRect}
       />
 
       <LoadingScreen isLoading={gameState.isLoading || updatedBuildingInteractions.isLoading} />
