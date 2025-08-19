@@ -1,23 +1,25 @@
 import React from 'react';
-import { InteractionZone } from '../types';
-import { getInteractionZoneCenter } from '../utils';
+import { InteractionZone, MapRect } from '../types';
+import { getInteractionZoneCenter, canvasToScreenPosition } from '../utils';
 
 interface BuildingInteractionPromptProps {
-  zone: InteractionZone | null;
+  zone: InteractionZone | null; // Canvas coordinates
   show: boolean;
+  mapRect: MapRect;
 }
 
-export const BuildingInteractionPrompt: React.FC<BuildingInteractionPromptProps> = ({ zone, show }) => {
+export const BuildingInteractionPrompt: React.FC<BuildingInteractionPromptProps> = ({ zone, show, mapRect }) => {
   if (!show || !zone) return null;
 
-  const center = getInteractionZoneCenter(zone);
+  const centerCanvas = getInteractionZoneCenter(zone);
+  const centerScreen = canvasToScreenPosition(centerCanvas, mapRect);
 
   return (
     <div
       className="absolute flex flex-col items-center justify-center text-white border-2 border-white rounded font-mono font-bold pointer-events-none"
       style={{
-        left: `${center.x - 40}px`,
-        top: `${center.y - 60}px`,
+        left: `${centerScreen.x - 40}px`,
+        top: `${centerScreen.y - 60}px`,
         width: 'fit-content',
         height: '40px',
         transform: 'translateX(-50%)',

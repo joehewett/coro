@@ -2,7 +2,7 @@ import { Position, MapRect, GameLocation, InteractionZone } from './types';
 import { getBuildingByLocation } from './data/buildings';
 
 export const gameConfig = {
-  hedgehogSize: 48,
+  hedgehogSize: 64,
   moveSpeed: 3,
   npcSpeed: 1.5,
   proximityDistance: 80,
@@ -208,6 +208,21 @@ export const convertRelativeZonesToCanvas = (
     y: zone.relativeY * gameConfig.FIXED_CANVAS_HEIGHT,
     width: zone.relativeWidth * gameConfig.FIXED_CANVAS_WIDTH,
     height: zone.relativeHeight * gameConfig.FIXED_CANVAS_HEIGHT
+  }));
+};
+
+export const convertCanvasZonesToScreen = (
+  zones: InteractionZone[],
+  mapRect: MapRect
+): InteractionZone[] => {
+  const scaleX = mapRect.width / gameConfig.FIXED_CANVAS_WIDTH;
+  const scaleY = mapRect.height / gameConfig.FIXED_CANVAS_HEIGHT;
+  return zones.map(zone => ({
+    ...zone,
+    x: mapRect.x + (zone.x ?? 0) * scaleX,
+    y: mapRect.y + (zone.y ?? 0) * scaleY,
+    width: (zone.width ?? 0) * scaleX,
+    height: (zone.height ?? 0) * scaleY
   }));
 };
 
