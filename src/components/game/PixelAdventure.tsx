@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GameLocation } from './types';
-import { GameMap, Character, InteractionPrompt, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect, PlayerDebugInfo } from './components';
+import { GameMap, Character, InteractionPrompt, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect, PlayerDebugInfo, DebugPanel, ProximityVisualization } from './components';
 import { 
   useFixedCanvasLayout,
   usePlayerMovement, 
@@ -12,24 +12,30 @@ import {
   usePartyKitMultiplayer,
   useCenteredFixedCanvasLayout
 } from './hooks';
+import { getInteractionZonesForLocation, convertRelativeZonesToCanvas } from './utils';
 
 const PixelAdventure: React.FC = () => {
   const [currentLocation, setCurrentLocation] = useState<GameLocation>(GameLocation.VILLAGE);
   const [selectedCharacter, setSelectedCharacter] = useState<'coro' | 'joe' | null>(null);
+  const [showDebug, setShowDebug] = useState(true); // Enable debug mode by default
   const gameContainerRef = useRef<HTMLDivElement>(null);
   
   // Custom hooks - use fixed canvas layout
   const mapRect = useCenteredFixedCanvasLayout();
   const imageBounds = useImageBounds(currentLocation);
+  
+  // Get collision zones in canvas coordinates for movement collision detection
+  const canvasCollisionZones = convertRelativeZonesToCanvas(getInteractionZonesForLocation(currentLocation));
+  
   const buildingInteractions = useBuildingInteractions({
     playerPosition: { x: 0, y: 0 }, // Will be updated by the movement hooks
     currentLocation,
     imageBounds: imageBounds.imageBounds
   });
   
-  // Pass collision zones to movement hooks
-  const playerMovement = usePlayerMovement(mapRect, buildingInteractions.interactionZones);
-  const npcBehavior = useNPCBehavior(mapRect, playerMovement.currentPositionRef.current, buildingInteractions.interactionZones);
+  // Pass canvas collision zones to movement hooks
+  const playerMovement = usePlayerMovement(mapRect, canvasCollisionZones);
+  const npcBehavior = useNPCBehavior(mapRect, playerMovement.currentPositionRef.current, canvasCollisionZones);
   
   const gameState = useGameState({
     playerPosition: playerMovement.currentPositionRef.current,
@@ -37,9 +43,9 @@ const PixelAdventure: React.FC = () => {
     currentLocation
   });
 
-  // Update building interactions with actual player position
+  // Update building interactions with actual player position (use screen coordinates)
   const updatedBuildingInteractions = useBuildingInteractions({
-    playerPosition: playerMovement.currentPositionRef.current,
+    playerPosition: playerMovement.position, // Use screen position, not canvas position
     currentLocation,
     imageBounds: imageBounds.imageBounds
   });
@@ -94,15 +100,29 @@ const PixelAdventure: React.FC = () => {
       )}
       <GameMap ref={imageBounds.imageRef} currentLocation={currentLocation} mapRect={mapRect} />
       
-      {/* Debug: Show interaction zones (remove in production) */}
-      <InteractionZones zones={updatedBuildingInteractions.interactionZones} showDebug={true} />
+      {/* Debug: Show interaction zones */}
+      <InteractionZones 
+        zones={updatedBuildingInteractions.interactionZones} 
+        showDebug={showDebug}
+        playerPosition={playerMovement.position}
+        proximityRadius={32}
+      />
       
+      {/* Proximity visualization */}
+      <ProximityVisualization
+        playerPosition={playerMovement.position}
+        proximityRadius={32}
+        characterSize={64}
+        showDebug={showDebug}
+      />
+
       {/* Current player */}
       <Character 
         position={playerMovement.position}
         currentFrame={playerMovement.currentFrame}
         alt="Player Hedgehog"
         facingDirection={playerMovement.facingDirection}
+        showDebugBounds={showDebug}
       />
 
       {/* Other multiplayer players */}
@@ -150,6 +170,25 @@ const PixelAdventure: React.FC = () => {
         otherPlayers={multiplayer.otherPlayers}
         playerName={selectedCharacter ?? 'Player'}
       />
+
+      {/* Debug Panel */}
+      <DebugPanel
+        playerPosition={playerMovement.position}
+        playerCanvasPosition={playerMovement.currentPositionRef.current}
+        mapRect={mapRect}
+        imageBounds={imageBounds.imageBounds}
+        currentInteractionZone={updatedBuildingInteractions.currentInteractionZone}
+        showInteractionPrompt={updatedBuildingInteractions.showInteractionPrompt}
+        showDebug={showDebug}
+      />
+
+      {/* Debug Toggle Button */}
+      <button
+        onClick={() => setShowDebug(!showDebug)}
+        className="absolute top-4 right-4 bg-gray-800 text-white px-3 py-2 rounded text-sm font-mono z-50 hover:bg-gray-700"
+      >
+        Debug: {showDebug ? 'ON' : 'OFF'}
+      </button>
     </div>
   );
 };

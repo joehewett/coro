@@ -23,7 +23,7 @@ export const useBuildingInteractions = ({ playerPosition, currentLocation, image
   // Check if player is in any interaction zone
   useEffect(() => {
     if (imageBounds.width > 0 && imageBounds.height > 0) {
-      const zone = findNearbyInteractionZone(playerPosition, interactionZones, 32, gameConfig.hedgehogSize);
+      const zone = findNearbyInteractionZone(playerPosition, interactionZones, 32, 64); // Use actual character display size
       setCurrentInteractionZone(zone);
       setShowInteractionPrompt(!!zone);
     }

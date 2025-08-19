@@ -1,4 +1,4 @@
-import { Building, GameLocation } from '../types';
+import { Building, GameLocation, InteractionZone } from '../types';
 
 export const buildings: Building[] = [
   {
