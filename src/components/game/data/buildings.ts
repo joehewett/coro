@@ -95,6 +95,16 @@ export const buildings: Building[] = [
         relativeHeight: 0.15,
         targetLocation: GameLocation.VILLAGE,
         description: 'Exit to Village'
+      },
+      {
+        id: 'book-entrance',
+        name: 'Open Book',
+        relativeX: 0.4, // Middle of the room
+        relativeY: 0.4,
+        relativeWidth: 0.2,
+        relativeHeight: 0.2,
+        targetLocation: GameLocation.BOOK_ROOM,
+        description: 'Enter the Book'
       }
     ]
   },
@@ -152,6 +162,25 @@ export const buildings: Building[] = [
         relativeHeight: 0.15,
         targetLocation: GameLocation.VILLAGE,
         description: 'Exit to Village'
+      }
+    ]
+  },
+  {
+    id: 'book-room',
+    name: 'Book Room',
+    location: GameLocation.BOOK_ROOM,
+    imageSrc: '/game/openbook.webp',
+    altText: 'Open Book Interior',
+    interactionZones: [
+      {
+        id: 'book-room-exit',
+        name: 'Exit',
+        relativeX: 0.1,
+        relativeY: 0.8,
+        relativeWidth: 0.15,
+        relativeHeight: 0.15,
+        targetLocation: GameLocation.LIBRARY,
+        description: 'Exit to Library'
       }
     ]
   }
