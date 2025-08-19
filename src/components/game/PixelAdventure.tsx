@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GameLocation } from './types';
-import { GameMap, Character, InteractionPrompt, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect, PlayerDebugInfo, DebugPanel, ProximityVisualization } from './components';
+import { GameMap, Character, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect, PlayerDebugInfo, ProximityVisualization } from './components';
 import { 
   useFixedCanvasLayout,
   usePlayerMovement, 
@@ -164,15 +164,15 @@ const PixelAdventure: React.FC = () => {
       />
 
       {/* Debug info for player coordinates */}
-      <PlayerDebugInfo 
+      {/* <PlayerDebugInfo 
         currentPlayerPosition={playerMovement.currentPositionRef.current}
         currentPlayerId={multiplayer.currentPlayerId}
         otherPlayers={multiplayer.otherPlayers}
         playerName={selectedCharacter ?? 'Player'}
-      />
+      /> */}
 
       {/* Debug Panel */}
-      <DebugPanel
+      {/* <DebugPanel
         playerPosition={playerMovement.position}
         playerCanvasPosition={playerMovement.currentPositionRef.current}
         mapRect={mapRect}
@@ -180,7 +180,7 @@ const PixelAdventure: React.FC = () => {
         currentInteractionZone={updatedBuildingInteractions.currentInteractionZone}
         showInteractionPrompt={updatedBuildingInteractions.showInteractionPrompt}
         showDebug={showDebug}
-      />
+      /> */}
 
       {/* Debug Toggle Button */}
       <button
