@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../../../lib/supabase';
+import { supabase } from '../lib/supabase';
 import { DiaryEntry, DiaryEntryData } from './DiaryEntry';
 import { DiaryEntryModal } from './DiaryEntryModal';
 import { MapRect } from '../types';
