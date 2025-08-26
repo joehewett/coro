@@ -33,7 +33,7 @@ export const DiaryEntry: React.FC<DiaryEntryProps> = ({
     });
   };
 
-  const truncateContent = (content: string, maxLength: number = 120) => {
+  const truncateContent = (content: string, maxLength: number = 60) => {
     if (content.length <= maxLength) return content;
     return content.substring(0, maxLength) + '...';
   };
@@ -59,10 +59,10 @@ export const DiaryEntry: React.FC<DiaryEntryProps> = ({
       <div className="w-full h-1 bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-400"></div>
       
       {/* Card content */}
-      <div className="p-4 h-full flex flex-col relative">
+      <div className="p-2 h-full flex flex-col relative">
         {/* Header with title and edit button */}
-        <div className="flex justify-between items-start mb-3">
-          <h3 className="text-amber-900 font-bold text-base leading-tight flex-1 mr-2 group-hover:text-amber-800 transition-colors">
+        <div className="flex justify-between items-start mb-1">
+          <h3 className="text-amber-900 font-bold text-xs leading-tight flex-1 mr-1 group-hover:text-amber-800 transition-colors truncate">
             {entry.title}
           </h3>
           {canEdit && (
@@ -71,7 +71,7 @@ export const DiaryEntry: React.FC<DiaryEntryProps> = ({
                 e.stopPropagation();
                 onEdit(entry);
               }}
-              className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white text-xs px-3 py-1.5 rounded-lg font-mono font-bold shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-110"
+              className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white text-xs px-1 py-0.5 rounded font-mono font-bold shadow-sm hover:shadow-md transition-all duration-200"
               title="Edit entry (Press X)"
             >
               ✏️
@@ -80,27 +80,27 @@ export const DiaryEntry: React.FC<DiaryEntryProps> = ({
         </div>
         
         {/* Content */}
-        <div className="text-amber-800 text-sm mb-4 leading-relaxed flex-1 overflow-hidden">
-          <p className="line-clamp-4">{truncateContent(entry.content)}</p>
+        <div className="text-amber-800 text-xs mb-2 leading-tight flex-1 overflow-hidden">
+          <p className="line-clamp-3">{truncateContent(entry.content)}</p>
         </div>
         
         {/* Footer with author and date */}
         <div className="flex justify-between items-center mt-auto">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md">
-              {getPlayerInitials(entry.player_name)}
+          <div className="flex items-center space-x-1">
+            <div className="w-4 h-4 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-sm">
+              {getPlayerInitials(entry.player_name)[0]}
             </div>
-            <span className="text-amber-700 text-sm font-medium">
-              {entry.player_name || 'Anonymous'}
+            <span className="text-amber-700 text-xs font-medium truncate max-w-16">
+              {entry.player_name || 'Anon'}
             </span>
           </div>
-          <div className="text-amber-600 text-xs bg-amber-100 px-2 py-1 rounded-full">
-            {formatDate(entry.created_at)}
+          <div className="text-amber-600 text-xs bg-amber-100 px-1 py-0.5 rounded text-xs">
+            {formatDate(entry.created_at).split(',')[0]}
           </div>
         </div>
         
         {/* Subtle decorative corner */}
-        <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-amber-200 to-transparent opacity-30 rounded-bl-full"></div>
+        <div className="absolute top-0 right-0 w-6 h-6 bg-gradient-to-bl from-amber-200 to-transparent opacity-30 rounded-bl-full"></div>
       </div>
     </div>
   );
