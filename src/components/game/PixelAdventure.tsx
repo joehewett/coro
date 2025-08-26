@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GameLocation } from './types';
-import { GameMap, Character, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect, PlayerDebugInfo, ProximityVisualization, MessageBoard } from './components';
+import { GameMap, Character, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect, ProximityVisualization, MessageBoard } from './components';
 import { 
   useFixedCanvasLayout,
   usePlayerMovement, 
   useNPCBehavior, 
-  useGameState, 
   useGameLoop,
   useBuildingInteractions,
   useImageBounds,
@@ -39,11 +38,7 @@ const PixelAdventure: React.FC = () => {
   const playerMovement = usePlayerMovement(mapRect, canvasCollisionZones);
   const npcBehavior = useNPCBehavior(mapRect, playerMovement.currentPositionRef.current, canvasCollisionZones);
   
-  const gameState = useGameState({
-    playerPosition: playerMovement.currentPositionRef.current,
-    npcPosition: npcBehavior.currentNpcPositionRef.current,
-    currentLocation
-  });
+
 
   // Update building interactions with actual player position (use screen coordinates)
   const updatedBuildingInteractions = useBuildingInteractions({
@@ -93,8 +88,7 @@ const PixelAdventure: React.FC = () => {
         return;
       }
       
-      // Fallback to NPC interactions if no building interaction zone
-      // gameState.handleInteraction(onLocationChange);
+
     },
     onLocationChange: setCurrentLocation,
     mapRect
@@ -144,21 +138,7 @@ const PixelAdventure: React.FC = () => {
         showPlayerNames={true}
       />
 
-      {/* {currentLocation === GameLocation.VILLAGE && (
-        <>
-          <Character 
-            position={npcBehavior.npcPosition}
-            currentFrame={npcBehavior.npcFrame}
-            alt="NPC Hedgehog"
-            isNPC={true}
-          />
-          
-          <InteractionPrompt 
-            npcPosition={npcBehavior.npcPosition}
-            show={gameState.showGreeting}
-          />
-        </>
-      )} */}
+
 
       {/* Building interaction prompt */}
       <BuildingInteractionPrompt 
@@ -167,7 +147,7 @@ const PixelAdventure: React.FC = () => {
         mapRect={mapRect}
       />
 
-      <LoadingScreen isLoading={gameState.isLoading || isLoading} />
+      <LoadingScreen isLoading={isLoading} />
       
       {/* Connection status indicator */}
       <ConnectionStatus 
@@ -177,24 +157,7 @@ const PixelAdventure: React.FC = () => {
         playerCount={multiplayer.otherPlayers.length + 1} // +1 for current player
       />
 
-      {/* Debug info for player coordinates */}
-      {/* <PlayerDebugInfo 
-        currentPlayerPosition={playerMovement.currentPositionRef.current}
-        currentPlayerId={multiplayer.currentPlayerId}
-        otherPlayers={multiplayer.otherPlayers}
-        playerName={selectedCharacter ?? 'Player'}
-      /> */}
 
-      {/* Debug Panel */}
-      {/* <DebugPanel
-        playerPosition={playerMovement.position}
-        playerCanvasPosition={playerMovement.currentPositionRef.current}
-        mapRect={mapRect}
-        imageBounds={imageBounds.imageBounds}
-        currentInteractionZone={updatedBuildingInteractions.currentInteractionZone}
-        showInteractionPrompt={updatedBuildingInteractions.showInteractionPrompt}
-        showDebug={showDebug}
-      /> */}
 
       {/* Message Board for Book Room */}
       {currentLocation === GameLocation.BOOK_ROOM && (
