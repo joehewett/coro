@@ -18,7 +18,6 @@ const PixelAdventure: React.FC = () => {
   const [currentLocation, setCurrentLocation] = useState<GameLocation>(GameLocation.VILLAGE);
   const [selectedCharacter, setSelectedCharacter] = useState<'coro' | 'joe' | null>(null);
   const [showDebug, setShowDebug] = useState(true); // Enable debug mode by default
-  const [showMessageBoardCreate, setShowMessageBoardCreate] = useState(false);
   const [triggerCreateModal, setTriggerCreateModal] = useState(false);
   const gameContainerRef = useRef<HTMLDivElement>(null);
   
@@ -71,11 +70,6 @@ const PixelAdventure: React.FC = () => {
       gameContainerRef.current.focus();
     }
   }, []);
-
-  // Reset message board state when changing locations
-  useEffect(() => {
-    setShowMessageBoardCreate(false);
-  }, [currentLocation]);
 
   // Game loop
   useGameLoop({
@@ -203,8 +197,6 @@ const PixelAdventure: React.FC = () => {
           currentPlayerId={multiplayer.currentPlayerId}
           currentPlayerName={selectedCharacter ?? 'Player'}
           mapRect={mapRect}
-          showCreateButton={showMessageBoardCreate}
-          onCreateClick={() => setShowMessageBoardCreate(false)}
           triggerCreateModal={triggerCreateModal}
           onModalTriggered={() => setTriggerCreateModal(false)}
         />

@@ -8,7 +8,6 @@ interface MessageBoardProps {
   currentPlayerId: string | null;
   currentPlayerName: string | null;
   mapRect: MapRect;
-  showCreateButton: boolean;
   onCreateClick?: () => void;
   triggerCreateModal?: boolean;
   onModalTriggered?: () => void;
@@ -18,8 +17,6 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
   currentPlayerId,
   currentPlayerName,
   mapRect,
-  showCreateButton,
-  onCreateClick,
   triggerCreateModal,
   onModalTriggered
 }) => {
@@ -62,12 +59,6 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
     } finally {
       setLoadingEntries(false);
     }
-  };
-
-  const handleCreateEntry = () => {
-    setEditingEntry(null);
-    setIsModalOpen(true);
-    onCreateClick?.();
   };
 
   const handleEditEntry = (entry: DiaryEntryData) => {
@@ -199,26 +190,6 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
 
   return (
     <>
-      {/* Create button */}
-      {showCreateButton && (
-        <div
-          className="absolute flex items-center justify-center"
-          style={{
-            left: `${createButtonPosition.x}px`,
-            top: `${createButtonPosition.y}px`,
-            zIndex: 15
-          }}
-        >
-          <button
-            onClick={handleCreateEntry}
-            className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white px-6 py-3 rounded-xl font-serif text-base font-semibold shadow-xl border-2 border-emerald-500 hover:border-emerald-400 transition-all duration-200 transform hover:scale-105 flex items-center space-x-3"
-            title="Create new diary entry (Press X)"
-          >
-            <span>✍️ Create New Entry</span>
-            <span className="bg-white bg-opacity-20 px-2 py-1 rounded-md font-mono text-sm font-bold">X</span>
-          </button>
-        </div>
-      )}
 
       {/* Diary entries */}
       {entries.map((entry, index) => {
