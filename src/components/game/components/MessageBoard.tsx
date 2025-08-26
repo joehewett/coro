@@ -10,6 +10,8 @@ interface MessageBoardProps {
   mapRect: MapRect;
   showCreateButton: boolean;
   onCreateClick?: () => void;
+  triggerCreateModal?: boolean;
+  onModalTriggered?: () => void;
 }
 
 export const MessageBoard: React.FC<MessageBoardProps> = ({
@@ -17,7 +19,9 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
   currentPlayerName,
   mapRect,
   showCreateButton,
-  onCreateClick
+  onCreateClick,
+  triggerCreateModal,
+  onModalTriggered
 }) => {
   const [entries, setEntries] = useState<DiaryEntryData[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,6 +33,15 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
   useEffect(() => {
     loadEntries();
   }, []);
+
+  // Handle direct modal trigger from parent
+  useEffect(() => {
+    if (triggerCreateModal) {
+      setEditingEntry(null);
+      setIsModalOpen(true);
+      onModalTriggered?.();
+    }
+  }, [triggerCreateModal, onModalTriggered]);
 
   const loadEntries = async () => {
     try {
@@ -156,22 +169,20 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
       {/* Create button */}
       {showCreateButton && (
         <div
-          className="absolute flex items-center space-x-2"
+          className="absolute flex items-center justify-center"
           style={{
             left: `${createButtonPosition.x}px`,
             top: `${createButtonPosition.y}px`,
             zIndex: 15
           }}
         >
-          <div className="bg-green-600 text-white px-3 py-2 rounded-lg font-mono text-sm shadow-lg">
-            Create New Entry
-          </div>
           <button
             onClick={handleCreateEntry}
-            className="bg-green-700 hover:bg-green-800 text-white px-3 py-2 rounded-lg font-mono text-sm font-bold shadow-lg"
+            className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg font-mono text-sm font-bold shadow-lg flex items-center space-x-2"
             title="Create new diary entry (Press X)"
           >
-            X
+            <span>Create New Entry</span>
+            <span className="font-bold">X</span>
           </button>
         </div>
       )}

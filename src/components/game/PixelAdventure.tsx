@@ -19,6 +19,7 @@ const PixelAdventure: React.FC = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<'coro' | 'joe' | null>(null);
   const [showDebug, setShowDebug] = useState(true); // Enable debug mode by default
   const [showMessageBoardCreate, setShowMessageBoardCreate] = useState(false);
+  const [triggerCreateModal, setTriggerCreateModal] = useState(false);
   const gameContainerRef = useRef<HTMLDivElement>(null);
   
   // Custom hooks - use fixed canvas layout
@@ -85,7 +86,7 @@ const PixelAdventure: React.FC = () => {
     handleInteraction: (onLocationChange) => {
       // Handle message board interactions specifically
       if (updatedBuildingInteractions.currentInteractionZone?.id === 'message-board-create') {
-        setShowMessageBoardCreate(true);
+        setTriggerCreateModal(true);
         return;
       }
       
@@ -204,6 +205,8 @@ const PixelAdventure: React.FC = () => {
           mapRect={mapRect}
           showCreateButton={showMessageBoardCreate}
           onCreateClick={() => setShowMessageBoardCreate(false)}
+          triggerCreateModal={triggerCreateModal}
+          onModalTriggered={() => setTriggerCreateModal(false)}
         />
       )}
 
