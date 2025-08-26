@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { MultiplayerPlayer, MultiplayerState, Position, GameLocation } from '../types';
-import { PartyKitClient } from '../../../multiplayer/PartyKitClient';
+import { PartyKitClient } from '../multiplayer/PartyKitClient';
 import { canvasToScreenPosition, gameConfig } from '../utils';
 import {
   PlayerUpdateMessage,
   HeartbeatMessage,
   ServerMessage,
   PlayerState,
-} from '../../../multiplayer/types';
+} from '../multiplayer/types';
 
 interface UsePartyKitMultiplayerProps {
   currentLocation: GameLocation;
