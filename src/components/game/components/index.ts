@@ -10,3 +10,6 @@ export { CharacterSelect } from './CharacterSelect';
 export { PlayerDebugInfo } from './PlayerDebugInfo';
 export { DebugPanel } from './DebugPanel';
 export { ProximityVisualization } from './ProximityVisualization';
+export { MessageBoard } from './MessageBoard';
+export { DiaryEntry, type DiaryEntryData } from './DiaryEntry';
+export { DiaryEntryModal } from './DiaryEntryModal';
