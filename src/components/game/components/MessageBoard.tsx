@@ -127,15 +127,22 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
   };
 
   const getEntryPosition = (index: number) => {
-    const cols = 6; // More columns for compact layout
-    const cardWidth = 140; // Much smaller width
-    const cardHeight = 100; // Much smaller height
-    const gap = 12; // Smaller gap between cards
+    const cardWidth = 140; // Card width
+    const cardHeight = 100; // Card height
+    const gap = 12; // Gap between cards
     const startX = 20; // Start from top left with small margin
     const startY = 20; // Start from top with small margin
+    const marginRight = 20; // Right margin to match left
     
-    const row = Math.floor(index / cols);
-    const col = index % cols;
+    // Calculate how many columns can fit in the available width
+    const availableWidth = mapRect.width - startX - marginRight;
+    const cols = Math.floor((availableWidth + gap) / (cardWidth + gap));
+    
+    // Ensure at least 1 column
+    const actualCols = Math.max(1, cols);
+    
+    const row = Math.floor(index / actualCols);
+    const col = index % actualCols;
     
     return {
       x: startX + col * (cardWidth + gap),
