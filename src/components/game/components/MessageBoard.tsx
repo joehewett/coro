@@ -40,9 +40,11 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
     }
   }, [triggerCreateModal, onModalTriggered]);
 
-  const loadEntries = async () => {
+  const loadEntries = async (showLoading = true) => {
     try {
-      setLoadingEntries(true);
+      if (showLoading) {
+        setLoadingEntries(true);
+      }
       const { data, error } = await supabase
         .from('diary_entries')
         .select('*')
@@ -54,10 +56,20 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
       }
 
       setEntries(data || []);
+      
+      // Update editingEntry if it exists and modal is open
+      if (editingEntry && isModalOpen) {
+        const updatedEntry = data?.find(entry => entry.id === editingEntry.id);
+        if (updatedEntry) {
+          setEditingEntry(updatedEntry);
+        }
+      }
     } catch (error) {
       console.error('Error loading diary entries:', error);
     } finally {
-      setLoadingEntries(false);
+      if (showLoading) {
+        setLoadingEntries(false);
+      }
     }
   };
 
@@ -202,6 +214,9 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
         onSubmit={handleSubmitEntry}
         editingEntry={editingEntry}
         isLoading={isLoading}
+        currentPlayerId={currentPlayerId}
+        currentPlayerName={currentPlayerName}
+        onAutoSave={() => loadEntries(false)}
       />
     </>
   );
