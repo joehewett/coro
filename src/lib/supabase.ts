@@ -55,6 +55,34 @@ export interface Database {
           last_update?: string
         }
       }
+      diary_entries: {
+        Row: {
+          id: string
+          player_id: string
+          player_name: string | null
+          title: string
+          content: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          player_id: string
+          player_name?: string | null
+          title: string
+          content: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          player_id?: string
+          player_name?: string | null
+          title?: string
+          content?: string
+          updated_at?: string
+        }
+      }
     }
   }
 }

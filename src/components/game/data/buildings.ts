@@ -181,6 +181,16 @@ export const buildings: Building[] = [
         relativeHeight: 0.15,
         targetLocation: GameLocation.LIBRARY,
         description: 'Exit to Library'
+      },
+      {
+        id: 'message-board-create',
+        name: 'Create Entry',
+        relativeX: 0.35,
+        relativeY: 0.05,
+        relativeWidth: 0.3,
+        relativeHeight: 0.1,
+        targetLocation: GameLocation.BOOK_ROOM, // Stay in same room
+        description: 'Create new diary entry'
       }
     ]
   }

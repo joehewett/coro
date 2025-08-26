@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GameLocation } from './types';
-import { GameMap, Character, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect, PlayerDebugInfo, ProximityVisualization } from './components';
+import { GameMap, Character, LoadingScreen, InteractionZones, BuildingInteractionPrompt, MultiplayerPlayers, ConnectionStatus, CharacterSelect, PlayerDebugInfo, ProximityVisualization, MessageBoard } from './components';
 import { 
   useFixedCanvasLayout,
   usePlayerMovement, 
@@ -18,6 +18,7 @@ const PixelAdventure: React.FC = () => {
   const [currentLocation, setCurrentLocation] = useState<GameLocation>(GameLocation.VILLAGE);
   const [selectedCharacter, setSelectedCharacter] = useState<'coro' | 'joe' | null>(null);
   const [showDebug, setShowDebug] = useState(true); // Enable debug mode by default
+  const [showMessageBoardCreate, setShowMessageBoardCreate] = useState(false);
   const gameContainerRef = useRef<HTMLDivElement>(null);
   
   // Custom hooks - use fixed canvas layout
@@ -70,6 +71,11 @@ const PixelAdventure: React.FC = () => {
     }
   }, []);
 
+  // Reset message board state when changing locations
+  useEffect(() => {
+    setShowMessageBoardCreate(false);
+  }, [currentLocation]);
+
   // Game loop
   useGameLoop({
     updatePlayerPosition: playerMovement.updatePosition,
@@ -77,6 +83,12 @@ const PixelAdventure: React.FC = () => {
     handlePlayerKeyDown: playerMovement.handleKeyDown,
     handlePlayerKeyUp: playerMovement.handleKeyUp,
     handleInteraction: (onLocationChange) => {
+      // Handle message board interactions specifically
+      if (updatedBuildingInteractions.currentInteractionZone?.id === 'message-board-create') {
+        setShowMessageBoardCreate(true);
+        return;
+      }
+      
       // Try building interaction first, then NPC interaction
       if (updatedBuildingInteractions.currentInteractionZone) {
         updatedBuildingInteractions.handleBuildingInteraction(onLocationChange);
@@ -183,6 +195,17 @@ const PixelAdventure: React.FC = () => {
         showInteractionPrompt={updatedBuildingInteractions.showInteractionPrompt}
         showDebug={showDebug}
       /> */}
+
+      {/* Message Board for Book Room */}
+      {currentLocation === GameLocation.BOOK_ROOM && (
+        <MessageBoard
+          currentPlayerId={multiplayer.currentPlayerId}
+          currentPlayerName={selectedCharacter ?? 'Player'}
+          mapRect={mapRect}
+          showCreateButton={showMessageBoardCreate}
+          onCreateClick={() => setShowMessageBoardCreate(false)}
+        />
+      )}
 
       {/* Debug Toggle Button */}
       <button
