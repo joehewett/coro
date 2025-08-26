@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { DiaryEntryData } from './DiaryEntry';
+import { supabase } from '../lib/supabase';
 
 interface DiaryEntryModalProps {
   isOpen: boolean;
@@ -7,6 +8,9 @@ interface DiaryEntryModalProps {
   onSubmit: (data: { title: string; content: string }) => Promise<void>;
   editingEntry?: DiaryEntryData | null;
   isLoading?: boolean;
+  currentPlayerId?: string | null;
+  currentPlayerName?: string | null;
+  onAutoSave?: () => void;
 }
 
 export const DiaryEntryModal: React.FC<DiaryEntryModalProps> = ({
@@ -14,11 +18,16 @@ export const DiaryEntryModal: React.FC<DiaryEntryModalProps> = ({
   onClose,
   onSubmit,
   editingEntry,
-  isLoading = false
+  isLoading = false,
+  currentPlayerId,
+  currentPlayerName,
+  onAutoSave
 }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [preview, setPreview] = useState(false);
+  const [autoSaveStatus, setAutoSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [draftEntryId, setDraftEntryId] = useState<string | null>(null);
 
   // Reset form when modal opens/closes or editing entry changes
   useEffect(() => {
@@ -26,13 +35,122 @@ export const DiaryEntryModal: React.FC<DiaryEntryModalProps> = ({
       if (editingEntry) {
         setTitle(editingEntry.title);
         setContent(editingEntry.content);
+        setDraftEntryId(editingEntry.id);
       } else {
         setTitle('');
         setContent('');
+        setDraftEntryId(null);
       }
       setPreview(false);
+      setAutoSaveStatus('idle');
     }
   }, [isOpen, editingEntry]);
+
+  // Update form content when editingEntry changes (due to auto-save refreshes)
+  useEffect(() => {
+    if (isOpen && editingEntry && autoSaveStatus === 'saved') {
+      // Only update if we just finished an auto-save to prevent overwriting user input
+      setTitle(editingEntry.title);
+      setContent(editingEntry.content);
+    }
+  }, [editingEntry?.updated_at, isOpen, autoSaveStatus]);
+
+  // Auto-save functionality
+  const autoSaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const performAutoSave = useCallback(async (titleValue: string, contentValue: string) => {
+    if (!currentPlayerId || (!titleValue.trim() && !contentValue.trim())) {
+      return;
+    }
+
+    setAutoSaveStatus('saving');
+
+    try {
+      if (editingEntry) {
+        // Update existing entry
+        const { error } = await supabase
+          .from('diary_entries')
+          .update({
+            title: titleValue || 'Untitled',
+            content: contentValue,
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', editingEntry.id)
+          .eq('player_id', currentPlayerId);
+
+        if (error) throw error;
+      } else {
+        // Create or update draft entry
+        if (draftEntryId) {
+          // Update existing draft
+          const { error } = await supabase
+            .from('diary_entries')
+            .update({
+              title: titleValue || 'Untitled',
+              content: contentValue,
+              updated_at: new Date().toISOString()
+            })
+            .eq('id', draftEntryId)
+            .eq('player_id', currentPlayerId);
+
+          if (error) throw error;
+        } else {
+          // Create new draft entry
+          const { data, error } = await supabase
+            .from('diary_entries')
+            .insert({
+              player_id: currentPlayerId,
+              player_name: currentPlayerName,
+              title: titleValue || 'Untitled',
+              content: contentValue
+            })
+            .select('id')
+            .single();
+
+          if (error) throw error;
+          if (data) {
+            setDraftEntryId(data.id);
+          }
+        }
+      }
+
+      setAutoSaveStatus('saved');
+      
+      // Notify parent component to refresh entries
+      onAutoSave?.();
+      
+      // Reset to idle after 2 seconds
+      setTimeout(() => setAutoSaveStatus('idle'), 2000);
+    } catch (error) {
+      console.error('Auto-save error:', error);
+      setAutoSaveStatus('error');
+      
+      // Reset to idle after 3 seconds
+      setTimeout(() => setAutoSaveStatus('idle'), 3000);
+    }
+  }, [currentPlayerId, currentPlayerName, editingEntry, draftEntryId]);
+
+  // Debounced auto-save effect
+  useEffect(() => {
+    if (!isOpen) return;
+
+    // Clear existing timeout
+    if (autoSaveTimeoutRef.current) {
+      clearTimeout(autoSaveTimeoutRef.current);
+    }
+
+    // Set new timeout for auto-save (3 seconds after user stops typing)
+    autoSaveTimeoutRef.current = setTimeout(() => {
+      performAutoSave(title, content);
+    }, 3000);
+
+    // Cleanup timeout on unmount or dependency change
+    return () => {
+      if (autoSaveTimeoutRef.current) {
+        clearTimeout(autoSaveTimeoutRef.current);
+      }
+    };
+  }, [title, content, isOpen, performAutoSave]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,9 +225,33 @@ export const DiaryEntryModal: React.FC<DiaryEntryModalProps> = ({
             </div>
 
             <div className="flex justify-between items-center">
-              <label htmlFor="content" className="block text-sm font-medium text-amber-900">
-                Content
-              </label>
+              <div className="flex items-center space-x-3">
+                <label htmlFor="content" className="block text-sm font-medium text-amber-900">
+                  Content
+                </label>
+                {autoSaveStatus !== 'idle' && (
+                  <div className="flex items-center space-x-1 text-xs">
+                    {autoSaveStatus === 'saving' && (
+                      <>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                        <span className="text-blue-600">Saving...</span>
+                      </>
+                    )}
+                    {autoSaveStatus === 'saved' && (
+                      <>
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span className="text-green-600">Saved</span>
+                      </>
+                    )}
+                    {autoSaveStatus === 'error' && (
+                      <>
+                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                        <span className="text-red-600">Save failed</span>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
               <button
                 type="button"
                 onClick={() => setPreview(!preview)}
