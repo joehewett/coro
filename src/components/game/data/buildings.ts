@@ -1,4 +1,5 @@
 import { Building, GameLocation, InteractionZone } from '../types';
+import { InteractionType } from '../types/interactions';
 
 export const buildings: Building[] = [
   {
@@ -15,8 +16,12 @@ export const buildings: Building[] = [
         relativeY: 0.20,
         relativeWidth: 0.20,
         relativeHeight: 0.15,
-        targetLocation: GameLocation.LIBRARY,
-        description: 'Enter the Library'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.LIBRARY
+        },
+        description: 'Enter the Library',
+        targetLocation: GameLocation.LIBRARY // Deprecated - for backwards compatibility
       },
       {
         id: 'house1-entrance',
@@ -25,8 +30,12 @@ export const buildings: Building[] = [
         relativeY: 0.10,
         relativeWidth: 0.20,
         relativeHeight: 0.20,
-        targetLocation: GameLocation.HOUSE_1,
-        description: 'Enter House 1'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.HOUSE_1
+        },
+        description: 'Enter House 1',
+        targetLocation: GameLocation.HOUSE_1 // Deprecated - for backwards compatibility
       },
       {
         id: 'house2-entrance',
@@ -35,8 +44,12 @@ export const buildings: Building[] = [
         relativeY: 0.45,
         relativeWidth: 0.15,
         relativeHeight: 0.30,
-        targetLocation: GameLocation.HOUSE_2,
-        description: 'Enter House 2'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.HOUSE_2
+        },
+        description: 'Enter House 2',
+        targetLocation: GameLocation.HOUSE_2 // Deprecated - for backwards compatibility
       },
       {
         id: 'shop-entrance',
@@ -45,8 +58,12 @@ export const buildings: Building[] = [
         relativeY: 0.53,
         relativeWidth: 0.12,
         relativeHeight: 0.15,
-        targetLocation: GameLocation.SHOP,
-        description: 'Enter the Shop'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.SHOP
+        },
+        description: 'Enter the Shop',
+        targetLocation: GameLocation.SHOP // Deprecated - for backwards compatibility
       },
       {
         id: 'blacksmith-entrance',
@@ -55,8 +72,12 @@ export const buildings: Building[] = [
         relativeY: 0.60,
         relativeWidth: 0.17,
         relativeHeight: 0.15,
-        targetLocation: GameLocation.BLACKSMITH, // Temporary - goes to library
-        description: 'Enter the Blacksmith'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.BLACKSMITH
+        },
+        description: 'Enter the Blacksmith',
+        targetLocation: GameLocation.BLACKSMITH // Deprecated - for backwards compatibility
       }
     ]
   },
@@ -74,8 +95,12 @@ export const buildings: Building[] = [
         relativeY: 0.8,
         relativeWidth: 0.15,
         relativeHeight: 0.15,
-        targetLocation: GameLocation.VILLAGE,
-        description: 'Exit to Village'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.VILLAGE
+        },
+        description: 'Exit to Village',
+        targetLocation: GameLocation.VILLAGE // Deprecated - for backwards compatibility
       }
     ]
   },
@@ -93,8 +118,26 @@ export const buildings: Building[] = [
         relativeY: 0.8,
         relativeWidth: 0.15,
         relativeHeight: 0.15,
-        targetLocation: GameLocation.VILLAGE,
-        description: 'Exit to Village'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.VILLAGE
+        },
+        description: 'Exit to Village',
+        targetLocation: GameLocation.VILLAGE // Deprecated - for backwards compatibility
+      },
+      {
+        id: 'bookshelf-reviews',
+        name: 'Book Reviews',
+        relativeX: 0.7, // Right side bookshelf
+        relativeY: 0.3,
+        relativeWidth: 0.2,
+        relativeHeight: 0.4,
+        interaction: {
+          type: InteractionType.COMPONENT,
+          componentId: 'book-reviews',
+          action: 'show'
+        },
+        description: 'Browse and add book reviews'
       },
       {
         id: 'book-entrance',
@@ -103,14 +146,18 @@ export const buildings: Building[] = [
         relativeY: 0.4,
         relativeWidth: 0.2,
         relativeHeight: 0.2,
-        targetLocation: GameLocation.BOOK_ROOM,
-        description: 'Enter the Book'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.BOOK_ROOM
+        },
+        description: 'Enter the Book',
+        targetLocation: GameLocation.BOOK_ROOM // Deprecated - for backwards compatibility
       }
     ]
   },
   {
     id: 'house1',
-    name: 'House 1',
+    name: 'House 1 (Hospital)',
     location: GameLocation.HOUSE_1,
     imageSrc: '/game/witchhouse.webp', // You'll need to add these images
     altText: 'House 1 Interior',
@@ -122,8 +169,29 @@ export const buildings: Building[] = [
         relativeY: 0.8,
         relativeWidth: 0.15,
         relativeHeight: 0.15,
-        targetLocation: GameLocation.VILLAGE,
-        description: 'Exit to Village'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.VILLAGE
+        },
+        description: 'Exit to Village',
+        targetLocation: GameLocation.VILLAGE // Deprecated - for backwards compatibility
+      },
+      {
+        id: 'medicine-cabinet',
+        name: 'Medicine Cabinet',
+        relativeX: 0.6,
+        relativeY: 0.2,
+        relativeWidth: 0.25,
+        relativeHeight: 0.3,
+        interaction: {
+          type: InteractionType.COMPONENT,
+          componentId: 'health-recipes',
+          action: 'show',
+          componentProps: {
+            recipeType: 'healing'
+          }
+        },
+        description: 'View healing recipes and remedies'
       }
     ]
   },
@@ -141,8 +209,12 @@ export const buildings: Building[] = [
         relativeY: 0.8,
         relativeWidth: 0.15,
         relativeHeight: 0.15,
-        targetLocation: GameLocation.VILLAGE,
-        description: 'Exit to Village'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.VILLAGE
+        },
+        description: 'Exit to Village',
+        targetLocation: GameLocation.VILLAGE // Deprecated - for backwards compatibility
       }
     ]
   }, 
@@ -160,8 +232,12 @@ export const buildings: Building[] = [
         relativeY: 0.8,
         relativeWidth: 0.15,
         relativeHeight: 0.15,
-        targetLocation: GameLocation.VILLAGE,
-        description: 'Exit to Village'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.VILLAGE
+        },
+        description: 'Exit to Village',
+        targetLocation: GameLocation.VILLAGE // Deprecated - for backwards compatibility
       }
     ]
   },
@@ -179,8 +255,12 @@ export const buildings: Building[] = [
         relativeY: 0.8,
         relativeWidth: 0.15,
         relativeHeight: 0.15,
-        targetLocation: GameLocation.LIBRARY,
-        description: 'Exit to Library'
+        interaction: {
+          type: InteractionType.NAVIGATION,
+          targetLocation: GameLocation.LIBRARY
+        },
+        description: 'Exit to Library',
+        targetLocation: GameLocation.LIBRARY // Deprecated - for backwards compatibility
       },
       {
         id: 'message-board-create',
@@ -189,8 +269,12 @@ export const buildings: Building[] = [
         relativeY: 0.05,
         relativeWidth: 0.3,
         relativeHeight: 0.1,
-        targetLocation: GameLocation.BOOK_ROOM, // Stay in same room
-        description: 'Create new diary entry'
+        interaction: {
+          type: InteractionType.MODAL,
+          modalId: 'diary-entry-create'
+        },
+        description: 'Create new diary entry',
+        targetLocation: GameLocation.BOOK_ROOM // Deprecated - for backwards compatibility
       }
     ]
   }

@@ -10,7 +10,8 @@ import {
   useBuildingInteractions,
   useImageBounds,
   usePartyKitMultiplayer,
-  useCenteredFixedCanvasLayout
+  useCenteredFixedCanvasLayout,
+  useInteractionSystem
 } from './hooks';
 import { getInteractionZonesForLocation, convertRelativeZonesToCanvas } from './utils';
 
@@ -18,7 +19,7 @@ const PixelAdventure: React.FC = () => {
   const [currentLocation, setCurrentLocation] = useState<GameLocation>(GameLocation.VILLAGE);
   const [selectedCharacter, setSelectedCharacter] = useState<'coro' | 'joe' | null>(null);
   const [showDebug, setShowDebug] = useState(true); // Enable debug mode by default
-  const [triggerCreateModal, setTriggerCreateModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const gameContainerRef = useRef<HTMLDivElement>(null);
   
   // Custom hooks - use fixed canvas layout
@@ -51,6 +52,14 @@ const PixelAdventure: React.FC = () => {
     imageBounds: imageBounds.imageBounds
   });
 
+  // New interaction system
+  const interactionSystem = useInteractionSystem({
+    currentLocation,
+    playerPosition: playerMovement.canvasPosition,
+    onLocationChange: setCurrentLocation,
+    setLoading: setIsLoading
+  });
+
   // Multiplayer functionality - use canvas coordinates
   const multiplayer = usePartyKitMultiplayer({
     currentLocation,
@@ -78,9 +87,20 @@ const PixelAdventure: React.FC = () => {
     handlePlayerKeyDown: playerMovement.handleKeyDown,
     handlePlayerKeyUp: playerMovement.handleKeyUp,
     handleInteraction: (onLocationChange) => {
-      // Handle message board interactions specifically
+      // Use new interaction system if available
+      if (updatedBuildingInteractions.currentInteractionZone?.interaction) {
+        interactionSystem.executeInteraction(updatedBuildingInteractions.currentInteractionZone);
+        return;
+      }
+      
+      // Fallback to old system for backwards compatibility
       if (updatedBuildingInteractions.currentInteractionZone?.id === 'message-board-create') {
-        setTriggerCreateModal(true);
+        interactionSystem.executeInteraction({
+          interaction: {
+            type: 'modal',
+            modalId: 'diary-entry-create'
+          }
+        });
         return;
       }
       
@@ -162,7 +182,7 @@ const PixelAdventure: React.FC = () => {
         mapRect={mapRect}
       />
 
-      <LoadingScreen isLoading={gameState.isLoading || updatedBuildingInteractions.isLoading} />
+      <LoadingScreen isLoading={gameState.isLoading || updatedBuildingInteractions.isLoading || isLoading} />
       
       {/* Connection status indicator */}
       <ConnectionStatus 
@@ -197,8 +217,8 @@ const PixelAdventure: React.FC = () => {
           currentPlayerId={multiplayer.currentPlayerId}
           currentPlayerName={selectedCharacter ?? 'Player'}
           mapRect={mapRect}
-          triggerCreateModal={triggerCreateModal}
-          onModalTriggered={() => setTriggerCreateModal(false)}
+          triggerCreateModal={interactionSystem.isModalTriggered('diary-entry-create')}
+          onModalTriggered={() => interactionSystem.clearModalTrigger('diary-entry-create')}
         />
       )}
 

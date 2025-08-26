@@ -1,3 +1,5 @@
+import { InteractionData } from './interactions';
+
 export interface Position {
   x: number;
   y: number;
@@ -57,13 +59,16 @@ export interface InteractionZone {
   relativeY: number;
   relativeWidth: number;
   relativeHeight: number;
-  targetLocation: GameLocation;
+  // New interaction system
+  interaction: InteractionData;
   description?: string;
   // Computed absolute coordinates (set at runtime)
   x?: number;
   y?: number;
   width?: number;
   height?: number;
+  // Deprecated - kept for backwards compatibility during migration
+  targetLocation?: GameLocation;
 }
 
 export interface Building {
