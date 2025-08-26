@@ -87,29 +87,14 @@ const PixelAdventure: React.FC = () => {
     handlePlayerKeyDown: playerMovement.handleKeyDown,
     handlePlayerKeyUp: playerMovement.handleKeyUp,
     handleInteraction: (onLocationChange) => {
-      // Use new interaction system if available
+      // Use new interaction system for building interactions
       if (updatedBuildingInteractions.currentInteractionZone?.interaction) {
         interactionSystem.executeInteraction(updatedBuildingInteractions.currentInteractionZone);
         return;
       }
       
-      // Fallback to old system for backwards compatibility
-      if (updatedBuildingInteractions.currentInteractionZone?.id === 'message-board-create') {
-        interactionSystem.executeInteraction({
-          interaction: {
-            type: 'modal',
-            modalId: 'diary-entry-create'
-          }
-        });
-        return;
-      }
-      
-      // Try building interaction first, then NPC interaction
-      if (updatedBuildingInteractions.currentInteractionZone) {
-        updatedBuildingInteractions.handleBuildingInteraction(onLocationChange);
-      } else {
-        gameState.handleInteraction(onLocationChange);
-      }
+      // Fallback to NPC interactions if no building interaction zone
+      // gameState.handleInteraction(onLocationChange);
     },
     onLocationChange: setCurrentLocation,
     mapRect
@@ -182,7 +167,7 @@ const PixelAdventure: React.FC = () => {
         mapRect={mapRect}
       />
 
-      <LoadingScreen isLoading={gameState.isLoading || updatedBuildingInteractions.isLoading || isLoading} />
+      <LoadingScreen isLoading={gameState.isLoading || isLoading} />
       
       {/* Connection status indicator */}
       <ConnectionStatus 

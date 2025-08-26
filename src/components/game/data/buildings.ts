@@ -20,8 +20,7 @@ export const buildings: Building[] = [
           type: InteractionType.NAVIGATION,
           targetLocation: GameLocation.LIBRARY
         },
-        description: 'Enter the Library',
-        targetLocation: GameLocation.LIBRARY // Deprecated - for backwards compatibility
+        description: 'Enter the Library'
       },
       {
         id: 'house1-entrance',
@@ -35,7 +34,7 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.HOUSE_1
         },
         description: 'Enter House 1',
-        targetLocation: GameLocation.HOUSE_1 // Deprecated - for backwards compatibility
+
       },
       {
         id: 'house2-entrance',
@@ -49,7 +48,7 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.HOUSE_2
         },
         description: 'Enter House 2',
-        targetLocation: GameLocation.HOUSE_2 // Deprecated - for backwards compatibility
+
       },
       {
         id: 'shop-entrance',
@@ -63,7 +62,7 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.SHOP
         },
         description: 'Enter the Shop',
-        targetLocation: GameLocation.SHOP // Deprecated - for backwards compatibility
+
       },
       {
         id: 'blacksmith-entrance',
@@ -77,7 +76,7 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.BLACKSMITH
         },
         description: 'Enter the Blacksmith',
-        targetLocation: GameLocation.BLACKSMITH // Deprecated - for backwards compatibility
+
       }
     ]
   },
@@ -100,7 +99,7 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.VILLAGE
         },
         description: 'Exit to Village',
-        targetLocation: GameLocation.VILLAGE // Deprecated - for backwards compatibility
+
       }
     ]
   },
@@ -123,7 +122,7 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.VILLAGE
         },
         description: 'Exit to Village',
-        targetLocation: GameLocation.VILLAGE // Deprecated - for backwards compatibility
+
       },
       {
         id: 'bookshelf-reviews',
@@ -151,13 +150,13 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.BOOK_ROOM
         },
         description: 'Enter the Book',
-        targetLocation: GameLocation.BOOK_ROOM // Deprecated - for backwards compatibility
+
       }
     ]
   },
   {
     id: 'house1',
-    name: 'House 1 (Hospital)',
+    name: 'Healing House',
     location: GameLocation.HOUSE_1,
     imageSrc: '/game/witchhouse.webp', // You'll need to add these images
     altText: 'House 1 Interior',
@@ -174,7 +173,7 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.VILLAGE
         },
         description: 'Exit to Village',
-        targetLocation: GameLocation.VILLAGE // Deprecated - for backwards compatibility
+
       },
       {
         id: 'medicine-cabinet',
@@ -199,7 +198,7 @@ export const buildings: Building[] = [
     id: 'house2',
     name: 'House 2',
     location: GameLocation.HOUSE_2,
-    imageSrc: '/game/house2.webp',
+    imageSrc: '/game/warroom.webp',
     altText: 'House 2 Interior',
     interactionZones: [
       {
@@ -214,7 +213,7 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.VILLAGE
         },
         description: 'Exit to Village',
-        targetLocation: GameLocation.VILLAGE // Deprecated - for backwards compatibility
+
       }
     ]
   }, 
@@ -237,7 +236,7 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.VILLAGE
         },
         description: 'Exit to Village',
-        targetLocation: GameLocation.VILLAGE // Deprecated - for backwards compatibility
+
       }
     ]
   },
@@ -260,7 +259,7 @@ export const buildings: Building[] = [
           targetLocation: GameLocation.LIBRARY
         },
         description: 'Exit to Library',
-        targetLocation: GameLocation.LIBRARY // Deprecated - for backwards compatibility
+
       },
       {
         id: 'message-board-create',
@@ -274,7 +273,7 @@ export const buildings: Building[] = [
           modalId: 'diary-entry-create'
         },
         description: 'Create new diary entry',
-        targetLocation: GameLocation.BOOK_ROOM // Deprecated - for backwards compatibility
+
       }
     ]
   }

@@ -1,4 +1,4 @@
-import { InteractionData } from './interactions';
+import { InteractionData } from './types/interactions';
 
 export interface Position {
   x: number;
@@ -67,8 +67,6 @@ export interface InteractionZone {
   y?: number;
   width?: number;
   height?: number;
-  // Deprecated - kept for backwards compatibility during migration
-  targetLocation?: GameLocation;
 }
 
 export interface Building {
