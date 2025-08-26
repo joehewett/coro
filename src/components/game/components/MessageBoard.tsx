@@ -114,45 +114,13 @@ export const MessageBoard: React.FC<MessageBoardProps> = ({
     }
   };
 
-  // Calculate responsive grid layout
-  const calculateGridLayout = () => {
-    const totalEntries = entries.length;
-    const containerPadding = 60;
-    const availableWidth = mapRect.width - (2 * containerPadding);
-    const availableHeight = mapRect.height - 180; // Reserve space for header and create button
-    
-    // Determine optimal columns based on screen size and entry count
-    let cols: number;
-    let cardWidth: number;
-    let cardHeight: number;
-    
-    if (availableWidth > 1200) {
-      cols = Math.min(4, Math.ceil(Math.sqrt(totalEntries * 1.2)));
-      cardWidth = 280;
-      cardHeight = 200;
-    } else if (availableWidth > 800) {
-      cols = Math.min(3, Math.ceil(Math.sqrt(totalEntries)));
-      cardWidth = 260;
-      cardHeight = 180;
-    } else {
-      cols = Math.min(2, Math.ceil(Math.sqrt(totalEntries)));
-      cardWidth = 240;
-      cardHeight = 160;
-    }
-    
-    const gap = 24;
-    const actualCardWidth = Math.min(cardWidth, (availableWidth - (cols - 1) * gap) / cols);
-    
-    return { cols, cardWidth: actualCardWidth, cardHeight, gap };
-  };
-
   const getEntryPosition = (index: number) => {
-    const { cols, cardWidth, cardHeight, gap } = calculateGridLayout();
-    const containerPadding = 60;
-    
-    const totalGridWidth = cols * cardWidth + (cols - 1) * gap;
-    const startX = containerPadding + (mapRect.width - 2 * containerPadding - totalGridWidth) / 2;
-    const startY = 120; // Space for header and create button
+    const cols = 6; // More columns for compact layout
+    const cardWidth = 140; // Much smaller width
+    const cardHeight = 100; // Much smaller height
+    const gap = 12; // Smaller gap between cards
+    const startX = 20; // Start from top left with small margin
+    const startY = 20; // Start from top with small margin
     
     const row = Math.floor(index / cols);
     const col = index % cols;
