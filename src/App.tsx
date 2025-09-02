@@ -15,7 +15,6 @@ import EchoesOfTomorrow from './components/projects/EchoesOfTomorrow';
 import LiveAtSunset from './components/projects/LiveAtSunset';
 import PersonalJourney from './components/projects/PersonalJourney';
 import BehindTheScenes from './components/projects/BehindTheScenes';
-import PixelAdventure from './components/game/PixelAdventure';
 import MusicPlayer from './components/MusicPlayer';
 
 const App: React.FC = () => {
@@ -49,9 +48,6 @@ const App: React.FC = () => {
         {/* Personal project pages */}
         <Route path="/me/personal-journey" element={<PersonalJourney />} />
         <Route path="/me/behind-the-scenes" element={<BehindTheScenes />} />
-        
-        {/* Secret game route */}
-        <Route path="/secret" element={<PixelAdventure />} />
       </Routes>
       {/* Global music player */}
       <MusicPlayer />
