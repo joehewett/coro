@@ -3,21 +3,28 @@ import ProjectPage from '../ProjectPage';
 
 const PalomitasSinMaiz: React.FC = () => {
   const credits = [
-    { name: 'Gabrielle Torreborre', role: 'Director & Editor' },
-    { name: 'Coro Benavent', role: 'Producer & Starring', isHighlighted: true },
-    { name: 'Gully', role: 'Starring' },
+    { name: 'Garo Studios', role: 'Created by' },
+    { name: 'Coro Benavent', role: 'Starring', isHighlighted: true },
+    { name: 'Gulliver Trim', role: 'Starring' },
     { name: 'Dinah Stabb', role: 'Starring' },
+    { name: 'Gabrielle Torreborre', role: 'Director' },
+    { name: 'Coro Benavent', role: 'Producer', isHighlighted: true },
     { name: 'James Lahaise', role: 'DOP' },
-    { name: 'Lucia Larah', role: '1st AD' },
-    { name: 'Kate Klvrnv', role: 'AC' },
+    { name: 'Lucia Lara', role: '1st AD' },
+    { name: 'Kate Lovrinov', role: 'AC' },
     { name: 'Lewis Taylor', role: 'Camera Trainee' },
-    { name: 'Gina Jatkinson', role: 'Art Director' },
-    { name: 'Megha Maruca', role: 'Costume Designer' },
-    { name: 'Aanandita Dhar', role: 'Hair Stylist' },
-    { name: 'Mash A', role: 'MUA' },
+    { name: 'Gina Atkinson', role: 'Art Director' },
+    { name: 'Megha Maria Maruca', role: 'Costume Designer' },
+    { name: 'Aanandita Dhar', role: 'Hair' },
+    { name: 'Maria Beker', role: 'MUA' },
     { name: 'Jane Giubbilei', role: 'MUA' },
-    { name: 'Teppnox', role: 'BTS Photography' },
-    { name: 'Santino Colour', role: 'Colourist' }
+    { name: 'Paul Bianchi', role: 'BTS Photography' },
+    { name: 'Gabrielle Torreborre', role: 'Editor' },
+    { name: 'Company 3', role: 'Colour' },
+    { name: 'Santino Napolitano', role: 'Colourist' },
+    { name: 'FOMO Rentals', role: 'Kit' },
+    { name: 'Kodak', role: 'Film' },
+    { name: 'Digital Orchard', role: 'Development and Scan' }
   ];
 
   const description = `Palomitas sin maíz is an deeply personal music video born from grief and love - a song I wrote to my grandmother on the day she passed away in May 2025. This project explores my relationship with her and the other powerful female role models in my life, creating a visual narrative that honors their influence on who I am as an artist and person.
