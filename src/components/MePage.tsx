@@ -11,9 +11,9 @@ const MePage: React.FC = () => {
       />
       
       <div className="px-10 max-w-4xl mx-auto py-16">
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
+        <div className="flex flex-col gap-12 items-center">
           {/* Photo */}
-          <div className="lg:w-1/3 w-full">
+          <div className="w-full">
             <img 
               src="/coro3.webp" 
               alt="Coro Benavent"
@@ -22,7 +22,7 @@ const MePage: React.FC = () => {
           </div>
           
           {/* Description */}
-          <div className="lg:w-2/3 w-full">
+          <div className="w-full">
             <h1 className="text-4xl font-bold text-white font-handwritten mb-6">
               Actress, Director, Singer
             </h1>
@@ -33,7 +33,7 @@ const MePage: React.FC = () => {
               </p>
               
               <p>
-                In August 2025, I am officially starting a production company with my co-creative partner Gabrielle Torreborre :)
+                In August 2025, I started a production company with my co-creative partner Gabrielle Torreborre :)
               </p>
               
               <p>
