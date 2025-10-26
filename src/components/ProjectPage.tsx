@@ -10,7 +10,7 @@ interface ProjectPageProps {
   credits: Array<{ name: string; role: string; isHighlighted?: boolean }>;
   description: string;
   mainImage: string;
-  additionalInfo: string;
+  additionalInfo?: string;
 }
 
 const ProjectPage: React.FC<ProjectPageProps> = ({
@@ -41,13 +41,31 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
 
       {/* Main content */}
       <div className="max-w-7xl mx-auto px-10 py-15">
+        {/* Image at top, same width as columns */}
+        <div className="w-full mb-15">
+          <img 
+            src={mainImage}
+            alt={title}
+            className="w-full h-auto"
+          />
+        </div>
         <div className="project-content grid grid-cols-1 lg:grid-cols-2 gap-15 items-start">
-          {/* Left column - Credits and description */}
+          {/* Left column - About the Project */}
+          <div>
+            <h2 className="text-3xl font-bold text-gray-300 mb-5 font-handwritten">
+              About the Project
+            </h2>
+            <p className="text-base leading-relaxed text-gray-300">
+              {description}
+            </p>
+          </div>
+
+          {/* Right column - Cast List */}
           <div>
             <h2 className="text-3xl font-bold text-gray-300 mb-5 font-handwritten">
               Credits
             </h2>
-            <ul className="mb-15 list-none p-0">
+            <ul className="list-none p-0">
               {credits.map((credit, index) => (
                 <li key={index} className="flex justify-between items-center py-3 border-b border-gray-700 last:border-b-0">
                   <span className={credit.isHighlighted ? 'text-gray-300 font-bold' : 'text-white'}>
@@ -59,31 +77,6 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
                 </li>
               ))}
             </ul>
-
-            <div>
-              <h2 className="text-3xl font-bold text-gray-300 mb-5 font-handwritten">
-                About the Project
-              </h2>
-              <p className="text-base leading-relaxed text-gray-300">
-                {description}
-              </p>
-            </div>
-          </div>
-
-          {/* Right column - Image */}
-          <div>
-            <img 
-              src={mainImage}
-              alt={title}
-              className="w-full h-auto"
-            />
-            
-            {/* Additional info below image */}
-            <div className="mt-10 p-8 bg-black border border-gray-700">
-              <p className="text-base leading-relaxed text-gray-300">
-                {additionalInfo}
-              </p>
-            </div>
           </div>
         </div>
       </div>
