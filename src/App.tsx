@@ -13,6 +13,10 @@ import Superglue from './components/projects/Superglue';
 import PadreHijoPastor from './components/projects/PadreHijoPastor';
 import EchoesOfTomorrow from './components/projects/EchoesOfTomorrow';
 import LiveAtSunset from './components/projects/LiveAtSunset';
+import MusicVideo1 from './components/projects/MusicVideo1';
+import MusicVideo2 from './components/projects/MusicVideo2';
+import MusicVideo3 from './components/projects/MusicVideo3';
+import MusicVideo4 from './components/projects/MusicVideo4';
 import PersonalJourney from './components/projects/PersonalJourney';
 import BehindTheScenes from './components/projects/BehindTheScenes';
 import MusicPlayer from './components/MusicPlayer';
@@ -44,6 +48,10 @@ const App: React.FC = () => {
         {/* Musician project pages */}
         <Route path="/musician/echoes-of-tomorrow" element={<EchoesOfTomorrow />} />
         <Route path="/musician/live-at-sunset" element={<LiveAtSunset />} />
+        <Route path="/musician/music-video-1" element={<MusicVideo1 />} />
+        <Route path="/musician/music-video-2" element={<MusicVideo2 />} />
+        <Route path="/musician/music-video-3" element={<MusicVideo3 />} />
+        <Route path="/musician/music-video-4" element={<MusicVideo4 />} />
         
         {/* Personal project pages */}
         <Route path="/me/personal-journey" element={<PersonalJourney />} />

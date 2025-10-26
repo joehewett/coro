@@ -8,16 +8,30 @@ const MusicianPage: React.FC = () => {
     {
       id: 1,
       image: '/coro3.webp',
-      title: 'Echoes of Tomorrow',
-      description: 'Debut album blending electronic and classical elements',
-      route: '/musician/echoes-of-tomorrow'
+      title: 'Palomitas sin Maíz',
+      description: 'CORO & Gully',
+      route: '/musician/music-video-1'
     },
     {
       id: 2,
       image: '/coro7.webp',
-      title: 'Live at Sunset',
-      description: 'Concert recording from the summer festival tour',
-      route: '/musician/live-at-sunset'
+      title: 'Champagne Moon',
+      description: 'CORO',
+      route: '/musician/music-video-2'
+    },
+    {
+      id: 3,
+      image: '/coro11.webp',
+      title: 'The End of the World (Cover)',
+      description: 'CORO & Diego Benavent',
+      route: '/musician/music-video-3'
+    },
+    {
+      id: 4,
+      image: '/coro14.webp',
+      title: 'SUPERGLUE',
+      description: 'CORO & Diego Benavent',
+      route: '/musician/music-video-4'
     }
   ];
 
@@ -29,7 +43,7 @@ const MusicianPage: React.FC = () => {
         categoryAlt="Musician"
       />
       
-      <div className="px-10 max-w-7xl mx-auto pb-16">
+      <div className="px-10 max-w-7xl mx-auto py-48">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {projects.map(project => (
             <ProjectCard

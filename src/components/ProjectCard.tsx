@@ -17,7 +17,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, ro
       onClick={() => navigate(route)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative w-full aspect-square cursor-pointer overflow-hidden bg-black transition-all duration-300 ease-out"
+      className="group relative w-full aspect-video cursor-pointer overflow-hidden bg-black transition-all duration-300 ease-out"
     >
       {/* Project image */}
       <img 
