@@ -21,17 +21,18 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
   const repeatingTitle = Array(20).fill(title).join(' ');
 
   return (
-    <div className="bg-black text-white">
+    <div className="bg-white text-black">
       <Navbar 
         categoryImage={categoryImage}
         categoryRoute={categoryRoute}
         categoryAlt={categoryAlt}
+        lightMode={true}
       />
       
       {/* Main content - full viewport height */}
       <div className="h-screen pt-20 flex flex-col">
         {/* Repeating title bar */}
-        <div className="w-full py-5 overflow-hidden whitespace-nowrap text-5xl font-bold text-gray-300 font-handwritten">
+        <div className="w-full py-5 overflow-hidden whitespace-nowrap text-5xl font-bold text-gray-700 font-handwritten">
           {repeatingTitle}
         </div>
 
@@ -55,7 +56,7 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
       </div>
       
       {/* Footer - off the page */}
-      <Footer />
+      <Footer lightMode={true} />
     </div>
   );
 };

@@ -36,11 +36,12 @@ const MusicianPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black pt-20">
+    <div className="min-h-screen bg-white pt-20">
       <Navbar 
         categoryImage="/landing/bottomrighttext.PNG"
         categoryRoute="/musician"
         categoryAlt="Musician"
+        lightMode={true}
       />
       
       <div className="px-10 max-w-7xl mx-auto py-48">
@@ -56,7 +57,7 @@ const MusicianPage: React.FC = () => {
           ))}
         </div>
       </div>
-      <Footer />
+      <Footer lightMode={true} />
     </div>
   );
 };
