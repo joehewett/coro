@@ -60,14 +60,14 @@ const Homepage: React.FC = () => {
               console.log(`Hovering quadrant ${index}`);
               const overlay = e.currentTarget.querySelector('.overlay') as HTMLElement;
               const textImg = e.currentTarget.querySelector('.text-img') as HTMLElement;
-              if (overlay) overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+              if (overlay) overlay.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
               if (textImg) textImg.style.opacity = '1';
             }}
             onMouseLeave={(e) => {
               if (isMobile()) return; // Skip hover effects on mobile
               const overlay = e.currentTarget.querySelector('.overlay') as HTMLElement;
               const textImg = e.currentTarget.querySelector('.text-img') as HTMLElement;
-              if (overlay) overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+              if (overlay) overlay.style.backgroundColor = 'rgba(255, 255, 255, 0)';
               if (textImg) textImg.style.opacity = '0';
             }}
             onClick={() => navigate(quadrant.route)}
@@ -88,7 +88,7 @@ const Homepage: React.FC = () => {
             
             {/* Hover overlay */}
             <div 
-              className="overlay absolute inset-0 flex items-center justify-center bg-transparent md:bg-black md:bg-opacity-0 transition-colors duration-300 ease-in-out cursor-pointer z-10"
+              className="overlay absolute inset-0 flex items-center justify-center bg-transparent md:bg-white md:bg-opacity-0 transition-colors duration-300 ease-in-out cursor-pointer z-10"
             >
               {/* Text overlay image */}
               <img 
