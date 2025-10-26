@@ -6,6 +6,7 @@ const MusicVideo2: React.FC = () => {
     <MusicVideoPage
       title="Champagne Moon - CORO"
       youtubeUrl="https://www.youtube.com/embed/DJiASArAgN4"
+      spotifyUrl="https://open.spotify.com/embed/track/1NSuBOR1sCArcTR02oDkMn?utm_source=generator"
       categoryImage="/landing/bottomlefttext.PNG"
       categoryRoute="/musician"
       categoryAlt="Musician"

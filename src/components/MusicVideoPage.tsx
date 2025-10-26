@@ -5,6 +5,7 @@ import Footer from './Footer';
 interface MusicVideoPageProps {
   title: string;
   youtubeUrl: string;
+  spotifyUrl?: string;
   categoryImage: string;
   categoryRoute: string;
   categoryAlt: string;
@@ -13,6 +14,7 @@ interface MusicVideoPageProps {
 const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
   title,
   youtubeUrl,
+  spotifyUrl,
   categoryImage,
   categoryRoute,
   categoryAlt
@@ -39,7 +41,7 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
         {/* Centered video */}
         <div className="flex-1 flex justify-center items-center px-10">
           {/* YouTube embed */}
-          <div className="w-full max-w-4xl">
+          <div className="w-full max-w-4xl flex flex-col items-center gap-6">
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
@@ -51,6 +53,22 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
                 allowFullScreen
               />
             </div>
+            
+            {/* Spotify embed */}
+            {spotifyUrl && (
+              <div className="w-full">
+                <iframe
+                  style={{ borderRadius: '12px' }}
+                  src={spotifyUrl}
+                  width="100%"
+                  height="352"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

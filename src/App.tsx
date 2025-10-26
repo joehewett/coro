@@ -19,7 +19,6 @@ import MusicVideo3 from './components/projects/MusicVideo3';
 import MusicVideo4 from './components/projects/MusicVideo4';
 import PersonalJourney from './components/projects/PersonalJourney';
 import BehindTheScenes from './components/projects/BehindTheScenes';
-import MusicPlayer from './components/MusicPlayer';
 
 const App: React.FC = () => {
   return (
@@ -57,8 +56,6 @@ const App: React.FC = () => {
         <Route path="/me/personal-journey" element={<PersonalJourney />} />
         <Route path="/me/behind-the-scenes" element={<BehindTheScenes />} />
       </Routes>
-      {/* Global music player */}
-      <MusicPlayer />
     </>
   );
 };

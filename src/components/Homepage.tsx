@@ -92,7 +92,7 @@ const Homepage: React.FC = () => {
             >
               {/* Text overlay image */}
               <img 
-                className="text-img max-w-[80%] max-h-[80%] object-contain opacity-100 md:opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+                className="text-img max-w-[20%] max-h-[20%] object-contain opacity-100 md:opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
                 src={quadrant.text}
                 alt={`${quadrant.alt} Text`}
               />
