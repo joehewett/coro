@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const MePage: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const MePage: React.FC = () => {
       />
       
       <div className="px-10 max-w-4xl mx-auto py-16">
-        <div className="flex flex-col gap-12 items-center">
+        <div className="flex flex-col gap-12 items-center max-w-2xl mx-auto">
           {/* Photo */}
           <div className="w-full">
             <img 
@@ -63,6 +64,7 @@ const MePage: React.FC = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

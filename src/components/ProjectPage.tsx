@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 interface ProjectPageProps {
   title: string;
@@ -86,6 +87,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

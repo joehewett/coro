@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import ProjectCard from './ProjectCard';
+import Footer from './Footer';
 
 const ActressPage: React.FC = () => {
   // Dummy project data - replace with real data later
@@ -44,7 +45,7 @@ const ActressPage: React.FC = () => {
         lightMode={true}
       />
       
-      <div className="px-10 max-w-7xl mx-auto">
+      <div className="px-10 max-w-7xl mx-auto pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {projects.map(project => (
             <ProjectCard
@@ -57,6 +58,7 @@ const ActressPage: React.FC = () => {
           ))}
         </div>
       </div>
+      <Footer lightMode={true} />
     </div>
   );
 };

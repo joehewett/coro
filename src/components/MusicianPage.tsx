@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import ProjectCard from './ProjectCard';
+import Footer from './Footer';
 
 const MusicianPage: React.FC = () => {
   const projects = [
@@ -28,7 +29,7 @@ const MusicianPage: React.FC = () => {
         categoryAlt="Musician"
       />
       
-      <div className="px-10 max-w-7xl mx-auto">
+      <div className="px-10 max-w-7xl mx-auto pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {projects.map(project => (
             <ProjectCard
@@ -41,6 +42,7 @@ const MusicianPage: React.FC = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

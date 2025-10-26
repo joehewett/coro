@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Logo from './Logo';
 
 const Homepage: React.FC = () => {
   const navigate = useNavigate();
@@ -37,12 +38,6 @@ const Homepage: React.FC = () => {
   ];
 
   useEffect(() => {
-    // Debug: Check if images are loading
-    const img = new window.Image();
-    img.onload = () => console.log('Coro text loaded successfully');
-    img.onerror = () => console.error('Failed to load coro_text.png');
-    img.src = '/coro_text.png';
-    
     // Debug: Check if quadrant background images are loading
     quadrants.forEach((quadrant, index) => {
       const bgImg = new window.Image();
@@ -108,13 +103,7 @@ const Homepage: React.FC = () => {
       
       {/* Centered coro_text.png */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-50">
-        <img 
-          src="/coro_text.png" 
-          alt="Coro Text"
-          className="max-w-[50%] max-h-[50%] object-contain"
-          onError={() => console.error('Failed to load coro_text.png in img tag')}
-          onLoad={() => console.log('Coro text img tag loaded')}
-        />
+        <Logo height={96} clickable={false} />
       </div>
     </div>
   );
