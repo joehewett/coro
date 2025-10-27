@@ -3,38 +3,49 @@ import ProjectPage from '../ProjectPage';
 
 const Superglue: React.FC = () => {
   const credits = [
-    { name: 'Coro Benavent', role: 'Director', isHighlighted: true },
-    { name: 'Chiara Carrubba', role: 'Producer' },
     { name: 'Paula Lindblom', role: 'Starring' },
     { name: 'Harry Mason', role: 'Starring' },
     { name: 'Mariia Litvin', role: 'Dancer & Choreographer' },
     { name: 'Stepan Kozhaev', role: 'Dancer & Choreographer' },
     { name: 'Diego Benavent', role: 'Artist' },
+    { name: 'Coro Benavent', role: 'Artist & Director', isHighlighted: true },
+    { name: 'Chiara Carrubba', role: 'Producer' },
     { name: 'Leon Silavant', role: 'DOP' },
     { name: 'Arianna Scarpa', role: '1st AD' },
-    { name: 'Shalin Murphy', role: 'Art Director' },
+    { name: 'Shealin Murphy', role: 'Art Director' },
     { name: 'David Gregory', role: 'AC' },
-    { name: 'Gabrielle Torreborre', role: 'Production Assistant & Editor' },
+    { name: 'Andrea Robustini', role: 'Steadicam Operator' },
+    { name: 'Gabrielle Torreborre', role: 'Production Assistant' },
     { name: 'Karina Stephan', role: 'Gaffer' },
-    { name: 'Fatima Zahara Khan', role: 'Gaffer' },
     { name: 'Maria Mayer', role: 'Art Assistant' },
     { name: 'Kitty Lok Lam Ma', role: 'Art Assistant' },
     { name: 'Maria Bekker', role: 'Hair and Make-up' },
     { name: 'Karan Kaur', role: 'Hair and Make-up' },
-    { name: 'Rastine Mir', role: 'Spark' }
+    { name: 'Rastine Mir', role: 'Spark' },
+    { name: 'Fatima Zahara Khan', role: 'Spark' },
+    { name: 'Gabrielle Torreborre', role: 'Editor & BTS Photography' },
+    { name: 'Santino Napolitano', role: 'Colourist' },
+    { name: 'Company 3', role: 'Colour' },
+    { name: 'Alberto Martínez-Llop Prieto (MWolf)', role: 'Music Producer' },
+    { name: 'Fadrique Kindler Von Knobloch Luengo (Kindler)', role: 'Music Producer' },
+    { name: 'Max Lyons-Depont', role: 'Sound' },
+    { name: 'FOMO Rentals', role: 'Kit' },
+    { name: 'Diego Cayuela', role: 'Music Composer' },
+    { name: 'Diego Benavent', role: 'Music Composer' },
+    { name: 'Coro Benavent', role: 'Music Composer & Costume Designer', isHighlighted: true }
   ];
 
-  const description = `SUPERGLUE is a narrative music video for my self-composed song, representing a deeply personal artistic milestone in my career as both a musician and director. The film explores the complex dynamics of a couple in crisis, with Paula Lindblom and Harry Mason delivering powerful performances as the troubled pair, while Mariia Litvin and Stepan Kozhaev - both trained at the Conservatoire - embody their alter egos through expressive dance.
+  const description = `Using the central metaphor of a broken plate, this film examines whether fractured relationships can be repaired. When two former lovers reunite, they face a vulnerable moment of truth: can what's been shattered be made whole again?
 
-  This project allowed me to merge my musical and directorial visions, creating a visual narrative that amplifies the emotional depth of the song I wrote. The concept of using dancers as alter egos was central to exploring the internal emotional landscape of relationships in turmoil, bringing a theatrical dimension to the storytelling that reflects my training at Corazza, Madrid, and The Bristol Old Vic.
+  The characters and their emotions come alive through movement and dance, each gesture revealing the weight of their time apart, the pain of what was lost, and the fragile hope of repair. They are finally confronted by the question: Is their bond strong enough to hold, or will the cracks always show?
 
-  Working with DOP Leon Silavant and Art Director Shalin Murphy, we crafted a visual language that could seamlessly transition between the realistic portrayal of the couple and the more abstract, emotional representation through dance. The collaborative process with my brother Diego Benavent as artist added another layer of creative synergy to this deeply personal project.`;
+  Watch: https://youtu.be/23vBDDMK-68`;
 
-  const additionalInfo = `Directing SUPERGLUE in July 2025 marked a pivotal moment where my decade of creating music and art converged with my directorial ambitions. This project embodies my belief in the freedom to create with an open heart, bringing together the creativity and humanity that emerges when groups work toward common objectives.
+  const additionalInfo = `ALAMAYO - SUPERGLUE (Official Music Video) explores the fragile hope of repair through powerful performances by Paula Lindblom and Harry Mason, with choreography bringing emotional depth through Mariia Litvin and Stepan Kozhaev's expressive dance sequences.
 
-  The choreographed sequences required careful coordination with Mariia and Stepan, whose Conservatoire training brought a level of technical precision and emotional depth that elevated the entire production. Working with gaffers Karina Stephan and Fatima Zahara Khan, we created lighting that could support both the intimate realism of the couple&rsquo;s scenes and the more expressive, dance-driven sequences.
+  The production brought together a talented team including DOP Leon Silavant, Art Director Shealin Murphy, and Producer Chiara Carrubba. The visual storytelling seamlessly transitions between intimate moments and dance-driven sequences, supported by the skilled work of Gaffer Karina Stephan and Steadicam Operator Andrea Robustini.
 
-  The post-production collaboration with Gabrielle Torreborre as editor was particularly meaningful, as she would later become my co-creative partner in our upcoming production company. The color grading by Santino Colour at Company 3 helped achieve the visual tone that matched the emotional complexity of the song, creating a cohesive piece that represents both my musical composition and directorial vision.`;
+  Post-production was helmed by Editor Gabrielle Torreborre, with color grading by Santino Napolitano at Company 3. The music was composed by Diego Cayuela, Diego Benavent, and Coro Benavent, with production by MWolf & Kindler.`;
 
   return (
     <ProjectPage
@@ -45,7 +56,7 @@ const Superglue: React.FC = () => {
 
       credits={credits}
       description={description}
-      mainImage="/coro2.webp"
+      mainImage="/director/superglue.png"
       additionalInfo={additionalInfo}
     />
   );

@@ -16,7 +16,7 @@ const MePage: React.FC = () => {
           {/* Photo */}
           <div className="w-full">
             <img 
-              src="/coro3.webp" 
+              src="/me/me1.jpg" 
               alt="Coro Benavent"
               className="w-full aspect-square object-cover rounded-lg shadow-2xl"
             />

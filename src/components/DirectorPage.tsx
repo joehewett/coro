@@ -7,23 +7,30 @@ const DirectorPage: React.FC = () => {
   const projects = [
     {
       id: 1,
-      image: '/coro11.webp',
+      image: '/director/superglue.png',
       title: 'SUPERGLUE',
-      description: 'Music video starring Paula Lindblom & Harry Mason. Directed by Coro Benavent, produced by Chiara Carrubba, with choreography by Mariia Litvin & Stepan Kozhaev.',
+      description: 'Directed music video exploring whether fractured relationships can be repaired through the central metaphor of a broken plate.',
       route: '/director/superglue'
     },
     {
       id: 2,
-      image: '/coro6.webp',
+      image: '/director/palomitas.png',
       title: 'Palomitas sin maíz',
-      description: 'Creative collaboration with Gabrielle Torreborre. Starring Coro Benavent, Gully, and Dinah Stabb. Directed by Gabrielle Torreborre, produced by Coro Benavent.',
+      description: 'Co-direction / creative producer for music video created by Garo Studios. Shot on 16mm, a tribute to life and the memories that outlast it.',
       route: '/director/palomitas-sin-maiz'
     },
     {
       id: 3,
       image: '/coro3.webp',
+      title: 'Ragni',
+      description: 'Creative producer for Garo Studios. A woman enters a new relationship that slowly devolves, and she begins to see spiders everywhere. In post-production.',
+      route: '/director/ragni'
+    },
+    {
+      id: 4,
+      image: '/director/padre.jpg',
       title: 'Padre. Hijo. Pastor',
-      description: 'Feature documentary directed by Mori. Served as Director\'s Assistant alongside creative producer Lottie Maher and DoP Dani Benejam.',
+      description: 'Director\'s Assistant for feature documentary. Fighting the tide of commercial farming, a Spanish shepherd embarks on a 700km journey. In post-production.',
       route: '/director/padre-hijo-pastor'
     }
   ];

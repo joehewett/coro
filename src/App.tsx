@@ -11,6 +11,7 @@ import UrbanTales from './components/projects/UrbanTales';
 import TheLastDance from './components/projects/TheLastDance';
 import Superglue from './components/projects/Superglue';
 import PadreHijoPastor from './components/projects/PadreHijoPastor';
+import Ragni from './components/projects/Ragni';
 import EchoesOfTomorrow from './components/projects/EchoesOfTomorrow';
 import LiveAtSunset from './components/projects/LiveAtSunset';
 import MusicVideo1 from './components/projects/MusicVideo1';
@@ -42,6 +43,7 @@ const App: React.FC = () => {
         {/* Director project pages */}
         <Route path="/director/superglue" element={<Superglue />} />
         <Route path="/director/palomitas-sin-maiz" element={<PalomitasSinMaiz />} />
+        <Route path="/director/ragni" element={<Ragni />} />
         <Route path="/director/padre-hijo-pastor" element={<PadreHijoPastor />} />
         
         {/* Musician project pages */}

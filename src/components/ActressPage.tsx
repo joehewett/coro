@@ -36,6 +36,9 @@ const ActressPage: React.FC = () => {
     }
   ];
 
+  // Generate array of image paths for the gallery
+  const galleryImages = Array.from({ length: 26 }, (_, i) => `/actress/img${i + 1}.jpeg`);
+
   return (
     <div className="min-h-screen bg-white pt-20">
       <Navbar 
@@ -45,7 +48,40 @@ const ActressPage: React.FC = () => {
         lightMode={true}
       />
       
-      <div className="px-10 max-w-7xl mx-auto py-48">
+      {/* Showreel Section */}
+      <div className="px-10 max-w-6xl mx-auto pt-32 pb-32">
+        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+          <iframe
+            className="absolute top-0 left-0 w-full h-full shadow-lg"
+            src="https://www.youtube.com/embed/3lYq80w47Mg"
+            title="Acting Showreel"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+      </div>
+
+      {/* Image Gallery Section */}
+      <div className="px-10 max-w-7xl mx-auto py-32">
+        <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+          {galleryImages.map((image, index) => (
+            <div key={index} className="break-inside-avoid">
+              <img
+                src={image}
+                alt={`Gallery image ${index + 1}`}
+                className="w-full h-auto shadow-md hover:shadow-xl transition-shadow duration-300"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Projects Section */}
+      <div className="px-10 max-w-7xl mx-auto py-32">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Projects</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {projects.map(project => (
             <ProjectCard
@@ -58,6 +94,7 @@ const ActressPage: React.FC = () => {
           ))}
         </div>
       </div>
+
       <Footer lightMode={true} />
     </div>
   );

@@ -3,7 +3,8 @@ import ProjectPage from '../ProjectPage';
 
 const PalomitasSinMaiz: React.FC = () => {
   const credits = [
-    { name: 'Garo Studios', role: 'Created by' },
+    { name: 'Coro Benavent', role: 'Created by', isHighlighted: true },
+    { name: 'Gabrielle Torreborre', role: 'Created by' },
     { name: 'Coro Benavent', role: 'Starring', isHighlighted: true },
     { name: 'Gulliver Trim', role: 'Starring' },
     { name: 'Dinah Stabb', role: 'Starring' },
@@ -15,7 +16,7 @@ const PalomitasSinMaiz: React.FC = () => {
     { name: 'Lewis Taylor', role: 'Camera Trainee' },
     { name: 'Gina Atkinson', role: 'Art Director' },
     { name: 'Megha Maria Maruca', role: 'Costume Designer' },
-    { name: 'Aanandita Dhar', role: 'Hair' },
+    { name: 'Aanandita Dhar', role: 'Hair Stylist' },
     { name: 'Maria Beker', role: 'MUA' },
     { name: 'Jane Giubbilei', role: 'MUA' },
     { name: 'Paul Bianchi', role: 'BTS Photography' },
@@ -27,28 +28,30 @@ const PalomitasSinMaiz: React.FC = () => {
     { name: 'Digital Orchard', role: 'Development and Scan' }
   ];
 
-  const description = `Palomitas sin maíz is an deeply personal music video born from grief and love - a song I wrote to my grandmother on the day she passed away in May 2025. This project explores my relationship with her and the other powerful female role models in my life, creating a visual narrative that honors their influence on who I am as an artist and person.
+  const description = `Wrote, created and produced the music video for "Palomitas sin maíz", a song I wrote to my grandmother the day that she passed away. The narrative explored my relationship to her and the other female role models in my life. It was shot on 16mm and starred Dinah Stabb, Gully (a musician), a horse and myself. 
 
-  Working as both producer and performer alongside Gabrielle Torreborre as director, we created something that feels both intimate and cinematic. The cast includes Dinah Stabb, Gully (a fellow musician), a horse, and myself - each element carefully chosen to represent different aspects of the story I needed to tell about loss, memory, and the women who shaped me.
+  The 2-day shoot was featured by Kodak, reviewed by Promonews and has been pre-nominated for the Shiny Awards. This project was the first film I created alongside my creative partner Gabrielle Torreborre, when our film production company was born, Garo Studios.
 
-  Shot on 16mm film with cinematography by James Lahaise, we embraced the tactile, emotional quality that only analog film can provide. The grain and warmth of the medium felt essential to capturing the nostalgic, bittersweet nature of the narrative. This project challenged me to be vulnerable both in front of and behind the camera, balancing the raw emotion of the subject matter with the technical demands of producing a professional music video.`;
+  Watch: https://youtu.be/Zgvod014EPA`;
 
-  const additionalInfo = `The 2-day shoot was a labor of love that gained recognition from the film community - featured by Kodak for our use of their 16mm stock, reviewed by Promonews, and pre-nominated for the Shiny Awards. This recognition felt particularly meaningful given the personal nature of the project and our commitment to shooting on film.
+  const additionalInfo = `I wrote this song for my grandmother the night she left us. The narrative explores our relationships with our female role models, a joyful tribute to life and the memories that outlast it.
 
-  Art Director Gina Jatkinson and Costume Designer Megha Maruca created a visual world that honored both the intimate family story and the broader themes of female strength and legacy. The hair and makeup team, led by Aanandita Dhar, Mash A, and Jane Giubbilei, understood the emotional weight of the project and helped create looks that felt authentic to the story we were telling.
+  Shot on 16mm, the film creates a soft, reminiscent atmosphere, revolving around a beautiful memory. This video gave us the chance to reflect, process, and remember to be grateful for those we still have around us and to celebrate those who have long left.
 
-  The Kodak film stock, developed by Digital Orchard, gave us the organic, timeless quality we needed to tell this multigenerational story. Gabrielle&rsquo;s editing and the color grading by Santino Colour at Company 3 preserved the film&rsquo;s emotional authenticity while creating a polished final piece. This project deepened my creative partnership with Gabrielle, setting the foundation for our upcoming production company launch in August 2025.`;
+  The film stars Dinah Stabb, musician Gully, a horse, and myself. It won the cinematography award at the British Young Arrows, was featured by Kodak, reviewed by Promonews, and pre-nominated for the Shiny Awards.
+
+  This project marked the birth of my creative partnership with Gabrielle Torreborre and our film production company, Garo Studios.`;
 
   return (
     <ProjectPage
       title="Palomitas Sin Maiz"
-      categoryImage="/landing/toplefttext.PNG"
-      categoryRoute="/actress"
-      categoryAlt="Actress"
+      categoryImage="/landing/toprighttext.PNG"
+      categoryRoute="/director"
+      categoryAlt="Director"
 
       credits={credits}
       description={description}
-      mainImage="/coro-headshot.jpg"
+      mainImage="/director/palomitas.png"
       additionalInfo={additionalInfo}
     />
   );
