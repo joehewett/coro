@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Instagram, Youtube } from 'lucide-react';
 import Logo from './Logo';
 
 interface FooterProps {
@@ -38,6 +39,26 @@ const Footer: React.FC<FooterProps> = ({ lightMode = false }) => {
               {link.label}
             </button>
           ))}
+        </div>
+
+        {/* Social media icons */}
+        <div className="w-full flex justify-center items-center gap-6 mt-8">
+          <a 
+            href="https://www.instagram.com/corobenavent/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${lightMode ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'} transition-colors`}
+          >
+            <Instagram size={24} />
+          </a>
+          <a 
+            href="https://www.youtube.com/channel/UCBcovpzdJulXmepFhF_Rmow"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${lightMode ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'} transition-colors`}
+          >
+            <Youtube size={24} />
+          </a>
         </div>
       </div>
     </footer>
