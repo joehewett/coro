@@ -3,7 +3,13 @@ import Navbar from './Navbar';
 import ProjectCard from './ProjectCard';
 import Footer from './Footer';
 
-const ActressPage: React.FC = () => {
+export type ThemeMode = 'light' | 'dark' | 'beige';
+
+interface ActressPageProps {
+  theme?: ThemeMode;
+}
+
+const ActressPage: React.FC<ActressPageProps> = ({ theme = 'beige' }) => {
   // Dummy project data - replace with real data later
   const projects = [
     {
@@ -42,18 +48,30 @@ const ActressPage: React.FC = () => {
     .filter(num => !excludedImages.includes(num))
     .map(num => `/actress/img${num}.jpeg`);
 
+  const getBodyBackground = () => {
+    switch (theme) {
+      case 'light':
+        return 'bg-white';
+      case 'beige':
+        return 'bg-[#ffe8d6]';
+      case 'dark':
+      default:
+        return 'bg-black';
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-black pt-20">
+    <div className={`min-h-screen ${getBodyBackground()} pt-20`}>
       <Navbar 
         categoryImage="/landing/toplefttext.PNG"
         categoryRoute="/actress"
         categoryAlt="Actress"
-        lightMode={false}
+        theme={theme}
       />
       
       {/* Showreel Section */}
       <div className="px-10 max-w-6xl mx-auto pt-32 pb-32">
-        <h2 className="text-6xl font-handwritten text-white text-center mb-12">
+        <h2 className={`text-6xl font-handwritten text-center mb-12 ${theme === 'beige' ? 'text-[#5a4a3a]' : 'text-white'}`}>
           Acting Showreel
         </h2>
         <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
@@ -100,7 +118,7 @@ const ActressPage: React.FC = () => {
         </div>
       </div>
 
-      <Footer lightMode={false} />
+      <Footer theme={theme} />
     </div>
   );
 };

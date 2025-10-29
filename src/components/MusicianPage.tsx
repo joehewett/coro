@@ -3,7 +3,13 @@ import Navbar from './Navbar';
 import ProjectCard from './ProjectCard';
 import Footer from './Footer';
 
-const MusicianPage: React.FC = () => {
+export type ThemeMode = 'light' | 'dark' | 'beige';
+
+interface MusicianPageProps {
+  theme?: ThemeMode;
+}
+
+const MusicianPage: React.FC<MusicianPageProps> = ({ theme = 'light' }) => {
   const projects = [
     {
       id: 1,
@@ -35,13 +41,25 @@ const MusicianPage: React.FC = () => {
     }
   ];
 
+  const getBodyBackground = () => {
+    switch (theme) {
+      case 'light':
+        return 'bg-white';
+      case 'beige':
+        return 'bg-[#ffe8d6]';
+      case 'dark':
+      default:
+        return 'bg-black';
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className={`min-h-screen ${getBodyBackground()} pt-20`}>
       <Navbar 
         categoryImage="/landing/bottomrighttext.PNG"
         categoryRoute="/musician"
         categoryAlt="Musician"
-        lightMode={true}
+        theme={theme}
       />
       
       <div className="px-10 max-w-7xl mx-auto py-48">
@@ -57,7 +75,7 @@ const MusicianPage: React.FC = () => {
           ))}
         </div>
       </div>
-      <Footer lightMode={true} />
+      <Footer theme={theme} />
     </div>
   );
 };

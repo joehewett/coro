@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
+export type ThemeMode = 'light' | 'dark' | 'beige';
+
 interface MusicVideoPageProps {
   title: string;
   youtubeUrl: string;
@@ -9,6 +11,7 @@ interface MusicVideoPageProps {
   categoryImage: string;
   categoryRoute: string;
   categoryAlt: string;
+  theme?: ThemeMode;
 }
 
 const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
@@ -17,18 +20,43 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
   spotifyUrl,
   categoryImage,
   categoryRoute,
-  categoryAlt
+  categoryAlt,
+  theme = 'light'
 }) => {
   // Create repeating title text
   const repeatingTitle = Array(20).fill(title).join(' ');
 
+  const getBodyBackground = () => {
+    switch (theme) {
+      case 'light':
+        return 'bg-white';
+      case 'beige':
+        return 'bg-[#ffe8d6]';
+      case 'dark':
+      default:
+        return 'bg-black';
+    }
+  };
+
+  const getBodyText = () => {
+    switch (theme) {
+      case 'light':
+        return 'text-black';
+      case 'beige':
+        return 'text-[#5a4a3a]';
+      case 'dark':
+      default:
+        return 'text-white';
+    }
+  };
+
   return (
-    <div className="bg-white text-black">
+    <div className={`${getBodyBackground()} ${getBodyText()}`}>
       <Navbar 
         categoryImage={categoryImage}
         categoryRoute={categoryRoute}
         categoryAlt={categoryAlt}
-        lightMode={true}
+        theme={theme}
       />
       
       {/* Main content - full viewport height */}
@@ -74,7 +102,7 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
       </div>
       
       {/* Footer - off the page */}
-      <Footer lightMode={true} />
+      <Footer theme={theme} />
     </div>
   );
 };

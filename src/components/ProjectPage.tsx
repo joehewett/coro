@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
+export type ThemeMode = 'light' | 'dark' | 'beige';
+
 interface ProjectPageProps {
   title: string;
   categoryImage: string;
@@ -12,6 +14,7 @@ interface ProjectPageProps {
   mainImage: string;
   additionalInfo?: string;
   youtubeUrl?: string;
+  theme?: ThemeMode;
 }
 
 const ProjectPage: React.FC<ProjectPageProps> = ({
@@ -23,10 +26,35 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
   description,
   mainImage,
   additionalInfo,
-  youtubeUrl
+  youtubeUrl,
+  theme = 'light'
 }) => {
   // Create repeating title text
   const repeatingTitle = Array(20).fill(title).join(' ');
+
+  const getBodyBackground = () => {
+    switch (theme) {
+      case 'light':
+        return 'bg-white';
+      case 'beige':
+        return 'bg-[#ffe8d6]';
+      case 'dark':
+      default:
+        return 'bg-black';
+    }
+  };
+
+  const getBodyText = () => {
+    switch (theme) {
+      case 'light':
+        return 'text-black';
+      case 'beige':
+        return 'text-[#5a4a3a]';
+      case 'dark':
+      default:
+        return 'text-white';
+    }
+  };
 
   // Function to convert URLs in text to clickable links
   const renderTextWithLinks = (text: string) => {
@@ -52,12 +80,12 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-white text-black pt-20">
+    <div className={`min-h-screen ${getBodyBackground()} ${getBodyText()} pt-20`}>
       <Navbar 
         categoryImage={categoryImage}
         categoryRoute={categoryRoute}
         categoryAlt={categoryAlt}
-        lightMode={true}
+        theme={theme}
       />
       
       {/* Repeating title bar */}
@@ -126,7 +154,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
           </div>
         </div>
       </div>
-      <Footer lightMode={true} />
+      <Footer theme={theme} />
     </div>
   );
 };

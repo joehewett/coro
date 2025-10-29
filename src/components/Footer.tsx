@@ -3,12 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { Instagram, Youtube } from 'lucide-react';
 import Logo from './Logo';
 
+export type ThemeMode = 'light' | 'dark' | 'beige';
+
 interface FooterProps {
+  theme?: ThemeMode;
+  /** @deprecated Use theme prop instead */
   lightMode?: boolean;
 }
 
-const Footer: React.FC<FooterProps> = ({ lightMode = false }) => {
+const Footer: React.FC<FooterProps> = ({ theme, lightMode }) => {
   const navigate = useNavigate();
+
+  // Support legacy lightMode prop for backward compatibility
+  const resolvedTheme: ThemeMode = theme || (lightMode ? 'light' : 'dark');
 
   const links = [
     { label: 'Actress', route: '/actress' },
@@ -17,15 +24,51 @@ const Footer: React.FC<FooterProps> = ({ lightMode = false }) => {
     { label: 'Me', route: '/me' }
   ];
 
+  const getBackgroundClass = () => {
+    switch (resolvedTheme) {
+      case 'light':
+        return 'bg-white';
+      case 'beige':
+        return 'bg-[#ffe8d6]';
+      case 'dark':
+      default:
+        return 'bg-black';
+    }
+  };
+
+  const getDividerClass = () => {
+    switch (resolvedTheme) {
+      case 'light':
+        return 'bg-gray-300';
+      case 'beige':
+        return 'bg-[#f5c9a8]'; // Darker beige for divider
+      case 'dark':
+      default:
+        return 'bg-gray-700';
+    }
+  };
+
+  const getTextClass = () => {
+    switch (resolvedTheme) {
+      case 'light':
+        return 'text-black hover:text-gray-600';
+      case 'beige':
+        return 'text-[#5a4a3a] hover:text-[#3a2a1a]'; // Brown text on beige
+      case 'dark':
+      default:
+        return 'text-white hover:text-gray-300';
+    }
+  };
+
   return (
-    <footer className={`${lightMode ? 'bg-white' : 'bg-black'} py-16 px-10`}>
+    <footer className={`${getBackgroundClass()} py-16 px-10`}>
       <div className="max-w-4xl mx-auto min-h-[500px] flex flex-col items-center justify-center">
         {/* Divider line */}
-        <div className={`w-full h-px ${lightMode ? 'bg-gray-300' : 'bg-gray-700'} mb-8`}></div>
+        <div className={`w-full h-px ${getDividerClass()} mb-8`}></div>
         
         {/* Centered Logo */}
         <div className="w-full flex justify-center items-center my-32">
-          <Logo size="md" lightMode={lightMode} />
+          <Logo size="md" theme={resolvedTheme} />
         </div>
 
         {/* Centered horizontal links */}
@@ -34,7 +77,7 @@ const Footer: React.FC<FooterProps> = ({ lightMode = false }) => {
             <button
               key={link.route}
               onClick={() => navigate(link.route)}
-              className={`${lightMode ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'} transition-colors text-base whitespace-nowrap`}
+              className={`${getTextClass()} transition-colors text-base whitespace-nowrap`}
             >
               {link.label}
             </button>
@@ -47,7 +90,7 @@ const Footer: React.FC<FooterProps> = ({ lightMode = false }) => {
             href="https://www.instagram.com/corobenavent/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${lightMode ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'} transition-colors`}
+            className={`${getTextClass()} transition-colors`}
           >
             <Instagram size={24} />
           </a>
@@ -55,7 +98,7 @@ const Footer: React.FC<FooterProps> = ({ lightMode = false }) => {
             href="https://www.youtube.com/channel/UCBcovpzdJulXmepFhF_Rmow"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${lightMode ? 'text-black hover:text-gray-600' : 'text-white hover:text-gray-300'} transition-colors`}
+            className={`${getTextClass()} transition-colors`}
           >
             <Youtube size={24} />
           </a>

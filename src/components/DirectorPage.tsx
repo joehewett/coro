@@ -3,7 +3,13 @@ import Navbar from './Navbar';
 import ProjectCard from './ProjectCard';
 import Footer from './Footer';
 
-const DirectorPage: React.FC = () => {
+export type ThemeMode = 'light' | 'dark' | 'beige';
+
+interface DirectorPageProps {
+  theme?: ThemeMode;
+}
+
+const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
   const projects = [
     {
       id: 1,
@@ -35,13 +41,25 @@ const DirectorPage: React.FC = () => {
     }
   ];
 
+  const getBodyBackground = () => {
+    switch (theme) {
+      case 'light':
+        return 'bg-white';
+      case 'beige':
+        return 'bg-[#ffe8d6]';
+      case 'dark':
+      default:
+        return 'bg-black';
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-black">
+    <div className={`min-h-screen ${getBodyBackground()}`}>
       <Navbar 
         categoryImage="/landing/toprighttext.PNG"
         categoryRoute="/director"
         categoryAlt="Director"
-        lightMode={false}
+        theme={theme}
       />
       
       <div className="h-screen pt-20 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10">
@@ -59,7 +77,7 @@ const DirectorPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <Footer lightMode={false} />
+      <Footer theme={theme} />
     </div>
   );
 };
