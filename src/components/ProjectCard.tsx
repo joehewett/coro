@@ -26,10 +26,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, ro
         className="w-full h-full object-cover"
       />
       
-      {/* White overlay with 80% opacity */}
+      {/* Black overlay with 80% opacity */}
       <div
-        className={`absolute inset-0 bg-white transition-opacity duration-300 ease-out ${
-          isHovered ? 'opacity-90' : 'opacity-0'
+        className={`absolute inset-0 bg-black transition-opacity duration-300 ease-out ${
+          isHovered ? 'opacity-80' : 'opacity-0'
         }`}
       />
       
@@ -39,7 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, ro
           isHovered ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <h3 className="text-4xl font-bold text-black font-handwritten text-center px-6">
+        <h3 className="text-4xl font-bold text-white font-handwritten text-center px-6">
           {title}
         </h3>
       </div>

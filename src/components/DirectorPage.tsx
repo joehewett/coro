@@ -36,24 +36,26 @@ const DirectorPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black pt-20">
+    <div className="min-h-screen bg-black">
       <Navbar 
         categoryImage="/landing/toprighttext.PNG"
         categoryRoute="/director"
         categoryAlt="Director"
       />
       
-      <div className="px-10 max-w-7xl mx-auto py-48">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {projects.map(project => (
-            <ProjectCard
-              key={project.id}
-              image={project.image}
-              title={project.title}
-              description={project.description}
-              route={project.route}
-            />
-          ))}
+      <div className="h-screen pt-20 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
+            {projects.map(project => (
+              <ProjectCard
+                key={project.id}
+                image={project.image}
+                title={project.title}
+                description={project.description}
+                route={project.route}
+              />
+            ))}
+          </div>
         </div>
       </div>
       <Footer />
