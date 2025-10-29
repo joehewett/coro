@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-export type ThemeMode = 'light' | 'dark' | 'beige';
+import { type ThemeMode, themeUtils } from '../theme';
 
 interface LogoProps {
   /** Size preset for the logo */
@@ -10,8 +9,6 @@ interface LogoProps {
   height?: number;
   /** Theme mode for the logo */
   theme?: ThemeMode;
-  /** @deprecated Use theme prop instead */
-  lightMode?: boolean;
   /** Whether the logo should be clickable to navigate home */
   clickable?: boolean;
   /** Additional CSS classes */
@@ -21,15 +18,11 @@ interface LogoProps {
 const Logo: React.FC<LogoProps> = ({ 
   size = 'md', 
   height,
-  theme,
-  lightMode,
+  theme = 'dark',
   clickable = true,
   className = ''
 }) => {
   const navigate = useNavigate();
-
-  // Support legacy lightMode prop for backward compatibility
-  const resolvedTheme: ThemeMode = theme || (lightMode ? 'light' : 'dark');
 
   // Define size presets with explicit heights
   const sizeMap = {
@@ -48,9 +41,6 @@ const Logo: React.FC<LogoProps> = ({
     }
   };
 
-  // Invert for light mode and beige mode (not dark)
-  const shouldInvert = resolvedTheme === 'light' || resolvedTheme === 'beige';
-
   return (
     <div 
       className={`flex items-center justify-center ${className}`}
@@ -63,7 +53,7 @@ const Logo: React.FC<LogoProps> = ({
         src="/coro_text.png" 
         alt="Coro"
         onClick={handleClick}
-        className={`max-h-full w-auto object-contain ${clickable ? 'cursor-pointer' : ''} ${shouldInvert ? 'invert' : ''}`}
+        className={`max-h-full w-auto object-contain ${clickable ? 'cursor-pointer' : ''} ${themeUtils.shouldInvertImages(theme) ? 'invert' : ''}`}
         style={{ display: 'block', maxWidth: '100%' }}
       />
     </div>

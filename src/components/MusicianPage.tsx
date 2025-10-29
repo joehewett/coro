@@ -2,8 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import ProjectCard from './ProjectCard';
 import Footer from './Footer';
-
-export type ThemeMode = 'light' | 'dark' | 'beige';
+import { type ThemeMode, themeUtils } from '../theme';
 
 interface MusicianPageProps {
   theme?: ThemeMode;
@@ -41,20 +40,8 @@ const MusicianPage: React.FC<MusicianPageProps> = ({ theme = 'light' }) => {
     }
   ];
 
-  const getBodyBackground = () => {
-    switch (theme) {
-      case 'light':
-        return 'bg-white';
-      case 'beige':
-        return 'bg-[#ffe8d6]';
-      case 'dark':
-      default:
-        return 'bg-black';
-    }
-  };
-
   return (
-    <div className={`min-h-screen ${getBodyBackground()} pt-20`}>
+    <div className={`min-h-screen ${themeUtils.background(theme)} pt-20`}>
       <Navbar 
         categoryImage="/landing/bottomrighttext.PNG"
         categoryRoute="/musician"

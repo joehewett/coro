@@ -2,8 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import ProjectCard from './ProjectCard';
 import Footer from './Footer';
-
-export type ThemeMode = 'light' | 'dark' | 'beige';
+import { type ThemeMode, themeUtils } from '../theme';
 
 interface ActressPageProps {
   theme?: ThemeMode;
@@ -48,20 +47,8 @@ const ActressPage: React.FC<ActressPageProps> = ({ theme = 'beige' }) => {
     .filter(num => !excludedImages.includes(num))
     .map(num => `/actress/img${num}.jpeg`);
 
-  const getBodyBackground = () => {
-    switch (theme) {
-      case 'light':
-        return 'bg-white';
-      case 'beige':
-        return 'bg-[#ffe8d6]';
-      case 'dark':
-      default:
-        return 'bg-black';
-    }
-  };
-
   return (
-    <div className={`min-h-screen ${getBodyBackground()} pt-20`}>
+    <div className={`min-h-screen ${themeUtils.background(theme)} pt-20`}>
       <Navbar 
         categoryImage="/landing/toplefttext.PNG"
         categoryRoute="/actress"
@@ -71,7 +58,7 @@ const ActressPage: React.FC<ActressPageProps> = ({ theme = 'beige' }) => {
       
       {/* Showreel Section */}
       <div className="px-10 max-w-6xl mx-auto pt-32 pb-32">
-        <h2 className={`text-6xl font-handwritten text-center mb-12 ${theme === 'beige' ? 'text-[#5a4a3a]' : 'text-white'}`}>
+        <h2 className={`text-6xl font-handwritten text-center mb-12 ${themeUtils.text(theme)}`}>
           Acting Showreel
         </h2>
         <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>

@@ -1,8 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-
-export type ThemeMode = 'light' | 'dark' | 'beige';
+import { type ThemeMode, themeUtils } from '../theme';
 
 interface MusicVideoPageProps {
   title: string;
@@ -26,32 +25,8 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
   // Create repeating title text
   const repeatingTitle = Array(20).fill(title).join(' ');
 
-  const getBodyBackground = () => {
-    switch (theme) {
-      case 'light':
-        return 'bg-white';
-      case 'beige':
-        return 'bg-[#ffe8d6]';
-      case 'dark':
-      default:
-        return 'bg-black';
-    }
-  };
-
-  const getBodyText = () => {
-    switch (theme) {
-      case 'light':
-        return 'text-black';
-      case 'beige':
-        return 'text-[#5a4a3a]';
-      case 'dark':
-      default:
-        return 'text-white';
-    }
-  };
-
   return (
-    <div className={`${getBodyBackground()} ${getBodyText()}`}>
+    <div className={`${themeUtils.background(theme)} ${themeUtils.text(theme)}`}>
       <Navbar 
         categoryImage={categoryImage}
         categoryRoute={categoryRoute}
