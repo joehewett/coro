@@ -37,7 +37,7 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
       {/* Main content - full viewport height */}
       <div className="h-screen pt-20 flex flex-col">
         {/* Repeating title bar */}
-        <div className="w-full py-5 overflow-hidden whitespace-nowrap text-5xl font-bold text-gray-700 font-handwritten">
+        <div className="w-full py-5 overflow-hidden whitespace-nowrap text-5xl font-bold text-gray-700 font-handwritten relative z-10">
           {repeatingTitle}
         </div>
 
@@ -45,7 +45,7 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
         <div className="flex-1 flex justify-center items-center px-10">
           {/* YouTube embed */}
           <div className="w-full max-w-4xl flex flex-col items-center gap-6">
-            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <div className="relative w-full z-0" style={{ paddingBottom: '56.25%' }}>
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
                 src={youtubeUrl}
