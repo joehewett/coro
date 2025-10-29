@@ -21,7 +21,7 @@ const DirectorPage: React.FC = () => {
     },
     {
       id: 3,
-      image: '/coro3.webp',
+      image: '/director/ragni.png',
       title: 'Ragni',
       description: 'Creative producer for Garo Studios. A woman enters a new relationship that slowly devolves, and she begins to see spiders everywhere. In post-production.',
       route: '/director/ragni'
@@ -36,11 +36,12 @@ const DirectorPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-white">
       <Navbar 
         categoryImage="/landing/toprighttext.PNG"
         categoryRoute="/director"
         categoryAlt="Director"
+        lightMode={true}
       />
       
       <div className="h-screen pt-20 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10">
@@ -58,7 +59,7 @@ const DirectorPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer lightMode={true} />
     </div>
   );
 };
