@@ -11,6 +11,7 @@ interface ProjectPageProps {
   description: string;
   mainImage: string;
   additionalInfo?: string;
+  youtubeUrl?: string;
 }
 
 const ProjectPage: React.FC<ProjectPageProps> = ({
@@ -21,7 +22,8 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
   credits,
   description,
   mainImage,
-  additionalInfo
+  additionalInfo,
+  youtubeUrl
 }) => {
   // Create repeating title text
   const repeatingTitle = Array(20).fill(title).join(' ');
@@ -56,9 +58,24 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
             <h2 className="text-3xl font-bold text-gray-800 mb-5 font-handwritten">
               About the Project
             </h2>
-            <p className="text-base leading-relaxed text-gray-700">
+            <p className="text-base leading-relaxed text-gray-700 mb-8 whitespace-pre-line">
               {description}
             </p>
+            
+            {/* YouTube embed if URL is provided */}
+            {youtubeUrl && (
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src={youtubeUrl}
+                  title={title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            )}
           </div>
 
           {/* Right column - Cast List */}

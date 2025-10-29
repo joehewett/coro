@@ -26,7 +26,7 @@ const Ragni: React.FC = () => {
 
       credits={credits}
       description={description}
-      mainImage="/coro3.webp"
+      mainImage="/director/ragni.png"
       additionalInfo={additionalInfo}
     />
   );

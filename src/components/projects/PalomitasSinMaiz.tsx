@@ -32,9 +32,7 @@ const PalomitasSinMaiz: React.FC = () => {
 
   The 2-day shoot was featured by Kodak, reviewed by Promonews and has been pre-nominated for the Shiny Awards. This project was the first film I created alongside my creative partner Gabrielle Torreborre, when our film production company was born, Garo Studios.
 
-  Watch: https://youtu.be/Zgvod014EPA`;
-
-  const additionalInfo = `I wrote this song for my grandmother the night she left us. The narrative explores our relationships with our female role models, a joyful tribute to life and the memories that outlast it.
+The narrative explores our relationships with our female role models, a joyful tribute to life and the memories that outlast it.
 
   Shot on 16mm, the film creates a soft, reminiscent atmosphere, revolving around a beautiful memory. This video gave us the chance to reflect, process, and remember to be grateful for those we still have around us and to celebrate those who have long left.
 
@@ -52,7 +50,8 @@ const PalomitasSinMaiz: React.FC = () => {
       credits={credits}
       description={description}
       mainImage="/director/palomitas.png"
-      additionalInfo={additionalInfo}
+      // additionalInfo={additionalInfo}
+      youtubeUrl="https://www.youtube.com/embed/Zgvod014EPA"
     />
   );
 };

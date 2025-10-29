@@ -36,12 +36,12 @@ const DirectorPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-black">
       <Navbar 
         categoryImage="/landing/toprighttext.PNG"
         categoryRoute="/director"
         categoryAlt="Director"
-        lightMode={true}
+        lightMode={false}
       />
       
       <div className="h-screen pt-20 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10">
@@ -59,7 +59,7 @@ const DirectorPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <Footer lightMode={true} />
+      <Footer lightMode={false} />
     </div>
   );
 };
