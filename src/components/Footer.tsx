@@ -35,7 +35,7 @@ const Footer: React.FC<FooterProps> = ({ theme = 'dark' }) => {
             <button
               key={link.route}
               onClick={() => navigate(link.route)}
-              className={`${themeUtils.textWithHover(theme)} text-base whitespace-nowrap`}
+              className={`${themeUtils.textWithHover(theme)} text-base whitespace-nowrap font-handwritten`}
             >
               {link.label}
             </button>

@@ -49,7 +49,7 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
         theme={theme}
       />
       
-      <div className="h-screen pt-20 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10">
+      <div className="min-h-screen pt-24 sm:pt-32 lg:pt-20 lg:h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="w-full max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
             {projects.map(project => (

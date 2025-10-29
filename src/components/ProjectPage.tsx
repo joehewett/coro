@@ -64,7 +64,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
       />
       
       {/* Repeating title bar */}
-      <div className="w-full py-5 overflow-hidden whitespace-nowrap text-5xl font-bold text-gray-700 font-handwritten">
+      <div className="w-full py-5 overflow-hidden whitespace-nowrap text-5xl font-bold text-gray-700 font-handwritten relative z-10">
         {repeatingTitle}
       </div>
 
@@ -90,7 +90,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
             
             {/* YouTube embed if URL is provided */}
             {youtubeUrl && (
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <div className="relative w-full z-0" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
                   src={youtubeUrl}
