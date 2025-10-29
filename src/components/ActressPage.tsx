@@ -71,7 +71,7 @@ const ActressPage: React.FC = () => {
 
       {/* Image Gallery Section */}
       <div className="px-10 max-w-7xl mx-auto py-32">
-        <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
           {galleryImages.map((image, index) => (
             <div key={index} className="break-inside-avoid relative group">
               <img
