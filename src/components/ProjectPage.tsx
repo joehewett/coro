@@ -28,6 +28,29 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
   // Create repeating title text
   const repeatingTitle = Array(20).fill(title).join(' ');
 
+  // Function to convert URLs in text to clickable links
+  const renderTextWithLinks = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = text.split(urlRegex);
+    
+    return parts.map((part, index) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a 
+            key={index} 
+            href={part} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-800 underline"
+          >
+            {part}
+          </a>
+        );
+      }
+      return <span key={index}>{part}</span>;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-white text-black pt-20">
       <Navbar 
@@ -59,7 +82,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
               About the Project
             </h2>
             <p className="text-base leading-relaxed text-gray-700 mb-8 whitespace-pre-line">
-              {description}
+              {renderTextWithLinks(description)}
             </p>
             
             {/* YouTube embed if URL is provided */}

@@ -6,9 +6,10 @@ import DirectorPage from './components/DirectorPage';
 import MusicianPage from './components/MusicianPage';
 import MePage from './components/MePage';
 import PalomitasSinMaiz from './components/projects/PalomitasSinMaiz';
-import SummerDreams from './components/projects/SummerDreams';
+import SesionDeSurf from './components/projects/SesionDeSurf';
 import UrbanTales from './components/projects/UrbanTales';
 import TheLastDance from './components/projects/TheLastDance';
+import Inerte from './components/projects/Inerte';
 import Superglue from './components/projects/Superglue';
 import PadreHijoPastor from './components/projects/PadreHijoPastor';
 import Ragni from './components/projects/Ragni';
@@ -35,8 +36,9 @@ const App: React.FC = () => {
         <Route path="/me" element={<MePage />} />
         
         {/* Actress project pages */}
+        <Route path="/actress/inerte" element={<Inerte />} />
         <Route path="/actress/palomitas-sin-maiz" element={<PalomitasSinMaiz />} />
-        <Route path="/actress/summer-dreams" element={<SummerDreams />} />
+        <Route path="/actress/sesion-de-surf" element={<SesionDeSurf />} />
         <Route path="/actress/urban-tales" element={<UrbanTales />} />
         <Route path="/actress/the-last-dance" element={<TheLastDance />} />
         

@@ -8,27 +8,34 @@ const ActressPage: React.FC = () => {
   const projects = [
     {
       id: 1,
-      image: '/coro1.webp',
-      title: 'Palomitas Sin Maiz',
-      description: 'A short film exploring the boundaries of reality and imagination',
-      route: '/actress/palomitas-sin-maiz'
+      image: '/actress/inerte.jpg',
+      title: 'Inerte',
+      description: 'Un cortometraje sobre el conflicto interno y la búsqueda de liberación emocional',
+      route: '/actress/inerte'
     },
     {
       id: 2,
-      image: '/coro5.webp',
-      title: 'Summer Dreams',
-      description: 'Feature film debut as the lead character in this coming-of-age story',
-      route: '/actress/summer-dreams'
+      image: '/director/palomitas.png',
+      title: 'Palomitas Sin Maiz',
+      description: 'A short film exploring the boundaries of reality and imagination',
+      route: '/director/palomitas-sin-maiz'
     },
     {
       id: 3,
+      image: '/actress/sesion-de-surf.jpg',
+      title: 'Sesión de Surf',
+      description: 'Feature film debut as the lead character in this coming-of-age story',
+      route: '/actress/sesion-de-surf'
+    },
+    {
+      id: 4,
       image: '/coro9.webp',
       title: 'Urban Tales',
       description: 'Anthology series showcasing diverse stories from city life',
       route: '/actress/urban-tales'
     },
     {
-      id: 4,
+      id: 5,
       image: '/coro14.webp',
       title: 'The Last Dance',
       description: 'Dramatic performance in this award-winning theater production',
@@ -81,7 +88,6 @@ const ActressPage: React.FC = () => {
 
       {/* Projects Section */}
       <div className="px-10 max-w-7xl mx-auto py-32">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Projects</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {projects.map(project => (
             <ProjectCard
