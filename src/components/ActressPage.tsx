@@ -29,37 +29,36 @@ const ActressPage: React.FC = () => {
     },
     {
       id: 4,
-      image: '/coro9.webp',
-      title: 'Urban Tales',
-      description: 'Anthology series showcasing diverse stories from city life',
-      route: '/actress/urban-tales'
-    },
-    {
-      id: 5,
-      image: '/coro14.webp',
-      title: 'The Last Dance',
-      description: 'Dramatic performance in this award-winning theater production',
-      route: '/actress/the-last-dance'
+      image: '/actress/billabong.jpg',
+      title: 'Billabong Surf',
+      description: 'A girl surfing in the waves of the ocean',
+      route: '/actress/billabong'
     }
   ];
 
   // Generate array of image paths for the gallery
-  const galleryImages = Array.from({ length: 26 }, (_, i) => `/actress/img${i + 1}.jpeg`);
+  const excludedImages = [13, 14, 15, 16, 23];
+  const galleryImages = Array.from({ length: 34 }, (_, i) => i + 1)
+    .filter(num => !excludedImages.includes(num))
+    .map(num => `/actress/img${num}.jpeg`);
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-black pt-20">
       <Navbar 
         categoryImage="/landing/toplefttext.PNG"
         categoryRoute="/actress"
         categoryAlt="Actress"
-        lightMode={true}
+        lightMode={false}
       />
       
       {/* Showreel Section */}
       <div className="px-10 max-w-6xl mx-auto pt-32 pb-32">
+        <h2 className="text-6xl font-handwritten text-white text-center mb-12">
+          Acting Showreel
+        </h2>
         <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
           <iframe
-            className="absolute top-0 left-0 w-full h-full shadow-lg"
+            className="absolute top-0 left-0 w-full h-full"
             src="https://www.youtube.com/embed/3lYq80w47Mg"
             title="Acting Showreel"
             frameBorder="0"
@@ -74,7 +73,7 @@ const ActressPage: React.FC = () => {
       <div className="px-10 max-w-7xl mx-auto py-32">
         <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
           {galleryImages.map((image, index) => (
-            <div key={index} className="break-inside-avoid">
+            <div key={index} className="break-inside-avoid relative group">
               <img
                 src={image}
                 alt={`Gallery image ${index + 1}`}
@@ -101,7 +100,7 @@ const ActressPage: React.FC = () => {
         </div>
       </div>
 
-      <Footer lightMode={true} />
+      <Footer lightMode={false} />
     </div>
   );
 };

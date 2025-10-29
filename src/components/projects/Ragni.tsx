@@ -7,7 +7,7 @@ const Ragni: React.FC = () => {
     { name: 'Coro Benavent', role: 'Creative Producer', isHighlighted: true }
   ];
 
-  const description = `Creative Producer for Ragni - a music video created by Garo Studios, currently in post-production.
+  const description = `Creative Producer for Ragni - a music video created by Garo Studios, currently in post-production. Directed by Gabrielle Torreborre.
 
   A woman enters into a new relationship, but what begins as a gentle, promising romance slowly devolves, and she begins to see spiders everywhere she goes.
 
@@ -26,7 +26,7 @@ const Ragni: React.FC = () => {
 
       credits={credits}
       description={description}
-      mainImage="/director/ragni.png"
+      mainImage="/director/ragni.jpg"
       additionalInfo={additionalInfo}
     />
   );

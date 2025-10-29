@@ -21,7 +21,7 @@ const DirectorPage: React.FC = () => {
     },
     {
       id: 3,
-      image: '/director/ragni.png',
+      image: '/director/ragni.jpg',
       title: 'Ragni',
       description: 'Creative producer for Garo Studios. A woman enters a new relationship that slowly devolves, and she begins to see spiders everywhere. In post-production.',
       route: '/director/ragni'

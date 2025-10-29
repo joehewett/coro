@@ -28,17 +28,11 @@ const PalomitasSinMaiz: React.FC = () => {
     { name: 'Digital Orchard', role: 'Development and Scan' }
   ];
 
-  const description = `Wrote, created and produced the music video for "Palomitas sin maíz", a song I wrote to my grandmother the day that she passed away. The narrative explored my relationship to her and the other female role models in my life. It was shot on 16mm and starred Dinah Stabb, Gully (a musician), a horse and myself. 
+  const description = `Wrote, created and produced the music video for "Palomitas sin maíz", a song I wrote to my grandmother the day that she left us. The narrative explored my relationship to her and the other female role models in my life. It was shot on 16mm and starred Dinah Stabb, Gully, a horse and I.
 
-  The 2-day shoot was featured by Kodak, reviewed by Promonews and has been pre-nominated for the Shiny Awards. This project was the first film I created alongside my creative partner Gabrielle Torreborre, when our film production company was born, Garo Studios.
+It won the cinematography award at the British Young Arrows, was featured by Kodak, reviewed by Promonews, and pre-nominated for the Shiny Awards. This project marked the birth of my creative partnership with Gabrielle Torreborre and our film production company, Garo Studios. Through working hands-on with Gabby as the director, Coro learned invaluable lessons about filmmaking and collaboration.
 
-The narrative explores our relationships with our female role models, a joyful tribute to life and the memories that outlast it.
-
-  Shot on 16mm, the film creates a soft, reminiscent atmosphere, revolving around a beautiful memory. This video gave us the chance to reflect, process, and remember to be grateful for those we still have around us and to celebrate those who have long left.
-
-  The film stars Dinah Stabb, musician Gully, a horse, and myself. It won the cinematography award at the British Young Arrows, was featured by Kodak, reviewed by Promonews, and pre-nominated for the Shiny Awards.
-
-  This project marked the birth of my creative partnership with Gabrielle Torreborre and our film production company, Garo Studios.`;
+Shot on 16mm, the film creates a soft, reminiscent atmosphere, revolving around a beautiful memory. This video gave us the chance to reflect, process, and remember to be grateful for those we still have around us and to celebrate those who have long left.`;
 
   return (
     <ProjectPage

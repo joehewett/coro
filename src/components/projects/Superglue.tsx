@@ -40,13 +40,9 @@ const Superglue: React.FC = () => {
 
   The characters and their emotions come alive through movement and dance, each gesture revealing the weight of their time apart, the pain of what was lost, and the fragile hope of repair. They are finally confronted by the question: Is their bond strong enough to hold, or will the cracks always show?
 
-  Watch: https://youtu.be/23vBDDMK-68`;
+ `;
 
-  const additionalInfo = `ALAMAYO - SUPERGLUE (Official Music Video) explores the fragile hope of repair through powerful performances by Paula Lindblom and Harry Mason, with choreography bringing emotional depth through Mariia Litvin and Stepan Kozhaev's expressive dance sequences.
-
-  The production brought together a talented team including DOP Leon Silavant, Art Director Shealin Murphy, and Producer Chiara Carrubba. The visual storytelling seamlessly transitions between intimate moments and dance-driven sequences, supported by the skilled work of Gaffer Karina Stephan and Steadicam Operator Andrea Robustini.
-
-  Post-production was helmed by Editor Gabrielle Torreborre, with color grading by Santino Napolitano at Company 3. The music was composed by Diego Cayuela, Diego Benavent, and Coro Benavent, with production by MWolf & Kindler.`;
+  const additionalInfo = ``;
 
   return (
     <ProjectPage

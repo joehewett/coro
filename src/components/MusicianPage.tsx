@@ -7,28 +7,28 @@ const MusicianPage: React.FC = () => {
   const projects = [
     {
       id: 1,
-      image: '/coro3.webp',
+      image: '/director/palomitas.png',
       title: 'Palomitas sin Maíz',
       description: 'CORO & Gully',
       route: '/musician/music-video-1'
     },
     {
       id: 2,
-      image: '/coro7.webp',
+      image: '/music/champagnemoon.jpeg',
       title: 'Champagne Moon',
       description: 'CORO',
       route: '/musician/music-video-2'
     },
     {
       id: 3,
-      image: '/coro11.webp',
+      image: '/music/endoftheworld.jpeg',
       title: 'The End of the World (Cover)',
       description: 'CORO & Diego Benavent',
       route: '/musician/music-video-3'
     },
     {
       id: 4,
-      image: '/coro14.webp',
+      image: '/director/superglue.png',
       title: 'SUPERGLUE',
       description: 'CORO & Diego Benavent',
       route: '/musician/music-video-4'

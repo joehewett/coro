@@ -99,6 +99,11 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
                 />
               </div>
             )}
+            {additionalInfo && (
+              <p className="text-base leading-relaxed text-gray-700 mb-8 whitespace-pre-line mt-8">
+                {renderTextWithLinks(additionalInfo)}
+              </p>
+            )}
           </div>
 
           {/* Right column - Cast List */}
