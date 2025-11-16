@@ -61,6 +61,35 @@ const MusicianPage: React.FC<MusicianPageProps> = ({ theme = 'light' }) => {
             />
           ))}
         </div>
+
+        {/* Alamayo Band Section */}
+        <div className="mt-32 flex justify-center">
+          <a 
+            href="https://www.instagram.com/alamayobanda/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-8 group max-w-2xl"
+          >
+            {/* Circular Logo */}
+            <div className="flex-shrink-0">
+              <img 
+                src="/music/alamayo.jpg"
+                alt="Alamayo Band"
+                className="w-32 h-32 rounded-full object-cover shadow-lg transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+            
+            {/* Description */}
+            <div className="flex-1">
+              <h3 className="text-3xl font-bold text-foreground mb-3 font-handwritten">
+                Alamayo
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Alamayo is a band that I co-founded with my brother Diego. We are a psychedelic rock band that plays a mix of traditional rhythms with contemporary sounds, creating joyful and energetic performances.
+              </p>
+            </div>
+          </a>
+        </div>
       </div>
       <Footer theme={theme} />
     </div>

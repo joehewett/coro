@@ -5,16 +5,25 @@ interface ProjectCardProps {
   image: string;
   title: string;
   description: string;
-  route: string;
+  route?: string;
+  externalLink?: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, route }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, route, externalLink }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleClick = () => {
+    if (externalLink) {
+      window.open(externalLink, '_blank', 'noopener,noreferrer');
+    } else if (route) {
+      navigate(route);
+    }
+  };
+
   return (
     <div
-      onClick={() => navigate(route)}
+      onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="group relative w-full aspect-video cursor-pointer overflow-hidden bg-black transition-all duration-300 ease-out"
