@@ -74,6 +74,106 @@ const ActressPage: React.FC<ActressPageProps> = ({ theme = 'beige' }) => {
         </div>
       </div>
 
+      {/* Experience Section */}
+      <div className="px-10 max-w-6xl mx-auto py-32">
+        <h2 className={`text-6xl font-handwritten text-center mb-20 ${themeUtils.text(theme)}`}>
+          Experiencia
+        </h2>
+        
+        <div className="space-y-16">
+          {/* Formación Artística */}
+          <div>
+            <h3 className={`text-3xl font-handwritten mb-6 ${themeUtils.text(theme)}`}>
+              Formación Artística
+            </h3>
+            <ul className={`space-y-3 text-foreground`}>
+              <li>Curso intensivo para profesionales en RADA, Londres</li>
+              <li>Curso Semanal Meisner (The London Meisner Company)</li>
+              <li>Entrenamiento en Bristol Old Vic Theatre School, Londres</li>
+              <li>Tres años en el regular del Estudio Corazza para la Actuación</li>
+              <li>2º de Diplomatura de Interpretación para Cine en la Central de Cine</li>
+              <li>Formación continua en canto con diferentes maestr@s</li>
+              <li>2023. Entrenamiento ante la cámara con el director Álvaro Fernández Armero (Mayo-Junio)</li>
+              <li>2021. Seminario "La voz en la actuación", Módulo I y Módulo II y Módulo III impartido por Nuria Castaño en el Estudio Corazza</li>
+              <li>2021. Seminario de "Clown Esencial" impartido por Alain Vigneau en el Estudio Corazza</li>
+              <li>2019-2021. Componente de la Sociedad de Teatro de la Universidad de Warwick</li>
+              <li>2017-2019. Interpretación para el Teatro Musical en la Escuela JANA</li>
+            </ul>
+          </div>
+
+          {/* Audiovisual */}
+          <div>
+            <h3 className={`text-3xl font-handwritten mb-6 ${themeUtils.text(theme)}`}>
+              Audiovisual
+            </h3>
+            <ul className={`space-y-3 text-foreground`}>
+              <li>2025. Videoclip de SUPERGLUE, composición e interpretación junto con su hermano Diego Benavent: <a href="https://www.youtube.com/watch?v=ALAMAYO-SUPERGLUE" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">ALAMAYO - SUPERGLUE (Official Music Video)</a></li>
+              <li>2025. Videoclip de 'Palomitas sin Maíz', composición e interpretación junto con Gully. <a href="https://www.youtube.com/watch?v=palomitas-sin-maiz" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">CORO & Gully - Palomitas sin maíz (Official Music Video)</a></li>
+              <li>2024: Short Film "Seeking Girl for Risky Shoot"</li>
+              <li>2022. Videoclip en Youtube de "Champagne Moon", composición e interpretación. <a href="https://www.youtube.com/watch?v=champagne-moon" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">CORO - Champagne Moon (Videoclip)</a></li>
+              <li>2022. Actriz del Corto "INERTE" de Lourdes Cosentino. <a href="https://www.youtube.com/watch?v=inerte" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Inerte-Cortometraje</a></li>
+              <li>2022. Vídeo sesión de surf para anuncio Petit Bambou España</li>
+              <li>2020. The End of the World Cover con Diego Benavent <a href="https://www.youtube.com/watch?v=end-of-the-world" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">The end of the world Cover Coro y Diego Benavent</a></li>
+            </ul>
+          </div>
+
+          {/* Teatro */}
+          <div>
+            <h3 className={`text-3xl font-handwritten mb-6 ${themeUtils.text(theme)}`}>
+              Teatro
+            </h3>
+            <ul className={`space-y-3 text-foreground`}>
+              <li>"The Effect" de Lucy Prebble. Personaje: Connie. Directora: Natalie Simone (2024)</li>
+              <li>"La habitación azul" de David Hare. Director: Alberto López Murtra (2024)</li>
+              <li>"Terror y miseria del Tercer Reich" de Bertolt Brecht. Director: Alberto López Murtra (2024)</li>
+              <li>"Mucho ruido y pocas nueces" de William Shakespeare. Director: James Murray (2023)</li>
+              <li>"High School Musical" Directora: Miriam Madrid. Teatro INFANTA ISABEL (2020)</li>
+              <li>"La novia Cadáver" Director: Jacobo Muñoz. En la Escuela de JANA. Personaje: Blandito (2019)</li>
+              <li>"Romeo y Julieta" de William Shakespeare. International College of Spain. Lord Capulet (2017)</li>
+            </ul>
+          </div>
+
+          {/* Otras Habilidades */}
+          <div>
+            <h3 className={`text-3xl font-handwritten mb-6 ${themeUtils.text(theme)}`}>
+              Otras Habilidades / Capacidades
+            </h3>
+            <div className={`space-y-4 text-foreground`}>
+              <div>
+                <strong>Deportes:</strong> Baloncesto, Surf, Baile, Esquí, Tenis, Pádel, Fútbol, Natación, Ciclismo, Atletismo
+              </div>
+              <div>
+                <strong>Música:</strong> Cantante, guitarra, ukelele y piano básico
+              </div>
+              <div>
+                <strong>Idiomas:</strong> Castellano (nativo), Inglés (bilingüe), Francés (básico)
+              </div>
+              <div>
+                <strong>Otros:</strong> Directora, escritora y productora de películas
+              </div>
+            </div>
+          </div>
+
+          {/* Formación No Artística */}
+          <div>
+            <h3 className={`text-3xl font-handwritten mb-6 ${themeUtils.text(theme)}`}>
+              Formación No Artística
+            </h3>
+            <ul className={`space-y-3 text-foreground`}>
+              <li>2019-2022. Sociología y Desarrollo Global Sostenible en University of Warwick, UK</li>
+              <li>2017-2019. IB (Bachillerato Internacional) en el ICS (International College of Spain, Madrid)</li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div className="pt-8 border-t border-muted">
+            <p className={`text-center text-foreground`}>
+              Instagram: <a href="https://instagram.com/corobenavent" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">@corobenavent</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Image Gallery Section */}
       <div className="px-10 max-w-7xl mx-auto py-32">
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
