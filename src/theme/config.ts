@@ -3,7 +3,7 @@
  * All theme colors and styles are defined here
  */
 
-export type ThemeMode = 'light' | 'dark' | 'beige';
+export type ThemeMode = 'light' | 'dark' | 'beige' | 'orange';
 
 export interface ThemeConfig {
   background: string;
@@ -38,6 +38,13 @@ export const themes: Record<ThemeMode, ThemeConfig> = {
     text: 'text-[#5a4a3a]',
     textHover: 'hover:text-[#3a2a1a]',
     divider: 'bg-[#f5c9a8]',
+    invertImages: true,
+  },
+  orange: {
+    background: 'bg-[#FFBF69]',
+    text: 'text-[#4a3820]',
+    textHover: 'hover:text-[#2a1810]',
+    divider: 'bg-[#ff9f39]',
     invertImages: true,
   },
 };

@@ -8,7 +8,7 @@ interface MusicianPageProps {
   theme?: ThemeMode;
 }
 
-const MusicianPage: React.FC<MusicianPageProps> = ({ theme = 'light' }) => {
+const MusicianPage: React.FC<MusicianPageProps> = ({ theme = 'orange' }) => {
   const projects = [
     {
       id: 1,
