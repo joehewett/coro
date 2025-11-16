@@ -77,91 +77,91 @@ const ActressPage: React.FC<ActressPageProps> = ({ theme = 'beige' }) => {
       {/* Experience Section */}
       <div className="px-10 max-w-6xl mx-auto py-32">
         <h2 className={`text-6xl font-handwritten text-center mb-20 ${themeUtils.text(theme)}`}>
-          Experiencia
+          Experience
         </h2>
         
         <div className="space-y-16">
-          {/* Formación Artística */}
+          {/* Artistic Training */}
           <div>
             <h3 className={`text-3xl font-handwritten mb-6 ${themeUtils.text(theme)}`}>
-              Formación Artística
+              Artistic Training
             </h3>
             <ul className={`space-y-3 text-foreground`}>
-              <li>Curso intensivo para profesionales en RADA, Londres</li>
-              <li>Curso Semanal Meisner (The London Meisner Company)</li>
-              <li>Entrenamiento en Bristol Old Vic Theatre School, Londres</li>
-              <li>Tres años en el regular del Estudio Corazza para la Actuación</li>
-              <li>2º de Diplomatura de Interpretación para Cine en la Central de Cine</li>
-              <li>Formación continua en canto con diferentes maestr@s</li>
-              <li>2023. Entrenamiento ante la cámara con el director Álvaro Fernández Armero (Mayo-Junio)</li>
-              <li>2021. Seminario "La voz en la actuación", Módulo I y Módulo II y Módulo III impartido por Nuria Castaño en el Estudio Corazza</li>
-              <li>2021. Seminario de "Clown Esencial" impartido por Alain Vigneau en el Estudio Corazza</li>
-              <li>2019-2021. Componente de la Sociedad de Teatro de la Universidad de Warwick</li>
-              <li>2017-2019. Interpretación para el Teatro Musical en la Escuela JANA</li>
+              <li>Intensive professional course at RADA, London</li>
+              <li>Weekly Meisner Course (The London Meisner Company)</li>
+              <li>Training at Bristol Old Vic Theatre School, London</li>
+              <li>Three years in Estudio Corazza's regular acting program</li>
+              <li>2nd Year Diploma in Film Acting at Central de Cine</li>
+              <li>Continuous vocal training with various teachers</li>
+              <li>2023. On-camera training with director Álvaro Fernández Armero (May-June)</li>
+              <li>2021. "Voice in Acting" workshop, Module I, II and III taught by Nuria Castaño at Estudio Corazza</li>
+              <li>2021. "Essential Clown" workshop taught by Alain Vigneau at Estudio Corazza</li>
+              <li>2019-2021. Member of the University of Warwick Theatre Society</li>
+              <li>2017-2019. Musical Theatre Performance at JANA School</li>
             </ul>
           </div>
 
           {/* Audiovisual */}
           <div>
             <h3 className={`text-3xl font-handwritten mb-6 ${themeUtils.text(theme)}`}>
-              Audiovisual
+              Film & Video
             </h3>
             <ul className={`space-y-3 text-foreground`}>
-              <li>2025. Videoclip de SUPERGLUE, composición e interpretación junto con su hermano Diego Benavent: <a href="https://www.youtube.com/watch?v=ALAMAYO-SUPERGLUE" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">ALAMAYO - SUPERGLUE (Official Music Video)</a></li>
-              <li>2025. Videoclip de 'Palomitas sin Maíz', composición e interpretación junto con Gully. <a href="https://www.youtube.com/watch?v=palomitas-sin-maiz" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">CORO & Gully - Palomitas sin maíz (Official Music Video)</a></li>
-              <li>2024: Short Film "Seeking Girl for Risky Shoot"</li>
-              <li>2022. Videoclip en Youtube de "Champagne Moon", composición e interpretación. <a href="https://www.youtube.com/watch?v=champagne-moon" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">CORO - Champagne Moon (Videoclip)</a></li>
-              <li>2022. Actriz del Corto "INERTE" de Lourdes Cosentino. <a href="https://www.youtube.com/watch?v=inerte" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Inerte-Cortometraje</a></li>
-              <li>2022. Vídeo sesión de surf para anuncio Petit Bambou España</li>
-              <li>2020. The End of the World Cover con Diego Benavent <a href="https://www.youtube.com/watch?v=end-of-the-world" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">The end of the world Cover Coro y Diego Benavent</a></li>
+              <li>2025. SUPERGLUE music video, composed and performed with her brother Diego Benavent: <a href="https://www.youtube.com/watch?v=ALAMAYO-SUPERGLUE" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">ALAMAYO - SUPERGLUE (Official Music Video)</a></li>
+              <li>2025. 'Palomitas sin Maíz' music video, composed and performed with Gully. <a href="https://www.youtube.com/watch?v=palomitas-sin-maiz" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">CORO & Gully - Palomitas sin maíz (Official Music Video)</a></li>
+              <li>2024. Short Film "Seeking Girl for Risky Shoot"</li>
+              <li>2022. "Champagne Moon" music video on YouTube, composed and performed. <a href="https://www.youtube.com/watch?v=champagne-moon" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">CORO - Champagne Moon (Music Video)</a></li>
+              <li>2022. Actress in short film "INERTE" by Lourdes Cosentino. <a href="https://www.youtube.com/watch?v=inerte" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Inerte - Short Film</a></li>
+              <li>2022. Surf session video for Petit Bambou Spain advertisement</li>
+              <li>2020. The End of the World Cover with Diego Benavent <a href="https://www.youtube.com/watch?v=end-of-the-world" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">The End of the World Cover - Coro & Diego Benavent</a></li>
             </ul>
           </div>
 
-          {/* Teatro */}
+          {/* Theatre */}
           <div>
             <h3 className={`text-3xl font-handwritten mb-6 ${themeUtils.text(theme)}`}>
-              Teatro
+              Theatre
             </h3>
             <ul className={`space-y-3 text-foreground`}>
-              <li>"The Effect" de Lucy Prebble. Personaje: Connie. Directora: Natalie Simone (2024)</li>
-              <li>"La habitación azul" de David Hare. Director: Alberto López Murtra (2024)</li>
-              <li>"Terror y miseria del Tercer Reich" de Bertolt Brecht. Director: Alberto López Murtra (2024)</li>
-              <li>"Mucho ruido y pocas nueces" de William Shakespeare. Director: James Murray (2023)</li>
-              <li>"High School Musical" Directora: Miriam Madrid. Teatro INFANTA ISABEL (2020)</li>
-              <li>"La novia Cadáver" Director: Jacobo Muñoz. En la Escuela de JANA. Personaje: Blandito (2019)</li>
-              <li>"Romeo y Julieta" de William Shakespeare. International College of Spain. Lord Capulet (2017)</li>
+              <li>"The Effect" by Lucy Prebble. Role: Connie. Director: Natalie Simone (2024)</li>
+              <li>"The Blue Room" by David Hare. Director: Alberto López Murtra (2024)</li>
+              <li>"Fear and Misery of the Third Reich" by Bertolt Brecht. Director: Alberto López Murtra (2024)</li>
+              <li>"Much Ado About Nothing" by William Shakespeare. Director: James Murray (2023)</li>
+              <li>"High School Musical" Director: Miriam Madrid. INFANTA ISABEL Theatre (2020)</li>
+              <li>"Corpse Bride" Director: Jacobo Muñoz. At JANA School. Role: Blandito (2019)</li>
+              <li>"Romeo and Juliet" by William Shakespeare. International College of Spain. Lord Capulet (2017)</li>
             </ul>
           </div>
 
-          {/* Otras Habilidades */}
+          {/* Skills */}
           <div>
             <h3 className={`text-3xl font-handwritten mb-6 ${themeUtils.text(theme)}`}>
-              Otras Habilidades / Capacidades
+              Skills & Abilities
             </h3>
             <div className={`space-y-4 text-foreground`}>
               <div>
-                <strong>Deportes:</strong> Baloncesto, Surf, Baile, Esquí, Tenis, Pádel, Fútbol, Natación, Ciclismo, Atletismo
+                <strong>Sports:</strong> Basketball, Surfing, Dance, Skiing, Tennis, Padel, Football, Swimming, Cycling, Athletics
               </div>
               <div>
-                <strong>Música:</strong> Cantante, guitarra, ukelele y piano básico
+                <strong>Music:</strong> Singer, guitar, ukulele and basic piano
               </div>
               <div>
-                <strong>Idiomas:</strong> Castellano (nativo), Inglés (bilingüe), Francés (básico)
+                <strong>Languages:</strong> Spanish (native), English (bilingual), French (basic)
               </div>
               <div>
-                <strong>Otros:</strong> Directora, escritora y productora de películas
+                <strong>Other:</strong> Director, writer and film producer
               </div>
             </div>
           </div>
 
-          {/* Formación No Artística */}
+          {/* Academic Education */}
           <div>
             <h3 className={`text-3xl font-handwritten mb-6 ${themeUtils.text(theme)}`}>
-              Formación No Artística
+              Academic Education
             </h3>
             <ul className={`space-y-3 text-foreground`}>
-              <li>2019-2022. Sociología y Desarrollo Global Sostenible en University of Warwick, UK</li>
-              <li>2017-2019. IB (Bachillerato Internacional) en el ICS (International College of Spain, Madrid)</li>
+              <li>2019-2022. Sociology and Global Sustainable Development at University of Warwick, UK</li>
+              <li>2017-2019. IB (International Baccalaureate) at ICS (International College of Spain, Madrid)</li>
             </ul>
           </div>
 
