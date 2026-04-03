@@ -18,7 +18,7 @@ const Homepage: React.FC = () => {
       route: '/actress'
     },
     { 
-      bg: '/landing/topright.JPG', 
+      bg: '/landing/coro-director.jpg',
       text: '/landing/toprighttext.PNG',
       alt: 'Top Right',
       route: '/director'
