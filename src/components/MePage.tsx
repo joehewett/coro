@@ -33,11 +33,11 @@ const MePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="text-white/90 leading-relaxed space-y-4 text-base">
               <p>
-                I am a director telling human stories through film. I was trained as an actress at Corazza, Madrid, and The Bristol Old Vic, and have been creating music and art for 10 years. I've directed crews of up to 50 people on micro budgets, and my work has been featured by Kodak, Promonews, and nominated for British Young Arrows. Above all I value the freedom to create, and I believe this can only be done with an open heart.
+                Trained as an actress at Corazza, Madrid, and Bristol Old Vic, I came to directing through the stories I couldn't find told elsewhere. I've directed crews of up to 50 people on micro budgets; my work has been featured by Kodak and Promonews, and nominated for British Young Arrows.
               </p>
 
               <p>
-                In 2025, I co-founded <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Garo Studios</a> with my co-creative partner Gabrielle Torreborre, a production company for auteur-driven film. Together we've released Ragni (#1 Most Watched Music Video of 2025 on Promonews), Palomitas sin maíz (featured by Kodak), and SUPERGLUE. Nominated for British Young Arrows. We're currently in production on two short films, <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Tonos</a> and Tussle, with a feature in the pipeline.
+                In 2025, I co-founded <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Garo Studios</a> with Gabrielle Torreborre — a production company for auteur-driven cinema. We've released Ragni (#1 Most Watched Music Video of 2025 on Promonews), Palomitas sin maíz (featured by Kodak), and SUPERGLUE. Nominated for British Young Arrows. Two short films in pre-production — <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Tonos</a> and Tussle — with a feature in the pipeline.
               </p>
             </div>
             <div>
@@ -53,7 +53,7 @@ const MePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="md:order-2 text-white/90 leading-relaxed space-y-4 text-base">
               <p>
-                Right now, I'm directing <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Tonos</a>, a short film about reclaiming your voice. It's the most personal thing I've made, about the voice I lost as a child and the years it took to find it again. Shot on 16mm, written by BAFTA-winning screenwriter Aleksandra Sykulak, starring Julio Pe&ntilde;a. A <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Garo Studios</a> production.
+                <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Tonos</a> is the most personal thing I've made. It's about the voice I lost as a child and the years it took to find it again. Shot on 16mm, written by BAFTA-winning screenwriter Aleksandra Sykulak, starring Julio Pe&ntilde;a. A <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Garo Studios</a> production.
               </p>
             </div>
             <div className="md:order-1">
@@ -78,7 +78,7 @@ const MePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="text-white/90 leading-relaxed space-y-4 text-base">
               <p>
-                Palomitas sin maíz is a music video I wrote, directed and starred in, dedicated to my grandmother the day she passed away. It explores my relationship to her and the other female role models in my life. Shot on 16mm over two days, it was featured by Kodak and reviewed by Promonews.
+                Palomitas sin maíz is a music video I wrote, directed, and starred in — dedicated to my grandmother the day she passed. It's about her, and the other women who shaped me. Shot on 16mm over two days; featured by Kodak and reviewed by Promonews.
               </p>
             </div>
             <div>
@@ -93,7 +93,7 @@ const MePage: React.FC = () => {
           {/* Final Text Section */}
           <div className="w-full max-w-3xl mx-auto text-white/90 leading-relaxed space-y-4 text-base">
             <p>
-              Outside of film, I write and perform music with my band ALAMAYO. My happy place is being in the water surfing.
+              Outside of film, I write and perform music with my band ALAMAYO. My happy place is being in the water — surfing.
             </p>
           </div>
         </div>

@@ -14,6 +14,7 @@ interface ProjectPageProps {
   additionalInfo?: string;
   youtubeUrl?: string;
   theme?: ThemeMode;
+  status?: string;
 }
 
 const ProjectPage: React.FC<ProjectPageProps> = ({
@@ -26,7 +27,8 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
   mainImage,
   additionalInfo,
   youtubeUrl,
-  theme = 'light'
+  theme = 'light',
+  status
 }) => {
   // Create repeating title text
   const repeatingTitle = Array(20).fill(title).join(' ');
@@ -67,6 +69,15 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
       <div className="w-full py-5 overflow-hidden whitespace-nowrap text-5xl font-bold text-gray-700 font-handwritten relative z-10">
         {repeatingTitle}
       </div>
+
+      {/* Status badge */}
+      {status && (
+        <div className="max-w-7xl mx-auto px-10 pt-4">
+          <span className="text-xs uppercase tracking-widest text-gray-500 border border-gray-300 px-3 py-1">
+            {status}
+          </span>
+        </div>
+      )}
 
       {/* Main content */}
       <div className="max-w-7xl mx-auto px-10 py-15">
@@ -116,12 +127,12 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
             </h2>
             <ul className="list-none p-0">
               {credits.map((credit, index) => (
-                <li key={index} className="flex justify-between items-center py-3 border-b border-gray-300 last:border-b-0">
-                  <span className={credit.isHighlighted ? 'text-gray-900 font-bold' : 'text-black'}>
-                    {credit.name}
-                  </span>
-                  <span className="text-gray-600">
+                <li key={index} className="py-3 border-b border-gray-200 last:border-b-0">
+                  <span className="block text-xs uppercase tracking-widest text-gray-400 mb-0.5">
                     {credit.role}
+                  </span>
+                  <span className={credit.isHighlighted ? 'text-gray-900 font-semibold text-base' : 'text-gray-700 text-base'}>
+                    {credit.name}
                   </span>
                 </li>
               ))}

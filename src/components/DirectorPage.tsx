@@ -15,7 +15,16 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
       image: '/director/tonos.jpeg',
       title: 'TONOS',
       description: 'Director & lead actress. A short film about reclaiming your voice. Shot on 16mm, written by BAFTA-winning screenwriter Aleksandra Sykulak, starring Julio Peña. A Garo Studios production.',
-      route: '/director/tonos'
+      route: '/director/tonos',
+      status: 'In Pre-Production'
+    },
+    {
+      id: 6,
+      image: '',
+      title: 'Look Around',
+      description: 'In post-production.',
+      route: '/director/look-around',
+      status: 'In Post-Production'
     },
     {
       id: 2,
@@ -66,6 +75,7 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
                 title={project.title}
                 description={project.description}
                 route={project.route}
+                status={project.status}
               />
             ))}
           </div>

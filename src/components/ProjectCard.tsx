@@ -7,9 +7,10 @@ interface ProjectCardProps {
   description: string;
   route?: string;
   externalLink?: string;
+  status?: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, route, externalLink }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, route, externalLink, status }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
@@ -29,11 +30,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, ro
       className="group relative w-full aspect-video cursor-pointer overflow-hidden bg-black transition-all duration-300 ease-out"
     >
       {/* Project image */}
-      <img 
+      <img
         src={image}
         alt={title}
         className="w-full h-full object-cover"
       />
+
+      {/* Status badge */}
+      {status && (
+        <div className="absolute top-3 left-3 z-10">
+          <span className="text-xs uppercase tracking-widest text-white bg-black/70 px-3 py-1">
+            {status}
+          </span>
+        </div>
+      )}
       
       {/* Black overlay with 80% opacity */}
       <div

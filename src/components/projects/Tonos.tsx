@@ -33,6 +33,7 @@ Visit the film's website: https://tonos.film`;
       description={description}
       mainImage="/director/tonos.jpeg"
       additionalInfo={additionalInfo}
+      status="In Pre-Production"
     />
   );
 };
