@@ -33,11 +33,11 @@ const MePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="text-white/90 leading-relaxed space-y-4 text-base">
               <p>
-                I am an actress, director and singer (musician) building my career by telling human stories. I was trained as an actress at Corazza, Madrid, and The Bristol Old Vic. I have been creating music and art for 10 years. In my art, I try to bring to life the creativity and humanity that emerges in groups oriented at common objectives. Above all I value the freedom to create, and I believe this can only be done with an open heart.
+                I am an actress, director and singer building my career by telling human stories. I was trained as an actress at Corazza, Madrid, and The Bristol Old Vic. I have been creating music and art for 10 years. In my art, I try to bring to life the creativity and humanity that emerges in groups oriented at common objectives. Above all I value the freedom to create, and I believe this can only be done with an open heart.
               </p>
-              
+
               <p>
-                In August 2025, I started a production company with my co-creative partner Gabrielle Torreborre :)
+                In 2025, I co-founded <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Garo Studios</a> with my co-creative partner Gabrielle Torreborre, a production company for auteur-driven film. Together we've released Ragni (#1 Most Watched Music Video of 2025 on Promonews), Palomitas sin maíz (featured by Kodak), and SUPERGLUE. Nominated for British Young Arrows.
               </p>
             </div>
             <div>
@@ -53,9 +53,9 @@ const MePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="md:order-2 text-white/90 leading-relaxed space-y-4 text-base">
               <p>
-                In July 2025, I directed a narrative music video for one of my songs, &ldquo;SUPERGLUE&rdquo;, a self composed song. The film involves two actors playing a couple in crisis, with two Conservatoire dancers playing their alter egos.
+                Right now, I'm directing <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Tonos</a>, a short film about reclaiming your voice. It's the most personal thing I've made, about the voice I lost as a child and the years it took to find it again. Shot on 16mm, written by BAFTA-winning screenwriter Aleksandra Sykulak, starring Julio Pe&ntilde;a. A <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Garo Studios</a> production.
               </p>
-              
+
               <p>
                 In June 2025, I worked as the director&rsquo;s assistant on a documentary following shepherds during their 40-day transhumance journey from southern to northern Spain. As the director was from Scotland and didn&rsquo;t speak Spanish, I was their bridge, responsible for gathering local context, orchestrating conversations about this disappearing tradition, and capturing authentic moments.
               </p>

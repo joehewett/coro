@@ -7,11 +7,11 @@ const Ragni: React.FC = () => {
     { name: 'Coro Benavent', role: 'Creative Producer', isHighlighted: true }
   ];
 
-  const description = `Creative Producer for Ragni - a music video created by Garo Studios, currently in post-production. Directed by Gabrielle Torreborre.
+  const description = `Creative Producer for Ragni - a music video created by Garo Studios. Directed by Gabrielle Torreborre.
 
   A woman enters into a new relationship, but what begins as a gentle, promising romance slowly devolves, and she begins to see spiders everywhere she goes.
 
-  Status: In Post-production`;
+  #1 Most Watched Music Video of 2025 on Promonews, ahead of Lady Gaga and Snoop Dogg. Nominated for British Young Arrows for Best Unsigned Director and Best Editor.`;
 
   const additionalInfo = `Ragni explores the fear many women share: being reduced to gendered expectations within a relationship. Here, the recurring presence of spiders becomes a metaphor for imposed gender roles and the anxieties of impending motherhood.
 
@@ -28,6 +28,7 @@ const Ragni: React.FC = () => {
       description={description}
       mainImage="/director/ragni.jpg"
       additionalInfo={additionalInfo}
+      youtubeUrl="https://www.youtube.com/embed/GMujCiddg6E"
     />
   );
 };

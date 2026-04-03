@@ -12,27 +12,34 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
   const projects = [
     {
       id: 1,
+      image: '/director/tonos.jpeg',
+      title: 'TONOS',
+      description: 'Director & lead actress. A short film about reclaiming your voice. Shot on 16mm, written by BAFTA-winning screenwriter Aleksandra Sykulak, starring Julio Peña. A Garo Studios production.',
+      route: '/director/tonos'
+    },
+    {
+      id: 2,
+      image: '/director/ragni.jpg',
+      title: 'Ragni',
+      description: 'Creative producer for Garo Studios. #1 Most Watched Music Video of 2025 on Promonews. Nominated for British Young Arrows.',
+      route: '/director/ragni'
+    },
+    {
+      id: 3,
       image: '/director/superglue.png',
       title: 'SUPERGLUE',
       description: 'Directed music video exploring whether fractured relationships can be repaired through the central metaphor of a broken plate.',
       route: '/director/superglue'
     },
     {
-      id: 2,
+      id: 4,
       image: '/director/palomitas.png',
       title: 'Palomitas sin maíz',
       description: 'Co-direction / creative producer for music video created by Garo Studios. Shot on 16mm, a tribute to life and the memories that outlast it.',
       route: '/director/palomitas-sin-maiz'
     },
     {
-      id: 3,
-      image: '/director/ragni.jpg',
-      title: 'Ragni',
-      description: 'Creative producer for Garo Studios. A woman enters a new relationship that slowly devolves, and she begins to see spiders everywhere. In post-production.',
-      route: '/director/ragni'
-    },
-    {
-      id: 4,
+      id: 5,
       image: '/director/padre.jpg',
       title: 'Padre. Hijo. Pastor',
       description: 'Director\'s Assistant for feature documentary. Fighting the tide of commercial farming, a Spanish shepherd embarks on a 700km journey. In post-production.',
@@ -49,7 +56,7 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
         theme={theme}
       />
       
-      <div className="min-h-screen pt-24 sm:pt-32 lg:pt-20 lg:h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10">
+      <div className="min-h-screen pt-24 sm:pt-32 lg:pt-20 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10 pb-16">
         <div className="w-full max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
             {projects.map(project => (

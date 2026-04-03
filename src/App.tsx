@@ -12,6 +12,7 @@ import TheLastDance from './components/projects/TheLastDance';
 import Inerte from './components/projects/Inerte';
 import Billabong from './components/projects/Billabong';
 import Superglue from './components/projects/Superglue';
+import Tonos from './components/projects/Tonos';
 import PadreHijoPastor from './components/projects/PadreHijoPastor';
 import Ragni from './components/projects/Ragni';
 import EchoesOfTomorrow from './components/projects/EchoesOfTomorrow';
@@ -45,6 +46,7 @@ const App: React.FC = () => {
         <Route path="/actress/the-last-dance" element={<TheLastDance />} />
         
         {/* Director project pages */}
+        <Route path="/director/tonos" element={<Tonos />} />
         <Route path="/director/superglue" element={<Superglue />} />
         <Route path="/director/palomitas-sin-maiz" element={<PalomitasSinMaiz />} />
         <Route path="/director/ragni" element={<Ragni />} />
