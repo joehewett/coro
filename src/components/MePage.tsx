@@ -25,7 +25,7 @@ const MePage: React.FC = () => {
           {/* Title */}
           <div className="w-full text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-white font-handwritten">
-              Director, Actress, Musician
+              Director
             </h1>
           </div>
 
@@ -33,7 +33,7 @@ const MePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="text-white/90 leading-relaxed space-y-4 text-base">
               <p>
-                I am a director, actress and musician telling human stories through film. I was trained as an actress at Corazza, Madrid, and The Bristol Old Vic, and have been creating music and art for 10 years. I've directed crews of up to 50 people on micro budgets, and my work has been featured by Kodak, Promonews, and nominated for British Young Arrows. Above all I value the freedom to create, and I believe this can only be done with an open heart.
+                I am a director telling human stories through film. I was trained as an actress at Corazza, Madrid, and The Bristol Old Vic, and have been creating music and art for 10 years. I've directed crews of up to 50 people on micro budgets, and my work has been featured by Kodak, Promonews, and nominated for British Young Arrows. Above all I value the freedom to create, and I believe this can only be done with an open heart.
               </p>
 
               <p>
