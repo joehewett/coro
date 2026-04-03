@@ -37,7 +37,7 @@ const MePage: React.FC = () => {
               </p>
 
               <p>
-                In 2025, I co-founded <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Garo Studios</a> with my co-creative partner Gabrielle Torreborre, a production company for auteur-driven film. Together we've released Ragni (#1 Most Watched Music Video of 2025 on Promonews), Palomitas sin maíz (featured by Kodak), and SUPERGLUE. Nominated for British Young Arrows.
+                In 2025, I co-founded <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Garo Studios</a> with my co-creative partner Gabrielle Torreborre, a production company for auteur-driven film. Together we've released Ragni (#1 Most Watched Music Video of 2025 on Promonews), Palomitas sin maíz (featured by Kodak), and SUPERGLUE. Nominated for British Young Arrows. We're currently in production on two short films, <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Tonos</a> and Tussle, with a feature in the pipeline.
               </p>
             </div>
             <div>
