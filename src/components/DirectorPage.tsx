@@ -28,7 +28,7 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
     },
     {
       id: 2,
-      image: '/director/ragni-still.jpg',
+      image: '/director/ragni-still.png',
       title: 'Ragni',
       description: 'Creative producer for Garo Studios. #1 Most Watched Music Video of 2025 on Promonews. Nominated for British Young Arrows.',
       route: '/director/ragni'

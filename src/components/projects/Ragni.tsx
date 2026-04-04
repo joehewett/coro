@@ -52,7 +52,8 @@ On the flip side, female spiders are known for dominating their male counterpart
       categoryAlt="Director"
       credits={credits}
       description={description}
-      mainImage="/director/ragni-still.jpg"
+      mainImage="/director/ragni-still.png"
+      stills={['/director/ragni-still-2.png']}
       additionalInfo={additionalInfo}
       youtubeUrl="https://www.youtube.com/embed/GMujCiddg6E"
     />
