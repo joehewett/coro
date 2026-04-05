@@ -24,14 +24,16 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
       title: 'Look Around',
       description: 'Director. A young boy guides three musicians who have lost their souls toward a dreamy 1920s concert finale.',
       route: '/director/look-around',
-      status: 'In Post-Production'
+      status: 'In Post-Production',
+      imageZoom: true
     },
     {
       id: 2,
       image: '/director/ragni-still.png',
       title: 'Ragni',
       description: 'Creative producer for Garo Studios. #1 Most Watched Music Video of 2025 on Promonews. Nominated for British Young Arrows.',
-      route: '/director/ragni'
+      route: '/director/ragni',
+      imageZoom: true
     },
     {
       id: 3,
@@ -76,6 +78,7 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
                 description={project.description}
                 route={project.route}
                 status={project.status}
+                imageZoom={project.imageZoom}
               />
             ))}
           </div>
