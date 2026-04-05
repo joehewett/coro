@@ -34,7 +34,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, ro
       <img
         src={image}
         alt={title}
-        className={`w-full h-full object-cover${imageZoom ? ' scale-110' : ''}`}
+        className={`w-full h-full object-cover${imageZoom ? ' scale-[1.15]' : ''}`}
       />
 
       {/* Status badge */}
