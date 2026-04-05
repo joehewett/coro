@@ -44,7 +44,7 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
       id: 4,
       image: '/director/palomitas.png',
       title: 'Palomitas sin maíz',
-      description: 'Co-direction / creative producer for music video created by Garo Studios. Shot on 16mm, a tribute to life and the memories that outlast it.',
+      description: 'Co-director & co-producer. Shot on 16mm, a tribute to life and the memories that outlast it. Featured by Kodak, winner at British Young Arrows.',
       route: '/director/palomitas-sin-maiz'
     },
     {
