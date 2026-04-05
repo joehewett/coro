@@ -31,7 +31,7 @@ const LookAround: React.FC = () => {
     // Production
     { name: 'Arianna Scarpa', role: 'Production Assistant' },
     { name: 'Lewis Taylor', role: 'Production Assistant' },
-    { name: 'Zach Mcdowell', role: 'Crew' },
+    { name: 'Anna Maren Kristofova', role: 'BTS Photography' },
 
     // Cast
     { name: 'Huxley Syers', role: 'Young Actor' },
