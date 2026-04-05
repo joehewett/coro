@@ -13,7 +13,7 @@ const LookAround: React.FC = () => {
     // Art Department
     { name: 'Grey Hwang', role: 'Production Designer' },
     { name: 'Shealin Murphy', role: 'Art Director' },
-    { name: 'Lucy Derheimer', role: 'Art Assistant' },
+    { name: 'Lucy Derheimer', role: 'Set Dresser & Model Maker' },
     { name: 'María Mayer', role: 'Art Assistant' },
 
     // Camera & Lighting
