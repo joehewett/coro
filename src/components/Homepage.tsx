@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
+import OptimizedImage from './OptimizedImage';
 
 const Homepage: React.FC = () => {
   const navigate = useNavigate();
@@ -73,14 +74,14 @@ const Homepage: React.FC = () => {
             onClick={() => navigate(quadrant.route)}
           >
             {/* Background Image */}
-            <img 
-              src={quadrant.bg} 
+            <OptimizedImage
+              src={quadrant.bg}
+              width={1200}
               alt={quadrant.alt}
               className="quadrant-bg w-full h-full object-cover absolute inset-0 z-0 bg-black"
               onLoad={() => console.log(`Background image ${index} loaded successfully`)}
               onError={(e) => {
                 console.error(`Failed to load background image ${index}:`, quadrant.bg);
-                // Fallback: set a background color if image fails to load
                 const target = e.target as HTMLImageElement;
                 target.style.backgroundColor = '#333';
               }}

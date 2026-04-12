@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import OptimizedImage from './OptimizedImage';
 
 const MePage: React.FC = () => {
   return (
@@ -15,8 +16,9 @@ const MePage: React.FC = () => {
         <div className="flex flex-col gap-16 max-w-5xl mx-auto">
           {/* Hero Image */}
           <div className="w-full max-w-3xl mx-auto">
-            <img 
-              src="/me/me1.jpg" 
+            <OptimizedImage
+              src="/me/me1.jpg"
+              width={800}
               alt="Coro Benavent"
               className="w-full aspect-square object-cover shadow-2xl"
             />
@@ -41,8 +43,9 @@ const MePage: React.FC = () => {
               </p>
             </div>
             <div>
-              <img 
-                src="/me/me3.jpg" 
+              <OptimizedImage
+                src="/me/me3.jpg"
+                width={600}
                 alt="Coro Benavent"
                 className="w-full h-auto object-cover shadow-2xl"
               />
@@ -57,8 +60,9 @@ const MePage: React.FC = () => {
               </p>
             </div>
             <div className="md:order-1">
-              <img
+              <OptimizedImage
                 src="/me/me4.jpg"
+                width={600}
                 alt="Coro Benavent"
                 className="w-full h-auto object-cover shadow-2xl"
               />
@@ -67,8 +71,9 @@ const MePage: React.FC = () => {
 
           {/* Full Width Image */}
           <div className="w-full">
-            <img
+            <OptimizedImage
               src="/me/me5.png"
+              width={1200}
               alt="Coro Benavent"
               className="w-full h-auto object-cover shadow-2xl"
             />
@@ -82,8 +87,9 @@ const MePage: React.FC = () => {
               </p>
             </div>
             <div>
-              <img
+              <OptimizedImage
                 src="/me/me6.jpeg"
+                width={600}
                 alt="Coro Benavent"
                 className="w-full h-auto object-cover shadow-2xl"
               />

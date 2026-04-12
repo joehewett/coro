@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import ProjectCard from './ProjectCard';
 import Footer from './Footer';
+import OptimizedImage from './OptimizedImage';
 import { type ThemeMode, themeUtils } from '../theme';
 
 interface MusicianPageProps {
@@ -87,8 +88,9 @@ const MusicianPage: React.FC<MusicianPageProps> = ({ theme = 'orange' }) => {
           >
             {/* Circular Logo */}
             <div className="flex-shrink-0">
-              <img 
+              <OptimizedImage
                 src="/music/alamayo.jpg"
+                width={256}
                 alt="Alamayo Band"
                 className="w-32 h-32 rounded-full object-cover shadow-lg transition-transform duration-300 group-hover:scale-110"
               />

@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import OptimizedImage from './OptimizedImage';
 import { type ThemeMode, themeUtils } from '../theme';
 
 interface ProjectPageProps {
@@ -85,8 +86,9 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
       <div className="max-w-7xl mx-auto px-10 py-15">
         {/* Image at top, same width as columns */}
         <div className="w-full mb-15">
-          <img 
+          <OptimizedImage
             src={mainImage}
+            width={1280}
             alt={title}
             className="w-full h-auto"
           />
@@ -148,7 +150,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
           <h2 className="text-3xl font-bold text-gray-800 mb-6 font-handwritten">Stills</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {stills.map((src, i) => (
-              <img key={i} src={src} alt={`${title} still ${i + 1}`} className="w-full h-auto" />
+              <OptimizedImage key={i} src={src} width={800} alt={`${title} still ${i + 1}`} className="w-full h-auto" />
             ))}
           </div>
         </div>

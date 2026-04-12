@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import ProjectCard from './ProjectCard';
 import Footer from './Footer';
+import OptimizedImage from './OptimizedImage';
 import { type ThemeMode, themeUtils } from '../theme';
 
 interface ActressPageProps {
@@ -179,8 +180,9 @@ const ActressPage: React.FC<ActressPageProps> = ({ theme = 'beige' }) => {
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
           {galleryImages.map((image, index) => (
             <div key={index} className="break-inside-avoid relative group">
-              <img
+              <OptimizedImage
                 src={image}
+                width={600}
                 alt={`Gallery image ${index + 1}`}
                 className="w-full h-auto shadow-md hover:shadow-xl transition-shadow duration-300"
                 loading="lazy"

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import OptimizedImage from './OptimizedImage';
 
 interface ProjectCardProps {
   image: string;
@@ -31,8 +32,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, ro
       className="group relative w-full aspect-video cursor-pointer overflow-hidden bg-black transition-all duration-300 ease-out"
     >
       {/* Project image */}
-      <img
+      <OptimizedImage
         src={image}
+        width={800}
         alt={title}
         className={`w-full h-full object-cover${imageZoom ? ' scale-[1.15]' : ''}`}
       />
