@@ -81,6 +81,8 @@ Through maps and treasure hunts, he guides them toward a dreamy 1920s concert fi
     '/director/look-around-still-2.jpg',
     '/director/look-around-still-3.jpg',
     '/director/look-around-still-4.jpg',
+    '/director/look-around-still-5.jpg',
+    '/director/look-around-still-6.jpg',
   ];
 
   return (

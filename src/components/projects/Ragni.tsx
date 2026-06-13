@@ -4,7 +4,7 @@ import ProjectPage from '../ProjectPage';
 const Ragni: React.FC = () => {
   const credits = [
     { name: 'Gaia Banfi', role: 'Song by' },
-    { name: 'Garo Studios', role: 'Created by' },
+    { name: 'GARO', role: 'Created by' },
     { name: 'Gabrielle Torreborre', role: 'Director' },
     { name: 'Coro Benavent', role: 'Producer', isHighlighted: true },
     { name: 'James Lahaise', role: 'Director of Photography' },

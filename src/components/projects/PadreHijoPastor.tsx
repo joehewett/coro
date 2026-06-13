@@ -3,7 +3,13 @@ import ProjectPage from '../ProjectPage';
 
 const PadreHijoPastor: React.FC = () => {
   const credits = [
-    { name: 'Coro Benavent', role: 'Director\'s Assistant', isHighlighted: true }
+    { name: '@mori_director', role: 'Director' },
+    { name: 'Lottie Maher', role: 'Director' },
+    { name: 'Dani Benejam', role: 'Cinematography' },
+    { name: '@na_ce_ca', role: 'Editor' },
+    { name: 'Maria Nualart', role: 'Colourist' },
+    { name: 'Coro Benavent', role: 'Director\'s Assistant', isHighlighted: true },
+    { name: 'Sebastián R. Pardo', role: 'Runner' },
   ];
 
   const description = `Director's Assistant for Hijo, Padre, Pastor - a feature documentary currently in post-production.

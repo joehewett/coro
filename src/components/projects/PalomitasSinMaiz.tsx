@@ -30,7 +30,7 @@ const PalomitasSinMaiz: React.FC = () => {
 
   const description = `Wrote, created and produced the music video for "Palomitas sin maíz", a song I wrote to my grandmother the day that she left us. The narrative explored my relationship to her and the other female role models in my life. It was shot on 16mm and starred Dinah Stabb, Gully, a horse and I.
 
-It won the cinematography award at the British Young Arrows, was featured by Kodak, reviewed by Promonews, and pre-nominated for the Shiny Awards. This project marked the birth of my creative partnership with Gabrielle Torreborre and our film production company, Garo Studios. Co-directed and co-produced together, it was the foundation of everything we've built since.
+It won the cinematography award at the British Young Arrows, was featured by Kodak, reviewed by Promonews, and pre-nominated for the Shiny Awards. This project marked the birth of my creative partnership with Gabrielle Torreborre and our film production company, GARO. Co-directed and co-produced together, it was the foundation of everything we've built since.
 
 Shot on 16mm, the film creates a soft, reminiscent atmosphere, revolving around a beautiful memory. This video gave us the chance to reflect, process, and remember to be grateful for those we still have around us and to celebrate those who have long left.`;
 

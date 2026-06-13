@@ -14,7 +14,7 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
       id: 1,
       image: '/director/tonos.jpeg',
       title: 'TONOS',
-      description: 'Director & lead actress. A short film about reclaiming your voice. Shot on 16mm, written by BAFTA-winning screenwriter Aleksandra Sykulak, starring Julio Peña. A Garo Studios production.',
+      description: 'Director & lead actress. A short film about reclaiming your voice. Shot on 16mm, written by BAFTA-winning screenwriter Aleksandra Sykulak, starring Julio Peña. A GARO production.',
       route: '/director/tonos',
       status: 'In Pre-Production'
     },
@@ -30,7 +30,7 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
       id: 2,
       image: '/director/ragni-still.png',
       title: 'Ragni',
-      description: 'Creative producer for Garo Studios. #1 Most Watched Music Video of 2025 on Promonews. Nominated for British Young Arrows.',
+      description: 'Creative producer for GARO. #1 Most Watched Music Video of 2025 on Promonews. Nominated for British Young Arrows.',
       route: '/director/ragni',
       imageZoom: true
     },

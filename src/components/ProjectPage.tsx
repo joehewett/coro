@@ -122,6 +122,18 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
                 {renderTextWithLinks(additionalInfo)}
               </p>
             )}
+
+            {/* Stills gallery - filling the left column alongside the credits */}
+            {stills && stills.length > 0 && (
+              <div className="mt-8">
+                <h2 className="text-3xl font-bold text-gray-800 mb-6 font-handwritten">Stills</h2>
+                <div className="grid grid-cols-1 gap-4">
+                  {stills.map((src, i) => (
+                    <OptimizedImage key={i} src={src} width={800} alt={`${title} still ${i + 1}`} className="w-full h-auto" />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Right column - Cast List */}
@@ -144,17 +156,6 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
           </div>
         </div>
       </div>
-      {/* Stills gallery */}
-      {stills && stills.length > 0 && (
-        <div className="max-w-7xl mx-auto px-10 pb-16">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 font-handwritten">Stills</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {stills.map((src, i) => (
-              <OptimizedImage key={i} src={src} width={800} alt={`${title} still ${i + 1}`} className="w-full h-auto" />
-            ))}
-          </div>
-        </div>
-      )}
 
       <Footer theme={theme} />
     </div>

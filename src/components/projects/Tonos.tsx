@@ -9,7 +9,7 @@ const Tonos: React.FC = () => {
     { name: 'Gabrielle Torreborre', role: 'Executive Producer' },
     { name: 'Teresa Trueba', role: 'Associate Producer' },
     { name: 'Crea Sullivan', role: 'Composer' },
-    { name: 'Garo Studios', role: 'Production Company' },
+    { name: 'SkyeAngel Productions x GARO', role: 'Producers' },
   ];
 
   const description = `Athenea grew up on a farm in Spain surrounded by animals and a big loud family. With them, she barely needed to speak. At school, her best friend Alberto spoke on her behalf. Now in her 20s, she moves to London to prove she has a voice of her own. When Alberto reappears, he tricks her into confronting her biggest fear.
@@ -18,7 +18,7 @@ This film is personal. It's about the voice I lost as a child and the years it t
 
 Shot on 16mm film. Written by BAFTA-winning screenwriter Aleksandra Sykulak. Starring Julio Peña (Netflix's Berlin, El Cautivo).`;
 
-  const additionalInfo = `Tonos is a Garo Studios production. A women-led team championing auteur-driven cinema.
+  const additionalInfo = `Tonos is a GARO production. A women-led team championing auteur-driven cinema.
 
 Visit the film's website: https://tonos.film`;
 
