@@ -24,7 +24,6 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
       title: 'Look Around',
       description: 'Director. A young boy guides three musicians who have lost their souls toward a dreamy 1920s concert finale.',
       route: '/director/look-around',
-      status: 'In Post-Production',
       imageZoom: true
     },
     {

@@ -24,17 +24,17 @@ const Homepage: React.FC = () => {
       alt: 'Top Right',
       route: '/director'
     },
-    { 
-      bg: '/landing/bottomleft.jpeg', 
-      text: '/landing/bottomlefttext.PNG',
-      alt: 'Bottom Left',
-      route: '/me'
-    },
-    { 
-      bg: '/landing/bottomright.jpeg', 
+    {
+      bg: '/landing/bottomright.jpeg',
       text: '/landing/bottomrighttext.PNG',
-      alt: 'Bottom Right',
+      alt: 'Bottom Left',
       route: '/musician'
+    },
+    {
+      bg: '/landing/bottomleft.jpeg',
+      text: '/landing/bottomlefttext.PNG',
+      alt: 'Bottom Right',
+      route: '/me'
     }
   ];
 
