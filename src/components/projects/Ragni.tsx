@@ -42,7 +42,7 @@ const Ragni: React.FC = () => {
 
   const additionalInfo = `Ragni explores the fear many women share: being reduced to gendered expectations within a relationship. Here, the recurring presence of spiders becomes a metaphor for imposed gender roles and the anxieties of impending motherhood.
 
-On the flip side, female spiders are known for dominating their male counterparts — showing the arbitrary nature of these gendered dynamics, explored through a dance sequence where the woman dominates the space, surrounded by passive or fearful male onlookers.`;
+On the flip side, female spiders are known for dominating their male counterparts, showing the arbitrary nature of these gendered dynamics, explored through a dance sequence where the woman dominates the space, surrounded by passive or fearful male onlookers.`;
 
   return (
     <ProjectPage

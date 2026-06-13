@@ -39,7 +39,7 @@ const MePage: React.FC = () => {
               </p>
 
               <p>
-                In 2025, I co-founded <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">GARO</a> with Gabrielle Torreborre — a production company for auteur-driven cinema. We've released Ragni (#1 Most Watched Music Video of 2025 on Promonews), Palomitas sin maíz (featured by Kodak), and SUPERGLUE. Nominated for British Young Arrows. Two short films in pre-production — <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Tonos</a> and Tussle — with a feature in the pipeline.
+                In 2025, I co-founded <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">GARO</a> with Gabrielle Torreborre, a production company for auteur-driven cinema. We've released Ragni (#1 Most Watched Music Video of 2025 on Promonews), Palomitas sin maíz (featured by Kodak), and SUPERGLUE. Nominated for British Young Arrows. Two short films in pre-production, <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Tonos</a> and Tussle, with a feature in the pipeline.
               </p>
             </div>
             <div>
@@ -83,7 +83,7 @@ const MePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="text-white/90 leading-relaxed space-y-4 text-base">
               <p>
-                Palomitas sin maíz is a music video I wrote, directed, and starred in — dedicated to my grandmother the day she passed. It's about her, and the other women who shaped me. Shot on 16mm over two days; featured by Kodak and reviewed by Promonews.
+                Palomitas sin maíz is a music video I wrote, directed, and starred in, dedicated to my grandmother the day she passed. It's about her, and the other women who shaped me. Shot on 16mm over two days; featured by Kodak and reviewed by Promonews.
               </p>
             </div>
             <div>
@@ -99,7 +99,7 @@ const MePage: React.FC = () => {
           {/* Final Text Section */}
           <div className="w-full max-w-3xl mx-auto text-white/90 leading-relaxed space-y-4 text-base">
             <p>
-              Outside of film, I write and perform music with my band ALAMAYO. My happy place is being in the water — surfing.
+              Outside of film, I write and perform music with my band ALAMAYO. My happy place is being in the water, surfing.
             </p>
           </div>
         </div>
