@@ -25,7 +25,8 @@ Workflow for every change:
 4. For visual changes, run `pnpm dev` and check the page at http://localhost:5173. Take a screenshot if you can.
 5. Commit with a short, plain message, for example "Add Tonos BTS photos".
 6. `git push` to `main`.
-7. Tell Coro the page URL, for example https://corobenavent.com/director/tonos.
+7. Check the deploy. Wait about a minute, then run `gh api repos/joehewett/coro/deployments --jq '.[0].id'` and `gh api repos/joehewett/coro/deployments/<id>/statuses --jq '.[0].state'`. It must say `success`. If it says `failure`, the live site keeps the old version. Tell Coro to ask Joe.
+8. Tell Coro the page URL, for example https://corobenavent.com/director/tonos.
 
 Rules:
 
