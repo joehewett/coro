@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import OptimizedImage from './OptimizedImage';
@@ -38,16 +38,6 @@ const Homepage: React.FC = () => {
     }
   ];
 
-  useEffect(() => {
-    // Debug: Check if quadrant background images are loading
-    quadrants.forEach((quadrant, index) => {
-      const bgImg = new window.Image();
-      bgImg.onload = () => console.log(`Quadrant ${index} background image loaded: ${quadrant.bg}`);
-      bgImg.onerror = () => console.error(`Failed to load quadrant ${index} background image: ${quadrant.bg}`);
-      bgImg.src = quadrant.bg;
-    });
-  }, []);
-
   return (
     <div className="homepage-no-scroll fixed top-0 left-0 w-screen h-screen">
       {/* 2x2 Grid of images */}
@@ -58,7 +48,6 @@ const Homepage: React.FC = () => {
             className="relative overflow-hidden"
             onMouseEnter={(e) => {
               if (isMobile()) return; // Skip hover effects on mobile
-              console.log(`Hovering quadrant ${index}`);
               const overlay = e.currentTarget.querySelector('.overlay') as HTMLElement;
               const textImg = e.currentTarget.querySelector('.text-img') as HTMLElement;
               if (overlay) overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
@@ -79,9 +68,7 @@ const Homepage: React.FC = () => {
               width={1200}
               alt={quadrant.alt}
               className="quadrant-bg w-full h-full object-cover absolute inset-0 z-0 bg-black"
-              onLoad={() => console.log(`Background image ${index} loaded successfully`)}
               onError={(e) => {
-                console.error(`Failed to load background image ${index}:`, quadrant.bg);
                 const target = e.target as HTMLImageElement;
                 target.style.backgroundColor = '#333';
               }}
