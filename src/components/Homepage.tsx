@@ -91,7 +91,7 @@ const Homepage: React.FC = () => {
       
       {/* Centered coro_text.png */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-50">
-        <Logo height={96} clickable={false} />
+        <Logo height={120} clickable={false} />
       </div>
     </div>
   );
