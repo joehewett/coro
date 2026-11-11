@@ -31,7 +31,7 @@ Visit the film's website: https://tonos.film`;
 
       credits={credits}
       description={description}
-      mainImage="/director/tonos.jpeg"
+      mainImage="/director/tonos-classroom.jpg"
       additionalInfo={additionalInfo}
       status="In Pre-Production"
     />
