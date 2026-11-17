@@ -318,15 +318,42 @@ export const AboutPage: React.FC = () => (
   </DirectorPageFrame>
 );
 
+/** One contact line, like a film credit card: Label ........ value */
+const ContactLine: React.FC<{ label: string; value: string; href: string; external?: boolean }> = ({
+  label,
+  value,
+  href,
+  external,
+}) => (
+  <a
+    href={href}
+    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+    className="contact-line flex items-baseline gap-1.5 w-full hover:opacity-80 transition-opacity"
+  >
+    <span className="shrink-0">{label}</span>
+    {/* the dots fill whatever space is left between the label and the value */}
+    <span aria-hidden="true" className="flex-1 overflow-hidden whitespace-nowrap opacity-90 tracking-[0.12em]">
+      {'.'.repeat(120)}
+    </span>
+    <span className="shrink-0">{value}</span>
+  </a>
+);
+
+/** Contact, styled like the warm end-credits card Coro sent: brown film frame, glowing lettering, dotted lines */
 export const ContactPage: React.FC = () => (
   <DirectorPageFrame>
-    <section className="max-w-4xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
-      <SectionTitle>Contact</SectionTitle>
-      <div className="mt-12 space-y-3">
-        <CreditLine role="Email" name="coro@garo.studio" href="mailto:coro@garo.studio" />
-        <CreditLine role="Instagram" name="@corobenavent" href="https://www.instagram.com/corobenavent/" external />
-        <CreditLine role="YouTube" name="Coro Benavent" href="https://www.youtube.com/channel/UCBcovpzdJulXmepFhF_Rmow" external />
-        <CreditLine role="Production company" name="GARO" href={GARO_URL} external />
+    <section className="px-4 sm:px-10 py-10 sm:py-16">
+      <div className="contact-frame mx-auto max-w-4xl rounded-[22px] sm:rounded-[32px] px-6 sm:px-16 py-16 sm:py-24">
+        <div className="contact-text mx-auto max-w-lg font-[Poppins,sans-serif] font-semibold text-[13px] sm:text-lg">
+          <h1 className="text-center text-base sm:text-xl">Contact</h1>
+          <div className="mt-4 mb-6 h-[2px] bg-current opacity-90" />
+          <div className="flex flex-col gap-3 sm:gap-4">
+            <ContactLine label="Email" value="coro@garo.studio" href="mailto:coro@garo.studio" />
+            <ContactLine label="Instagram" value="@corobenavent" href="https://www.instagram.com/corobenavent/" external />
+            <ContactLine label="YouTube" value="Coro Benavent" href="https://www.youtube.com/channel/UCBcovpzdJulXmepFhF_Rmow" external />
+            <ContactLine label="Production company" value="GARO" href={GARO_URL} external />
+          </div>
+        </div>
       </div>
     </section>
   </DirectorPageFrame>
