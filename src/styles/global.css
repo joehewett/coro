@@ -59,14 +59,56 @@ span.font-pixel,
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Typography: Instrument Serif for names and titles, Syncopate for wide spaced labels */
+/* Typography, after old Technicolor title cards:
+   font-display = the big serif title ("Kismet"), font-wide = the condensed credit lettering. */
 .font-display {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-weight: 400;
+  font-family: 'Playfair Display', Georgia, serif;
 }
 .font-wide {
-  font-family: 'Syncopate', 'Archivo', sans-serif;
-  font-weight: 400;
+  font-family: 'Barlow Condensed', 'Archivo', sans-serif;
+  font-weight: 500;
+}
+
+/* Old film print look: soft glow on title lettering */
+.title-glow {
+  text-shadow: 0 0 1px rgba(255, 244, 220, 0.6), 0 0 18px rgba(255, 220, 160, 0.25);
+}
+
+/* Film grain over the whole director page */
+.film-grain {
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.8s steps(4) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); }
+  75% { transform: translate(-2%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Gentle projector flicker on the title card */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  48% { opacity: 1; }
+  50% { opacity: 0.86; }
+  52% { opacity: 1; }
+  80% { opacity: 0.95; }
+}
+.flicker { animation: flicker 5s infinite; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .film-grain, .flicker { animation: none; }
 }
 
 /* Personal cursor (see Cursor.tsx). Only on laptops with a mouse. */

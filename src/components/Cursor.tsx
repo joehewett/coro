@@ -91,7 +91,7 @@ const Cursor: React.FC = () => {
           }}
         >
           {mode === 'label' && (
-            <span className="font-wide text-[9px] tracking-[0.3em] uppercase text-black pl-[0.3em]">{text}</span>
+            <span className="font-wide font-semibold text-xs tracking-[0.2em] uppercase text-black pl-[0.2em]">{text}</span>
           )}
         </div>
       </div>
