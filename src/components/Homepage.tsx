@@ -76,7 +76,7 @@ const Homepage: React.FC = () => {
             
             {/* Hover overlay */}
             <div 
-              className="overlay absolute inset-0 flex items-center justify-center bg-transparent md:bg-black md:bg-opacity-0 transition-colors duration-300 ease-in-out cursor-pointer z-10"
+              className="overlay absolute inset-0 flex items-center justify-center bg-transparent transition-colors duration-300 ease-in-out cursor-pointer z-10"
             >
               {/* Text overlay image */}
               <img 
