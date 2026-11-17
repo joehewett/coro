@@ -191,7 +191,7 @@ const FilmCard: React.FC<{ film: Film; featured?: boolean }> = ({ film, featured
           }`}
           style={{
             height: featured
-              ? `calc(clamp(56px, 7vw, 96px) * ${film.titleScale ?? 1})`
+              ? `calc(clamp(84px, 10vw, 140px) * ${film.titleScale ?? 1})`
               : `calc(clamp(44px, 4.5vw, 64px) * ${film.titleScale ?? 1})`,
           }}
         />
@@ -285,7 +285,9 @@ export const FilmsPage: React.FC = () => {
           </div>
           <div className="mt-10 sm:mt-14 flex flex-col gap-14 sm:gap-20">
             {inGroup('Films').map((film, i) => (
-              <FilmCard key={film.title} film={film} featured={i === 0} />
+              <div key={film.title} className="w-full md:w-[72%]">
+                <FilmCard film={film} featured={i === 0} />
+              </div>
             ))}
           </div>
         </div>
