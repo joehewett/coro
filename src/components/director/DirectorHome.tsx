@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SiteHeader from './SiteHeader';
 import OptimizedImage from '../OptimizedImage';
 import TVHero from './TVHero';
+import ColorLetters from './ColorLetters';
 
 /**
  * The director front page, designed like the end of an old film:
@@ -151,7 +152,7 @@ const FilmBlock: React.FC<{ film: Film }> = ({ film }) => (
   <article className="group">
     <Link
       to={film.route}
-      data-cursor="Watch"
+     
       className="block relative overflow-hidden bg-neutral-900 aspect-[16/9] sm:aspect-[2.2/1]"
     >
       <OptimizedImage
@@ -234,22 +235,11 @@ const DirectorHome: React.FC = () => {
   return (
     <div className="bg-black text-white min-h-screen">
       <div className="film-grain" aria-hidden="true" />
-      <SiteHeader />
+      {/* On laptops the menu lives inside the TV, so the top bar waits until you scroll past it */}
+      <SiteHeader hideOverHero />
 
-      {/* Title card */}
-      <section
-        className="relative min-h-[100svh] flex flex-col items-center justify-center px-4 pt-24 pb-8 overflow-hidden"
-        style={{ background: 'radial-gradient(ellipse 70% 55% at 50% 50%, #1d1812 0%, #000 75%)' }}
-      >
-        <TVHero garoUrl={GARO_URL} />
-        <button
-          onClick={() => document.getElementById('films')?.scrollIntoView({ behavior: 'smooth' })}
-          className={`mt-8 sm:mt-10 ${smallCaps} hover:opacity-100 transition-opacity`}
-          style={{ animation: 'fadeUp 1.4s 3.2s ease-out both' }}
-        >
-          Roll credits ↓
-        </button>
-      </section>
+      {/* Title card: the TV */}
+      <TVHero />
 
       {/* Films */}
       <section id="films" className="max-w-6xl mx-auto px-6 sm:px-10 py-28 sm:py-40 scroll-mt-20">
@@ -308,7 +298,9 @@ const DirectorHome: React.FC = () => {
 
       {/* The End */}
       <footer className="min-h-[70svh] flex flex-col items-center justify-center text-center px-6 pb-16">
-        <p className={`font-display italic title-glow ${CREAM} text-6xl sm:text-8xl`}>The End</p>
+        <p className="font-end text-7xl sm:text-9xl leading-none" style={{ transform: 'rotate(-2deg)' }}>
+          <ColorLetters text="The End" />
+        </p>
         <div className="mt-16 flex items-center gap-6 opacity-50">
           <img src="/coro_text.png" alt="Coro" style={{ height: 22, width: 'auto' }} />
         </div>

@@ -118,6 +118,16 @@ span.font-pixel,
   }
 }
 
+/* "Directed by" end-credit lettering, and colourful "THE END" letters (also the menu) */
+.font-credit { font-family: 'Rokkitt', Georgia, serif; font-weight: 400; }
+.font-end { font-family: 'Londrina Solid', 'Archivo', sans-serif; font-weight: 900; }
+
+/* TV photo fills the screen on laptops, fits the width on phones (see TVHero.tsx) */
+.tv-frame { width: max(100vw, calc(100svh * 735 / 499)); }
+@media (max-aspect-ratio: 1/1) {
+  .tv-frame { width: 100vw; }
+}
+
 /* Old TV switching on (see TVHero.tsx) */
 .tv-on { animation: tvOn 1.1s 0.3s cubic-bezier(.2,.8,.2,1) both; transform-origin: center; }
 @keyframes tvOn {

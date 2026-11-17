@@ -4,10 +4,9 @@ import React, { useEffect, useRef, useState } from 'react';
  * Coro's cursor: a little mariquita (ladybird).
  * She walks behind the mouse, turning to face where she is going.
  * When she lands on something you can click, she turns upright and spreads her wings.
- * Over film stills (data-cursor="Watch") a small "Watch" label appears beside her.
  * Only on laptops with a mouse; phones keep normal touch behaviour.
  */
-const SIZE = 38; // px on screen
+const SIZE = 22; // px on screen, about the size of a normal cursor
 // The head tip in the 40x40 drawing. It sits right on the mouse point.
 const HEAD_X = 20;
 const HEAD_Y = 3;
@@ -15,8 +14,7 @@ const HEAD_Y = 3;
 const Cursor: React.FC = () => {
   const bug = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
-  const [mode, setMode] = useState<'default' | 'link' | 'label'>('default');
-  const [text, setText] = useState('');
+  const [mode, setMode] = useState<'default' | 'link'>('default');
   const [hidden, setHidden] = useState(true);
   const [walking, setWalking] = useState(false);
   const modeRef = useRef(mode);
@@ -52,11 +50,7 @@ const Cursor: React.FC = () => {
       setHidden(false);
 
       const el = e.target as HTMLElement | null;
-      const labelled = el?.closest('[data-cursor]') as HTMLElement | null;
-      if (labelled) {
-        setMode('label');
-        setText(labelled.dataset.cursor || '');
-      } else if (el?.closest('a, button, [role="button"], .cursor-pointer')) {
+      if (el?.closest('a, button, [role="button"], .cursor-pointer')) {
         setMode('link');
       } else {
         setMode('default');
@@ -173,14 +167,6 @@ const Cursor: React.FC = () => {
           <path className="seam" d="M20 13.5 L20 36.5" stroke="#111" strokeWidth="0.8" />
         </svg>
 
-        {mode === 'label' && text && (
-          <span
-            className="absolute font-wide font-semibold uppercase text-xs tracking-[0.2em] text-black bg-[#f5ecd7] px-2.5 py-1 whitespace-nowrap shadow-md"
-            style={{ left: SIZE * 0.75, top: SIZE * 0.55 }}
-          >
-            {text}
-          </span>
-        )}
       </div>
     </div>
   );
