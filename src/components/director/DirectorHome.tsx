@@ -9,6 +9,8 @@ interface Film {
   titleImage?: string;
   /** Turn a black title design white so it reads on the dark still. */
   invertTitle?: boolean;
+  /** Title has a black background: blend it so only the white letters show. */
+  blendTitle?: boolean;
   still: string;
   role: string;
   year?: string;
@@ -56,6 +58,8 @@ const films: Film[] = [
   },
   {
     title: 'Ragni',
+    titleImage: '/director/garo/titles/ragni-coro.webp',
+    blendTitle: true,
     still: '/director/garo/ragni-still.jpg',
     role: 'Creative producer',
     description:
@@ -100,7 +104,7 @@ const FilmBlock: React.FC<{ film: Film; index: number }> = ({ film, index }) => 
           <img
             src={film.titleImage}
             alt={film.title}
-            className={`max-h-[38%] max-w-[55%] object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]${film.invertTitle ? ' invert' : ''}`}
+            className={`max-h-[38%] max-w-[55%] object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]${film.invertTitle ? ' invert' : ''}${film.blendTitle ? ' mix-blend-screen' : ''}`}
           />
         ) : (
           <h3 className="font-display text-white text-5xl sm:text-7xl text-center drop-shadow-lg">
