@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SiteHeader from './SiteHeader';
 import OptimizedImage from '../OptimizedImage';
@@ -230,88 +230,105 @@ const Ornament = () => (
   </div>
 );
 
-const DirectorHome: React.FC = () => {
-  const year = new Date().getFullYear();
+/** The End, at the bottom of every director page */
+const TheEnd: React.FC = () => (
+  <footer className="min-h-[60svh] flex flex-col items-center justify-center text-center px-6 pb-16">
+    <p className="font-end text-7xl sm:text-9xl leading-none" style={{ transform: 'rotate(-2deg)' }}>
+      <ColorLetters text="The End" />
+    </p>
+    <div className="mt-16 flex items-center gap-6 opacity-50">
+      <img src="/coro_text.png" alt="Coro" style={{ height: 22, width: 'auto' }} />
+    </div>
+    <p className={`mt-6 font-wide uppercase tracking-[0.2em] text-[10px] sm:text-xs ${CREAM} opacity-40 max-w-xs leading-relaxed`}>
+      Copyright {roman(new Date().getFullYear())} by Coro Benavent.
+      <br />
+      All rights reserved.
+    </p>
+  </footer>
+);
+
+/** Shared frame for the Films, About and Contact pages */
+const DirectorPageFrame: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="bg-black text-white min-h-screen">
       <div className="film-grain" aria-hidden="true" />
-      {/* On laptops the menu lives inside the TV, so the top bar waits until you scroll past it */}
-      <SiteHeader hideOverHero />
-
-      {/* Title card: the TV */}
-      <TVHero />
-
-      {/* Films */}
-      <section id="films" className="max-w-6xl mx-auto px-6 sm:px-10 py-28 sm:py-40 scroll-mt-20">
-        <SectionTitle>Filmography</SectionTitle>
-        <Ornament />
-        <div className="mt-16 sm:mt-24 flex flex-col gap-28 sm:gap-40">
-          {films.map((film) => (
-            <FilmBlock key={film.title} film={film} />
-          ))}
-        </div>
-      </section>
-
-      {/* About */}
-      <section id="about" className="scroll-mt-20">
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 py-24 sm:py-32 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-          <OptimizedImage
-            src="/me/me1.jpg"
-            width={800}
-            alt="Coro Benavent"
-            className="w-full aspect-[4/5] object-cover grayscale sepia-[0.15]"
-          />
-          <div>
-            <h2 className={`font-display title-glow uppercase tracking-[0.12em] ${CREAM} text-3xl sm:text-5xl`}>About</h2>
-            <div className={`mt-8 space-y-5 ${CREAM} opacity-80 leading-relaxed`}>
-              <p>
-                Trained as an actress at Corazza, Madrid, and Bristol Old Vic, I came to directing through the stories I couldn't find told elsewhere. I've directed crews of up to 50 people on micro budgets; my work has been featured by Kodak and Promonews, and nominated for British Young Arrows.
-              </p>
-              <p>
-                In 2025, I co-founded{' '}
-                <a href={GARO_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
-                  GARO
-                </a>{' '}
-                with Gabrielle Torreborre, a production company for auteur-driven cinema.
-              </p>
-            </div>
-            <Link to="/more" className={`inline-block mt-10 ${smallCaps} hover:opacity-100 transition-opacity`}>
-              Actress, music and more of me →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact, as the last page of credits */}
-      <section id="contact" className="scroll-mt-20">
-        <div className="max-w-4xl mx-auto px-6 sm:px-10 py-24 sm:py-32">
-          <SectionTitle>Contact</SectionTitle>
-          <Ornament />
-          <div className="mt-12 space-y-3">
-            <CreditLine role="Email" name="coro@garo.studio" href="mailto:coro@garo.studio" />
-            <CreditLine role="Instagram" name="@corobenavent" href="https://www.instagram.com/corobenavent/" external />
-            <CreditLine role="YouTube" name="Coro Benavent" href="https://www.youtube.com/channel/UCBcovpzdJulXmepFhF_Rmow" external />
-            <CreditLine role="Production company" name="GARO" href={GARO_URL} external />
-          </div>
-        </div>
-      </section>
-
-      {/* The End */}
-      <footer className="min-h-[70svh] flex flex-col items-center justify-center text-center px-6 pb-16">
-        <p className="font-end text-7xl sm:text-9xl leading-none" style={{ transform: 'rotate(-2deg)' }}>
-          <ColorLetters text="The End" />
-        </p>
-        <div className="mt-16 flex items-center gap-6 opacity-50">
-          <img src="/coro_text.png" alt="Coro" style={{ height: 22, width: 'auto' }} />
-        </div>
-        <p className={`mt-6 font-wide uppercase tracking-[0.2em] text-[10px] sm:text-xs ${CREAM} opacity-40 max-w-xs leading-relaxed`}>
-          Copyright {roman(year)} by Coro Benavent.
-          <br />
-          All rights reserved.
-        </p>
-      </footer>
+      <SiteHeader />
+      <main className="pt-20">{children}</main>
+      <TheEnd />
     </div>
   );
 };
+
+/** Front page: just the TV. The menu on its screen leads to the other pages. */
+const DirectorHome: React.FC = () => (
+  <div className="bg-black text-white h-[100svh] overflow-hidden">
+    {/* On laptops the menu is on the TV screen; on phones this bar sits above the TV */}
+    <SiteHeader hideOverHero />
+    <TVHero />
+  </div>
+);
+
+export const FilmsPage: React.FC = () => (
+  <DirectorPageFrame>
+    <section className="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
+      <SectionTitle>Filmography</SectionTitle>
+      <Ornament />
+      <div className="mt-16 sm:mt-24 flex flex-col gap-28 sm:gap-40">
+        {films.map((film) => (
+          <FilmBlock key={film.title} film={film} />
+        ))}
+      </div>
+    </section>
+  </DirectorPageFrame>
+);
+
+export const AboutPage: React.FC = () => (
+  <DirectorPageFrame>
+    <section className="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+      <OptimizedImage
+        src="/me/me1.jpg"
+        width={800}
+        alt="Coro Benavent"
+        className="w-full aspect-[4/5] object-cover grayscale sepia-[0.15]"
+      />
+      <div>
+        <h1 className={`font-display title-glow uppercase tracking-[0.12em] ${CREAM} text-3xl sm:text-5xl`}>About</h1>
+        <div className={`mt-8 space-y-5 ${CREAM} opacity-80 leading-relaxed`}>
+          <p>
+            Trained as an actress at Corazza, Madrid, and Bristol Old Vic, I came to directing through the stories I couldn't find told elsewhere. I've directed crews of up to 50 people on micro budgets; my work has been featured by Kodak and Promonews, and nominated for British Young Arrows.
+          </p>
+          <p>
+            In 2025, I co-founded{' '}
+            <a href={GARO_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
+              GARO
+            </a>{' '}
+            with Gabrielle Torreborre, a production company for auteur-driven cinema.
+          </p>
+        </div>
+        <Link to="/more" className={`inline-block mt-10 ${smallCaps} hover:opacity-100 transition-opacity`}>
+          Actress, music and more of me →
+        </Link>
+      </div>
+    </section>
+  </DirectorPageFrame>
+);
+
+export const ContactPage: React.FC = () => (
+  <DirectorPageFrame>
+    <section className="max-w-4xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
+      <SectionTitle>Contact</SectionTitle>
+      <Ornament />
+      <div className="mt-12 space-y-3">
+        <CreditLine role="Email" name="coro@garo.studio" href="mailto:coro@garo.studio" />
+        <CreditLine role="Instagram" name="@corobenavent" href="https://www.instagram.com/corobenavent/" external />
+        <CreditLine role="YouTube" name="Coro Benavent" href="https://www.youtube.com/channel/UCBcovpzdJulXmepFhF_Rmow" external />
+        <CreditLine role="Production company" name="GARO" href={GARO_URL} external />
+      </div>
+    </section>
+  </DirectorPageFrame>
+);
 
 export default DirectorHome;

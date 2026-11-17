@@ -12,7 +12,7 @@ const Footer: React.FC<FooterProps> = ({ theme = 'dark' }) => {
   const navigate = useNavigate();
 
   const links = [
-    { label: 'Films', route: '/' },
+    { label: 'Films', route: '/films' },
     { label: 'Actress', route: '/actress' },
     { label: 'Music', route: '/musician' },
     { label: 'Me', route: '/me' },

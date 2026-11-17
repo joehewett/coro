@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ColorLetters from './ColorLetters';
 
 /**
  * Top menu for the director side of the site, in the colourful "THE END" letters.
- * With hideOverHero, on laptops it stays hidden while the TV fills the screen
- * (the TV has its own menu) and slides in once you scroll past it.
- * On phones it is always there, above the TV.
+ * With hideOverHero (the TV front page), it is hidden on laptops because the TV screen
+ * has its own menu. On phones it is always there, above the TV.
  */
 const SiteHeader: React.FC<{ hideOverHero?: boolean }> = ({ hideOverHero = false }) => {
-  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(!hideOverHero);
   const [open, setOpen] = useState(false);
@@ -28,23 +26,13 @@ const SiteHeader: React.FC<{ hideOverHero?: boolean }> = ({ hideOverHero = false
     };
   }, [hideOverHero]);
 
-  const goTo = (id: string) => {
-    setOpen(false);
-    if (window.location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 50);
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const linkClass = 'font-end text-xl leading-none hover:scale-110 transition-transform';
 
   const links = (
     <>
-      <button onClick={() => goTo('films')} className={linkClass}><ColorLetters text="Films" /></button>
-      <button onClick={() => goTo('about')} className={linkClass}><ColorLetters text="About" offset={2} /></button>
-      <button onClick={() => goTo('contact')} className={linkClass}><ColorLetters text="Contact" offset={4} /></button>
+      <Link to="/films" onClick={() => setOpen(false)} className={linkClass}><ColorLetters text="Films" /></Link>
+      <Link to="/about" onClick={() => setOpen(false)} className={linkClass}><ColorLetters text="About" offset={2} /></Link>
+      <Link to="/contact" onClick={() => setOpen(false)} className={linkClass}><ColorLetters text="Contact" offset={4} /></Link>
       <Link to="/more" onClick={() => setOpen(false)} className={linkClass}><ColorLetters text="More of me" offset={1} /></Link>
     </>
   );
@@ -56,7 +44,7 @@ const SiteHeader: React.FC<{ hideOverHero?: boolean }> = ({ hideOverHero = false
       } ${pastHero ? '' : 'sm:-translate-y-full sm:opacity-0 sm:pointer-events-none'}`}
     >
       <div className="max-w-7xl mx-auto h-20 px-6 sm:px-10 flex items-center justify-between">
-        <Link to="/" aria-label="Home" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <Link to="/" aria-label="Home">
           <img src="/coro_text.png" alt="Coro" style={{ height: 26, width: 'auto' }} />
         </Link>
 
