@@ -1,7 +1,7 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "images": {
-    "sizes": [256, 600, 800, 1200, 1280],
+    "sizes": [256, 600, 800, 1200, 1280, 1600, 1920],
     "domains": [],
     "formats": ["image/avif", "image/webp"]
   }

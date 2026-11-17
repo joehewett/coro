@@ -135,7 +135,7 @@ const DirectorProjectPage: React.FC<Props> = ({
               <OptimizedImage
                 key={src}
                 src={src}
-                width={1000}
+                width={1200}
                 alt={`${film?.title ?? title} still ${i + 1}`}
                 className="block w-full h-auto"
               />

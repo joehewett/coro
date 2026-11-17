@@ -122,7 +122,7 @@ const AboutRow: React.FC<{ img: string; alt: string; imageLeft?: boolean; quote?
 }) => (
   <section className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 items-center">
     <div className={`md:col-span-5 ${imageLeft ? 'md:order-1' : 'md:order-2'}`}>
-      <OptimizedImage src={img} width={900} alt={alt} className="w-full aspect-[4/5] object-cover" />
+      <OptimizedImage src={img} width={800} alt={alt} className="w-full aspect-[4/5] object-cover" />
     </div>
     <div
       className={`md:col-span-7 ${imageLeft ? 'md:order-2' : 'md:order-1'} text-white/85 space-y-5 ${
