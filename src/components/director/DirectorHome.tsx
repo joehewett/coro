@@ -276,16 +276,16 @@ export const FilmsPage: React.FC = () => {
   const inGroup = (g: Film['group']) => films.filter((f) => f.group === g);
   return (
     <DirectorPageFrame>
-      <section className="max-w-7xl mx-auto px-6 sm:px-10 pt-12 sm:pt-20 pb-10 flex flex-col gap-24 sm:gap-32">
+      <section className="max-w-7xl mx-auto px-6 sm:px-10 pt-4 sm:pt-6 pb-10 flex flex-col gap-24 sm:gap-32">
         {/* Films */}
         <div>
           <div className="flex items-end justify-between gap-6 flex-wrap">
             <h1 className="font-political text-white text-4xl sm:text-6xl">Films</h1>
             <FounderOfGaro />
           </div>
-          <div className="mt-10 sm:mt-14 flex flex-col gap-14 sm:gap-20">
+          <div className="mt-6 sm:mt-8 flex flex-col gap-14 sm:gap-20">
             {inGroup('Films').map((film, i) => (
-              <div key={film.title} className="w-full md:w-[72%] mx-auto">
+              <div key={film.title} className="w-full md:w-[86%] mx-auto">
                 <FilmCard film={film} featured={i === 0} />
               </div>
             ))}
