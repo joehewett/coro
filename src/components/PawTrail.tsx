@@ -40,7 +40,7 @@ const PawTrail: React.FC = () => {
         el.remove();
         const i = prints.indexOf(el);
         if (i >= 0) prints.splice(i, 1);
-      }, 1700);
+      }, 550);
     };
 
     const onMove = (e: MouseEvent) => {

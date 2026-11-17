@@ -143,7 +143,7 @@ a, button, [role="button"], .cursor-pointer, label, select, summary {
   height: auto;
   pointer-events: none;
   z-index: 9998;
-  animation: pawFade 1.6s ease-out forwards;
+  animation: pawFade 0.5s ease-out forwards;
 }
 @keyframes pawFade {
   0% { opacity: 0.85; }
