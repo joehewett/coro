@@ -36,7 +36,7 @@ const films: Film[] = [
   },
   {
     title: 'Look Around',
-    titleImage: '/director/garo/titles/look-around.png',
+    titleImage: '/director/garo/titles/look-around-coro.png',
     still: '/director/garo/look-around-still.jpg',
     role: 'Director',
     description:
@@ -46,7 +46,7 @@ const films: Film[] = [
   },
   {
     title: 'Palomitas sin maíz',
-    titleImage: '/director/garo/titles/palomitas.png',
+    titleImage: '/director/garo/titles/palomitas-coro.png',
     still: '/director/garo/palomitas-still.jpg',
     role: 'Co-director & co-producer',
     description:
@@ -65,6 +65,7 @@ const films: Film[] = [
   },
   {
     title: 'SUPERGLUE',
+    titleImage: '/director/garo/titles/superglue-coro.png',
     still: '/director/superglue.png',
     role: 'Director',
     description:
@@ -82,11 +83,11 @@ const films: Film[] = [
   },
 ];
 
-const label = 'text-[11px] uppercase tracking-[0.3em] text-white/50';
+const label = 'font-wide text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-white/50';
 
 const FilmBlock: React.FC<{ film: Film; index: number }> = ({ film, index }) => (
   <article className="group">
-    <Link to={film.route} className="block relative overflow-hidden bg-neutral-900 aspect-[16/9] sm:aspect-[2.2/1]">
+    <Link to={film.route} data-cursor="Watch" className="block relative overflow-hidden bg-neutral-900 aspect-[16/9] sm:aspect-[2.2/1]">
       <OptimizedImage
         src={film.still}
         width={1920}
@@ -102,7 +103,7 @@ const FilmBlock: React.FC<{ film: Film; index: number }> = ({ film, index }) => 
             className={`max-h-[38%] max-w-[55%] object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]${film.invertTitle ? ' invert' : ''}`}
           />
         ) : (
-          <h3 className="text-white text-3xl sm:text-5xl font-light tracking-[0.15em] uppercase text-center drop-shadow-lg">
+          <h3 className="font-display text-white text-5xl sm:text-7xl text-center drop-shadow-lg">
             {film.title}
           </h3>
         )}
@@ -114,7 +115,7 @@ const FilmBlock: React.FC<{ film: Film; index: number }> = ({ film, index }) => 
         {String(index + 1).padStart(2, '0')} · {film.role}
       </p>
       <div>
-        <h3 className="text-white text-lg tracking-wide">
+        <h3 className="font-display text-white text-2xl sm:text-3xl">
           {film.title}
           {film.year && <span className="text-white/40"> · {film.year}</span>}
           {film.status && <span className="text-white/40"> · {film.status}</span>}
@@ -156,7 +157,7 @@ const DirectorHome: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/40" />
         <div className="absolute inset-x-0 bottom-0 max-w-7xl mx-auto px-6 sm:px-10 pb-16 sm:pb-24">
           <p className={label}>Film Director</p>
-          <h1 className="mt-4 text-5xl sm:text-7xl lg:text-8xl font-extralight tracking-tight leading-none">
+          <h1 className="font-display mt-5 text-6xl sm:text-8xl lg:text-[9rem] leading-[0.9]">
             Coro Benavent
           </h1>
           <p className="mt-6 max-w-xl text-white/70 text-sm sm:text-base leading-relaxed">
@@ -226,7 +227,7 @@ const DirectorHome: React.FC = () => {
           <h2 className={label}>Contact</h2>
           <a
             href="mailto:coro@garo.studio"
-            className="mt-8 block text-3xl sm:text-5xl font-extralight tracking-tight hover:text-white/70 transition-colors break-words"
+            className="font-display italic mt-8 block text-4xl sm:text-6xl hover:text-white/70 transition-colors break-words"
           >
             coro@garo.studio
           </a>

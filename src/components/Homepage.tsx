@@ -109,7 +109,7 @@ const Homepage: React.FC = () => {
       {/* Back to the films */}
       <Link
         to="/"
-        className="absolute top-6 left-6 z-50 text-[11px] uppercase tracking-[0.25em] text-white/80 hover:text-white bg-black/40 backdrop-blur-sm px-4 py-2"
+        className="absolute top-6 left-6 z-50 font-wide text-[10px] uppercase tracking-[0.4em] text-white/80 hover:text-white bg-black/40 backdrop-blur-sm px-4 py-2"
       >
         ← Films
       </Link>

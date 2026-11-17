@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import DirectorHome from './components/director/DirectorHome';
 import FunQuestsPage from './components/FunQuestsPage';
+import Cursor from './components/Cursor';
 import ActressPage from './components/ActressPage';
 import DirectorPage from './components/DirectorPage';
 import MusicianPage from './components/MusicianPage';
@@ -30,6 +31,7 @@ import BehindTheScenes from './components/projects/BehindTheScenes';
 const App: React.FC = () => {
   return (
     <>
+      <Cursor />
       <Routes>
         {/* Director-first front page */}
         <Route path="/" element={<DirectorHome />} />

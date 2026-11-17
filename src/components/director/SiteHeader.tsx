@@ -28,7 +28,7 @@ const SiteHeader: React.FC = () => {
   };
 
   const linkClass =
-    'whitespace-nowrap text-[11px] sm:text-xs uppercase tracking-[0.25em] text-white/70 hover:text-white transition-colors';
+    'font-wide whitespace-nowrap text-[10px] uppercase tracking-[0.4em] text-white/70 hover:text-white transition-colors';
 
   const links = (
     <>
@@ -53,7 +53,7 @@ const SiteHeader: React.FC = () => {
         <nav className="hidden md:flex items-center gap-10">{links}</nav>
 
         <button
-          className="md:hidden text-[11px] uppercase tracking-[0.25em] text-white/80"
+          className="md:hidden font-wide text-[10px] uppercase tracking-[0.4em] text-white/80"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
         >
