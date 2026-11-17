@@ -1,6 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Homepage from './components/Homepage';
+import DirectorHome from './components/director/DirectorHome';
+import FunQuestsPage from './components/FunQuestsPage';
 import ActressPage from './components/ActressPage';
 import DirectorPage from './components/DirectorPage';
 import MusicianPage from './components/MusicianPage';
@@ -29,8 +31,12 @@ const App: React.FC = () => {
   return (
     <>
       <Routes>
-        {/* Homepage route without navigation */}
-        <Route path="/" element={<Homepage />} />
+        {/* Director-first front page */}
+        <Route path="/" element={<DirectorHome />} />
+
+        {/* "More of me": four doors to Actress, Music, Me, Fun Quests */}
+        <Route path="/more" element={<Homepage />} />
+        <Route path="/fun-quests" element={<FunQuestsPage />} />
         
         {/* Category pages */}
         <Route path="/actress" element={<ActressPage />} />

@@ -12,7 +12,7 @@ body {
 /* Mobile responsiveness - now handled by Tailwind classes */
 
 /* Ensure images don't overflow on mobile - exclude navigation and quadrant background images */
-img:not(nav img):not(.quadrant-bg) {
+img:not(nav img):not(.quadrant-bg):not(.fill-img) {
   max-width: 100%;
   height: auto;
 }
@@ -51,4 +51,10 @@ span.font-pixel,
   .text-img {
     opacity: 0;
   }
+}
+
+/* Director front page: slow fade and settle on the hero still */
+@keyframes heroIn {
+  from { opacity: 0; transform: scale(1.06); }
+  to { opacity: 1; transform: scale(1); }
 }

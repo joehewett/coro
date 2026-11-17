@@ -12,10 +12,11 @@ const Footer: React.FC<FooterProps> = ({ theme = 'dark' }) => {
   const navigate = useNavigate();
 
   const links = [
+    { label: 'Films', route: '/' },
     { label: 'Actress', route: '/actress' },
-    { label: 'Director', route: '/director' },
-    { label: 'Musician', route: '/musician' },
-    { label: 'Me', route: '/me' }
+    { label: 'Music', route: '/musician' },
+    { label: 'Me', route: '/me' },
+    { label: 'Fun Quests', route: '/fun-quests' }
   ];
 
   return (
@@ -51,6 +52,14 @@ const Footer: React.FC<FooterProps> = ({ theme = 'dark' }) => {
             className={themeUtils.textWithHover(theme)}
           >
             <Instagram size={24} />
+          </a>
+          <a
+            href="https://www.garogirls.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${themeUtils.textWithHover(theme)} text-sm tracking-[0.2em] uppercase`}
+          >
+            GARO
           </a>
           <a 
             href="https://www.youtube.com/channel/UCBcovpzdJulXmepFhF_Rmow"

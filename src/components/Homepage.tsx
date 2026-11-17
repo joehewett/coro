@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import OptimizedImage from './OptimizedImage';
 
@@ -11,30 +11,32 @@ const Homepage: React.FC = () => {
     return !window.matchMedia('(min-width: 768px) and (hover: hover)').matches;
   };
   
-  const quadrants = [
-    { 
-      bg: '/landing/actress-tile.jpg', 
+  // The four doors on the "More of me" page.
+  // `text` is a handwritten label image; `label` is used when there is no image yet.
+  const quadrants: { bg: string; text?: string; label?: string; alt: string; route: string }[] = [
+    {
+      bg: '/landing/actress-tile.jpg',
       text: '/landing/toplefttext.PNG',
-      alt: 'Top Left',
+      alt: 'Actress',
       route: '/actress'
-    },
-    { 
-      bg: '/landing/coro-director.jpg',
-      text: '/landing/toprighttext.PNG',
-      alt: 'Top Right',
-      route: '/director'
     },
     {
       bg: '/landing/bottomright.jpeg',
       text: '/landing/bottomrighttext.PNG',
-      alt: 'Bottom Left',
+      alt: 'Music',
       route: '/musician'
     },
     {
       bg: '/landing/bottomleft.jpeg',
       text: '/landing/bottomlefttext.PNG',
-      alt: 'Bottom Right',
+      alt: 'Me',
       route: '/me'
+    },
+    {
+      bg: '/me/me6.jpeg',
+      label: 'Fun Quests',
+      alt: 'Fun Quests',
+      route: '/fun-quests'
     }
   ];
 
@@ -83,11 +85,17 @@ const Homepage: React.FC = () => {
               className="overlay absolute inset-0 flex items-center justify-center bg-transparent transition-colors duration-300 ease-in-out cursor-pointer z-10"
             >
               {/* Text overlay image */}
-              <img 
-                className="text-img max-w-[20%] max-h-[20%] object-contain transition-opacity duration-300 ease-in-out pointer-events-none"
-                src={quadrant.text}
-                alt={`${quadrant.alt} Text`}
-              />
+              {quadrant.text ? (
+                <img
+                  className="text-img max-w-[20%] max-h-[20%] object-contain transition-opacity duration-300 ease-in-out pointer-events-none"
+                  src={quadrant.text}
+                  alt={quadrant.alt}
+                />
+              ) : (
+                <span className="text-img font-handwritten text-white text-5xl md:text-7xl transition-opacity duration-300 ease-in-out pointer-events-none">
+                  {quadrant.label}
+                </span>
+              )}
             </div>
           </div>
         ))}
@@ -97,6 +105,14 @@ const Homepage: React.FC = () => {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-50">
         <Logo height={120} clickable={false} />
       </div>
+
+      {/* Back to the films */}
+      <Link
+        to="/"
+        className="absolute top-6 left-6 z-50 text-[11px] uppercase tracking-[0.25em] text-white/80 hover:text-white bg-black/40 backdrop-blur-sm px-4 py-2"
+      >
+        ← Films
+      </Link>
     </div>
   );
 };
