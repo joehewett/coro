@@ -328,15 +328,16 @@ export const AboutPage: React.FC = () => (
       <div>
         <h1 className={`font-political ${CREAM} text-4xl sm:text-6xl`}>About</h1>
         <div className={`mt-8 space-y-5 ${CREAM} opacity-80 leading-relaxed`}>
+          {/* Short version of the full bio on the Me page */}
           <p>
-            Trained as an actress at Corazza, Madrid, and Bristol Old Vic, I came to directing through the stories I couldn't find told elsewhere. I've directed crews of up to 50 people on micro budgets; my work has been featured by Kodak and Promonews, and nominated for British Young Arrows.
+            Coro Benavent is a Spanish director, writer and actress based in London. She trained at Corazza in Madrid and at BOVTS. Her narrative music videos have been featured by Kodak and Promonews and earned nominations at the 1.4 Awards and the British Young Arrows.
           </p>
           <p>
-            In 2025, I co-founded{' '}
+            Her latest short, Tonos, was shot on 16mm by two-time BAFTA winner Toby Lloyd, with Coro starring opposite Goya nominee Julio Peña. In 2025 she co-founded{' '}
             <a href={GARO_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
               GARO
             </a>{' '}
-            with Gabrielle Torreborre, a production company for auteur-driven cinema.
+            with Gabrielle Torreborre.
           </p>
         </div>
         {/* "More of me" lives here now, not in the menu */}

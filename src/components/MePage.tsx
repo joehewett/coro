@@ -35,11 +35,23 @@ const MePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="text-white/90 leading-relaxed space-y-4 text-base">
               <p>
-                Trained as an actress at Corazza, Madrid, and Bristol Old Vic, I came to directing through the stories I couldn't find told elsewhere. I've directed crews of up to 50 people on micro budgets; my work has been featured by Kodak and Promonews, and nominated for British Young Arrows.
+                Coro Benavent is a Spanish director, writer and actress based in London. She trained at Corazza in Madrid and at BOVTS, and toured Europe as lead singer of the band ALAMAYO. She holds a degree in Sociology and Global Sustainable Development.
               </p>
 
               <p>
-                In 2025, I co-founded <a href="https://garo.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">GARO</a> with Gabrielle Torreborre, a production company for auteur-driven cinema. We've released Ragni (#1 Most Watched Music Video of 2025 on Promonews), Palomitas sin maíz (featured by Kodak), and SUPERGLUE. Nominated for British Young Arrows. Two short films in pre-production, <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Tonos</a> and Tussle, with a feature in the pipeline.
+                On set, she has worked across departments on productions from HBO’s House of the Dragon to A24’s Major Players. She brought all of it to her directing: her narrative music videos have been featured by Kodak and Promonews and earned nominations at the 1.4 Awards and the British Young Arrows.
+              </p>
+
+              <p>
+                Her latest short, <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Tonos</a>, now in post-production, was written with BAFTA winner Aleksandra Sykulak, produced by SkyeAngel Productions with Spanish co-producers, and shot on 16mm by two-time BAFTA winner Toby Lloyd. Coro stars opposite Goya nominee Julio Peña.
+              </p>
+
+              <p>
+                In 2025 she co-founded <a href="https://www.garogirls.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">GARO</a> with Gabrielle Torreborre, executive producing Gabby’s short Tussle. The screenplay for their upcoming co-directed short, Reva, was a Sofia Coppola DCP Award finalist, ranking in the top 1%, and was longlisted for the FFC Fund.
+              </p>
+
+              <p>
+                Late 2025, Coro and Gabby flew to San Francisco to raise £80K for their two shorts. Along the way, they met the founders and VCs who inspired their first co-created feature, Two for Tango, which they are now about to develop, write and direct together.
               </p>
             </div>
             <div>
