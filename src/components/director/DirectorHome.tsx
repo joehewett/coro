@@ -158,14 +158,19 @@ const CreditLine: React.FC<{ role: string; name?: string; href?: string; externa
 
 /** One film on the Films page: a wide still with its title design, then title, year and role */
 const FilmCard: React.FC<{ film: Film; featured?: boolean }> = ({ film, featured }) => (
-  <Link to={film.route} className="film-card group block transition-transform duration-500">
+  <Link to={film.route} className="film-card group block">
     {/* The featured film shows its full still; the rest share one widescreen shape */}
-    <div className={`relative overflow-hidden bg-neutral-900${featured ? '' : ' aspect-[16/9]'}`}>
+    {/* On hover only the picture grows; the title below stays put */}
+    <div
+      className={`relative overflow-hidden bg-neutral-900 transition-transform duration-500 ease-out group-hover:scale-[1.04]${
+        featured ? '' : ' aspect-[16/9]'
+      }`}
+    >
       <OptimizedImage
         src={film.still}
         width={featured ? 1920 : 1200}
         alt={`Still from ${film.title}`}
-        className={`transition-transform duration-700 ease-out group-hover:scale-[1.04] ${
+        className={`${
           featured ? 'block w-full h-auto' : 'fill-img absolute inset-0 w-full h-full object-cover'
         }`}
       />
@@ -188,11 +193,6 @@ const FilmCard: React.FC<{ film: Film; featured?: boolean }> = ({ film, featured
         />
       ) : (
         <h2 className="font-political text-white text-3xl sm:text-4xl">{film.title}</h2>
-      )}
-      {(film.status || film.year) && (
-        <p className="mt-2 font-political text-base sm:text-lg text-white/60">
-          {[film.status, film.year].filter(Boolean).join(' · ')}
-        </p>
       )}
     </div>
   </Link>

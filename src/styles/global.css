@@ -161,7 +161,8 @@ a, button, [role="button"], .cursor-pointer, label, select, summary {
     transform: scale(1.08);
   }
 }
-.grow-links .film-card:hover { transform: scale(1.02); }
+/* Film cards: the picture grows instead (DirectorHome.tsx), so the card and its title stay still */
+.grow-links .film-card:hover { transform: none; }
 
 /* Hand-drawn house that draws itself in (HomeDoodle.tsx) */
 .home-doodle .hd-line {
