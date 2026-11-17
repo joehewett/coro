@@ -4,12 +4,14 @@ import { useEffect } from 'react';
  * Paw prints left behind the cursor, like a dog walking: single beige paws,
  * alternating left and right so they form a diagonal track, turned the way you walked, then fading.
  * The paw is the top paw of the 🐾 emoji, coloured beige (/cursor/paw.png).
+ * Only the two newest prints stay on screen, so with the cursor there are never more than three paws.
  * The cursor itself is set in global.css. Only on laptops with a mouse.
  */
 const STEP = 46; // px between prints
 const SIDE = 9; // px left/right of the path
 // The paw's toes point slightly left of straight up; this turns them straight
 const PAW_TILT = 16;
+const MAX_PRINTS = 2;
 
 const PawTrail: React.FC = () => {
   useEffect(() => {
@@ -18,6 +20,7 @@ const PawTrail: React.FC = () => {
 
     let last: { x: number; y: number } | null = null;
     let left = true;
+    const prints: HTMLImageElement[] = [];
 
     const drop = (x: number, y: number, angle: number) => {
       const side = left ? -SIDE : SIDE;
@@ -31,7 +34,13 @@ const PawTrail: React.FC = () => {
       el.style.top = `${y + Math.sin(angle + Math.PI / 2) * side}px`;
       el.style.transform = `translate(-50%, -50%) rotate(${(angle * 180) / Math.PI + 90 + PAW_TILT}deg)`;
       document.body.appendChild(el);
-      window.setTimeout(() => el.remove(), 1700);
+      prints.push(el);
+      while (prints.length > MAX_PRINTS) prints.shift()?.remove();
+      window.setTimeout(() => {
+        el.remove();
+        const i = prints.indexOf(el);
+        if (i >= 0) prints.splice(i, 1);
+      }, 1700);
     };
 
     const onMove = (e: MouseEvent) => {
@@ -48,7 +57,10 @@ const PawTrail: React.FC = () => {
     };
 
     window.addEventListener('mousemove', onMove, { passive: true });
-    return () => window.removeEventListener('mousemove', onMove);
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      prints.forEach((p) => p.remove());
+    };
   }, []);
 
   return null;

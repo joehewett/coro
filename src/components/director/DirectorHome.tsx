@@ -111,7 +111,6 @@ const films: Film[] = [
     role: "Director's assistant",
     still: '/director/padre.jpg',
     credits: [{ role: "Director's assistant" }],
-    status: 'In Post-Production',
     description:
       'Feature documentary. Fighting the tide of commercial farming, a Spanish shepherd embarks on a 700km journey.',
     route: '/director/padre-hijo-pastor',
@@ -301,9 +300,9 @@ export const FilmsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Documentary: one film, centred, same size as a music video card */}
+        {/* Documentary: heading on the left like the others; the one film centred, same size as a music video card */}
         <div>
-          <GroupHeading center>Documentary</GroupHeading>
+          <GroupHeading>Documentary</GroupHeading>
           <div className="mt-10 sm:mt-14 mx-auto w-full md:w-[calc(50%-1rem)] lg:w-[calc(50%-1.5rem)]">
             {inGroup('Documentary').map((film) => (
               <FilmCard key={film.title} film={film} />

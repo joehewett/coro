@@ -30,7 +30,11 @@ const ScreenContent: React.FC<{ k: number }> = ({ k }) => {
   const menu = 'font-end leading-none hover:scale-110 transition-transform';
   return (
     <>
-      <img src="/director/tonos-ending.jpg" alt="Still from Tonos" className="fill-img absolute inset-0 w-full h-full object-cover" />
+      {/* Phones get the Tonos still from the Films page, which crops better on a tall screen */}
+      <picture>
+        <source media="(max-width: 639px)" srcSet="/director/garo/tonos-1.jpg" />
+        <img src="/director/tonos-ending.jpg" alt="Still from Tonos" className="fill-img absolute inset-0 w-full h-full object-cover" />
+      </picture>
 
       {/* Menu on the screen (laptops; phones use the bar at the top) */}
       <div className="absolute inset-x-0 top-0 hidden sm:flex items-center justify-end" style={{ padding: `${cq(5)} ${cq(8)} 0` }}>
