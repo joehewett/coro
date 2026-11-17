@@ -285,7 +285,7 @@ export const FilmsPage: React.FC = () => {
           </div>
           <div className="mt-10 sm:mt-14 flex flex-col gap-14 sm:gap-20">
             {inGroup('Films').map((film, i) => (
-              <div key={film.title} className="w-full md:w-[72%]">
+              <div key={film.title} className="w-full md:w-[72%] mx-auto">
                 <FilmCard film={film} featured={i === 0} />
               </div>
             ))}
