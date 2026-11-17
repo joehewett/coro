@@ -12,39 +12,50 @@ const Homepage: React.FC = () => {
     return !window.matchMedia('(min-width: 768px) and (hover: hover)').matches;
   };
   
-  // The four doors on the "More of me" page.
+  // The doors on the "More of me" page.
+  // For now only Actress and Music show, side by side. Me now lives on the About page and Fun Quests
+  // has no stories yet. To go back to the four-photo page, set `show: true` on Me and Fun Quests
+  // and put Actress back on its own photo, '/landing/actress-tile.jpg'.
   // `text` is a handwritten label image; `label` is used when there is no image yet.
-  const quadrants: { bg: string; text?: string; label?: string; alt: string; route: string }[] = [
+  const allQuadrants: { bg: string; text?: string; label?: string; alt: string; route: string; show: boolean }[] = [
     {
-      bg: '/landing/actress-tile.jpg',
+      // Uses the photo that was on the Me tile, with the Actress title
+      bg: '/landing/bottomleft.jpeg',
       text: '/landing/toplefttext.PNG',
       alt: 'Actress',
-      route: '/actress'
+      route: '/actress',
+      show: true
     },
     {
       bg: '/landing/bottomright.jpeg',
       text: '/landing/bottomrighttext.PNG',
       alt: 'Music',
-      route: '/musician'
+      route: '/musician',
+      show: true
     },
     {
       bg: '/landing/bottomleft.jpeg',
       text: '/landing/bottomlefttext.PNG',
       alt: 'Me',
-      route: '/me'
+      route: '/me',
+      show: false
     },
     {
       bg: '/me/me6.jpeg',
       label: 'Fun Quests',
       alt: 'Fun Quests',
-      route: '/fun-quests'
+      route: '/fun-quests',
+      show: false
     }
   ];
+  const quadrants = allQuadrants.filter((q) => q.show);
+  // Two doors sit side by side; four make the 2x2 grid
+  const gridClass = quadrants.length <= 2 ? 'grid-cols-2 grid-rows-1' : 'grid-cols-2 grid-rows-2';
 
   return (
     <div className="grow-links homepage-no-scroll fixed top-0 left-0 w-screen h-screen">
       {/* 2x2 Grid of images */}
-      <div className="grid grid-cols-2 grid-rows-2 w-full h-full bg-black">
+      <div className={`grid ${gridClass} w-full h-full bg-black`}>
         {quadrants.map((quadrant, index) => (
           <div 
             key={index}
@@ -83,7 +94,7 @@ const Homepage: React.FC = () => {
             
             {/* Hover overlay */}
             <div 
-              className="overlay absolute inset-0 flex items-center justify-center bg-transparent transition-colors duration-300 ease-in-out cursor-pointer z-10"
+              className={`overlay absolute inset-0 flex justify-center ${quadrants.length <= 2 ? 'items-end pb-[16vh]' : 'items-center'} bg-transparent transition-colors duration-300 ease-in-out cursor-pointer z-10`}
             >
               {/* Text overlay image */}
               {quadrant.text ? (

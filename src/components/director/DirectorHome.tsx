@@ -4,6 +4,7 @@ import SiteHeader from './SiteHeader';
 import OptimizedImage from '../OptimizedImage';
 import TVHero from './TVHero';
 import ColorLetters from './ColorLetters';
+import { MeContent } from '../MePage';
 
 /**
  * The director front page, designed like the end of an old film:
@@ -316,41 +317,19 @@ export const FilmsPage: React.FC = () => {
   );
 };
 
+/** About uses the Me page (photos and full bio), inside the director site's frame, with "More of me" at the end */
 export const AboutPage: React.FC = () => (
   <DirectorPageFrame>
-    <section className="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-      <OptimizedImage
-        src="/me/me1.jpg"
-        width={800}
-        alt="Coro Benavent"
-        className="w-full aspect-[4/5] object-cover grayscale sepia-[0.15]"
-      />
-      <div>
-        <h1 className={`font-political ${CREAM} text-4xl sm:text-6xl`}>About</h1>
-        <div className={`mt-8 space-y-5 ${CREAM} opacity-80 leading-relaxed`}>
-          {/* Short version of the full bio on the Me page */}
-          <p>
-            Coro Benavent is a Spanish director, writer and actress based in London. She trained at Corazza in Madrid and at BOVTS. Her narrative music videos have been featured by Kodak and Promonews and earned nominations at the 1.4 Awards and the British Young Arrows.
-          </p>
-          <p>
-            Her latest short, Tonos, was shot on 16mm by two-time BAFTA winner Toby Lloyd, with Coro starring opposite Goya nominee Julio Peña. In 2025 she co-founded{' '}
-            <a href={GARO_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
-              GARO
-            </a>{' '}
-            with Gabrielle Torreborre.
-          </p>
-        </div>
-        {/* "More of me" lives here now, not in the menu */}
-        <Link to="/more" className="mt-12 block w-max">
+    <MeContent
+      after={
+        <Link to="/more" className="block w-max mx-auto text-center">
           <span className="font-end text-3xl sm:text-4xl leading-none">
             <ColorLetters text="More of me" offset={1} />
           </span>
-          <span className={`block mt-3 font-political text-base sm:text-lg ${CREAM} opacity-70`}>
-            Actress · Music · Me · Fun Quests →
-          </span>
+          <span className={`block mt-3 font-political text-base sm:text-lg ${CREAM} opacity-70`}>Actress · Music →</span>
         </Link>
-      </div>
-    </section>
+      }
+    />
   </DirectorPageFrame>
 );
 

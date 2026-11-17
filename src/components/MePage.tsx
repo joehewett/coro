@@ -3,15 +3,8 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import OptimizedImage from './OptimizedImage';
 
-const MePage: React.FC = () => {
-  return (
-    <div className="min-h-screen bg-black pt-20">
-      <Navbar 
-        categoryImage="/landing/bottomlefttext.PNG"
-        categoryRoute="/me"
-        categoryAlt="Me"
-      />
-      
+/** The Me page content: photos and the full bio. Also used as the director site's About page. */
+export const MeContent: React.FC<{ after?: React.ReactNode }> = ({ after }) => (
       <div className="px-10 max-w-6xl mx-auto py-16">
         <div className="flex flex-col gap-16 max-w-5xl mx-auto">
           {/* Hero Image */}
@@ -114,8 +107,20 @@ const MePage: React.FC = () => {
               Outside of film, I write and perform music with my band ALAMAYO. My happy place is being in the water, surfing.
             </p>
           </div>
+          {after}
         </div>
       </div>
+);
+
+const MePage: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-black pt-20">
+      <Navbar
+        categoryImage="/landing/bottomlefttext.PNG"
+        categoryRoute="/me"
+        categoryAlt="Me"
+      />
+      <MeContent />
       <Footer />
     </div>
   );
