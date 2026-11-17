@@ -88,7 +88,7 @@ export const MeContent: React.FC<{ after?: React.ReactNode }> = ({ after }) => (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="text-white/90 leading-relaxed space-y-4 text-base">
               <p>
-                Palomitas sin maíz is a music video I wrote, directed, and starred in, dedicated to my grandmother the day she passed. It's about her, and the other women who shaped me. Shot on 16mm over two days; featured by Kodak and reviewed by Promonews.
+                <a href="https://www.youtube.com/watch?v=Zgvod014EPA" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-white/30 hover:decoration-white">Palomitas sin maíz</a> is a music video I wrote, starred in, and co-directed with Gabby, my co-founder and creative soulmate, dedicated to my grandmother the day she passed. It's about her, and the other women who shaped me. Shot on 16mm over two days; featured by Kodak and reviewed by Promonews.
               </p>
             </div>
             <div>
@@ -171,7 +171,7 @@ export const AboutContent: React.FC<{ after?: React.ReactNode }> = ({ after }) =
 
       <AboutRow img="/me/me6.jpeg" alt="Coro Benavent" quote>
         <p>
-          Palomitas sin maíz is a music video I wrote, directed, and starred in, dedicated to my grandmother the day she passed. It's about her, and the other women who shaped me. Shot on 16mm over two days; featured by Kodak and reviewed by Promonews.
+          <a href="https://www.youtube.com/watch?v=Zgvod014EPA" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-white/30 hover:decoration-white">Palomitas sin maíz</a> is a music video I wrote, starred in, and co-directed with Gabby, my co-founder and creative soulmate, dedicated to my grandmother the day she passed. It's about her, and the other women who shaped me. Shot on 16mm over two days; featured by Kodak and reviewed by Promonews.
         </p>
       </AboutRow>
 
