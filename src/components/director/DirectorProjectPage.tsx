@@ -75,32 +75,32 @@ const DirectorProjectPage: React.FC<Props> = ({
           />
         </Link>
 
-        {/* The still */}
-        <div className="mt-6 sm:mt-8">
-          <OptimizedImage src={mainImage} width={1600} alt={`Still from ${film?.title ?? title}`} className="block w-full h-auto" />
-        </div>
-
-        {/* Title design, status and Coro's role */}
-        <header className="mt-8 sm:mt-10">
+        {/* Title design big and centred at the top, then status and Coro's role */}
+        <header className="mt-6 sm:mt-8 flex flex-col items-center text-center">
           {film?.titleImage ? (
             <img
               src={film.titleImage}
               alt={film.title}
-              className={`fill-img block w-auto max-w-[85%] object-contain object-left${film.invertTitle ? ' invert' : ''}${
+              className={`fill-img block w-auto max-w-[92%] object-contain${film.invertTitle ? ' invert' : ''}${
                 film.blendTitle ? ' mix-blend-screen' : ''
               }`}
-              style={{ height: `calc(clamp(64px, 8vw, 120px) * ${film.titleScale ?? 1})` }}
+              style={{ height: `calc(clamp(96px, 13vw, 190px) * ${film.titleScale ?? 1})` }}
             />
           ) : (
-            <h1 className="font-political text-white text-4xl sm:text-6xl">{film?.title ?? title}</h1>
+            <h1 className="font-political text-white text-5xl sm:text-7xl">{film?.title ?? title}</h1>
           )}
           {status && (
-            <p className="mt-4 font-credit text-2xl sm:text-3xl" style={{ color: CREAM }}>
+            <p className="mt-5 font-credit text-2xl sm:text-3xl" style={{ color: CREAM }}>
               {status}
             </p>
           )}
           {role && <p className="mt-2 font-political text-lg sm:text-xl text-white/60">{role}</p>}
         </header>
+
+        {/* The still */}
+        <div className="mt-10 sm:mt-14">
+          <OptimizedImage src={mainImage} width={1600} alt={`Still from ${film?.title ?? title}`} className="block w-full h-auto" />
+        </div>
 
         {/* The story */}
         <div
