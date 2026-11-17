@@ -40,9 +40,14 @@ Rules:
 
 | Page | URL | File |
 | --- | --- | --- |
-| Landing (4 photo tiles) | `/` | `src/components/Homepage.tsx` |
+| Front page (Tonos still, "Directed by CORO BENAVENT"; TV frame switched off by `SHOW_TV_FRAME`) | `/` | `src/components/director/TVHero.tsx` |
+| Films (Films / Music Videos / Documentary; film list and order) | `/films` | `src/components/director/DirectorHome.tsx` (`films`) |
+| About (bio and photos) | `/about` | `AboutContent` in `src/components/MePage.tsx` |
+| Contact | `/contact` | `src/components/director/DirectorHome.tsx` |
+| More of me (Actress + Music; Me and Fun Quests switched off) | `/more` | `src/components/Homepage.tsx` |
+| One director film (dark page, end credits) | `/director/tonos` etc. | `src/components/projects/*.tsx` using `director/DirectorProjectPage.tsx` |
 | Actress | `/actress` | `src/components/ActressPage.tsx` |
-| Director | `/director` | `src/components/DirectorPage.tsx` |
+| Old director list (not linked any more) | `/director` | `src/components/DirectorPage.tsx` |
 | Musician | `/musician` | `src/components/MusicianPage.tsx` |
 | Me | `/me` | `src/components/MePage.tsx` |
 | One project | `/director/look-around` etc. | `src/components/projects/*.tsx` |
