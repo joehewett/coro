@@ -13,7 +13,7 @@ const Homepage: React.FC = () => {
   
   const quadrants = [
     { 
-      bg: '/landing/topleft.jpg', 
+      bg: '/landing/actress-tile.jpg', 
       text: '/landing/toplefttext.PNG',
       alt: 'Top Left',
       route: '/actress'
