@@ -17,8 +17,55 @@ const GLASS =
 // The box around the glass outline, as percentages of the photo
 const BOX = { left: 7.27, top: 11.52, width: 76.43 - 7.27, height: 88.72 - 11.52 };
 
+/**
+ * Show the old TV around the picture? Coro asked to see the home page without it for now.
+ * Set back to true to bring the TV frame back exactly as it was.
+ */
+const SHOW_TV_FRAME = false;
+
+/** Everything on the screen: the Tonos still, the menu and "Directed by CORO BENAVENT".
+ *  Sizes are in cqw (percent of the screen's width); k shrinks them when the picture is full-screen. */
+const ScreenContent: React.FC<{ k: number }> = ({ k }) => {
+  const cq = (n: number) => `${(n * k).toFixed(2)}cqw`;
+  const menu = 'font-end leading-none hover:scale-110 transition-transform';
+  return (
+    <>
+      <img src="/director/tonos-ending.jpg" alt="Still from Tonos" className="fill-img absolute inset-0 w-full h-full object-cover" />
+
+      {/* Menu on the screen (laptops; phones use the bar at the top) */}
+      <div className="absolute inset-x-0 top-0 hidden sm:flex items-center justify-end" style={{ padding: `${cq(5)} ${cq(8)} 0` }}>
+        <nav className="flex items-center" style={{ gap: cq(3.5) }}>
+          <Link to="/films" className={menu} style={{ fontSize: cq(2.6) }}><ColorLetters text="Films" /></Link>
+          <Link to="/about" className={menu} style={{ fontSize: cq(2.6) }}><ColorLetters text="About" offset={2} /></Link>
+          <Link to="/contact" className={menu} style={{ fontSize: cq(2.6) }}><ColorLetters text="Contact" offset={4} /></Link>
+        </nav>
+      </div>
+
+      {/* Directed by */}
+      <div className="absolute inset-0 flex items-center justify-center text-center pointer-events-none">
+        <h1 className="font-credit text-white flex flex-col items-center" style={{ lineHeight: 1.1 }}>
+          <span style={{ fontSize: `max(20px, ${cq(4.2)})` }}>Directed by</span>
+          {/* CORO is Coro's own hand-drawn logo (the O is the fried egg), then BENAVENT */}
+          <span className="flex items-center" style={{ fontSize: `max(26px, ${cq(5.6)})`, gap: cq(1.4), marginTop: cq(0.6) }}>
+            <img src="/coro_text.png" alt="Coro" className="fill-img" style={{ height: `max(21px, ${cq(4.6)})`, width: 'auto' }} />
+            <span style={{ letterSpacing: '0.06em' }}>BENAVENT</span>
+          </span>
+        </h1>
+      </div>
+    </>
+  );
+};
+
 const TVHero: React.FC = () => {
-  const menu = 'font-end text-[2.6cqw] leading-none hover:scale-110 transition-transform';
+  if (!SHOW_TV_FRAME) {
+    // The still fills the whole screen
+    return (
+      <section className="relative w-full h-[100svh] overflow-hidden bg-black" style={{ containerType: 'inline-size' }}>
+        <ScreenContent k={0.72} />
+      </section>
+    );
+  }
+
   return (
     <section className="relative w-full h-[100svh] overflow-hidden bg-black flex items-center justify-center">
       {/* Fills the screen on laptops (cropping the TV's outer edge), fits the width on phones */}
@@ -37,40 +84,7 @@ const TVHero: React.FC = () => {
               containerType: 'inline-size',
             }}
           >
-            <img
-              src="/director/tonos-ending.jpg"
-              alt="Still from Tonos"
-              className="fill-img absolute inset-0 w-full h-full object-cover"
-            />
-
-            {/* Menu on the screen (laptops; phones use the bar above the TV) */}
-            <div
-              className="absolute inset-x-0 top-0 hidden sm:flex items-center justify-end"
-              style={{ padding: '5cqw 8cqw 0' }}
-            >
-              <nav className="flex items-center" style={{ gap: '3.5cqw' }}>
-                <Link to="/films" className={menu}><ColorLetters text="Films" /></Link>
-                <Link to="/about" className={menu}><ColorLetters text="About" offset={2} /></Link>
-                <Link to="/contact" className={menu}><ColorLetters text="Contact" offset={4} /></Link>
-              </nav>
-            </div>
-
-            {/* Directed by */}
-            <div className="absolute inset-0 flex items-center justify-center text-center pointer-events-none">
-              <h1 className="font-credit text-white flex flex-col items-center" style={{ lineHeight: 1.1 }}>
-                <span style={{ fontSize: '4.2cqw' }}>Directed by</span>
-                {/* CORO is Coro's own hand-drawn logo (the O is the fried egg), then BENAVENT */}
-                <span className="flex items-center" style={{ fontSize: '5.6cqw', gap: '1.4cqw', marginTop: '0.6cqw' }}>
-                  <img
-                    src="/coro_text.png"
-                    alt="Coro"
-                    className="fill-img"
-                    style={{ height: '4.6cqw', width: 'auto' }}
-                  />
-                  <span style={{ letterSpacing: '0.06em' }}>BENAVENT</span>
-                </span>
-              </h1>
-            </div>
+            <ScreenContent k={1} />
           </div>
         </div>
       </div>
