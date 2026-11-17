@@ -351,6 +351,7 @@ export const ContactPage: React.FC = () => (
             <ContactLine label="Email" value="coro@garo.studio" href="mailto:coro@garo.studio" />
             <ContactLine label="Instagram" value="@corobenavent" href="https://www.instagram.com/corobenavent/" external />
             <ContactLine label="YouTube" value="Coro Benavent" href="https://www.youtube.com/channel/UCBcovpzdJulXmepFhF_Rmow" external />
+            <ContactLine label="LinkedIn" value="Coro Benavent" href="https://www.linkedin.com/in/coro-benavent-30838519b/" external />
             <ContactLine label="Production company" value="GARO" href={GARO_URL} external />
           </div>
         </div>
