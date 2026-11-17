@@ -117,3 +117,49 @@ span.font-pixel,
     cursor: none !important;
   }
 }
+
+/* Old TV switching on (see TVHero.tsx) */
+.tv-on { animation: tvOn 1.1s 0.3s cubic-bezier(.2,.8,.2,1) both; transform-origin: center; }
+@keyframes tvOn {
+  0% { transform: scale(1, 0.004); filter: brightness(6); opacity: 1; }
+  35% { transform: scale(1, 0.004); filter: brightness(6); }
+  60% { transform: scale(1, 1); filter: brightness(2.5); }
+  100% { transform: scale(1, 1); filter: brightness(1); }
+}
+.tv-flash { background: radial-gradient(circle, rgba(255,255,255,0.9), transparent 60%); animation: tvFlash 0.9s 0.3s ease-out both; }
+@keyframes tvFlash {
+  0% { opacity: 0; transform: scale(0.1); }
+  20% { opacity: 1; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tv-on, .tv-flash { animation: none; }
+  .tv-flash { opacity: 0; }
+}
+
+/* Mariquita cursor (see Cursor.tsx) */
+.mariquita svg * { transform-box: view-box; }
+.mariquita .shell { transition: transform 0.35s cubic-bezier(.3,1.6,.5,1); }
+.mariquita .shell-l { transform-origin: 20px 14px; }
+.mariquita .shell-r { transform-origin: 20px 14px; }
+.mariquita .seam { transition: opacity 0.2s; }
+.mariquita .hw { transform: scale(0.2); opacity: 0; transition: transform 0.3s ease-out, opacity 0.2s; }
+.mariquita .hw-l { transform-origin: 17px 17px; }
+.mariquita .hw-r { transform-origin: 23px 17px; }
+.mariquita.is-open .shell-l { transform: rotate(32deg); }
+.mariquita.is-open .shell-r { transform: rotate(-32deg); }
+.mariquita.is-open .seam { opacity: 0; }
+.mariquita.is-open .hw { opacity: 1; animation: flutter 0.12s ease-in-out infinite alternate; }
+.mariquita.is-open .hw-l { --spread: 22deg; }
+.mariquita.is-open .hw-r { --spread: -22deg; }
+@keyframes flutter {
+  from { transform: rotate(var(--spread)) scale(1.05); }
+  to { transform: rotate(calc(var(--spread) * 1.5)) scale(0.85, 1.05); }
+}
+.mariquita .legs { transform-origin: 20px 24px; }
+.mariquita.is-walking .legs-a { animation: scuttle 0.18s steps(2) infinite; }
+.mariquita.is-walking .legs-b { animation: scuttle 0.18s steps(2) infinite reverse; }
+@keyframes scuttle {
+  from { transform: rotate(-6deg); }
+  to { transform: rotate(6deg); }
+}

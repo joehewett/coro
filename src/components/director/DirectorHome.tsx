@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SiteHeader from './SiteHeader';
 import OptimizedImage from '../OptimizedImage';
+import TVHero from './TVHero';
 
 /**
  * The director front page, designed like the end of an old film:
@@ -236,44 +237,15 @@ const DirectorHome: React.FC = () => {
       <SiteHeader />
 
       {/* Title card */}
-      <section className="relative h-[100svh] min-h-[560px] overflow-hidden">
-        <OptimizedImage
-          src="/director/garo/tonos-2.jpg"
-          width={1920}
-          alt="Still from Tonos"
-          className="fill-img absolute inset-0 w-full h-full object-cover animate-[heroIn_2.4s_ease-out_both]"
-        />
-        <div className="absolute inset-0 bg-black/35" />
-        <div className="absolute inset-0 shadow-[inset_0_0_220px_rgba(0,0,0,0.85)]" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 flicker">
-          <p
-            className={`font-display italic ${CREAM} title-glow text-2xl sm:text-4xl`}
-            style={{ animation: 'fadeUp 1.4s 0.6s ease-out both' }}
-          >
-            Directed by
-          </p>
-          <h1
-            className={`font-display font-medium uppercase ${CREAM} title-glow mt-3 sm:mt-5 text-5xl sm:text-8xl lg:text-[8.5rem] leading-[0.95] tracking-[0.03em]`}
-            style={{ animation: 'fadeUp 1.6s 1.2s ease-out both' }}
-          >
-            Coro
-            <br className="sm:hidden" /> Benavent
-          </h1>
-          <p
-            className={`mt-8 font-wide uppercase tracking-[0.3em] text-xs sm:text-sm ${CREAM} opacity-70`}
-            style={{ animation: 'fadeUp 1.4s 2s ease-out both' }}
-          >
-            A{' '}
-            <a href={GARO_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
-              GARO
-            </a>{' '}
-            production
-          </p>
-        </div>
+      <section
+        className="relative min-h-[100svh] flex flex-col items-center justify-center px-4 pt-24 pb-8 overflow-hidden"
+        style={{ background: 'radial-gradient(ellipse 70% 55% at 50% 50%, #1d1812 0%, #000 75%)' }}
+      >
+        <TVHero garoUrl={GARO_URL} />
         <button
           onClick={() => document.getElementById('films')?.scrollIntoView({ behavior: 'smooth' })}
-          className={`absolute bottom-10 inset-x-0 mx-auto w-max ${smallCaps} hover:opacity-100 transition-opacity`}
-          style={{ animation: 'fadeUp 1.4s 2.6s ease-out both' }}
+          className={`mt-8 sm:mt-10 ${smallCaps} hover:opacity-100 transition-opacity`}
+          style={{ animation: 'fadeUp 1.4s 3.2s ease-out both' }}
         >
           Roll credits ↓
         </button>
