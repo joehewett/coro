@@ -8,7 +8,7 @@ const Homepage: React.FC = () => {
   
   // Check if device is mobile/touch-enabled
   const isMobile = () => {
-    return window.innerWidth < 768 || 'ontouchstart' in window;
+    return !window.matchMedia('(min-width: 768px) and (hover: hover)').matches;
   };
   
   const quadrants = [
@@ -41,22 +41,26 @@ const Homepage: React.FC = () => {
   return (
     <div className="homepage-no-scroll fixed top-0 left-0 w-screen h-screen">
       {/* 2x2 Grid of images */}
-      <div className="grid grid-cols-2 grid-rows-2 w-full h-full">
+      <div className="grid grid-cols-2 grid-rows-2 w-full h-full bg-black">
         {quadrants.map((quadrant, index) => (
           <div 
             key={index}
             className="relative overflow-hidden"
             onMouseEnter={(e) => {
               if (isMobile()) return; // Skip hover effects on mobile
+              const bg = e.currentTarget.querySelector('.quadrant-bg') as HTMLElement;
               const overlay = e.currentTarget.querySelector('.overlay') as HTMLElement;
               const textImg = e.currentTarget.querySelector('.text-img') as HTMLElement;
-              if (overlay) overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+              if (bg) bg.style.opacity = '1';
+              if (overlay) overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
               if (textImg) textImg.style.opacity = '1';
             }}
             onMouseLeave={(e) => {
               if (isMobile()) return; // Skip hover effects on mobile
+              const bg = e.currentTarget.querySelector('.quadrant-bg') as HTMLElement;
               const overlay = e.currentTarget.querySelector('.overlay') as HTMLElement;
               const textImg = e.currentTarget.querySelector('.text-img') as HTMLElement;
+              if (bg) bg.style.opacity = '';
               if (overlay) overlay.style.backgroundColor = 'rgba(255, 255, 255, 0)';
               if (textImg) textImg.style.opacity = '0';
             }}
@@ -67,7 +71,7 @@ const Homepage: React.FC = () => {
               src={quadrant.bg}
               width={1200}
               alt={quadrant.alt}
-              className="quadrant-bg w-full h-full object-cover absolute inset-0 z-0 bg-black"
+              className="quadrant-bg w-full h-full object-cover absolute inset-0 z-0 bg-black transition-opacity duration-500 ease-in-out"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.style.backgroundColor = '#333';
@@ -80,7 +84,7 @@ const Homepage: React.FC = () => {
             >
               {/* Text overlay image */}
               <img 
-                className="text-img max-w-[20%] max-h-[20%] object-contain opacity-100 md:opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+                className="text-img max-w-[20%] max-h-[20%] object-contain transition-opacity duration-300 ease-in-out pointer-events-none"
                 src={quadrant.text}
                 alt={`${quadrant.alt} Text`}
               />

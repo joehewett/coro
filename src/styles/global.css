@@ -42,3 +42,13 @@ span.font-pixel,
   font-family: 'Press Start 2P', monospace !important;
   font-weight: normal !important;
 }
+
+/* Front page: photos start dimmed on laptops and brighten on hover (see Homepage.tsx) */
+@media (min-width: 768px) and (hover: hover) {
+  .quadrant-bg {
+    opacity: 0.35;
+  }
+  .text-img {
+    opacity: 0;
+  }
+}
