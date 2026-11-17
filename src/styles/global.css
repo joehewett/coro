@@ -111,12 +111,6 @@ span.font-pixel,
   .film-grain, .flicker { animation: none; }
 }
 
-/* Personal cursor (see Cursor.tsx). Only on laptops with a mouse. */
-@media (hover: hover) and (pointer: fine) {
-  html.has-cursor, html.has-cursor * {
-    cursor: none !important;
-  }
-}
 
 /* "Directed by" end-credit lettering, and colourful "THE END" letters (also the menu) */
 .font-credit { font-family: 'Rokkitt', Georgia, serif; font-weight: 400; }
@@ -128,29 +122,24 @@ span.font-pixel,
   .tv-frame { width: 100vw; }
 }
 
-/* Mariquita cursor (see Cursor.tsx) */
-.mariquita svg * { transform-box: view-box; }
-.mariquita .shell { transition: transform 0.35s cubic-bezier(.3,1.6,.5,1); }
-.mariquita .shell-l { transform-origin: 20px 14px; }
-.mariquita .shell-r { transform-origin: 20px 14px; }
-.mariquita .seam { transition: opacity 0.2s; }
-.mariquita .hw { transform: scale(0.2); opacity: 0; transition: transform 0.3s ease-out, opacity 0.2s; }
-.mariquita .hw-l { transform-origin: 17px 17px; }
-.mariquita .hw-r { transform-origin: 23px 17px; }
-.mariquita.is-open .shell-l { transform: rotate(32deg); }
-.mariquita.is-open .shell-r { transform: rotate(-32deg); }
-.mariquita.is-open .seam { opacity: 0; }
-.mariquita.is-open .hw { opacity: 1; animation: flutter 0.12s ease-in-out infinite alternate; }
-.mariquita.is-open .hw-l { --spread: 22deg; }
-.mariquita.is-open .hw-r { --spread: -22deg; }
-@keyframes flutter {
-  from { transform: rotate(var(--spread)) scale(1.05); }
-  to { transform: rotate(calc(var(--spread) * 1.5)) scale(0.85, 1.05); }
+/* Monkey hand cursor. The fingertip (11, 1) is the click point.
+   Over anything clickable, the hand gets little tap marks. */
+html {
+  cursor: url('/cursor/monkey-hand.svg') 11 1, auto;
 }
-.mariquita .legs { transform-origin: 20px 24px; }
-.mariquita.is-walking .legs-a { animation: scuttle 0.18s steps(2) infinite; }
-.mariquita.is-walking .legs-b { animation: scuttle 0.18s steps(2) infinite reverse; }
-@keyframes scuttle {
-  from { transform: rotate(-6deg); }
-  to { transform: rotate(6deg); }
+a, button, [role="button"], .cursor-pointer, label, select, summary {
+  cursor: url('/cursor/monkey-hand-active.svg') 11 1, pointer !important;
 }
+
+/* Anything you can click grows a little when the hand is over it */
+/* In the base layer so any layout class on a link (block, flex...) still wins */
+@layer base {
+  .grow-links a, .grow-links button {
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+  .grow-links a:hover, .grow-links button:hover {
+    transform: scale(1.08);
+  }
+}
+.grow-links .film-card:hover { transform: scale(1.02); }

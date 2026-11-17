@@ -9,7 +9,7 @@ const quests: { title: string; story: string; image?: string }[] = [];
 
 const FunQuestsPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#fff4e0] text-[#3a2a1a]">
+    <div className="grow-links min-h-screen bg-[#fff4e0] text-[#3a2a1a]">
       <div className="max-w-4xl mx-auto px-6 sm:px-10 py-10">
         <Link to="/more" className="text-[11px] uppercase tracking-[0.25em] opacity-60 hover:opacity-100">
           ← More of me

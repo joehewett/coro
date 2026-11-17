@@ -25,6 +25,8 @@ interface Film {
   /** Title has a black background: blend it so only the white letters show. */
   blendTitle?: boolean;
   still: string;
+  /** Coro's role, shown under the film */
+  role: string;
   credits: Credit[];
   year?: string;
   status?: string;
@@ -39,6 +41,7 @@ const GARO_URL = 'https://www.garogirls.com';
 const films: Film[] = [
   {
     title: 'Tonos',
+    role: "Director & lead actress",
     titleImage: '/director/garo/titles/tonos.png',
     invertTitle: true,
     still: '/director/garo/tonos-1.jpg',
@@ -51,6 +54,7 @@ const films: Film[] = [
   },
   {
     title: 'Look Around',
+    role: "Director",
     titleImage: '/director/garo/titles/look-around-coro.png',
     still: '/director/garo/look-around-still.jpg',
     credits: [{ role: 'Directed by' }],
@@ -61,6 +65,7 @@ const films: Film[] = [
   },
   {
     title: 'Palomitas sin maíz',
+    role: "Co-director & co-producer",
     titleImage: '/director/garo/titles/palomitas-coro.png',
     still: '/director/garo/palomitas-still.jpg',
     credits: [{ role: 'Co-directed by' }, { role: 'Co-produced by' }],
@@ -71,6 +76,7 @@ const films: Film[] = [
   },
   {
     title: 'Ragni',
+    role: "Creative producer",
     titleImage: '/director/garo/titles/ragni-coro.webp',
     blendTitle: true,
     still: '/director/garo/ragni-still.jpg',
@@ -81,6 +87,7 @@ const films: Film[] = [
   },
   {
     title: 'SUPERGLUE',
+    role: "Director",
     titleImage: '/director/garo/titles/superglue-coro.png',
     still: '/director/superglue.png',
     credits: [{ role: 'Directed by' }],
@@ -90,6 +97,7 @@ const films: Film[] = [
   },
   {
     title: 'Padre. Hijo. Pastor',
+    role: "Director's assistant",
     still: '/director/padre.jpg',
     credits: [{ role: "Director's assistant" }],
     status: 'In Post-Production',
@@ -148,72 +156,44 @@ const CreditLine: React.FC<{ role: string; name?: string; href?: string; externa
 
 const smallCaps = `font-wide uppercase tracking-[0.25em] text-xs sm:text-sm ${CREAM} opacity-60`;
 
-const FilmBlock: React.FC<{ film: Film }> = ({ film }) => (
-  <article className="group">
-    <Link
-      to={film.route}
-     
-      className="block relative overflow-hidden bg-neutral-900 aspect-[16/9] sm:aspect-[2.2/1]"
+/** One film on the Films page: a wide still with its title design, then title, year and role */
+const FilmCard: React.FC<{ film: Film; featured?: boolean }> = ({ film, featured }) => (
+  <Link to={film.route} className="film-card group block transition-transform duration-500">
+    <div
+      className={`relative overflow-hidden bg-neutral-900 ${featured ? 'aspect-[16/9] md:aspect-[2.39/1]' : 'aspect-[16/9]'}`}
     >
       <OptimizedImage
         src={film.still}
-        width={1920}
+        width={featured ? 1920 : 1200}
         alt={`Still from ${film.title}`}
-        className="fill-img absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] ease-out group-hover:scale-[1.03]"
+        className="fill-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
       />
-      <div className="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors duration-700" />
-      <div className="absolute inset-0 shadow-[inset_0_0_120px_rgba(0,0,0,0.6)]" />
-      <div className="absolute inset-0 flex items-center justify-center p-8">
+      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+      <div className="absolute inset-0 flex items-center justify-center p-[8%]">
         {film.titleImage ? (
           <img
             src={film.titleImage}
-            alt={film.title}
-            className={`max-h-[38%] max-w-[55%] object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]${
-              film.invertTitle ? ' invert' : ''
-            }${film.blendTitle ? ' mix-blend-screen' : ''}`}
+            alt=""
+            className={`max-h-[42%] max-w-[60%] object-contain${film.invertTitle ? ' invert' : ''}${
+              film.blendTitle ? ' mix-blend-screen' : ''
+            }`}
           />
         ) : (
-          <h3 className={`font-display title-glow uppercase ${CREAM} text-4xl sm:text-6xl text-center tracking-[0.04em]`}>
-            {film.title}
-          </h3>
-        )}
-      </div>
-    </Link>
-
-    <div className="mt-10 sm:mt-12 flex flex-col items-center text-center">
-      <h3 className={`font-display uppercase tracking-[0.08em] ${CREAM} text-2xl sm:text-4xl`}>
-        {film.title}
-        {(film.year || film.status) && (
-          <span className="block mt-2 font-wide normal-case tracking-[0.2em] text-sm sm:text-base opacity-50">
-            {[film.year, film.status].filter(Boolean).join(' · ')}
-          </span>
-        )}
-      </h3>
-      <div className="mt-6 w-full max-w-2xl space-y-2">
-        {film.credits.map((c) => (
-          <CreditLine key={c.role} role={c.role} name={c.name} />
-        ))}
-      </div>
-      <p className={`mt-6 max-w-xl font-display italic ${CREAM} opacity-60 text-base sm:text-lg leading-relaxed`}>
-        {film.description}
-      </p>
-      <div className="mt-6 flex gap-8">
-        <Link to={film.route} className={`${smallCaps} hover:opacity-100 transition-opacity`}>
-          View film →
-        </Link>
-        {film.garoLink && (
-          <a
-            href={film.garoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${smallCaps} hover:opacity-100 transition-opacity`}
-          >
-            GARO ↗
-          </a>
+          <span className="font-credit text-white text-2xl sm:text-4xl text-center">{film.title}</span>
         )}
       </div>
     </div>
-  </article>
+    <div className="mt-4 flex items-baseline justify-between gap-4 border-b border-white/15 pb-4">
+      <div className="min-w-0">
+        <h2 className={`font-credit text-white ${featured ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'}`}>{film.title}</h2>
+        <p className="mt-1 font-wide uppercase tracking-[0.18em] text-xs sm:text-sm text-white/50">
+          {film.role}
+          {film.status && <span className="text-white/35"> · {film.status}</span>}
+        </p>
+      </div>
+      {film.year && <span className="font-credit text-white/50 text-lg shrink-0">{film.year}</span>}
+    </div>
+  </Link>
 );
 
 const SectionTitle: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -253,7 +233,7 @@ const DirectorPageFrame: React.FC<{ children: React.ReactNode }> = ({ children }
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="grow-links bg-black text-white min-h-screen">
       <div className="film-grain" aria-hidden="true" />
       <SiteHeader />
       <main className="pt-20">{children}</main>
@@ -264,7 +244,7 @@ const DirectorPageFrame: React.FC<{ children: React.ReactNode }> = ({ children }
 
 /** Front page: just the TV. The menu on its screen leads to the other pages. */
 const DirectorHome: React.FC = () => (
-  <div className="bg-black text-white h-[100svh] overflow-hidden">
+  <div className="grow-links bg-black text-white h-[100svh] overflow-hidden">
     {/* On laptops the menu is on the TV screen; on phones this bar sits above the TV */}
     <SiteHeader hideOverHero />
     <TVHero />
@@ -273,12 +253,23 @@ const DirectorHome: React.FC = () => (
 
 export const FilmsPage: React.FC = () => (
   <DirectorPageFrame>
-    <section className="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
-      <SectionTitle>Filmography</SectionTitle>
-      <Ornament />
-      <div className="mt-16 sm:mt-24 flex flex-col gap-28 sm:gap-40">
-        {films.map((film) => (
-          <FilmBlock key={film.title} film={film} />
+    <section className="max-w-7xl mx-auto px-6 sm:px-10 pt-12 sm:pt-20 pb-10">
+      <div className="flex items-end justify-between gap-6 border-b border-white/15 pb-6">
+        <h1 className="font-credit text-white text-4xl sm:text-6xl">Films</h1>
+        <a
+          href={GARO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-wide uppercase tracking-[0.18em] text-xs sm:text-sm text-white/50 hover:text-white transition-colors"
+        >
+          With GARO ↗
+        </a>
+      </div>
+      <div className="mt-10 sm:mt-14 grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-14 sm:gap-y-20">
+        {films.map((film, i) => (
+          <div key={film.title} className={i === 0 ? 'md:col-span-2' : ''}>
+            <FilmCard film={film} featured={i === 0} />
+          </div>
         ))}
       </div>
     </section>

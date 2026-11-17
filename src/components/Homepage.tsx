@@ -41,7 +41,7 @@ const Homepage: React.FC = () => {
   ];
 
   return (
-    <div className="homepage-no-scroll fixed top-0 left-0 w-screen h-screen">
+    <div className="grow-links homepage-no-scroll fixed top-0 left-0 w-screen h-screen">
       {/* 2x2 Grid of images */}
       <div className="grid grid-cols-2 grid-rows-2 w-full h-full bg-black">
         {quadrants.map((quadrant, index) => (
