@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import HomeDoodle from './HomeDoodle';
 import Logo from './Logo';
 import OptimizedImage from './OptimizedImage';
 
@@ -106,13 +107,8 @@ const Homepage: React.FC = () => {
         <Logo height={120} clickable={false} />
       </div>
 
-      {/* Back to the films */}
-      <Link
-        to="/"
-        className="absolute top-6 left-6 z-50 font-wide text-sm uppercase tracking-[0.2em] text-white/80 hover:text-white bg-black/40 backdrop-blur-sm px-4 py-2"
-      >
-        ← Films
-      </Link>
+      {/* Home: a little house that draws itself, back to the front page */}
+      <HomeDoodle className="absolute top-5 left-5 z-50 text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]" />
     </div>
   );
 };

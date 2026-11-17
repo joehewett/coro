@@ -52,7 +52,6 @@ const TVHero: React.FC = () => {
                 <Link to="/films" className={menu}><ColorLetters text="Films" /></Link>
                 <Link to="/about" className={menu}><ColorLetters text="About" offset={2} /></Link>
                 <Link to="/contact" className={menu}><ColorLetters text="Contact" offset={4} /></Link>
-                <Link to="/more" className={menu}><ColorLetters text="More of me" offset={1} /></Link>
               </nav>
             </div>
 

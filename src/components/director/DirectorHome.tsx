@@ -25,8 +25,12 @@ interface Film {
   /** Title has a black background: blend it so only the white letters show. */
   blendTitle?: boolean;
   still: string;
-  /** Coro's role, shown under the film */
+  /** Coro's role. Not shown on the Films page for now; kept for the film's own page later. */
   role: string;
+  /** Which heading the film sits under on the Films page */
+  group: 'Films' | 'Music Videos' | 'Documentary';
+  /** Make a title design bigger or smaller under the still (1 = normal) */
+  titleScale?: number;
   credits: Credit[];
   year?: string;
   status?: string;
@@ -41,6 +45,7 @@ const GARO_URL = 'https://www.garogirls.com';
 const films: Film[] = [
   {
     title: 'Tonos',
+    group: 'Films',
     role: "Director & lead actress",
     titleImage: '/director/garo/titles/tonos.png',
     invertTitle: true,
@@ -54,6 +59,7 @@ const films: Film[] = [
   },
   {
     title: 'Look Around',
+    group: 'Music Videos',
     role: "Director",
     titleImage: '/director/garo/titles/look-around-coro-trim.png',
     still: '/director/garo/look-around-still.jpg',
@@ -65,6 +71,8 @@ const films: Film[] = [
   },
   {
     title: 'Palomitas sin maíz',
+    group: 'Music Videos',
+    titleScale: 1.5,
     role: "Co-director & co-producer",
     titleImage: '/director/garo/titles/palomitas-coro-trim.png',
     still: '/director/garo/palomitas-still.jpg',
@@ -76,6 +84,7 @@ const films: Film[] = [
   },
   {
     title: 'Ragni',
+    group: 'Music Videos',
     role: "Creative producer",
     titleImage: '/director/garo/titles/ragni-coro-trim.jpg',
     blendTitle: true,
@@ -87,6 +96,7 @@ const films: Film[] = [
   },
   {
     title: 'SUPERGLUE',
+    group: 'Music Videos',
     role: "Director",
     titleImage: '/director/garo/titles/superglue-coro-trim.png',
     still: '/director/superglue.png',
@@ -97,6 +107,7 @@ const films: Film[] = [
   },
   {
     title: 'Padre. Hijo. Pastor',
+    group: 'Documentary',
     role: "Director's assistant",
     still: '/director/padre.jpg',
     credits: [{ role: "Director's assistant" }],
@@ -154,7 +165,6 @@ const CreditLine: React.FC<{ role: string; name?: string; href?: string; externa
   );
 };
 
-const smallCaps = `font-wide uppercase tracking-[0.25em] text-xs sm:text-sm ${CREAM} opacity-60`;
 
 /** One film on the Films page: a wide still with its title design, then title, year and role */
 const FilmCard: React.FC<{ film: Film; featured?: boolean }> = ({ film, featured }) => (
@@ -180,14 +190,20 @@ const FilmCard: React.FC<{ film: Film; featured?: boolean }> = ({ film, featured
           className={`fill-img block w-auto max-w-[80%] object-contain object-left${film.invertTitle ? ' invert' : ''}${
             film.blendTitle ? ' mix-blend-screen' : ''
           }`}
-          style={{ height: featured ? 'clamp(56px, 7vw, 96px)' : 'clamp(44px, 4.5vw, 64px)' }}
+          style={{
+            height: featured
+              ? `calc(clamp(56px, 7vw, 96px) * ${film.titleScale ?? 1})`
+              : `calc(clamp(44px, 4.5vw, 64px) * ${film.titleScale ?? 1})`,
+          }}
         />
       ) : (
         <h2 className="font-political text-white text-3xl sm:text-4xl">{film.title}</h2>
       )}
-      <p className="mt-2 font-political text-base sm:text-lg text-white/60">
-        {[film.role, film.status, film.year].filter(Boolean).join(' · ')}
-      </p>
+      {(film.status || film.year) && (
+        <p className="mt-2 font-political text-base sm:text-lg text-white/60">
+          {[film.status, film.year].filter(Boolean).join(' · ')}
+        </p>
+      )}
     </div>
   </Link>
 );
@@ -239,30 +255,65 @@ const DirectorHome: React.FC = () => (
   </div>
 );
 
-export const FilmsPage: React.FC = () => (
-  <DirectorPageFrame>
-    <section className="max-w-7xl mx-auto px-6 sm:px-10 pt-12 sm:pt-20 pb-10">
-      <div className="flex items-end justify-between gap-6">
-        <h1 className="font-political text-white text-4xl sm:text-6xl">Films</h1>
-        <a
-          href={GARO_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-political text-base sm:text-lg text-white/60 hover:text-white transition-colors"
-        >
-          With GARO ↗
-        </a>
-      </div>
-      <div className="mt-10 sm:mt-14 grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-14 sm:gap-y-20">
-        {films.map((film, i) => (
-          <div key={film.title} className={i === 0 ? 'md:col-span-2' : ''}>
-            <FilmCard film={film} featured={i === 0} />
-          </div>
-        ))}
-      </div>
-    </section>
-  </DirectorPageFrame>
+/** "Founder of GARO": GARO's own logo and heading font, linking to their site */
+const FounderOfGaro: React.FC = () => (
+  <a
+    href={GARO_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center gap-3 text-white"
+    aria-label="Founder of GARO"
+  >
+    <span className="font-garo text-base sm:text-xl">Founder of</span>
+    <img src="/director/garo/garo-logo-white.png" alt="GARO" className="fill-img" style={{ height: 'clamp(22px, 2.6vw, 34px)', width: 'auto' }} />
+  </a>
 );
+
+const GroupHeading: React.FC<{ children: React.ReactNode; center?: boolean }> = ({ children, center }) => (
+  <h2 className={`font-political text-white text-4xl sm:text-6xl${center ? ' text-center' : ''}`}>{children}</h2>
+);
+
+export const FilmsPage: React.FC = () => {
+  const inGroup = (g: Film['group']) => films.filter((f) => f.group === g);
+  return (
+    <DirectorPageFrame>
+      <section className="max-w-7xl mx-auto px-6 sm:px-10 pt-12 sm:pt-20 pb-10 flex flex-col gap-24 sm:gap-32">
+        {/* Films */}
+        <div>
+          <div className="flex items-end justify-between gap-6 flex-wrap">
+            <h1 className="font-political text-white text-4xl sm:text-6xl">Films</h1>
+            <FounderOfGaro />
+          </div>
+          <div className="mt-10 sm:mt-14 flex flex-col gap-14 sm:gap-20">
+            {inGroup('Films').map((film, i) => (
+              <FilmCard key={film.title} film={film} featured={i === 0} />
+            ))}
+          </div>
+        </div>
+
+        {/* Music videos */}
+        <div>
+          <GroupHeading>Music Videos</GroupHeading>
+          <div className="mt-10 sm:mt-14 grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-14 sm:gap-y-20">
+            {inGroup('Music Videos').map((film) => (
+              <FilmCard key={film.title} film={film} />
+            ))}
+          </div>
+        </div>
+
+        {/* Documentary: one film, centred, same size as a music video card */}
+        <div>
+          <GroupHeading center>Documentary</GroupHeading>
+          <div className="mt-10 sm:mt-14 mx-auto w-full md:w-[calc(50%-1rem)] lg:w-[calc(50%-1.5rem)]">
+            {inGroup('Documentary').map((film) => (
+              <FilmCard key={film.title} film={film} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </DirectorPageFrame>
+  );
+};
 
 export const AboutPage: React.FC = () => (
   <DirectorPageFrame>
@@ -287,8 +338,14 @@ export const AboutPage: React.FC = () => (
             with Gabrielle Torreborre, a production company for auteur-driven cinema.
           </p>
         </div>
-        <Link to="/more" className={`inline-block mt-10 ${smallCaps} hover:opacity-100 transition-opacity`}>
-          Actress, music and more of me →
+        {/* "More of me" lives here now, not in the menu */}
+        <Link to="/more" className="mt-12 block w-max">
+          <span className="font-end text-3xl sm:text-4xl leading-none">
+            <ColorLetters text="More of me" offset={1} />
+          </span>
+          <span className={`block mt-3 font-political text-base sm:text-lg ${CREAM} opacity-70`}>
+            Actress · Music · Me · Fun Quests →
+          </span>
         </Link>
       </div>
     </section>

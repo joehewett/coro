@@ -33,7 +33,6 @@ const SiteHeader: React.FC<{ hideOverHero?: boolean }> = ({ hideOverHero = false
       <Link to="/films" onClick={() => setOpen(false)} className={linkClass}><ColorLetters text="Films" /></Link>
       <Link to="/about" onClick={() => setOpen(false)} className={linkClass}><ColorLetters text="About" offset={2} /></Link>
       <Link to="/contact" onClick={() => setOpen(false)} className={linkClass}><ColorLetters text="Contact" offset={4} /></Link>
-      <Link to="/more" onClick={() => setOpen(false)} className={linkClass}><ColorLetters text="More of me" offset={1} /></Link>
     </>
   );
 

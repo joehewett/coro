@@ -115,6 +115,8 @@ span.font-pixel,
 /* "Directed by" end-credit lettering, and colourful "THE END" letters (also the menu) */
 /* Hand-lettered credit, like 'Special Guest Voice / STEPHEN ROOT' */
 .font-credit { font-family: 'Gaegu', 'Patrick Hand', sans-serif; font-weight: 400; }
+/* GARO's own website heading font, for "Founder of GARO" */
+.font-garo { font-family: 'Raleway', sans-serif; font-weight: 700; }
 /* Like "this is a political film": project details and page headings */
 .font-political { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; }
 /* Like the handwritten "Almost Famous": film titles */
@@ -163,3 +165,26 @@ a, button, [role="button"], .cursor-pointer, label, select, summary {
   }
 }
 .grow-links .film-card:hover { transform: scale(1.02); }
+
+/* Hand-drawn house that draws itself in (HomeDoodle.tsx) */
+.home-doodle .hd-line {
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  animation: hdDraw 0.7s ease-out forwards;
+}
+@keyframes hdDraw { to { stroke-dashoffset: 0; } }
+.home-doodle .hd-smoke {
+  opacity: 0;
+  animation: hdSmoke 2.4s 1.6s ease-out infinite;
+}
+@keyframes hdSmoke {
+  0% { opacity: 0; transform: translateY(4px); }
+  30% { opacity: 0.9; }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+.home-doodle .hd-door { transform-origin: 27px 56px; transition: transform 0.4s ease; }
+.home-doodle:hover .hd-door { transform: scaleX(0.55); }
+@media (prefers-reduced-motion: reduce) {
+  .home-doodle .hd-line { animation: none; stroke-dashoffset: 0; }
+  .home-doodle .hd-smoke { animation: none; opacity: 0.6; }
+}
