@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import HomeDoodle from './HomeDoodle';
-import Logo from './Logo';
 import OptimizedImage from './OptimizedImage';
 
 const Homepage: React.FC = () => {
@@ -17,21 +16,25 @@ const Homepage: React.FC = () => {
   // has no stories yet. To go back to the four-photo page, set `show: true` on Me and Fun Quests
   // and put Actress back on its own photo, '/landing/actress-tile.jpg'.
   // `text` is a handwritten label image; `label` is used when there is no image yet.
-  const allQuadrants: { bg: string; text?: string; label?: string; alt: string; route: string; show: boolean }[] = [
+  const allQuadrants: { bg: string; text?: string; label?: string; alt: string; route: string; show: boolean; labelAt?: 'top' | 'bottom' }[] = [
     {
       // Uses the photo that was on the Me tile, with the Actress title
       bg: '/landing/bottomleft.jpeg',
       text: '/landing/toplefttext.PNG',
       alt: 'Actress',
       route: '/actress',
-      show: true
+      show: true,
+      // Title up in the sky
+      labelAt: 'top'
     },
     {
       bg: '/landing/bottomright.jpeg',
       text: '/landing/bottomrighttext.PNG',
       alt: 'Music',
       route: '/musician',
-      show: true
+      show: true,
+      // Title down by the chin
+      labelAt: 'bottom'
     },
     {
       bg: '/landing/bottomleft.jpeg',
@@ -94,7 +97,7 @@ const Homepage: React.FC = () => {
             
             {/* Hover overlay */}
             <div 
-              className={`overlay absolute inset-0 flex justify-center ${quadrants.length <= 2 ? 'items-end pb-[16vh]' : 'items-center'} bg-transparent transition-colors duration-300 ease-in-out cursor-pointer z-10`}
+              className={`overlay absolute inset-0 flex justify-center ${quadrant.labelAt === 'top' ? 'items-start pt-[14vh]' : quadrant.labelAt === 'bottom' ? 'items-end pb-[16vh]' : 'items-center'} bg-transparent transition-colors duration-300 ease-in-out cursor-pointer z-10`}
             >
               {/* Text overlay image */}
               {quadrant.text ? (
@@ -113,10 +116,7 @@ const Homepage: React.FC = () => {
         ))}
       </div>
       
-      {/* Centered coro_text.png */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-50">
-        <Logo height={120} clickable={false} />
-      </div>
+      {/* The CORO logo used to sit in the middle here; removed while there are two photos */}
 
       {/* Home: a little house that draws itself, back to the front page */}
       <HomeDoodle className="absolute top-5 left-5 z-50 text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]" />
