@@ -132,14 +132,14 @@ span.font-pixel,
 /* Paw cursor: the top paw of 🐾 in beige. A bit bigger over anything clickable.
    Paw prints trail behind it (PawTrail.tsx). */
 html {
-  cursor: url('/cursor/paw-24.png') 12 11, auto;
+  cursor: url('/cursor/paw-20.png') 10 9, auto;
 }
 a, button, [role="button"], .cursor-pointer, label, select, summary {
-  cursor: url('/cursor/paw-29.png') 14 14, pointer !important;
+  cursor: url('/cursor/paw-25.png') 12 12, pointer !important;
 }
 .paw-print {
   position: fixed;
-  width: 16px;
+  width: 13px;
   height: auto;
   pointer-events: none;
   z-index: 9998;
