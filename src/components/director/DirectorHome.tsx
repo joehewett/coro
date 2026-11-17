@@ -55,7 +55,7 @@ const films: Film[] = [
   {
     title: 'Look Around',
     role: "Director",
-    titleImage: '/director/garo/titles/look-around-coro.png',
+    titleImage: '/director/garo/titles/look-around-coro-trim.png',
     still: '/director/garo/look-around-still.jpg',
     credits: [{ role: 'Directed by' }],
     description:
@@ -66,7 +66,7 @@ const films: Film[] = [
   {
     title: 'Palomitas sin maíz',
     role: "Co-director & co-producer",
-    titleImage: '/director/garo/titles/palomitas-coro.png',
+    titleImage: '/director/garo/titles/palomitas-coro-trim.png',
     still: '/director/garo/palomitas-still.jpg',
     credits: [{ role: 'Co-directed by' }, { role: 'Co-produced by' }],
     description:
@@ -77,7 +77,7 @@ const films: Film[] = [
   {
     title: 'Ragni',
     role: "Creative producer",
-    titleImage: '/director/garo/titles/ragni-coro.webp',
+    titleImage: '/director/garo/titles/ragni-coro-trim.jpg',
     blendTitle: true,
     still: '/director/garo/ragni-still.jpg',
     credits: [{ role: 'Creative producer' }],
@@ -88,7 +88,7 @@ const films: Film[] = [
   {
     title: 'SUPERGLUE',
     role: "Director",
-    titleImage: '/director/garo/titles/superglue-coro.png',
+    titleImage: '/director/garo/titles/superglue-coro-trim.png',
     still: '/director/superglue.png',
     credits: [{ role: 'Directed by' }],
     description:
@@ -159,38 +159,35 @@ const smallCaps = `font-wide uppercase tracking-[0.25em] text-xs sm:text-sm ${CR
 /** One film on the Films page: a wide still with its title design, then title, year and role */
 const FilmCard: React.FC<{ film: Film; featured?: boolean }> = ({ film, featured }) => (
   <Link to={film.route} className="film-card group block transition-transform duration-500">
-    <div
-      className={`relative overflow-hidden bg-neutral-900 ${featured ? 'aspect-[16/9] md:aspect-[2.39/1]' : 'aspect-[16/9]'}`}
-    >
+    {/* The featured film shows its full still; the rest share one widescreen shape */}
+    <div className={`relative overflow-hidden bg-neutral-900${featured ? '' : ' aspect-[16/9]'}`}>
       <OptimizedImage
         src={film.still}
         width={featured ? 1920 : 1200}
         alt={`Still from ${film.title}`}
-        className="fill-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+        className={`transition-transform duration-700 ease-out group-hover:scale-[1.04] ${
+          featured ? 'block w-full h-auto' : 'fill-img absolute inset-0 w-full h-full object-cover'
+        }`}
       />
-      <div className="absolute inset-0 flex items-center justify-center p-[8%]">
-        {film.titleImage ? (
-          <img
-            src={film.titleImage}
-            alt=""
-            className={`max-h-[42%] max-w-[60%] object-contain${film.invertTitle ? ' invert' : ''}${
-              film.blendTitle ? ' mix-blend-screen' : ''
-            }`}
-          />
-        ) : (
-          <span className="font-handfilm text-white text-4xl sm:text-6xl text-center">{film.title}</span>
-        )}
-      </div>
     </div>
-    <div className="mt-4 flex items-baseline justify-between gap-4">
-      <div className="min-w-0">
-        <h2 className={`font-handfilm text-white leading-none ${featured ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'}`}>{film.title}</h2>
-        <p className="mt-2 font-political text-base sm:text-lg text-white/60">
-          {film.role}
-          {film.status && <span className="text-white/35"> · {film.status}</span>}
-        </p>
-      </div>
-      {film.year && <span className="font-political text-white/60 text-base sm:text-lg shrink-0">{film.year}</span>}
+
+    {/* Title design under the still, then role and year */}
+    <div className="mt-5">
+      {film.titleImage ? (
+        <img
+          src={film.titleImage}
+          alt={film.title}
+          className={`fill-img block w-auto max-w-[80%] object-contain object-left${film.invertTitle ? ' invert' : ''}${
+            film.blendTitle ? ' mix-blend-screen' : ''
+          }`}
+          style={{ height: featured ? 'clamp(56px, 7vw, 96px)' : 'clamp(44px, 4.5vw, 64px)' }}
+        />
+      ) : (
+        <h2 className="font-political text-white text-3xl sm:text-4xl">{film.title}</h2>
+      )}
+      <p className="mt-2 font-political text-base sm:text-lg text-white/60">
+        {[film.role, film.status, film.year].filter(Boolean).join(' · ')}
+      </p>
     </div>
   </Link>
 );

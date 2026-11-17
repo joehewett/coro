@@ -113,7 +113,8 @@ span.font-pixel,
 
 
 /* "Directed by" end-credit lettering, and colourful "THE END" letters (also the menu) */
-.font-credit { font-family: 'Rokkitt', Georgia, serif; font-weight: 400; }
+/* Hand-lettered credit, like 'Special Guest Voice / STEPHEN ROOT' */
+.font-credit { font-family: 'Gaegu', 'Patrick Hand', sans-serif; font-weight: 400; }
 /* Like "this is a political film": project details and page headings */
 .font-political { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; }
 /* Like the handwritten "Almost Famous": film titles */

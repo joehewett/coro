@@ -45,10 +45,9 @@ const TVHero: React.FC = () => {
 
             {/* Menu on the screen (laptops; phones use the bar above the TV) */}
             <div
-              className="absolute inset-x-0 top-0 hidden sm:flex items-center justify-between"
+              className="absolute inset-x-0 top-0 hidden sm:flex items-center justify-end"
               style={{ padding: '5cqw 8cqw 0' }}
             >
-              <img src="/coro_text.png" alt="Coro" className="fill-img" style={{ height: '3.4cqw', width: 'auto' }} />
               <nav className="flex items-center" style={{ gap: '3.5cqw' }}>
                 <Link to="/films" className={menu}><ColorLetters text="Films" /></Link>
                 <Link to="/about" className={menu}><ColorLetters text="About" offset={2} /></Link>
@@ -59,10 +58,18 @@ const TVHero: React.FC = () => {
 
             {/* Directed by */}
             <div className="absolute inset-0 flex items-center justify-center text-center pointer-events-none">
-              <h1 className="font-credit text-white" style={{ fontSize: '4.4cqw', lineHeight: 1.15 }}>
-                Directed by
-                <br />
-                Coro Benavent
+              <h1 className="font-credit text-white flex flex-col items-center" style={{ lineHeight: 1.1 }}>
+                <span style={{ fontSize: '4.2cqw' }}>Directed by</span>
+                {/* CORO is Coro's own hand-drawn logo (the O is the fried egg), then BENAVENT */}
+                <span className="flex items-center" style={{ fontSize: '5.6cqw', gap: '1.4cqw', marginTop: '0.6cqw' }}>
+                  <img
+                    src="/coro_text.png"
+                    alt="Coro"
+                    className="fill-img"
+                    style={{ height: '4.6cqw', width: 'auto' }}
+                  />
+                  <span style={{ letterSpacing: '0.06em' }}>BENAVENT</span>
+                </span>
               </h1>
             </div>
           </div>
