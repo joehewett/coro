@@ -114,6 +114,10 @@ span.font-pixel,
 
 /* "Directed by" end-credit lettering, and colourful "THE END" letters (also the menu) */
 .font-credit { font-family: 'Rokkitt', Georgia, serif; font-weight: 400; }
+/* Like "this is a political film": project details and page headings */
+.font-political { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; }
+/* Like the handwritten "Almost Famous": film titles */
+.font-handfilm { font-family: 'Caveat', 'Reenie Beanie', cursive; font-weight: 500; }
 .font-end { font-family: 'Londrina Solid', 'Archivo', sans-serif; font-weight: 900; }
 
 /* TV photo fills the screen on laptops, fits the width on phones (see TVHero.tsx) */
@@ -122,13 +126,28 @@ span.font-pixel,
   .tv-frame { width: 100vw; }
 }
 
-/* Monkey hand cursor. The fingertip (11, 1) is the click point.
-   Over anything clickable, the hand gets little tap marks. */
+/* Wolf paw cursor. The centre of the paw (16, 16) is the click point.
+   Over anything clickable the paw turns gold. Paw prints trail behind it (PawTrail.tsx). */
 html {
-  cursor: url('/cursor/monkey-hand.svg') 11 1, auto;
+  cursor: url('/cursor/wolf-paw.svg') 16 16, auto;
 }
 a, button, [role="button"], .cursor-pointer, label, select, summary {
-  cursor: url('/cursor/monkey-hand-active.svg') 11 1, pointer !important;
+  cursor: url('/cursor/wolf-paw-active.svg') 16 16, pointer !important;
+}
+.paw-print {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  pointer-events: none;
+  z-index: 9998;
+  fill: #fff;
+  mix-blend-mode: difference;
+  animation: pawFade 1.6s ease-out forwards;
+}
+@keyframes pawFade {
+  0% { opacity: 0.8; }
+  100% { opacity: 0; }
 }
 
 /* Anything you can click grows a little when the hand is over it */

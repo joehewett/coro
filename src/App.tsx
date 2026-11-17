@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import DirectorHome, { FilmsPage, AboutPage, ContactPage } from './components/director/DirectorHome';
 import FunQuestsPage from './components/FunQuestsPage';
+import PawTrail from './components/PawTrail';
 import ActressPage from './components/ActressPage';
 import DirectorPage from './components/DirectorPage';
 import MusicianPage from './components/MusicianPage';
@@ -30,6 +31,7 @@ import BehindTheScenes from './components/projects/BehindTheScenes';
 const App: React.FC = () => {
   return (
     <>
+      <PawTrail />
       <Routes>
         {/* Director-first front page */}
         <Route path="/" element={<DirectorHome />} />

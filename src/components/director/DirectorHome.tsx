@@ -168,7 +168,6 @@ const FilmCard: React.FC<{ film: Film; featured?: boolean }> = ({ film, featured
         alt={`Still from ${film.title}`}
         className="fill-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
       />
-      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
       <div className="absolute inset-0 flex items-center justify-center p-[8%]">
         {film.titleImage ? (
           <img
@@ -179,35 +178,27 @@ const FilmCard: React.FC<{ film: Film; featured?: boolean }> = ({ film, featured
             }`}
           />
         ) : (
-          <span className="font-credit text-white text-2xl sm:text-4xl text-center">{film.title}</span>
+          <span className="font-handfilm text-white text-4xl sm:text-6xl text-center">{film.title}</span>
         )}
       </div>
     </div>
-    <div className="mt-4 flex items-baseline justify-between gap-4 border-b border-white/15 pb-4">
+    <div className="mt-4 flex items-baseline justify-between gap-4">
       <div className="min-w-0">
-        <h2 className={`font-credit text-white ${featured ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'}`}>{film.title}</h2>
-        <p className="mt-1 font-wide uppercase tracking-[0.18em] text-xs sm:text-sm text-white/50">
+        <h2 className={`font-handfilm text-white leading-none ${featured ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'}`}>{film.title}</h2>
+        <p className="mt-2 font-political text-base sm:text-lg text-white/60">
           {film.role}
           {film.status && <span className="text-white/35"> · {film.status}</span>}
         </p>
       </div>
-      {film.year && <span className="font-credit text-white/50 text-lg shrink-0">{film.year}</span>}
+      {film.year && <span className="font-political text-white/60 text-base sm:text-lg shrink-0">{film.year}</span>}
     </div>
   </Link>
 );
 
 const SectionTitle: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <h2 className={`font-display title-glow uppercase text-center tracking-[0.12em] ${CREAM} text-3xl sm:text-5xl`}>
+  <h2 className={`font-political text-center ${CREAM} text-4xl sm:text-6xl`}>
     {children}
   </h2>
-);
-
-const Ornament = () => (
-  <div className={`flex items-center justify-center gap-4 ${GOLD} opacity-60 my-6`} aria-hidden="true">
-    <span className="h-px w-12 bg-current" />
-    <span className="text-xs">◆</span>
-    <span className="h-px w-12 bg-current" />
-  </div>
 );
 
 /** The End, at the bottom of every director page */
@@ -254,13 +245,13 @@ const DirectorHome: React.FC = () => (
 export const FilmsPage: React.FC = () => (
   <DirectorPageFrame>
     <section className="max-w-7xl mx-auto px-6 sm:px-10 pt-12 sm:pt-20 pb-10">
-      <div className="flex items-end justify-between gap-6 border-b border-white/15 pb-6">
-        <h1 className="font-credit text-white text-4xl sm:text-6xl">Films</h1>
+      <div className="flex items-end justify-between gap-6">
+        <h1 className="font-political text-white text-4xl sm:text-6xl">Films</h1>
         <a
           href={GARO_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-wide uppercase tracking-[0.18em] text-xs sm:text-sm text-white/50 hover:text-white transition-colors"
+          className="font-political text-base sm:text-lg text-white/60 hover:text-white transition-colors"
         >
           With GARO ↗
         </a>
@@ -286,7 +277,7 @@ export const AboutPage: React.FC = () => (
         className="w-full aspect-[4/5] object-cover grayscale sepia-[0.15]"
       />
       <div>
-        <h1 className={`font-display title-glow uppercase tracking-[0.12em] ${CREAM} text-3xl sm:text-5xl`}>About</h1>
+        <h1 className={`font-political ${CREAM} text-4xl sm:text-6xl`}>About</h1>
         <div className={`mt-8 space-y-5 ${CREAM} opacity-80 leading-relaxed`}>
           <p>
             Trained as an actress at Corazza, Madrid, and Bristol Old Vic, I came to directing through the stories I couldn't find told elsewhere. I've directed crews of up to 50 people on micro budgets; my work has been featured by Kodak and Promonews, and nominated for British Young Arrows.
@@ -311,7 +302,6 @@ export const ContactPage: React.FC = () => (
   <DirectorPageFrame>
     <section className="max-w-4xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
       <SectionTitle>Contact</SectionTitle>
-      <Ornament />
       <div className="mt-12 space-y-3">
         <CreditLine role="Email" name="coro@garo.studio" href="mailto:coro@garo.studio" />
         <CreditLine role="Instagram" name="@corobenavent" href="https://www.instagram.com/corobenavent/" external />
