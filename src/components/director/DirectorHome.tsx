@@ -4,7 +4,7 @@ import SiteHeader from './SiteHeader';
 import OptimizedImage from '../OptimizedImage';
 import TVHero from './TVHero';
 import ColorLetters from './ColorLetters';
-import { MeContent } from '../MePage';
+import { AboutContent } from '../MePage';
 
 /**
  * The director front page, designed like the end of an old film:
@@ -305,7 +305,7 @@ export const FilmsPage: React.FC = () => {
 /** About uses the Me page (photos and full bio), inside the director site's frame, with "More of me" at the end */
 export const AboutPage: React.FC = () => (
   <DirectorPageFrame>
-    <MeContent
+    <AboutContent
       after={
         <Link to="/more" className="block w-max mx-auto text-center">
           <span className="font-end text-3xl sm:text-4xl leading-none">

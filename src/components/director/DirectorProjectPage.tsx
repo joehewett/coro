@@ -60,7 +60,10 @@ const DirectorProjectPage: React.FC<Props> = ({
   // Match by the end of the address too, so /actress/palomitas-sin-maiz finds Palomitas
   const film = films.find((f) => f.route === pathname || pathname.endsWith(`/${f.route.split('/').pop()}`));
   const coro = credits.find((c) => c.isHighlighted);
-  const role = film?.role ?? coro?.role;
+  // Films Coro directed or co-directed don't repeat her role under the title; it's in the credits.
+  // Other roles (e.g. Creative producer, Director's assistant) still show.
+  const fullRole = film?.role ?? coro?.role;
+  const role = fullRole && /^(co-)?director(?!'s)/i.test(fullRole) ? undefined : fullRole;
 
   return (
     <DirectorPageFrame>
