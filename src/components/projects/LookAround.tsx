@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectPage from '../ProjectPage';
+import DirectorProjectPage from '../director/DirectorProjectPage';
 
 const LookAround: React.FC = () => {
   const credits: Array<{ name: string; role: string; isHighlighted?: boolean }> = [
@@ -86,7 +86,7 @@ Through maps and treasure hunts, he guides them toward a dreamy 1920s concert fi
   ];
 
   return (
-    <ProjectPage
+    <DirectorProjectPage
       title="Look Around"
       categoryImage="/landing/toprighttext.PNG"
       categoryRoute="/director"

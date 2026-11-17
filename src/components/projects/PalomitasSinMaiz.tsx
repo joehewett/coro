@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectPage from '../ProjectPage';
+import DirectorProjectPage from '../director/DirectorProjectPage';
 
 const PalomitasSinMaiz: React.FC = () => {
   const credits = [
@@ -35,7 +35,7 @@ It won the cinematography award at the British Young Arrows, was featured by Kod
 Shot on 16mm, the film creates a soft, reminiscent atmosphere, revolving around a beautiful memory. This video gave us the chance to reflect, process, and remember to be grateful for those we still have around us and to celebrate those who have long left.`;
 
   return (
-    <ProjectPage
+    <DirectorProjectPage
       title="Palomitas Sin Maiz"
       categoryImage="/landing/toprighttext.PNG"
       categoryRoute="/director"

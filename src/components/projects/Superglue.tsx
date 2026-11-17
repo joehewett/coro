@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectPage from '../ProjectPage';
+import DirectorProjectPage from '../director/DirectorProjectPage';
 
 const Superglue: React.FC = () => {
   const credits = [
@@ -45,7 +45,7 @@ const Superglue: React.FC = () => {
   const additionalInfo = ``;
 
   return (
-    <ProjectPage
+    <DirectorProjectPage
       title="SUPERGLUE"
       categoryImage="/landing/toprighttext.PNG"
       categoryRoute="/director"

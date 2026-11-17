@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectPage from '../ProjectPage';
+import DirectorProjectPage from '../director/DirectorProjectPage';
 
 const Ragni: React.FC = () => {
   const credits = [
@@ -45,7 +45,7 @@ const Ragni: React.FC = () => {
 On the flip side, female spiders are known for dominating their male counterparts, showing the arbitrary nature of these gendered dynamics, explored through a dance sequence where the woman dominates the space, surrounded by passive or fearful male onlookers.`;
 
   return (
-    <ProjectPage
+    <DirectorProjectPage
       title="Ragni"
       categoryImage="/landing/toprighttext.PNG"
       categoryRoute="/director"

@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectPage from '../ProjectPage';
+import DirectorProjectPage from '../director/DirectorProjectPage';
 
 const Tonos: React.FC = () => {
   const credits = [
@@ -23,7 +23,7 @@ Shot on 16mm film. Written by BAFTA-winning screenwriter Aleksandra Sykulak. Sta
 Visit the film's website: https://tonos.film`;
 
   return (
-    <ProjectPage
+    <DirectorProjectPage
       title="TONOS"
       categoryImage="/landing/toprighttext.PNG"
       categoryRoute="/director"

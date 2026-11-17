@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectPage from '../ProjectPage';
+import DirectorProjectPage from '../director/DirectorProjectPage';
 
 const PadreHijoPastor: React.FC = () => {
   const credits = [
@@ -23,7 +23,7 @@ const PadreHijoPastor: React.FC = () => {
   The film documents the challenges and beauty of traditional shepherding, exploring themes of heritage, family bonds, and the clash between old and new ways of life in rural Spain.`;
 
   return (
-    <ProjectPage
+    <DirectorProjectPage
       title="Padre. Hijo. Pastor"
       categoryImage="/landing/toprighttext.PNG"
       categoryRoute="/director"

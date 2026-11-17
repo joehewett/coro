@@ -17,7 +17,7 @@ interface Credit {
   name?: string;
 }
 
-interface Film {
+export interface Film {
   title: string;
   /** Title design shown over the still. Text title is used if missing. */
   titleImage?: string;
@@ -40,10 +40,10 @@ interface Film {
   garoLink?: string;
 }
 
-const GARO_URL = 'https://www.garogirls.com';
+export const GARO_URL = 'https://www.garogirls.com';
 
 // The order here is the order on the page.
-const films: Film[] = [
+export const films: Film[] = [
   {
     title: 'Tonos',
     group: 'Films',
@@ -217,7 +217,7 @@ const TheEnd: React.FC = () => (
 );
 
 /** Shared frame for the Films, About and Contact pages */
-const DirectorPageFrame: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const DirectorPageFrame: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
