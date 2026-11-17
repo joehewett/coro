@@ -122,16 +122,6 @@ const films: Film[] = [
 const CREAM = 'text-[#f5ecd7]';
 const GOLD = 'text-[#f1d96b]';
 
-const roman = (n: number) => {
-  const map: [number, string][] = [
-    [1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'],
-    [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I'],
-  ];
-  let out = '';
-  for (const [v, s] of map) while (n >= v) { out += s; n -= v; }
-  return out;
-};
-
 /** One line of credits: "Directed by ~ ~ ~ CORO BENAVENT" */
 const CreditLine: React.FC<{ role: string; name?: string; href?: string; external?: boolean }> = ({
   role,
@@ -220,13 +210,8 @@ const TheEnd: React.FC = () => (
     <p className="font-end text-7xl sm:text-9xl leading-none" style={{ transform: 'rotate(-2deg)' }}>
       <ColorLetters text="The End" />
     </p>
-    <div className="mt-16 flex items-center gap-6 opacity-50">
-      <img src="/coro_text.png" alt="Coro" style={{ height: 22, width: 'auto' }} />
-    </div>
-    <p className={`mt-6 font-wide uppercase tracking-[0.2em] text-[10px] sm:text-xs ${CREAM} opacity-40 max-w-xs leading-relaxed`}>
-      Copyright {roman(new Date().getFullYear())} by Coro Benavent.
-      <br />
-      All rights reserved.
+    <p className={`mt-16 font-political text-sm sm:text-base ${CREAM} opacity-50`}>
+      © {new Date().getFullYear()} Coro Benavent
     </p>
   </footer>
 );
