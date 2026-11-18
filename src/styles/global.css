@@ -207,3 +207,62 @@ html,
 body {
   overscroll-behavior: none;
 }
+
+/* Old-TV feel for the Contact card: scan lines, picture noise, curved darker edges,
+   a slight colour fringe and flicker on the lettering, and the credits rolling up into place. */
+.contact-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.28) 0px, rgba(0, 0, 0, 0.28) 1px, transparent 1px, transparent 3px);
+  mix-blend-mode: multiply;
+}
+.contact-frame::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.5s steps(3) infinite;
+}
+.contact-frame {
+  box-shadow:
+    inset 0 0 120px rgba(0, 0, 0, 0.85),
+    inset 0 0 30px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(255, 150, 110, 0.06);
+}
+.contact-text {
+  position: relative;
+  z-index: 1;
+  filter: blur(0.25px);
+  text-shadow:
+    0.6px 0 0 rgba(255, 90, 90, 0.35),
+    -0.6px 0 0 rgba(90, 170, 255, 0.3),
+    0 0 6px rgba(255, 196, 160, 0.5),
+    0 0 1px rgba(255, 230, 215, 0.7);
+  animation: tvFlicker 4s infinite;
+}
+.contact-roll {
+  animation: creditsRoll 3.2s cubic-bezier(0.2, 0.7, 0.2, 1) both, tvFlicker 4s 3.2s infinite;
+}
+@keyframes creditsRoll {
+  from { transform: translateY(70%); opacity: 0; }
+  20% { opacity: 1; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes tvFlicker {
+  0%, 100% { opacity: 1; }
+  47% { opacity: 1; }
+  48% { opacity: 0.82; }
+  49% { opacity: 1; }
+  73% { opacity: 0.93; }
+  74% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-roll, .contact-text, .contact-frame::after { animation: none; }
+}

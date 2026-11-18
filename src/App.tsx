@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import DirectorHome, { FilmsPage, AboutPage, ContactPage } from './components/director/DirectorHome';
 import FunQuestsPage from './components/FunQuestsPage';
+import ScrollToTop from './components/ScrollToTop';
 import ActressPage from './components/ActressPage';
 import DirectorPage from './components/DirectorPage';
 import MusicianPage from './components/MusicianPage';
@@ -30,6 +31,7 @@ import BehindTheScenes from './components/projects/BehindTheScenes';
 const App: React.FC = () => {
   return (
     <>
+      <ScrollToTop />
       {/* Paw prints behind the cursor are switched off; add <PawTrail /> back here to bring them back */}
       <Routes>
         {/* Director-first front page */}

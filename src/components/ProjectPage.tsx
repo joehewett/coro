@@ -66,6 +66,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
         categoryRoute={categoryRoute}
         categoryAlt={categoryAlt}
         theme={theme}
+        backTo={categoryRoute}
       />
       
       {/* Repeating title bar */}

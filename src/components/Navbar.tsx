@@ -1,5 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import ColorLetters from './director/ColorLetters';
 import Logo from './Logo';
 import { type ThemeMode, themeUtils } from '../theme';
 
@@ -8,9 +9,11 @@ interface NavbarProps {
   categoryRoute?: string;
   categoryAlt?: string;
   theme?: ThemeMode;
+  /** Where the little "Back" button goes (in the site's colourful menu letters). No button if left out. */
+  backTo?: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ categoryImage, categoryRoute, categoryAlt, theme = 'dark' }) => {
+const Navbar: React.FC<NavbarProps> = ({ categoryImage, categoryRoute, categoryAlt, theme = 'dark', backTo }) => {
   const navigate = useNavigate();
 
   return (
@@ -26,6 +29,17 @@ const Navbar: React.FC<NavbarProps> = ({ categoryImage, categoryRoute, categoryA
           onClick={() => categoryRoute && navigate(categoryRoute)}
           className={`h-10 object-contain ${categoryRoute ? 'cursor-pointer' : 'cursor-default'} ${themeUtils.shouldInvertImages(theme) ? 'invert' : ''}`}
         />
+      )}
+
+      {backTo && (
+        <Link
+          to={backTo}
+          aria-label="Back"
+          className="ml-auto font-end text-xl sm:text-2xl leading-none inline-block transition-transform hover:scale-110"
+        >
+          {/* colours chosen to stay visible on the orange Music page too (no orange letter) */}
+          <span style={{ color: '#19c3b8' }}>←</span> <ColorLetters text="Back" offset={4} />
+        </Link>
       )}
     </nav>
   );

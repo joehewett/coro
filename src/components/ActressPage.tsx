@@ -55,10 +55,11 @@ const ActressPage: React.FC<ActressPageProps> = ({ theme = 'beige' }) => {
         categoryRoute="/actress"
         categoryAlt="Actress"
         theme={theme}
+        backTo={'/more'}
       />
       
       {/* Showreel Section */}
-      <div className="px-10 max-w-6xl mx-auto pt-32 pb-32">
+      <div className="px-10 max-w-6xl mx-auto pt-6 pb-32">
         <h2 className={`text-6xl font-handwritten text-center mb-12 ${themeUtils.text(theme)}`}>
           Acting Showreel
         </h2>

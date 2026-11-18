@@ -141,7 +141,7 @@ const link = 'underline underline-offset-4 decoration-white/30 hover:decoration-
  * No photo at the very top; the bio sits next to the black-and-white portrait with glasses.
  */
 export const AboutContent: React.FC<{ after?: React.ReactNode }> = ({ after }) => (
-  <div className="max-w-6xl mx-auto px-6 sm:px-10 py-12 sm:py-20">
+  <div className="max-w-6xl mx-auto px-6 sm:px-10 pt-2 sm:pt-4 pb-12 sm:pb-20">
     <h1 className="text-center text-6xl md:text-7xl text-white font-handwritten">Director</h1>
 
     <div className="mt-14 sm:mt-20 flex flex-col gap-24 sm:gap-32">

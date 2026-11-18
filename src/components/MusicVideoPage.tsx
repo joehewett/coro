@@ -32,6 +32,7 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
         categoryRoute={categoryRoute}
         categoryAlt={categoryAlt}
         theme={theme}
+        backTo={categoryRoute}
       />
       
       {/* Main content - full viewport height */}
