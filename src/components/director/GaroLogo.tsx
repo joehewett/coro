@@ -1,8 +1,8 @@
 import React, { useId } from 'react';
 
 /**
- * The GARO logo exactly as on garogirls.com: the same picture, with the same grain on the
- * white letters and a lighter grain on the egg (copied from their site's SVG filters).
+ * The GARO logo as on garogirls.com: the same picture, with a fine film grain on the
+ * white letters (like the Contact card's grain) and a light grain on the egg.
  * The top of the egg lifts open, tilting up and to the right, and closes again,
  * twice every few seconds and whenever you point at it, to hint that it's clickable.
  *
@@ -10,9 +10,14 @@ import React, { useId } from 'react';
  */
 const SRC = '/director/garo/garo-logo-white.png';
 
-const Grain: React.FC<{ id: string; low: number[] }> = ({ id, low }) => (
+const Grain: React.FC<{ id: string; low: number[]; freq?: number; octaves?: number }> = ({
+  id,
+  low,
+  freq = 0.75,
+  octaves = 3,
+}) => (
   <filter id={id} x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
-    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves={3} seed={7} stitchTiles="stitch" result="t" />
+    <feTurbulence type="fractalNoise" baseFrequency={freq} numOctaves={octaves} seed={7} stitchTiles="stitch" result="t" />
     <feColorMatrix in="t" type="saturate" values="0" result="g" />
     <feComponentTransfer in="g" result="c">
       <feFuncR type="linear" slope="3.2" intercept="-1.1" />
@@ -37,7 +42,7 @@ const GaroLogo: React.FC<{ height: string; className?: string }> = ({ height, cl
   return (
     <span className={`garo-logo relative inline-block align-middle ${className}`} style={{ height }}>
       <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
-        <Grain id={letters} low={[0.5, 0.68, 0.88]} />
+        <Grain id={letters} low={[0.55, 0.8, 0.95]} freq={1.4} octaves={1} />
         <Grain id={egg} low={[0.83, 0.89, 0.96]} />
       </svg>
       {/* G A R */}
