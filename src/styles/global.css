@@ -212,7 +212,7 @@ body {
   content: '';
   position: absolute;
   /* A round pool of light, like a film lamp, about as wide as the card */
-  --d: min(104%, max(90vh, 600px));
+  --d: min(118%, max(100vh, 680px));
   left: 50%;
   width: var(--d);
   aspect-ratio: 1;
@@ -233,7 +233,7 @@ body {
 .contact-frame::after {
   content: '';
   position: absolute;
-  --d: min(104%, max(90vh, 600px));
+  --d: min(118%, max(100vh, 680px));
   left: 50%;
   width: var(--d);
   aspect-ratio: 1;
