@@ -200,3 +200,10 @@ a, button, [role="button"], .cursor-pointer, label, select, summary {
   color: #f4dccb;
   text-shadow: 0 0 6px rgba(255, 196, 160, 0.45), 0 0 1px rgba(255, 230, 215, 0.6);
 }
+
+/* No bouncing past the top or bottom of any page (the rubber-band effect on Mac trackpads and phones).
+   Normal scrolling inside a page still works. */
+html,
+body {
+  overscroll-behavior: none;
+}
