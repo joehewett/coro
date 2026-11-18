@@ -5,6 +5,7 @@ import OptimizedImage from '../OptimizedImage';
 import TVHero from './TVHero';
 import ColorLetters from './ColorLetters';
 import { AboutContent } from '../MePage';
+import GaroLogo from './GaroLogo';
 
 /**
  * The director front page, designed like the end of an old film:
@@ -268,7 +269,7 @@ const FounderOfGaro: React.FC = () => (
     aria-label="Founder of GARO"
   >
     <span className="font-garo text-base sm:text-xl">Founder of</span>
-    <img src="/director/garo/garo-logo-white.png" alt="GARO" className="fill-img" style={{ height: 'clamp(22px, 2.6vw, 34px)', width: 'auto' }} />
+    <GaroLogo height="clamp(22px, 2.6vw, 34px)" />
   </a>
 );
 
@@ -337,7 +338,7 @@ export const AboutPage: React.FC = () => (
 );
 
 /** One contact line, like a film credit card: Label ........ value */
-const ContactLine: React.FC<{ label: string; value: string; href: string; external?: boolean }> = ({
+const ContactLine: React.FC<{ label: string; value: React.ReactNode; href: string; external?: boolean }> = ({
   label,
   value,
   href,
@@ -370,7 +371,7 @@ export const ContactPage: React.FC = () => (
             <ContactLine label="Instagram" value="@corobenavent" href="https://www.instagram.com/corobenavent/" external />
             <ContactLine label="YouTube" value="Coro Benavent" href="https://www.youtube.com/channel/UCBcovpzdJulXmepFhF_Rmow" external />
             <ContactLine label="LinkedIn" value="Coro Benavent" href="https://www.linkedin.com/in/coro-benavent-30838519b/" external />
-            <ContactLine label="Production company" value="GARO" href={GARO_URL} external />
+            <ContactLine label="Production company" value={<GaroLogo height="1.05em" className="-translate-y-[0.08em]" />} href={GARO_URL} external />
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import OptimizedImage from './OptimizedImage';
+import GaroLogo from './director/GaroLogo';
 
 /** The Me page content: photos and the full bio. Also used as the director site's About page. */
 export const MeContent: React.FC<{ after?: React.ReactNode }> = ({ after }) => (
@@ -156,7 +157,7 @@ export const AboutContent: React.FC<{ after?: React.ReactNode }> = ({ after }) =
           Her latest short, <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className={link}>Tonos</a>, now in post-production, was written with BAFTA winner Aleksandra Sykulak, produced by SkyeAngel Productions with Spanish co-producers, and shot on 16mm by two-time BAFTA winner Toby Lloyd. Coro stars opposite Goya nominee Julio Peña.
         </p>
         <p>
-          In 2025 she co-founded <a href="https://www.garogirls.com" target="_blank" rel="noopener noreferrer" className={link}>GARO</a> with Gabrielle Torreborre, executive producing Gabby’s short Tussle. The screenplay for their upcoming co-directed short, Reva, was a Sofia Coppola DCP Award finalist, ranking in the top 1%, and was longlisted for the FFC Fund.
+          In 2025 she co-founded <a href="https://www.garogirls.com" target="_blank" rel="noopener noreferrer" className="inline-block align-baseline" aria-label="GARO"><GaroLogo height="0.95em" className="-translate-y-[0.05em]" /></a> with Gabrielle Torreborre, executive producing Gabby’s short Tussle. The screenplay for their upcoming co-directed short, Reva, was a Sofia Coppola DCP Award finalist, ranking in the top 1%, and was longlisted for the FFC Fund.
         </p>
         <p>
           Late 2025, Coro and Gabby flew to San Francisco to raise £80K for their two shorts. Along the way, they met the founders and VCs who inspired their first co-created feature, Two for Tango, which they are now about to develop, write and direct together.
@@ -165,7 +166,7 @@ export const AboutContent: React.FC<{ after?: React.ReactNode }> = ({ after }) =
 
       <AboutRow img="/me/me4.jpg" alt="Coro Benavent" imageLeft quote>
         <p>
-          <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className={link}>Tonos</a> is the most personal thing I've made. It's about the voice I lost as a child and the years it took to find it again. Shot on 16mm, written by BAFTA-winning screenwriter Aleksandra Sykulak, starring Julio Pe&ntilde;a. A <a href="https://www.garogirls.com" target="_blank" rel="noopener noreferrer" className={link}>GARO</a> production.
+          <a href="https://tonos.film" target="_blank" rel="noopener noreferrer" className={link}>Tonos</a> is the most personal thing I've made. It's about the voice I lost as a child and the years it took to find it again. Shot on 16mm, written by BAFTA-winning screenwriter Aleksandra Sykulak, starring Julio Pe&ntilde;a. A <a href="https://www.garogirls.com" target="_blank" rel="noopener noreferrer" className="inline-block align-baseline" aria-label="GARO"><GaroLogo height="0.95em" className="-translate-y-[0.05em]" /></a> production.
         </p>
       </AboutRow>
 

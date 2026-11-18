@@ -284,3 +284,30 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .contact-roll, .contact-text, .contact-frame::after { animation: none; }
 }
+
+/* GARO logo: the top of the egg lifts open (up and to the right) and closes, twice,
+   every few seconds and when you point at it. Hinged on the egg's right side. */
+.garo-egg-top {
+  transform-origin: 97% 46%;
+  animation: garoEggPeek 6s ease-in-out 1.2s infinite;
+}
+a:hover .garo-egg-top,
+.garo-logo:hover .garo-egg-top {
+  animation: garoEggPeekNow 1.4s ease-in-out infinite;
+}
+@keyframes garoEggPeek {
+  0% { transform: none; }
+  6% { transform: translateY(-5%) rotate(14deg); }
+  12% { transform: none; }
+  18% { transform: translateY(-4%) rotate(10deg); }
+  24%, 100% { transform: none; }
+}
+@keyframes garoEggPeekNow {
+  0%, 100% { transform: none; }
+  25% { transform: translateY(-5%) rotate(14deg); }
+  50% { transform: none; }
+  72% { transform: translateY(-4%) rotate(10deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .garo-egg-top { animation: none !important; }
+}
