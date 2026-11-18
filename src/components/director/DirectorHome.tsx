@@ -364,7 +364,7 @@ export const ContactPage: React.FC = () => (
       <div className="contact-frame relative overflow-hidden mx-auto max-w-4xl rounded-[28px] sm:rounded-[44px] px-6 sm:px-16 py-16 sm:py-24">
         <div className="contact-text contact-roll mx-auto max-w-lg font-[Poppins,sans-serif] font-semibold text-[13px] sm:text-lg">
           <h1 className="text-center text-base sm:text-xl">Contact</h1>
-          <div className="mt-4 mb-6 h-[2px] bg-current opacity-90" />
+          <div className="mt-6 sm:mt-8" />
           <div className="flex flex-col gap-3 sm:gap-4">
             <ContactLine label="Email" value="coro@garo.studio" href="mailto:coro@garo.studio" />
             <ContactLine label="Instagram" value="@corobenavent" href="https://www.instagram.com/corobenavent/" external />
