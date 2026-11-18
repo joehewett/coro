@@ -16,7 +16,7 @@ const DirectorPage: React.FC<DirectorPageProps> = ({ theme = 'dark' }) => {
       title: 'TONOS',
       description: 'Director & lead actress. A short film about reclaiming your voice. Shot on 16mm, written by BAFTA-winning screenwriter Aleksandra Sykulak, starring Julio Peña. A GARO production.',
       route: '/director/tonos',
-      status: 'In Pre-Production'
+      status: 'In Post-Production'
     },
     {
       id: 6,

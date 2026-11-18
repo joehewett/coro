@@ -34,7 +34,7 @@ Visit the film's website: https://tonos.film`;
       description={description}
       mainImage="/director/tonos-classroom.jpg"
       additionalInfo={additionalInfo}
-      status="In Pre-Production"
+      status="In Post-Production"
     />
   );
 };
