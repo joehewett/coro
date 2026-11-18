@@ -232,13 +232,31 @@ export const DirectorPageFrame: React.FC<{ children: React.ReactNode }> = ({ chi
 };
 
 /** Front page: just the TV. The menu on its screen leads to the other pages. */
-const DirectorHome: React.FC = () => (
-  <div className="grow-links bg-black text-white h-[100svh] overflow-hidden">
-    {/* On laptops the menu is on the TV screen; on phones this bar sits above the TV */}
-    <SiteHeader hideOverHero />
-    <TVHero />
-  </div>
-);
+const DirectorHome: React.FC = () => {
+  // The front page stays perfectly still: no scrolling or bouncing, even if you try.
+  // Scrolling comes back as soon as you leave for another page.
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    const before = [html.style.overflow, body.style.overflow, html.style.overscrollBehavior, body.style.overscrollBehavior];
+    html.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
+    html.style.overscrollBehavior = 'none';
+    body.style.overscrollBehavior = 'none';
+    window.scrollTo(0, 0);
+    return () => {
+      [html.style.overflow, body.style.overflow, html.style.overscrollBehavior, body.style.overscrollBehavior] = before;
+    };
+  }, []);
+
+  return (
+    <div className="grow-links fixed inset-0 bg-black text-white overflow-hidden touch-none">
+      {/* On laptops the menu is on the TV screen; on phones this bar sits above the TV */}
+      <SiteHeader hideOverHero />
+      <TVHero />
+    </div>
+  );
+};
 
 /** "Founder of GARO": GARO's own logo and heading font, linking to their site */
 const FounderOfGaro: React.FC = () => (
