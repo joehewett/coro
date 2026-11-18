@@ -53,7 +53,8 @@ const Homepage: React.FC = () => {
   ];
   const quadrants = allQuadrants.filter((q) => q.show);
   // Two doors sit side by side; four make the 2x2 grid
-  const gridClass = quadrants.length <= 2 ? 'grid-cols-2 grid-rows-1' : 'grid-cols-2 grid-rows-2';
+  // On phones the two photos stack (one on top of the other) so each shows wide; side by side from tablet size up
+  const gridClass = quadrants.length <= 2 ? 'grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1' : 'grid-cols-2 grid-rows-2';
 
   return (
     <div className="grow-links homepage-no-scroll fixed top-0 left-0 w-screen h-screen">
@@ -97,7 +98,7 @@ const Homepage: React.FC = () => {
             
             {/* Hover overlay */}
             <div 
-              className={`overlay absolute inset-0 flex justify-center ${quadrant.labelAt === 'top' ? 'items-start pt-[14vh]' : quadrant.labelAt === 'bottom' ? 'items-end pb-[16vh]' : 'items-center'} bg-transparent transition-colors duration-300 ease-in-out cursor-pointer z-10`}
+              className={`overlay absolute inset-0 flex justify-center ${quadrant.labelAt === 'top' ? 'items-start pt-[7vh] md:pt-[14vh]' : quadrant.labelAt === 'bottom' ? 'items-end pb-[6vh] md:pb-[16vh]' : 'items-center'} bg-transparent transition-colors duration-300 ease-in-out cursor-pointer z-10`}
             >
               {/* Text overlay image */}
               {quadrant.text ? (
