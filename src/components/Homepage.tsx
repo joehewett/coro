@@ -16,7 +16,7 @@ const Homepage: React.FC = () => {
   // has no stories yet. To go back to the four-photo page, set `show: true` on Me and Fun Quests
   // and put Actress back on its own photo, '/landing/actress-tile.jpg'.
   // `text` is a handwritten label image; `label` is used when there is no image yet.
-  const allQuadrants: { bg: string; text?: string; label?: string; alt: string; route: string; show: boolean; labelAt?: 'top' | 'bottom' }[] = [
+  const allQuadrants: { bg: string; text?: string; label?: string; alt: string; route: string; show: boolean; labelAt?: 'top' | 'bottom'; labelPlace?: string; labelSize?: string }[] = [
     {
       // Uses the photo that was on the Me tile, with the Actress title
       bg: '/landing/bottomleft.jpeg',
@@ -24,8 +24,11 @@ const Homepage: React.FC = () => {
       alt: 'Actress',
       route: '/actress',
       show: true,
-      // Title up in the sky
-      labelAt: 'top'
+      // Title up in the sky (phones: right at the top, clear of the raised hand)
+      labelAt: 'top',
+      labelPlace: 'items-start justify-center pt-[3vh] md:pt-[14vh]',
+      // A bit smaller on phones so it clears the little house in the corner
+      labelSize: 'w-[46%] md:w-auto'
     },
     {
       bg: '/landing/bottomright.jpeg',
@@ -33,8 +36,11 @@ const Homepage: React.FC = () => {
       alt: 'Music',
       route: '/musician',
       show: true,
-      // Title down by the chin
-      labelAt: 'bottom'
+      // Phones: in the black space on the right, above the microphone. Laptops: down by the chin
+      labelAt: 'bottom',
+      labelPlace: 'items-start justify-end pt-[9vh] pr-[5%] md:items-end md:justify-center md:pt-0 md:pr-0 md:pb-[16vh]',
+      // Smaller on phones so it fits inside the black space
+      labelSize: 'w-[30%] md:w-auto'
     },
     {
       bg: '/landing/bottomleft.jpeg',
@@ -98,12 +104,12 @@ const Homepage: React.FC = () => {
             
             {/* Hover overlay */}
             <div 
-              className={`overlay absolute inset-0 flex justify-center ${quadrant.labelAt === 'top' ? 'items-start pt-[7vh] md:pt-[14vh]' : quadrant.labelAt === 'bottom' ? 'items-end pb-[6vh] md:pb-[16vh]' : 'items-center'} bg-transparent transition-colors duration-300 ease-in-out cursor-pointer z-10`}
+              className={`overlay absolute inset-0 flex ${quadrant.labelPlace ?? 'items-center justify-center'} bg-transparent transition-colors duration-300 ease-in-out cursor-pointer z-10`}
             >
               {/* Text overlay image */}
               {quadrant.text ? (
                 <img
-                  className="text-img max-w-[20%] max-h-[20%] object-contain transition-opacity duration-300 ease-in-out pointer-events-none"
+                  className={`text-img max-w-[20%] max-h-[20%] object-contain transition-opacity duration-300 ease-in-out pointer-events-none ${quadrant.labelSize ?? ''}`}
                   src={quadrant.text}
                   alt={quadrant.alt}
                 />
