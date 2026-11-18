@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import ProjectCard from './ProjectCard';
-import Footer from './Footer';
+import SectionFooter from './SectionFooter';
 import OptimizedImage from './OptimizedImage';
 import { type ThemeMode, themeUtils } from '../theme';
 
@@ -207,7 +207,7 @@ const ActressPage: React.FC<ActressPageProps> = ({ theme = 'beige' }) => {
         </div>
       </div>
 
-      <Footer theme={theme} />
+      <SectionFooter section="actress" theme={theme} />
     </div>
   );
 };

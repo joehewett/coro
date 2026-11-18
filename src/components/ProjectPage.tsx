@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
-import Footer from './Footer';
+import SectionFooter from './SectionFooter';
 import OptimizedImage from './OptimizedImage';
 import { type ThemeMode, themeUtils } from '../theme';
 
@@ -157,7 +157,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
         </div>
       </div>
 
-      <Footer theme={theme} />
+      <SectionFooter section={categoryRoute.startsWith('/musician') ? 'music' : 'actress'} theme={theme} />
     </div>
   );
 };

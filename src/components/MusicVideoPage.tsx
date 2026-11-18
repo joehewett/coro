@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
-import Footer from './Footer';
+import SectionFooter from './SectionFooter';
 import { type ThemeMode, themeUtils } from '../theme';
 
 interface MusicVideoPageProps {
@@ -77,7 +77,7 @@ const MusicVideoPage: React.FC<MusicVideoPageProps> = ({
       </div>
       
       {/* Footer - off the page */}
-      <Footer theme={theme} />
+      <SectionFooter section={categoryRoute.startsWith('/actress') ? 'actress' : 'music'} theme={theme} />
     </div>
   );
 };
